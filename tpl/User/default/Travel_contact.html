@@ -1,0 +1,41 @@
+<include file="Public:head"/> 
+
+
+  <div class="content"> 
+   <div class="cLineB"> 
+    <h4>联系方式</h4> 
+    <a href="{pigcms::U('Travel/index',array('token'=>$token))}" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+   </div> 
+   <form class="form" method="post" action=""> 	
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+       <tr> 
+        <th><span class="red">*</span>旅行社名称：</th> 
+        <td><input type="text" name="contact_name" value="{pigcms:$info.contact_name}" class="px" style="width:400px;" /></td> 
+       </tr>
+	   <tr> 
+        <th><span class="red">*</span>联系电话：</th> 
+        <td><input type="text" name="contact_phone" value="{pigcms:$info.contact_phone}" class="px" style="width:200px;" /></td> 
+       </tr>
+	   <tr> 
+        <th><span class="red">*</span>联系地址：</th> 
+        <td><input type="text" name="contact_address" value="{pigcms:$info.contact_address}" class="px" style="width:400px;" /></td> 
+       </tr>
+	   <tr> 
+        <th><span class="red">*</span>电子邮箱：</th> 
+        <td><input type="text" name="contact_email" value="{pigcms:$info.contact_email}" class="px" style="width:300px;" /></td> 
+       </tr>
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+       <button type="submit" name="button" class="btnGreen">保存</button></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+    
+   </form> 
+  </div> 
+  
+  <include file="Public:footer" />

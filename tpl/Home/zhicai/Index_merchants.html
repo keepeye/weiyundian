@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta  charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>微云店</title>
+<include file="Public:header"/>
+<style>
+select{padding:0}
+</style>
+<script type="text/javascript" src="__PUBLIC__/js/city/jquery.cityselect.js"></script>
+<div class="zcontainer">
+	<div class="t5"></div>
+</div>
+<!-- <div class="ServiceBox eachcashbg">
+   	<div class="Service_1">
+        <dl>
+            <dt><b>-</b> 微信公众帐号管理服务</dt>
+            <dd><b>·</b> 为企业开通公众账号</dd>
+            <dd><b>·</b> 编写企业公众账号介绍</dd>
+            <dd><b>·</b> 编写欢迎语</dd>
+            <dd><b>·</b> 根据企业要求，对企业公众账号关注人群进行分类</dd>
+            <dd><b>·</b> 根据企业要求，基于微信公众平台为企业配置自动回复</dd>
+        </dl>
+    </div>
+</div> -->
+<div class="ServiceBox eachcashbg2">
+	<div class="Service">
+        <img class="py" src="{pigcms::RES}/images/py.jpg">
+    </div>
+</div>
+<div class="ServiceBox eachcashbg2">
+   <div class="merchants zhichi">
+        <img class="title1" src="{pigcms::RES}/images/1.png">
+        <dl>
+            <dt><h2>宣传支持</h2></dt>
+            <dd>1.提供网络媒体的支持（如新浪，搜狐等媒体报道）</dd>
+            <dd>2.提供当地市场的媒体，论坛，微博的推广；</dd>
+        </dl>
+        <dl>
+            <dt><h2>技术支持</h2></dt>
+            <dd>1.提供产品系统支持，微信宝使用操作培训</dd>
+            <dd>2.提供现场或远程技术培训，让合作伙伴掌握操作流程与技术；</dd>
+            <dd>3.不定期如今相关技术人员到上海总部接受产品培训</dd>
+        </dl>
+        <dl>
+            <dt><h2>物料与培训支持</h2></dt>
+            <dd>1.提供产品宣传资料，案例，操作手册等资料；</dd>
+            <dd>2.提供产品知识与使用技巧，客户谈判及销售相关的培训；</dd>
+            <dd>3.总部将区域客户的咨询，当时的客户信息提供给区域代理商；</dd>
+        </dl>
+    </div>
+</div>
+<div class="ServiceBox eachcashbg2">
+   <div class="merchants">
+        <img class="title1" src="{pigcms::RES}/images/2.png">
+        <ul class="tiaojian">
+            <li><span>条件一:</span>具备从业互联网基础应用业务的基本能力，包括营销、服务的基本条件和素质；</li>
+            <li><span>条件一:</span>接受秉钧业务监督、市场指导和业绩考核，并遵守协议相互约定的条款；</li>
+            <li><span>条件一:</span>具备一定的本地化客户资源和客户服务能力。</li>
+        </ul>
+    </div>
+</div>
+<div class="ServiceBox eachcashbg2">
+   <div class="merchants">
+        <img class="title1" src="{pigcms::RES}/images/3.png">
+        <div style="width: 100%; text-align: center;">
+            <img src="{pigcms::RES}/images/3546.jpg">
+        </div>
+    </div>
+</div>
+<div class="ServiceBox eachcashbg2 hr">
+    <div class="Service proxy clearfix">
+        <h3 class="joinus">请在下方填写代理申请，我们会尽快与您联系</h3>
+		<form method="post" id="applyform">
+        <div class="proxy-bottom" align="center">
+            <dl class="clearfix">
+                <dd>
+                    <span><font color="#ff0000">*&nbsp;</font>地区：</span>
+                    <div class="area_site" id="area">
+                        <select class="prov" name="prov" id="wwprov">
+                            
+                        </select>
+                        <select class="city" disabled="disabled" name="city" id="wwcity"></select>
+                    </div>
+                    <label>请选择您要代理的地区</label>
+                </dd>
+                <dd>
+                    <span><font color="#ff0000">*&nbsp;</font>企业名称：</span>
+                    <em><input name="company" type="text" class="pbusname" value="" id="wwcompany"></em>
+                    <label>请填写你的企业名称</label>
+                </dd>
+                <dd>
+                    <span><font color="#ff0000">*&nbsp;</font>姓名：</span>
+                    <em><input name="name" type="text" class="pbusname" value="" id="wwusername"></em>
+                    <label>请填写你的真实姓名，使用中文或英文</label>
+                </dd>
+                <dd>
+                    <span><font color="#ff0000">*&nbsp;</font>手机：</span>
+                    <em><input name="mobile" type="text" class="phone" value="" id="wwmobile"></em>
+                    <label>请认真填写您的电话，以便与您联系</label>
+                </dd>
+                <dd>
+                    <span>座机：</span>
+                    <em><input name="tel" type="text" class="landline" value="" id="wwtel"></em>
+                    <label></label>
+                </dd>
+                <dd>
+                    <span>QQ：</span>
+                    <em><input name="qq" type="text" class="QQ" value="" id="wwqq"></em>
+                    <label>请填写你的QQ，以便在线沟通</label>
+                </dd>
+                <dd>
+                    <span><font color="#ff0000">*&nbsp;</font>邮箱：</span>
+                    <em><input name="email" type="text" class="email" value="" id="wwemail"></em>
+                    <label>请填写你的邮箱，以便给您发送资料</label>
+                </dd>
+                <dd style="height:110px;">
+                    <span>备注：</span>
+                    <textarea class="beizhu_1" name="extra" value="" placeholder="请填写您的优势、资源、简述等内容" id="wwextra"></textarea>
+                </dd>
+                <dt class="tijiao"><input type="button"  onclick="submitform()"></dt>
+            </dl>
+        </div>
+		</form>
+    </div>
+</div>
+<script>
+$(function(){
+	$("#area").citySelect({
+		nodata:"none",
+		required:false,
+		url:"__PUBLIC__/js/city/city.min.js"
+	});
+})
+
+function submitform(){
+	var checkitems = {"wwprov":"省份","wwcity":"城市","wwcompany":"企业名","wwusername":"姓名","wwmobile":"手机号码","wwemail":"邮箱","wwextra":"备注"};
+	var re = true;
+	$.each(checkitems,function(i,v){
+		if($("#"+i).val() == ""){
+			alert(v+" 必须填写");
+			$("#"+i).focus();
+			re = false;
+			return false;
+		}
+	})
+	if(re == true) $("#applyform").submit();
+}
+</script>
+</body></html>

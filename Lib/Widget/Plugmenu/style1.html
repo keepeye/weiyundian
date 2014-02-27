@@ -1,0 +1,163 @@
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/font-awesome.css" />
+<style>
+/*plugmenu*/
+/****************************************************************************/
+.plug-wrap{
+    position:absolute;
+    height:100px;
+    background:rgba(0,0,0,0);
+    top:0;
+    left:0;
+    width:0;
+    height:0;
+    z-index:800;
+    display:none!important;
+}
+
+.plug-div {
+	position:fixed;
+	bottom:0;
+	left:0px;
+	z-index:900;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.plug-menu{
+	-webkit-appearance:button;
+	display:inline-block;
+	width:36px!important;
+	height:36px!important;
+	border-radius:36px;
+	position: absolute;
+	bottom:17px;
+	left: 17px;
+	z-index:999;
+	-moz-box-shadow:0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);
+	-webkit-box-shadow:0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);
+	box-shadow:0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);
+	background-color: #B70000;
+	-webkit-transition: -webkit-transform 200ms;
+	-webkit-transform:rotate(1deg);
+	color:#fff;
+	background-image:url("{pigcms::RES}/images/plugmenu.png");
+	background-repeat: no-repeat;
+	-webkit-background-size: 80% auto;
+	background-size: 80% auto;
+	background-position: center center;
+}
+.plug-menu:before{
+	font-size:20px;
+	margin:9px 0 0 9px;
+}
+.plug-menu:checked{
+	-webkit-transform:rotate(135deg);
+}
+
+.plug-phone>div {
+	width:32px;
+	height:32px;
+	border-radius:32px;
+	-moz-box-shadow:0 0 0 3px #FFFFFF, 0 2px 5px 3px rgba(0, 0, 0, 0.25);
+	-webkit-box-shadow:0 0 0 3px #FFFFFF, 0 2px 5px 3px rgba(0, 0, 0, 0.25);
+	box-shadow:0 0 0 3px #FFFFFF, 0 2px 5px 3px rgba(0, 0, 0, 0.25);
+	background:#B70000;
+	position:absolute;
+	bottom:0;
+	left:0;
+	margin-bottom:20px;
+	margin-left:20px;
+	z-index:900;
+	-webkit-transition: -webkit-transform 200ms;
+}
+.plug-phone>div a{
+	color:#fff;
+	font-size:20px;
+    display: block;
+    height: 100%;
+    line-height: 33px;
+    text-align: center;
+}
+
+.plug-phone>div.on:nth-of-type(1) {-webkit-transform: translate(0, -100px) rotate(720deg);}
+
+.plug-phone>div.on:nth-of-type(2) {-webkit-transform: translate(47px, -81px) rotate(720deg);}
+
+.plug-phone>div.on:nth-of-type(3) {-webkit-transform: translate(81px, -45px) rotate(720deg);}
+
+.plug-phone>div.on:nth-of-type(4) {-webkit-transform: translate(100px, 0) rotate(720deg);}
+/*****样式2*****/
+
+/*.plug-div.model1{*/
+    /*position:static!important;*/
+    /*height:45px;*/
+/*}*/
+.plug-div.model1>div{
+    border-top:2px solid #51515d;
+    position:fixed;
+    z-index:900;
+    bottom:0;
+    left:-1px;
+    right:0;
+    margin:auto;
+    max-width:640px;
+    display:block;
+    width:100%;
+    background:rgba(255,255,255,0.7);
+    height:48px;
+    overflow:hidden;
+    display:-webkit-box;
+    display:box;
+    -webkit-box-orient: horizontal;
+    background:-webkit-gradient(linear, 0 0, 0 100%, from(#333c45), to(#313540), color-stop(50%, #373a43));
+}
+.plug-div.model1 input{display:none;}
+
+.plug-div.model1 .plug-phone>div{
+    width:auto!important;
+    height:100%;
+    position:static!important;
+    margin:0;
+    border-radius:0!important;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+    -webkit-box-flex: 1;
+    box-flex:1;
+    -webkit-box-sizing:border-box;
+    overflow:hidden;
+    box-shadow: none!important;
+    border-right:1px solid #0e111a;
+    border-left:1px solid #666a73;
+    background:none;
+}
+
+.plug-div.model1 .plug-phone>div a:before {
+    width:90%;
+    text-align:center;
+}
+.plug-div.model1 .plug-phone>div label{
+    margin:0 5px;
+    font-size:12px;
+    display:block!important;
+    line-height:18px;
+    text-align:center;
+    overflow:hidden;
+}
+
+.plug-div.model1+.plug-wrap{
+    display:block!important;
+    height:50px;
+
+}
+.plug-div.model1 .plug-phone>div a{
+    line-height:20px!important;
+}
+</style>
+<div style="height:50px;width:0;"></div>
+<div class="plug-div model1">
+		<div id="plug-phone" class="plug-phone">
+			<volist name="menus" id='vo'>
+			<div><a href="{pigcms::WeParseUrl($vo['url'],$vo['type'],$params)}" class="{pigcms:$vo.icon|default='icon-bullhorn'}"><label>{pigcms:$vo.name}</label></a></div>
+			</volist>
+			<div><a href="{pigcms::WeParseUrl('Index/index',1,$params)}" class="icon-home"><label>首页</label></a></div>
+			<div><a href="javascript:history.go(-1)" class="icon-undo"><label>返回</label></a></div>			
+		</div>
+</div>

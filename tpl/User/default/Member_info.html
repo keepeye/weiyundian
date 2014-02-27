@@ -1,0 +1,123 @@
+<include file="Public:head"/>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>  
+<div class="content">
+         
+          <div class="cLineB">
+              <h4 class="left">用户详情</h4>
+            <a href="javascript:history.go(-1);" class="right btnGrayS">返回</a>
+          </div>
+			<div class="cLineD">
+				剩余积分：<b>{pigcms:$info.total_score}</b> 剩余金额：<b>￥{pigcms:$info.rmb_total}</b> 总消费积分：<b>{pigcms:$info.expend_score}</b> 总消费金额：<b>￥{pigcms:$info.rmb_expend}</b>
+			</div>
+			<div class="cLineD">
+			<div style="border:1px solid #ccc;margin-bottom:10px;padding-left:10px;">兑换礼品：扣除用户积分，兑换相应礼品; <br/>会员卡充值：客户向会员卡充值余额; <br/>会员卡消费：购买商品，从现金余额里扣除金额并奖励积分;<br/>现金消费：用户现场使用现金购物并奖励积分;</div>
+				<form method="post" action="">
+				<table style="margin:10px 0;">
+					<tr>
+						<td>兑换礼品：</td>
+						<td>
+							<select name="score">
+								<option value="">选择礼品</option>
+								<volist name='integrallist' id='vo'>
+								<option value="{pigcms:$vo.integral}">{pigcms:$vo.title}</option>
+								</volist>
+							</select>
+						</td>
+						
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit"  class="btnGreen vm" value="兑换"/></td>
+					</tr>
+					
+				</table>
+				
+				</form>
+				<form method="post" action="" style="margin:10px 0;">
+				<table>
+					<tr>
+						
+						<td>会员卡充值：</td>
+						<td><input type=text value="" name="vipaddrmb" class="px" style="width:100px;"/> 元</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit"  class="btnGreen vm" value="充值"/></td>
+					</tr>
+					
+				</table>
+				
+				</form>
+				<form method="post" action="" style="margin:10px 0;">
+				<table>
+					<tr>
+						<td>会员卡消费：</td>
+						<td><input type=text value="" class="px" name="vipspendrmb" style="width:100px;"/> 元</td>
+						<td>&nbsp;&nbsp;现金消费：</td>
+						<td><input type=text value="" class="px" name="spendrmb" style="width:100px;"/> 元</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit"  class="btnGreen vm" value="提交"/></td>
+					</tr>
+					
+				</table>
+				
+				</form>
+			 </div>
+			 
+			 
+            <div class="msgWrap">
+         
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+					<TH>时间</TH>
+					<TH>是否是消费</TH> 
+					<TH>积分类型</TH>
+					<TH>积分</TH>
+					<TH>消费金额(元)</TH> 
+
+                </TR>
+              </THEAD>
+              <TBODY>
+
+
+				 <volist id="item" name="record">
+                <TR>
+				  <TD>{pigcms:$item.sign_time|date="Y-m-d H:i:s",###}</TD>
+                  <TD>
+				  <switch name='item.is_sign'>
+				  <case value='1'>是</case>
+				  <case value='0'>否</case>
+				  </switch>
+				  </TD>
+                  <TD>
+				  <switch name='item.score_type'>
+				  <case value='1'>签到</case>
+				  <case value='2'>RMB</case>
+				  <case value='3'>积分</case>
+				  </switch>
+				  </TD>
+                  <TD>{pigcms:$item.expense}</TD>
+                  <TD>{pigcms:$item.sell_expense}</TD>
+
+
+                </TR>
+				</volist>
+
+              </TBODY>
+            </TABLE>
+          
+
+                    </div>
+            
+
+ 
+ 
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages"></div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>  

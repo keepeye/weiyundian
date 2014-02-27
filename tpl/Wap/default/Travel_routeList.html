@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)http://www.360info.com.cn/travel/list.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>{pigcms:$contact.contact_name}-线路列表</title>
+<meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport"> 
+<meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" name="viewport"> 
+<meta content="yes" name="apple-mobile-web-app-capable"> 
+<meta content="black" name="apple-mobile-web-app-status-bar-style"> 
+<meta content="telephone=no" name="format-detection"> 
+<link rel="apple-touch-icon-precomposed" href="http://www.360info.com.cn/travel/images/icon.png">
+<link href="{pigcms::RES}/travel/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body style="background:url(images/main_bg.jpg);">
+<div class="main_body">
+<!--头部_End-->
+  <div class="top">
+    <img class="back" src="{pigcms::RES}/travel/back.png" onclick="window.history.back()">
+    <span><empty name='title'>线路列表<else />{pigcms:$title}</empty></span>
+    <img class="top_bg" src="{pigcms::RES}/travel/top.png" border="0">
+  </div>
+<!--头部_End-->  
+
+<!--搜索框_End-->  
+  <div class="search_block">
+	<form method="post" id='form1'>
+		<div class="search_bg">
+		  <img src="{pigcms::RES}/travel/search_icon.png" onclick="form1.submit();">
+		  <input type="text" name='keywords'>
+		</div>
+	</form>
+  </div>
+<!--搜索框_End-->  
+
+<!--列表_Begin-->
+<volist name='list' id='vo'>
+  <div class="list_block" onclick="location.href='{pigcms::U('Wap/Travel/routeDetails',array('id'=>$vo['id'],'token'=>$token,'wecha_id'=>$wecha_id,'wxref'=>'mp.weixin.qq.com'))}'">
+    <div class="left_img">
+      <img src="<empty name="vo['litpic']">{pigcms::RES}/travel/test1.jpg<else/>{pigcms:$vo.litpic}</empty>" />
+    </div>
+    <div class="right_block">
+      <p>{pigcms:$vo.title}</p>
+      <a class="style_1">{pigcms:$vo.type}</a>
+      <span>￥{pigcms:$vo.dprice}</span>
+    </div>
+  </div>
+</volist>
+  
+<!--列表_End-->
+</div>
+<div class="copyright2">Copyright© 2012-2013 weiyundian.com</div>
+{pigcms::W('Plugmenu')}
+</body>
+</html>

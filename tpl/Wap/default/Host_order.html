@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>{pigcms:$set['title']}|订单详情</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link href="{pigcms::RES}/css/style/css/hotels.css" rel="stylesheet" type="text/css">
+</head>
+
+<body id="" >
+<div class="qiandaobanner"> 
+  <if condition="$set['ppicurl'] neq false">
+   <img src="{pigcms:$set['ppicurl']}"  />  
+  <else />
+    <img src="{pigcms::RES}/css/style/images/default.jpg"  />  
+ </if>
+ </div>
+<div class="cardexplain"> 
+
+
+
+
+<ul class="round">
+                            <li class="title">
+                    <a href="#">
+                        <span>11月05日 00时00分订单详情<em class="no">等待客服回电</em></span>
+                    </a>
+                </li>
+                <li>
+                    <div class="text">
+                        <p>预约商家：第一大酒店</p>
+                        <p>预定人：12</p>
+                        <p>预约电话：12312341234</p>
+                        <p>入住时间：11月05日</p>
+                        <p>类型：房间二</p>
+                        <p>价格：100</p>
+                        <p>预订数量：1间</p>
+                        <p>预定日期：11月05日 00时00分00秒</p>
+                                
+                                        <p>备注：12121212</p>
+                    </div>
+                </li>
+
+                                <div class="footReturn">
+                    <a id="" style="color:#fff;" class="submit" href="/webhotel/ModifyOrder/wechatid/fromUsername/oid/413">修改订单 </a>
+                </div>
+                
+                        </ul>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/index.css" media="all">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/bootstrap_min.css" media="all">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/bootstrap_responsive_min.css" media="all">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/style.css" media="all">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/themes.css" media="all">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/todc_bootstrap.css" media="all">
+<script type="text/javascript" src="__PUBLIC__/subshop/jQuery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/subshop/application.js"></script>
+<script type="text/javascript" src="__PUBLIC__/subshop/bootstrap_min.js"></script><style type="text/css">.dropdown-submenu:hover>.dropdown-menu{display:none}</style>
+<title>门店系统</title>
+<!--[if lte IE 9]><script src="__PUBLIC__/subshop/src/watermark.js"></script><![endif]-->
+<!--[if IE 7]><link href="__PUBLIC__/subshop/css/font_awesome_ie7.css" rel="stylesheet" /><![endif]-->
+<!-- jQuery -->
+<style>
+#left {
+	overflow:visible;
+}
+</style>
+<script language="JavaScript"><!--
+if(top!=self)
+	if(self!=top) top.location=self.location;
+	//--></script>
+</head>
+
+<body class="theme-satgreen" data-theme="theme-satgreen">
+
+<div id="navigation">
+	<div class="container-fluid">
+		<div>
+			<a href="#" class="toggle-nav" rel="tooltip" data-placement="bottom" title="Toggle navigation"><i class="icon-reorder"></i></a>
+		</div>
+		<ul class="main-nav">
+			<li>
+			<h4 style="color: #fff">门店管理系统({pigcms:$shopname})</h4>
+			</li>
+
+		</ul>
+
+		<div class="user">
+			<ul class="icon-nav">
+
+				<li class="dropdown colo">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="选择颜色"><i class="icon-tint"></i></a>
+				<ul class="dropdown-menu pull-right theme-colors">
+					<li class="subtitle">Predefined colors
+					</li>
+					<li>
+					<span class="red"></span>
+					<span class="orange"></span>
+					<span class="green"></span>
+					<span class="brown"></span>
+					<span class="blue"></span>
+					<span class="lime"></span>
+					<span class="teal"></span>
+					<span class="purple"></span>
+					<span class="pink"></span>
+					<span class="magenta"></span>
+					<span class="grey"></span>
+					<span class="darkblue"></span>
+					<span class="lightred"></span>
+					<span class="lightgrey"></span>
+					<span class="satblue"></span>
+					<span class="satgreen"></span>
+					</li>
+				</ul>
+				</li>
+				<li class="sett">
+				<a href="javascript:top.location.href='{pigcms::U('Public/logout')}'" title="退出"><i class="icon-signout"></i>退出</a>
+				</li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+
+
+<div class="container-fluid" id="content">
+	<div id="left" style="overflow: hidden; outline: none;" tabindex="5000">
+
+		<div class="subnav">
+			<div class="subnav-title">
+				<a href="javascript:void(0);" class="toggle-subnav"><i class="icon-angle-right"></i><span>微餐饮</span></a>
+			</div>
+			<ul class="subnav-menu">																					
+				<li>
+				<a href="{pigcms::U('Food/orderList')}" target="mainFrame">订单管理</a>
+				</li>
+				<li>
+				<a href="{pigcms::U('Food/index')}" target="mainFrame">菜品管理</a>
+				</li>
+				<li>
+				<a href="{pigcms::U('Food/cateList')}" target="mainFrame">分类管理</a>
+				</li>
+				<li>
+				<a href="#">智能选菜</a>
+				</li>
+				<li>
+				<a href="#">餐台设置</a>
+				</li>
+			</ul>
+		</div>
+		<div class="subnav bottom">
+			<div class="subnav-title">
+				<a href="javascript:void(0);" class="toggle-subnav"><i class="icon-angle-right"></i><span></span></a>
+			</div>
+			<ul class="subnav-menu">
+			</ul>
+		</div>
+	</div>
+	<div class="right">
+		<div class="main">
+			<iframe frameborder="0" id="mainFrame" name="mainFrame" src="{pigcms::U('Index/welcome')}" style="background:url(__PUBLIC__/subshop/img/loading.gif) center no-repeat;"></iframe>
+		</div>
+	</div>
+</div>
+<div id="ascrail2000" style="width: 7px; z-index: 9002; position: absolute; top: 41px; left: 193px; height: 985px; display: none; opacity: 0;"><div style="position: relative; top: 0px; float: right; width: 5px; height: 0px; background-color: rgb(66, 66, 66); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;"></div></div><div id="ascrail2000-hr" style="height: 8px; z-index: 9002; top: 1018px; left: 0px; position: absolute; display: none; opacity: 0;"><div style="position: relative; top: 0px; height: 5px; width: 0px; background-color: rgb(66, 66, 66); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; left: 0px;"></div></div></body></html>

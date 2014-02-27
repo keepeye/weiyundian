@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!-- saved from url=(0076)http://www.weimob.com/Weisite/Home?pid=22867&bid=41892&wechatid=fromUsername -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimobN3_index/common.css" media="all">
+        <link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimobN3_index/reset.css" media="all">
+        <link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimobN3_index/font-awesome.css" media="all">
+        <link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimobN3_index/home-51.css" media="all">
+        <script type="text/javascript" src="{pigcms::RES}/weimobN3_index/jQuery.js"></script>
+        <title>首页-{pigcms:$company.name}</title>
+
+        <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <!-- Mobile Devices Support @begin -->
+
+        <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+        <meta content="no-cache" http-equiv="pragma">
+        <meta content="0" http-equiv="expires">
+        <meta content="telephone=no, address=no" name="format-detection">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <!-- Mobile Devices Support @end -->
+        <link rel="shortcut icon" href="{pigcms::RES}/favicon.ico">
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+        <style type="text/css">
+            .body{
+                display:block;
+                background-size:100% 100%;
+                background-image:url('{pigcms:$home[bg_picurl]}');
+            }
+
+            .box{
+                width: 33%;
+                float: left;
+            }
+        </style>
+        <div class="body">
+            <section>
+                <div class="box_title">
+                    <hgroup>
+                        <h1>{pigcms:$tpl.wxname}</h1>
+                        <!--<h3>俄文</h3>第一行字为官网标题，第二行字为微官网设置的图文消息简介-->
+                    </hgroup>
+                </div>
+                <ul class="list_ul clearfix">
+                    <volist name="info" id="vo" mod="3">
+                        <li class="box">
+                            <eq name="mod" value="0">
+                                <a href="<if condition="$vo['url'] eq ''">{pigcms::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}<else/>{pigcms:$vo.url|htmlspecialchars_decode}&classid={pigcms:$vo.id}&wecha_id={pigcms:$wecha_id}</if>">
+                                    <label><small>{pigcms:$vo.name}</small></label>
+                                    <span class="{pigcms:$vo.icon}"></span>
+                                </a>
+                            </eq>
+                            <eq name="mod" value="1">
+                                <a href="<if condition="$vo['url'] eq ''">{pigcms::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}<else/>{pigcms:$vo.url|htmlspecialchars_decode}&classid={pigcms:$vo.id}&wecha_id={pigcms:$wecha_id}</if>">
+                                    <label><small>{pigcms:$vo.name}</small></label>
+                                    <span class="{pigcms:$vo.icon}"></span>
+                                </a>
+                            </eq>
+                            <eq name="mod" value="2">
+                                <a href="<if condition="$vo['url'] eq ''">{pigcms::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}<else/>{pigcms:$vo.url|htmlspecialchars_decode}&classid={pigcms:$vo.id}&wecha_id={pigcms:$wecha_id}</if>">
+                                    <label><small>{pigcms:$vo.name}</small></label>
+                                    <span class="{pigcms:$vo.icon}"></span>
+                                </a>
+                            </eq>
+                        </li>
+                     </volist>
+
+                        <li style="clear: both"></li>
+                </ul>
+            </section>
+        </div>
+        <!--
+        导航菜单
+           后台设置的快捷菜单
+        -->
+
+        <!--
+        分享前控制
+        -->
+        <footer>
+				<div class="weimob-copyright">
+					<php>echo htmlspecialchars_decode(C('copyright'))</php>
+				</div>
+
+							</footer>
+				<div mark="stat_code" style="width:0px; height:0px; display:none;">
+					</div>
+
+
+    </body></html>

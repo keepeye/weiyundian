@@ -1,0 +1,57 @@
+<include file="Public:head"/> 
+
+
+  <div class="content"> 
+   <div class="cLineB"> 
+    <h4>订单信息</h4> 
+    <a href="javascript:history.go(-1)" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+   </div> 
+   <form class="form" method="post" action=""> 	
+	<input type='hidden' name='id' value="{pigcms:$info.id}"/>
+	<input type='hidden' name='route_id' value="{pigcms:$info.route_id}"/>
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+       <tr> 
+        <th><span class="red">*</span>预定线路：</th> 
+        <td><b>{pigcms:$info.route_title}</b></td> 
+       </tr>
+	   <tr> 
+        <th><span class="red">*</span>预定时间：</th> 
+        <td><b>{pigcms:$info.start_date}</b></td> 
+       </tr>
+	   <tr> 
+        <th><span class="red">*</span>人数：</th> 
+        <td>总人数：<b>{pigcms:$info.people_num}</b>  儿童：<b>{pigcms:$info.children_num}</b></td> 
+       </tr>
+	   <tr> 
+        <th><span class="red">*</span>联系人：</th> 
+        <td><b>{pigcms:$info.contact_name}</b> <if condition="$info.contact_sex eq 'gentleman'">先生<elseif condition="$info.contact_sex eq 'madam'"/>小姐<else/></if></td> 
+       </tr>
+	   <tr> 
+        <th><span class="red">*</span>电话：</th> 
+        <td><b>{pigcms:$info.contact_phone}</b></td> 
+       </tr>
+	   <tr> 
+	   <tr> 
+        <th><span class="red">*</span>邮箱：</th> 
+        <td><b>{pigcms:$info.contact_email}</b></td> 
+       </tr>
+	   <tr> 
+        <th><span class="red">*</span>留言：</th> 
+        <td><b>{pigcms:$info.contact_words}</b></td> 
+       </tr>
+	   <tr> 
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+       <button type="submit" name="button" class="btnGreen">标记为已处理</button></td> 
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+    
+   </form> 
+  </div> 
+  
+  <include file="Public:footer" />

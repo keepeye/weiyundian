@@ -1,0 +1,98 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+        <div class="content">
+<div class="cLineB">
+<h4 class="left">旅行社</h4>
+<div class="searchbar right">
+<form method="get" action="">
+<input type="hidden" name="g" value="{pigcms::GROUP_NAME}"/>
+<input type="hidden" name="m" value="{pigcms::MODULE_NAME}"/>
+<input type="hidden" name="a" value="{pigcms::ACTION_NAME}"/>
+<input type="hidden" name="token" value="{pigcms:$Think.get.token}"/>
+<input type="text" id="msgSearchInput" class="txt left" placeholder="输入关键词搜索" name="searchkey" value="{pigcms:$Think.request.searchkey}">
+<input type="submit" value="搜索"  class="btnGrayS" title="搜索">
+</form>
+</div>
+<div class="clr"></div>
+</div>
+<!--tab start-->
+<div class="tab">
+<ul>
+<li class="current tabli" id="tab0"><a href="{pigcms::U('Travel/index',array('token'=>$token))}">线路管理</a></li>
+<li class="tabli" id="tab2"><a href="{pigcms::U('Travel/applyList',array('token'=>$token))}">所有报名</a></li>
+<li class="tabli" id="tab3"><a href="{pigcms::U('Travel/settings',array('token'=>$token))}">设置</a></li>
+</ul>
+</div>
+<!--tab end-->
+<div class="cLine">
+<div class="pageNavigator left"> 
+	<a href="{pigcms::U('Travel/addRoute',array('token'=>$token,'dining'=>$isDining))}" title="添加" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">添加路线</a>
+</div>
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="" id="info">
+<input name="delall" type="hidden" value="">
+<input name="wxid" type="hidden" value="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th class="select">选择</th>
+<th width="460">线路名称</th>
+<th width="60">价格</th>
+<th width="60">状态</th>
+<th width="100" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="item"> 
+<tr>
+<td><input type="checkbox" value="{pigcms:$item.id}" class="checkitem"></td>
+<td><font color=red>{pigcms:$item.flag|str_replace=array('h','c',','),array('[热]','[荐]',''),###}</font><font color=green><b>{pigcms:$item.title}</b></font></td>
+<td>{pigcms:$item.dprice}元</td>
+<td><if condition="$item.status eq 'enabled'">正常<else/>关闭</if></td>
+<td class="norightborder"><a href="{pigcms::U('Travel/editRoute',array('id'=>$item['id'],'token'=>$token))}">修改</a> <a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Travel/delRoute',array('id'=>$item['id'],'token'=>$token))}');">删除</a></td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<input type='checkbox' id='selectAll'/> 全选/全不选 <input type=button class="btnGrayS vm " id='multidel' value="批量删除"/>
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$pagestr}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<script type='text/javascript'>
+$(function(){
+	$('#selectAll').click(function(){
+		$("input.checkitem").attr('checked',$(this).attr('checked'));
+	})
+	//批量删除
+	$("#multidel").click(function(){
+		if(confirm('你确定要删除选中的路线信息吗？')){
+			var checkboxs = $("input.checkitem:checked");
+			var vals = new Array();
+			if(checkboxs.length <= 0) return;
+			$.each(checkboxs,function(i,v){
+				vals.push($(v).val())
+			})
+			var ids = vals.join(",");
+			$.ajax({
+				url : "{pigcms::U('Travel/delRoute',array('token'=>$token))}",
+				type : "post",
+				data : "ids="+ids,
+				success:function(){
+					//alert('删除成功');
+					location.reload();
+				}
+			})
+		}
+	})
+})
+</script>
+<include file="Public:footer"/>

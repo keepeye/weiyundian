@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Apple devices fullscreen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Apple devices fullscreen -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/index.css" media="all">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/bootstrap_min.css" media="all">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/bootstrap_responsive_min.css" media="all">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/style.css" media="all">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/themes.css" media="all">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/todc_bootstrap.css" media="all">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/inside.css" media="all">
+	
+	<style type="text/css">.dropdown-submenu:hover>.dropdown-menu{display:none}</style>
+
+	<title>登录-商家后台子系统</title>
+	
+    <!--[if lte IE 9]><script src="__PUBLIC__/subshop/src/watermark.js"></script><![endif]-->
+    <!--[if IE 7]><link href="__PUBLIC__/subshop/css/font_awesome_ie7.css" rel="stylesheet" /><![endif]-->
+</head>
+
+<body class="login theme-satgreen" id="body">
+    <style>
+#body{ background:url(__PUBLIC__/subshop/img/login-body.jpg) no-repeat; background-size:100% 100%;}
+.theme-satgreen{background:none;!important}
+.login-logo{ position:absolute; top:30px; left:30px;}
+.login .wrapper{background: rgba(255,255,255,0.5);border-radius:8px; padding:0 5px; box-shadow:1px 0 3px #666; height:290px;!important}
+.login .wrapper .login-body{ margin-top:0;!important}
+media="all"
+#login-qun{border-radius:8px 8px 8px 8px;background: rgba(255,255,255,0.5);!important}
+.login .wrapper .login-body{border-radius:8px;!important background: rgba(255,255,255,0.5);!important }
+</style>
+
+    <div class="login-logo"><img src="http://www.weiyundian.com/tpl/Home/pigcms/common/images/logo-pigcms.png"></div>
+    <div class="wrapper">
+       <div id="login-qun" style=" border-radius:6px;">
+        <div class="login-body">
+            <h2>商家后台子系统</h2>
+            <form action="" method="post" class="form-validate" novalidate="novalidate">
+                <div class="control-group">
+                    <div class="controls">
+                        <select name="username" class="input-block-level">
+                            <option value="0">请选择登录门店</option>
+							<volist name="accounts" id="vo">
+                            <option value="{pigcms:$vo.id}">{pigcms:$vo.shopname}</option>
+							</volist>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="pw controls">
+                        <input type="password" name="passwd"  placeholder="输入密码" class="input-block-level">
+                    </div>
+                </div>
+                <div class="submit">
+                    <input type="submit" value="登录" style=" border-radius:5px;" class="btn btn-primary" id="btn-login">
+                </div>
+                <div class="forget" style="height: 10px;">
+                </div>
+            </form>
+
+        </div>
+        </div>
+    </div>
+<div id="fallr-overlay"></div></body></html>

@@ -1,0 +1,54 @@
+<include file="Public:head"/> 
+
+
+  <div class="content"> 
+   <div class="cLineB"> 
+    <h4>保险-详细信息</h4> 
+    <a href="javascript:history.go(-1)" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+   </div> 
+   <form class="form" method="post" action="{pigcms::U('baoxianMark')}"> 	
+	<input type='hidden' name='id' value="{pigcms:$info.id}"/>
+    <div class="msgWrap bgfc"> 
+     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+      <tbody> 
+       <tr> 
+        <th><span class="red">*</span>车牌号：</th> 
+        <td><b>{pigcms:$info.chepai}</b></td> 
+       </tr>
+	   <tr> 
+        <th><span class="red">*</span>险种：</th> 
+        <td><b>{pigcms:$info.xianzhong}</b></td> 
+       </tr>
+	   <tr> 
+        <th><span class="red">*</span>第三方保额：</th> 
+        <td><b>{pigcms:$info.money}</b></td> 
+       </tr>
+	  <tr>
+        <th><span class="red">*</span>申请时间：</th> 
+        <td><b>{pigcms:$info.adddate}</b></td> 
+       </tr>
+	   
+	   <tr> 
+        <th><span class="red">*</span>联系人：</th> 
+        <td><b>{pigcms:$info.contact_name}</b></td> 
+       </tr>
+	   <tr> 
+        <th><span class="red">*</span>联系电话：</th> 
+        <td><b>{pigcms:$info.contact_phone}</b></td> 
+       </tr>
+	   <tr> 
+       <tr>         
+       <th>&nbsp;</th>
+       <td>
+	   <eq name="info['status']" value="0">
+       <button type="submit" name="button" class="btnGreen">标记为已处理</button></td> 
+	   </eq>
+       </tr> 
+      </tbody> 
+     </table> 
+     </div>
+    
+   </form> 
+  </div> 
+  
+  <include file="Public:footer" />

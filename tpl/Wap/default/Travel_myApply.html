@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)http://www.360info.com.cn/travel/list.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>{pigcms:$contact.contact_name}-我的订单</title>
+<meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport"> 
+<meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" name="viewport"> 
+<meta content="yes" name="apple-mobile-web-app-capable"> 
+<meta content="black" name="apple-mobile-web-app-status-bar-style"> 
+<meta content="telephone=no" name="format-detection"> 
+<link rel="apple-touch-icon-precomposed" href="http://www.360info.com.cn/travel/images/icon.png">
+<link href="{pigcms::RES}/travel/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body style="background:url(images/main_bg.jpg);">
+<div class="main_body">
+<!--头部_End-->
+  <div class="top">
+    <img class="back" src="{pigcms::RES}/travel/back.png" onclick="window.history.back()">
+    <span>我的订单</span>
+    <img class="top_bg" src="{pigcms::RES}/travel/top.png" border="0">
+  </div>
+<!--头部_End-->  
+
+<!--列表_Begin-->
+<div style="margin-top:50px">
+<dl>
+<volist name='list' id='vo'>
+<dd style="padding:5px 5px;border-bottom:1px solid grey;">线路名：{pigcms:$vo.route_title}<br/>订单状况：<if condition="$vo.status eq '1'">已处理<else/><font color=red>待处理</font></if></dd>
+</volist>
+</dl>
+</div>
+<!--列表_End-->
+</div>
+<div class="copyright2">Copyright© 2012-2013 weiyundian.com</div>
+{pigcms::W('Plugmenu')}
+</body>
+</html>

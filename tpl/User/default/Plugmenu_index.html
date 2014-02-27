@@ -1,0 +1,174 @@
+﻿<include file="Public:head" />
+<script src="{pigcms::RES}/js/jscolor.js"></script>
+<style>
+.plug-menu {
+width: 36px;
+height: 36px;
+border-radius: 36px;
+-moz-box-shadow: 0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);
+-webkit-box-shadow: 0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);
+box-shadow: 0 0 0 4px #FFFFFF, 0 2px 5px 4px rgba(0, 0, 0, 0.25);
+position: relative;
+}
+.plug-menu span {
+display: block;
+width: 28px;
+height: 28px;
+background: url({pigcms::RES}/images/plugmenu.png) no-repeat;
+-moz-background-size: 28px 28px;
+-o-background-size: 28px 28px;
+-webkit-background-size: 28px 28px;
+background-size: 28px 28px;
+text-indent: -999px;
+position: absolute;
+top: 4px;
+left: 4px;
+overflow: hidden;
+}
+</style>
+<div class="content"> 
+	<div class="cLineB">
+		<h4>快捷菜单</h4>
+	</div>
+	<div class="shortcat_menu_content">
+		<div id="menu" class="btn_add_menu">
+                    <div class="span12 control-group">
+			<a href="{pigcms::U('Plugmenu/add')}" class="btn"><i class="icon-plus"></i>新增菜单</a>
+                    </div>
+		</div>
+		<table class="table table-bordered table-hover dataTable ajax-checkbox" id="listTable">
+                    
+                    <tr>
+						<th>顺序</th>
+                        <th>图标</th>
+                        <th>名称</th>
+                        <th>链接类型</th>
+                        <th>是否显示</th>
+						
+                        <th>操作 </th>
+                    </tr>
+                    <volist name="menus" id="vo">
+			<tr>
+				<td>{pigcms:$vo.sort}</td>
+				<td>
+				    <i class="tile-themed {pigcms:$vo.icon}"></i>
+				</td>
+				<td>{pigcms:$vo.name}</td>
+				<td>
+				<switch name="vo['type']">
+				<case value="0">分类</case>
+				<case value="1">本地</case>
+				<case value="2">外部</case>
+				<case value="3">电话</case>
+				<default />未知
+				</switch>
+				</td>
+				
+				<td>
+					<eq name="vo['is_show']" value='1'>是<else/><font color=red>否</font></eq>
+				</td>
+				<td>
+					<a title="编辑" rel="tooltip" class="btn" href="{pigcms::U('Plugmenu/edit',array('id'=>$vo['id']))}"><i class="icon-edit"></i></a>
+					<a title="删除" rel="tooltip" class="btn" href="{pigcms::U('Plugmenu/del',array('id'=>$vo['id']))}"><i class="icon-remove"></i></a>
+				</td>
+                            </tr>
+                            </volist>
+        </table>
+		
+		<div id="style_copyright" class="style_copyright">
+                    <h3>显示样式</h3>
+		</div>
+        <form action="{pigcms::U('Plugmenu/save_style')}" method="POST" enctype="multipart/form-data">
+		<table>
+			<tr style="height:60px;">
+				<td width="100px">
+					<label class="radio">
+						<input type="radio" checked="checked" value="0" name="style" <eq name="style['style']" value="0">checked</eq>>样式0
+					</label>
+				</td>
+				<td>
+					<div style="background-color:{pigcms:$style.style_color};" id="plugmenucolor" class="plug-menu"><span></span></div>
+				</td>
+				<td>
+					 <span style="margin-left:10px">颜色：</span>
+					<input type="text" onblur="document.getElementById('plugmenucolor').style.backgroundColor=document.getElementById('themeStyle').value;" style="width: 70px;" class="color {hash:true}" value="{pigcms:$style.style_color}" id="themeStyle" name="style_color"> 左下角浮动,点击展开快捷菜单
+				</td>
+			</tr>
+			<tr style="height:60px;">
+				<td>
+					<label class="radio">
+						<input type="radio" value="1" name="style" <eq name="style['style']" value="1">checked</eq>>样式1
+					</label>
+				</td>
+				<td colspan="2">
+					<img style="width:255px; height:44px;" src="{pigcms::RES}/images/plugmenu_b_1.jpg">
+				</td>
+			</tr>
+			<!--
+			<tr style="height: 60px;">
+				<td>
+					<label class="radio">
+						<input type="radio" value="2" name="style" <eq name="style['style']" value="2">checked</eq>>样式2
+					</label>
+				</td>
+				<td colspan="2">
+					<img style="width:255px; height:44px;" src="{pigcms::RES}/images/plugmenu_b.png">
+				</td>
+			</tr>
+			<tr style="height: 60px;">
+				<td>
+					<label class="radio">
+						<input type="radio" value="3" name="style" <eq name="style['style']" value="3">checked</eq>>样式3
+					</label>
+				</td>
+				<td colspan="2">
+					<img style="width:255px; height:44px;" src="{pigcms::RES}/images/plugmenu_b3.png">
+				</td>
+			</tr>
+			<tr style="height: 60px;">
+				<td>
+					<label class="radio">
+						<input type="radio" value="4" name="style" <eq name="style['style']" value="4">checked</eq>>样式4
+					</label>
+				</td>
+				<td colspan="2">
+					<img style="width:255px; height:44px;" src="{pigcms::RES}/images/plugmenu_b4.png">
+				</td>
+			</tr>
+			<tr style="height: 60px;">
+				<td>
+					<label class="radio">
+						<input type="radio" value="5" name="style" <eq name="style['style']" value="5">checked</eq>>样式5
+					</label>
+				</td>
+				<td colspan="2">
+					<img style="width:255px; height:44px;" src="{pigcms::RES}/images/plugmenu_b5.png">
+				</td>
+			</tr>
+			<tr style="height: 60px;">
+				<td>
+					<label class="radio">
+						<input type="radio" value="6" name="style" <eq name="style['style']" value="6">checked</eq>>样式6
+					</label>
+				</td>
+				<td colspan="2">
+					<img style="width:255px; height:44px;" src="{pigcms::RES}/images/plugmenu_b6.png">
+				</td>
+			</tr>
+			
+			<tr>
+				<td align="left"><strong>版权文字：</strong></td>
+				<td align="left" colspan="2">
+					<input type="text" class="px" style="height:30px" value="{pigcms:$style.copyright}" name="copyright">
+					<span class="help-inline"></span>
+				</td>
+			</tr>-->
+		</table>
+		<div class="form-actions">
+			<input class="btn btn-primary" type="submit" value="保存">
+			<button onclick="window.history.go(-1)" class="btn" type="button">取消</button>
+		</div>
+        </form>
+	</div>
+</div>
+<include file="Public:footer" />

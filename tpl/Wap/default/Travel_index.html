@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://www.360info.com.cn/travel/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>{pigcms:$contact.contact_name}</title>
+<meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport"> 
+<meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" name="viewport"> 
+<meta content="yes" name="apple-mobile-web-app-capable"> 
+<meta content="black" name="apple-mobile-web-app-status-bar-style"> 
+<meta content="telephone=no" name="format-detection">
+<link rel="apple-touch-icon-precomposed" href="http://www.360info.com.cn/travel/images/icon.png">
+<link href="{pigcms::RES}/travel/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body style="background:url(images/main_bg.jpg);">
+<div class="main_body">
+  <div class="top">
+    <span>{pigcms:$contact.contact_name}</span>
+    <img class="top_bg" src="{pigcms::RES}/travel/top.png" border="0">
+  </div>
+  <div class="banner">
+    <img src="{pigcms::RES}/travel/banner.jpg" border="0">
+  </div>
+  <div class="buttons">
+    <ul>
+      <li onclick="location='{pigcms::U('Travel/routeList',array('flag'=>'c','token'=>$token,'wecha_id'=>$wecha_id,'wxref'=>'mp.weixin.qq.com'))}'">
+        <img src="{pigcms::RES}/travel/button_1.png" border="0">
+        <span>推荐线路</span>
+      </li>
+      <li onclick="location='{pigcms::U('Travel/routeList',array('flag'=>'h','token'=>$token,'wecha_id'=>$wecha_id,'wxref'=>'mp.weixin.qq.com'))}'">
+        <img src="{pigcms::RES}/travel/button_2.png" border="0">
+        <span>热门线路</span>
+      </li>
+      <li onclick="location='{pigcms::U('Travel/routeList',array('type'=>'周边游','token'=>$token,'wecha_id'=>$wecha_id,'wxref'=>'mp.weixin.qq.com'))}'">
+        <img src="{pigcms::RES}/travel/button_3.png" border="0">
+        <span>周边游</span>
+      </li>
+      <li onclick="location='{pigcms::U('Travel/routeList',array('type'=>'主题游','token'=>$token,'wecha_id'=>$wecha_id,'wxref'=>'mp.weixin.qq.com'))}'">
+        <img src="{pigcms::RES}/travel/button_4.png" border="0">
+        <span>主题游</span>
+      </li>
+      <li>
+        <img src="{pigcms::RES}/travel/button_5.png" border="0">
+        <span>团购</span>
+      </li>
+      <li onclick="location='{pigcms::U('Travel/myApply',array('token'=>$token,'wecha_id'=>$wecha_id,'wxref'=>'mp.weixin.qq.com'))}'">
+        <img src="{pigcms::RES}/travel/button_6.png" border="0">
+        <span>我的订单</span>
+      </li>
+      <div style="float:left; width:100%; height:24px;"></div>                              
+    </ul>
+  </div>
+</div>
+
+	{pigcms::W('Plugmenu')}
+
+</body></html>

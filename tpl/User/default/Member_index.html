@@ -1,0 +1,101 @@
+<include file="Public:head"/>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>  
+<div class="content">
+         
+          <div class="cLineB">
+              <h4 class="left">会员管理</h4>
+                 
+              <div class="clr"></div>
+          </div>
+          <div class="cLineD">
+查询资料[仅支持 <strong> 微信名(如 we ),手机号(如 158)</strong> 的(模糊)查询]
+	<form method="post" action="">
+		<input size="80" value="" name="searchkey" class="px">
+		<button type="submit" name="appidsubmit" value="true" class="btnGreen vm" ><strong>查询</strong></button>
+	</form>
+ </div>
+          <div class="msgWrap">
+          <font color="red">注意:消费金额只能填整数(采取进一取整法,加入消费了 40.22 元,1元=10个积分.那么消费金额去整=50,积分就是 50*10=500个积分)
+           <br />
+           每修改一次,就增加一条新的消费积分记录,请慎用!(只显示最后一次修改记录)
+          </font>
+         
+          <input name="delall"  type="hidden" value="del" />
+           <input name="wxid"  type="hidden" value="gh_423dwjkewad" />
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+
+				<TH>编号</TH>
+				<TH>微信名</TH>
+				<TH>姓名</TH>
+        <TH>联系电话</TH>
+				<TH>QQ号码</TH> 
+				<TH>备注</TH>
+        <TH>领卡时间</TH>
+        
+
+           
+		<TH>查看</TH> 		
+				<TH >操作</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+                <TR></TR>
+
+				 <volist id="list" name="list">
+                <TR>
+
+                  <TD>{pigcms:$i}</TD>
+                  <TD>{pigcms:$list.wechaname}</TD>
+                  <TD>{pigcms:$list.truename}</TD>
+                  <TD>{pigcms:$list.tel}</TD>
+                  <TD>{pigcms:$list.qq}</TD> 
+                  <TD>{pigcms:$list.info}</TD> 
+                  <TD>
+                   <if condition="$list['getcardtime'] neq false">
+                        {pigcms:$list.getcardtime|date='Y-m-d',###}
+                    <else/>
+                    无时间记录
+                    </if>                      
+                  </TD>
+ 
+                  
+                  
+                  <TD class="norightborder">				  
+				                 <a href="/index.php?g=User&m=Member&a=info&token={pigcms:$Think.get.token}&id={pigcms:$list.id}"><strong>信息</strong></a> 
+                  </TD>
+				  
+                  <TD class="norightborder">				  
+				                 <a href="javascript:drop_confirm('您确定要删除吗?', '/index.php?g=User&m=Member&a=del&token={pigcms:$Think.get.token}&id={pigcms:$list.id}&wecha_id={pigcms:$list.wecha_id}');"><strong>删除</strong></a> 
+                  </TD>
+                </TR>
+				</volist>
+
+
+              </TBODY>
+            </TABLE>
+          
+
+
+          </div>
+            
+
+ 
+ 
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages"></div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>  

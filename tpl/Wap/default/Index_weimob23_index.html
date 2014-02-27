@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html><head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimob23_index/weimob-ui-1-1.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimob23_index/common.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimob23_index/home-3.css" media="all">
+<script type="text/javascript" src="{pigcms::RES}/weimob23_index/jQuery.js"></script>
+<script type="text/javascript" src="{pigcms::RES}/weimob23_index/swipe.js"></script>
+<script type="text/javascript" src="{pigcms::RES}/weimob23_index/zepto.js"></script>
+<title>首页-{pigcms:$company.name}</title>
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <!-- Mobile Devices Support @begin -->
+            <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+            <meta content="no-cache" http-equiv="pragma">
+            <meta content="0" http-equiv="expires">
+            <meta content="telephone=no, address=no" name="format-detection">
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+            <meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <!-- Mobile Devices Support @end -->
+        <link rel="shortcut icon" href="{pigcms::RES}/favicon.ico">
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+        
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimob23_index/font-awesome.css" media="all">
+<style>
+.body{
+display:block;
+background:url('{pigcms:$home[bg_picurl]}') no-repeat 0 0;
+		   background-size:100% 100%;
+}
+</style>
+<div class="weimob-page" style="display:block; padding-bottom:56px;">
+		<!--
+	幻灯片管理
+	-->
+	<div style="-webkit-transform:translate3d(0,0,0);">
+		<div style="visibility: visible;" id="banner_box" class="box_swipe">
+			<ul style="list-style: none outside none; width: 896px; transition-duration: 0ms; transform: translate3d(-448px, 0px, 0px);">
+				<volist name="flash" id="so">
+						<li>
+						<a href="{pigcms:$so.url}>
+							<img src="{pigcms:$so.img}" alt="{pigcms:$so.info}" data-touchable="touchable" style="width:100%;"/>
+						</a>
+						</li>
+					</volist>
+							</ul>
+			<ol>
+									<li class=""></li>
+									<li class="on"></li>
+							</ol>
+		</div>
+	</div>
+		<script>
+		$(function(){
+			new Swipe(document.getElementById('banner_box'), {
+				speed:500,
+				auto:3000,
+				callback: function(){
+					var lis = $(this.element).next("ol").children();
+					lis.removeClass("on").eq(this.index).addClass("on");
+				}
+			});
+		});
+	</script>
+	    		<!--
+		用户分类管理
+		-->
+		<div class="weimob-content">
+            <div class="weimob-list">
+				<volist name="info" id="vo" mod="4">
+                <eq name="mod" value="0">
+ <a class="list-item _C0 _L0" href="{pigcms::WeParseUrl($vo['url'],$vo['type'],array('classid'=>$vo['id'],'token'=>$vo['token'],'wecha_id'=>$wecha_id))}">
+                            <div class="item-title"><div class="title-text">{pigcms:$vo.name}</div></div>
+                            <div class="item-image" style="background-image: url({pigcms:$vo.img})">
+                                <div class="item_title2">{pigcms:$vo.info}</div>
+                            </div>
+                        </a> 
+</eq>
+                <eq name="mod" value="1">  
+ <a class="list-item _C1" href="{pigcms::WeParseUrl($vo['url'],$vo['type'],array('classid'=>$vo['id'],'token'=>$vo['token'],'wecha_id'=>$wecha_id))}">
+                            <div class="item-title"><div class="title-text">{pigcms:$vo.name}</div></div>
+                            <div class="item-image">
+                            </div>
+                        </a> 
+
+</eq>
+                <eq name="mod" value="2">  
+ <a class="list-item _C2" href="{pigcms::WeParseUrl($vo['url'],$vo['type'],array('classid'=>$vo['id'],'token'=>$vo['token'],'wecha_id'=>$wecha_id))}">
+                            <div class="item-title"><div class="title-text">{pigcms:$vo.name}</div></div>
+                            <div class="item-image">
+                            </div>
+                        </a> 
+
+</eq>
+                <eq name="mod" value="3">  
+ <a class="list-item _C3" href="{pigcms::WeParseUrl($vo['url'],$vo['type'],array('classid'=>$vo['id'],'token'=>$vo['token'],'wecha_id'=>$wecha_id))}">
+                            <div class="item-title"><div class="title-text">{pigcms:$vo.name}</div></div>
+                            <div class="item-image">
+                            </div>
+                        </a> 
+
+
+</eq>
+				</volist> 
+            </div>
+        </div>
+    </div>
+
+<!--
+导航菜单
+   后台设置的快捷菜单
+-->
+
+        			<footer>
+				<div class="weimob-copyright">
+					<php>echo htmlspecialchars_decode(C('copyright'))</php>
+				</div>
+
+							</footer>
+				<div mark="stat_code" style="width:0px; height:0px; display:none;">
+					</div>
+</body></html>

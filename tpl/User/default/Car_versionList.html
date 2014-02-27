@@ -1,0 +1,56 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left">车系列表</h4>
+		<div class="clr"></div>
+	</div>
+	<!--tab start-->
+	<div class="tab">
+		<ul>
+			<li class="tabli" id="tab0"><a href="{pigcms::U('brandList')}">品牌管理</a></li>
+			<li class="tabli" id="tab2"><a href="{pigcms::U('seriesList')}">系列管理</a></li>
+			<li class="current tabli" id="tab3"><a href="{pigcms::U('versionList')}">型号管理</a></li>
+		</ul>
+	</div>
+	<!--tab end-->
+	<div class="cLine">
+		<div class="pageNavigator left"> 
+			<a href="{pigcms::U('versionSet')}" title="添加" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">添加型号</a>
+		</div>
+		<div class="clr"></div>
+	</div>
+	<div class="msgWrap">
+
+		<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<thead>
+				<tr>
+					<th width="120">名称</th>
+					<th width="150">系列</th>
+					<th width="190">品牌</th>
+					<th width="120">价格(万)</th>
+					<th width="100" class="norightborder">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+			<volist name='list' id='vo'>
+			<tr>
+				<td>{pigcms:$vo.name}</td>
+				<td>{pigcms:$vo.series_name}</td>
+				<td>{pigcms:$vo.brand_name}</td>
+				<td>{pigcms:$vo.price}</td>
+				<td><a href="{pigcms::U('versionSet',array('id'=>$vo['id']))}">编辑</a> <a href="{pigcms::U('versionDel',array('id'=>$vo['id']))}">删除</a></td>
+			</tr>
+			</volist>
+
+			</tbody>
+		</table>
+	</div>
+	<div class="cLine">
+		<div class="pageNavigator right">
+			<div class="pages">{pigcms:$pagestr}</div>
+		</div>
+		<div class="clr"></div>
+	</div>
+</div>
+<include file="Public:footer"/>

@@ -1,0 +1,63 @@
+﻿<include file="Public:head"/>
+<div class="content">
+
+<div class="cLineB">
+  <h4>户型设置 </h4>
+  
+ </div>
+         <div class="cLineC" style="line-height: 32px;">
+ <a  href="{pigcms::U('House/room_add')}" class="btnGrayS vm bigbtn" >添加户型</a>　 
+</div>
+ 
+ <div class="msgWrap form">
+
+<div class="bdrcontent">
+
+<div id="div_ptype">
+<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+<thead>
+<tr>
+                    <th style=" width:120px;">户型名称</th>
+                   <th style=" width:120px;">显示顺序</th>
+<th style=" width:70px;">面积</th>
+
+<th style=" width:80px;"  >楼层</th>
+<th>户型</th>
+                        <th style=" width:100px;" class="norightborder">操作</th>
+</tr>
+</thead>
+<volist name="rooms" id="vo">
+<tr>
+<td>{pigcms:$vo.name}</td>
+<td>{pigcms:$vo.order}</td>
+<td>{pigcms:$vo.area}</td>
+<td>{pigcms:$vo.fang}室{pigcms:$vo.ting}厅</td>
+<td>{pigcms:$vo.floor}</td>
+
+
+<td class="norightborder">
+	<a href="{pigcms::U('House/room_edit',array('id'=>$vo['id']))}">编辑</a>
+	<a href="{pigcms::U('House/add_360',array('room_id'=>$vo['id']))}">添加全景图</a>
+	<a href="{pigcms::U('House/room_del',array('id'=>$vo['id']))}">删除</a>
+</td>
+</tr>
+</volist>
+               
+  </table>
+</div>
+</div>
+<div class="footactions" style="padding-left:10px">
+  <div class="pages">{pigcms:$page}</div>
+</div>
+          </div>
+  
+        </div>
+   
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+  <!--底部-->
+  	</div>
+
+<include file="Public:footer"/>

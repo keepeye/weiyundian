@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!-- saved from url=(0076)http://www.weimob.com/Weisite/Home?pid=22867&bid=41892&wechatid=fromUsername -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimobN4_index/common.css" media="all">
+        <link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimobN4_index/reset.css" media="all">
+        <link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimobN4_index/font-awesome.css" media="all">
+        <link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimobN4_index/home-50.css" media="all">
+        <script type="text/javascript" src="{pigcms::RES}/weimobN4_index/jQuery.js"></script>
+        <script type="text/javascript" src="{pigcms::RES}/weimobN4_index/jquery_easing.js"></script>
+        <script type="text/javascript" src="{pigcms::RES}/weimobN4_index/yl3d.js"></script>
+        <script type="text/javascript" src="{pigcms::RES}/weimobN4_index/50.js"></script>
+        <title>首页-{pigcms:$company.name}</title>
+
+        <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <!-- Mobile Devices Support @begin -->
+
+        <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+        <meta content="no-cache" http-equiv="pragma">
+        <meta content="0" http-equiv="expires">
+        <meta content="telephone=no, address=no" name="format-detection">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <!-- Mobile Devices Support @end -->
+        <link rel="shortcut icon" href="{pigcms::RES}/favicon.ico">
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+        <style>
+            .body{
+                max-width:640px;
+                margin:auto;
+            }
+        </style>
+        <div class="body">
+            <section class="p-index" style="height: 604px;">
+                <!--全屏大图-->
+                <volist name="info" id="vo">
+                <section data-page="2" class="m-page m-page2 show" data-id="3311" data-type="info_nomore" style="height: 604px;">
+                    <div class="m-img m-img01">
+                        <img src="{pigcms:$vo.img}" alt="{pigcms:$vo.name}">
+                    </div>
+                    <div class="m-txt m-txt01 hide_poniter">
+                        <a href="<if condition="$vo['url'] eq ''">{pigcms::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}<else/>{pigcms:$vo.url|htmlspecialchars_decode}&classid={pigcms:$vo.id}&wecha_id={pigcms:$wecha_id}</if>">
+                            <div class="wtxt">
+                                <h2>{pigcms:$vo.name}</h2>
+                                <p>{pigcms:$vo.info}</p>
+                            </div>
+                        </a>
+                        <span class="expand"></span>
+                    </div>
+                </section>
+                </volist>
+                <!--全屏大图end-->
+
+                <!--pageLoading-->
+                <section class="pageLoading">
+                    <img src="{pigcms::RES}/weimobN4_index/v55_load.gif" alt="loading">
+                </section>
+
+            </section>
+        </div>
+        <script type="text/javascript" src="{pigcms::RES}/weimobN4_index/jquery_easing(1).js"></script>
+        <script type="text/javascript" src="{pigcms::RES}/weimobN4_index/yl3d(1).js"></script>
+        <script type="text/javascript" src="{pigcms::RES}/weimobN4_index/50(1).js"></script>
+        <!--
+        导航菜单
+           后台设置的快捷菜单
+        -->
+        <!--
+        分享前控制
+        -->
+        <footer>
+				<div class="weimob-copyright">
+					<php>echo htmlspecialchars_decode(C('copyright'))</php>
+				</div>
+
+							</footer>
+				<div mark="stat_code" style="width:0px; height:0px; display:none;">
+					</div>
+
+    </body></html>

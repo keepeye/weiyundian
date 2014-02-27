@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="cache-control" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>预约服务</title>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/reserve.css">
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="{pigcms::RES}/car/reserve.js"></script>
+<style type="text/css">
+.phonelist{margin:0 10px;}
+.phonelist a{display:block;background-color:#fff;margin:10px 0;border:1px #ededed solid;border-bottom:3px #ddd solid;}
+.phonelist img{margin-right:10px;vertical-align:middle;}
+/*switch title bar*/
+header{
+	background-color: #BB3737;}
+
+
+</style>
+
+
+<style>.gmu-media-detect{-webkit-transition: width 0.001ms; width: 0; position: relative; bottom: -999999px;}
+@media screen and (width: 1920px) { #gmu-media-detect0 { width: 100px; } }
+</style></head>
+<body>
+<header>
+	<a class="btn_home" href="{pigcms::U('index',array('token'=>$token,'wecha_id'=>$wecha_id,'wxref'=>'mp.weixin.qq.com'))}"> </a>
+	<h1>预约服务</h1>
+</header>
+
+<div class="viewport">
+	<div class="formbox_wrap" id="formbox_wrap">
+		<form id="submitForm">
+			<input type="hidden" name="token" value="{pigcms:$token}" />
+			<input type="hidden" name="wecha_id" value="{pigcms:$wecha_id}" />
+			<div class="formbox" id="form_content">
+				<h3 class="title">预约项目</h3>
+				<div class="selectWrap">
+					<div data-type="select" class="select">
+						<div class="option">请选择</div>
+						<select name="pretype" data-msg="预约项目不能为空" data-required="true">
+							<option value=""></option>
+							<option value="维修">维修</option>
+							<option value="保养">保养</option>
+							<option value="试驾">试驾</option>
+						</select>
+					</div>
+				</div>
+				<br><div class="input"><input placeholder="预约时间" type="text" date-role="datetime" name="predate" data-msg="预约时间不能为空" data-required="true"></div> 
+				<h3 class="title">预约车型</h3>
+				<div class="selectWrap">
+					<div data-type="select" class="select">
+						<div class="option">请选择</div>
+						<select name="version_name" data-msg="预约车型不能为空" data-required="true">
+							<option value=""></option>
+							<volist name="versionList" id="vo">
+							<option value="{pigcms:$vo.version_name}">{pigcms:$vo.brand_name}/{pigcms:$vo.series_name}/{pigcms:$vo.version_name}</option>
+							</volist>
+							<option value="其他">其他</option>
+						</select>
+					</div>
+				</div>
+				<div class="input"><input placeholder="联系人" type="text" name="contact_name" data-msg="联系人不能为空" data-required="true" /></div>
+				<div class="input"><input placeholder="联系电话" type="text" name="contact_phone" data-msg="联系电话不能为空" data-required="true" /></div>
+			</div>
+			<a id="btnSubmit" href="javascript:void(0);" class="button active_button" style="color:#fff;">立即提交</a>
+
+		</form>
+	</div>
+</div>
+<script>
+$(function(){
+	//select
+	$('div[data-type="select"]').each(function(idx, obj) {
+		$(obj).find('select').on('change', function() {
+			$(obj).find('.option').html($(this).val());
+		});
+	});
+	$('input[date-role="datetime"]').each(function(idx, obj) {
+		var now = new Date();
+		$(obj).on('click', function() {
+			$(this).trigger('focus');
+			$(this).mobiscroll().datetime({
+				theme : 'ios',
+				lang : 'zh',
+				dateFormat : 'yy-mm-dd',
+				dateOrder : 'yymmdd',
+				timeFormat : 'hh:ii',
+				display : 'bottom',
+				timeWheels : 'hhii',
+				mode : 'scroller'
+			});
+			$(this).mobiscroll('show');
+			return false;
+		});
+	});
+	//提交事件
+	$("#btnSubmit").click(function(){
+		var form = $("#submitForm");
+		var checked = true;
+		//检查必填项
+		form.find("[data-required='true']").each(function(i){
+			if(!$(this).val()){
+				alert($(this).attr('data-msg'));
+				$(this).focus();
+				checked = false;
+				return false;
+			}
+		})
+		if(!checked) return;
+		var postdata = form.serialize();
+		$.ajax({
+			url:"{pigcms::U('reserve')}",
+			data:postdata,
+			type:"post",
+			dataType:"json",
+			error:function(){alert('提交失败请重试')},
+			success:function(data){
+				if(typeof(data) != 'string'){
+					$("#formbox_wrap").html(data.info);
+				}else{
+					$("#formbox_wrap").html(data);
+				}
+			}
+		})
+	})
+})
+</script>
+
+</body>
+</html>

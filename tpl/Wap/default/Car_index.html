@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>{pigcms:$company.name}</title>
+		<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/main.css">
+		<style type="text/css">
+			body{padding-bottom:40px;}
+.content{bottom:45px;}
+.main_content{width:100%;margin-top:10px;}
+.menu{width:95%;margin:0 auto;background-color:#ffffff;-webkit-box-shadow:0 1px 1px #b6b6b6,0 1px 1px #b6b6b6;box-shadow:0 1px 1px #b6b6b6,0 1px 1px #b6b6b6;border:#eee1px solid;}
+.menu li{float:left;width:50%;-webkit-box-sizing:border-box;box-sizing:border-box;padding:13px 9px;height:100px;position:relative;border-bottom:solid 1px #f5f5f5;text-align:center;}
+.menu li:nth-child(odd){border-right:solid 1px #f5f5f5;}
+.menu:last-child{-webkit-border-bottom-left-radius:3px;-webkit-border-bottom-right-radius:3px;}
+.menu li:nth-last-child(2),.menu:last-child{border-bottom:none;}
+.menu li:nth-child(4n-7),.menu li:nth-child(4n+4){background-color:#fbfbfb;}
+.menu li a{width:100px;height:60px;background-image:url('{pigcms::RES}/car/images/4s_dashboard_icon_sprite2x.png');background-repeat:no-repeat;display:block;margin:0 auto;line-height:140px;color:#666;outline:none;background-size:60%;}
+.menu li .coupon{background-position:center -360px;}
+.menu li .cars{background-position:center -660px}
+.menu li .trycar{background-position:center 0;}
+.menu li .repair{background-position:center -540px}
+.menu li .info{background-position:center -600px}
+.menu li .location{background-position:center -480px}
+.menu li .finequery{background-position:center -60px}
+.menu li .sechand{background-position:center -420px}
+.menu li .renew{background-position:center -180px}
+.menu li .cacls{background-position:center -240px}
+.menu li .carbook{background-position:center -300px}
+.menu li .cartips{background-position:center -120px}
+.menu li .club{background-position:center -720px}
+.menu li .shop{background-position:center -780px}
+.menu li .custom{background-position:center -1010px}
+		</style>
+
+</head>
+	<body class="home">
+
+		<div class="content">
+			<!--content-->
+			<div class="main_content">
+				<ul class="menu c">
+					
+					<li>
+						<a href="{pigcms::U('brandList',array('token'=>$token,'wecha_id'=>$wecha_id,'wxref'=>'mp.weixin.qq.com'))}" class="cars"> 车型展示 </a>
+					</li>
+					<li>
+						<a href="{pigcms::U('reserve',array('token'=>$token,'wecha_id'=>$wecha_id,'wxref'=>'mp.weixin.qq.com'))}" class="trycar"> 预约服务 </a>
+					</li>
+					
+					<li>
+						<a href="{pigcms::U('renew',array('token'=>$token,'wecha_id'=>$wecha_id,'wxref'=>'mp.weixin.qq.com'))}" class="sechand"> 二手车置换 </a>
+					</li>
+					<li>
+						<a href="{pigcms::U('daohang',array('token'=>$token,'wecha_id'=>$wecha_id,'wxref'=>'mp.weixin.qq.com'))}" class="location"> 一键导航 </a>
+					</li>
+					
+
+					<li>
+						<a href="http://m.46644.com/tool/illegal/?tpltype=qq" class="finequery"> 违章查询 </a>
+					</li>
+
+					<li>
+						<a href="{pigcms::U('baoxian',array('token'=>$token,'wecha_id'=>$wecha_id,'wxref'=>'mp.weixin.qq.com'))}" class="renew"> 汽车保险 </a>
+					</li>
+					<li>
+						<a href="http://car.m.yiche.com/qichedaikuanjisuanqi/" class="cacls"> 车贷计算器 </a>
+					</li>
+					<li>
+						<a href="{pigcms::U('shouceList',array('token'=>$token,'wecha_id'=>$wecha_id,'wxref'=>'mp.weixin.qq.com'))}" class="carbook"> 汽车手册 </a>
+					</li>
+					
+					</ul>
+			</div>
+			<!--Copyright-->
+			<div id="Copyright"><p><a href="{pigcms::C('site_url')}">{pigcms::C('site_name')}提供技术支持</a></p></div>
+		</div>
+</body></html>

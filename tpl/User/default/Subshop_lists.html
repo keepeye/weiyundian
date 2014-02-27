@@ -1,0 +1,42 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left">门店系统</h4>
+		<div class="clr"></div>
+	</div>
+	
+	<div class="cLine">
+		<div class="pageNavigator left"> 
+			<a href="{pigcms::U('set')}" title="添加" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">添加门店</a> 您的门店子系统管理平台地址：<a href="{pigcms::U('Subshop/Public/login',array('token'=>$token))}">{pigcms::U('Subshop/Public/login@www.weiyundian.com',array('token'=>$token))}</a>
+		</div>
+		<div class="clr"></div>
+	</div>
+	<div class="msgWrap">
+
+		<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<thead>
+				<tr>
+					<th width="60">名称</th>
+					<th width="300">电话</th>
+					<th width="160">是否显示</th>
+					<th width="100" class="norightborder">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+			<volist name='list' id='vo'>
+			<tr>
+				<td>{pigcms:$vo.shopname}</td>
+				<td>{pigcms:$vo.tel}</td>
+				<td><if condition="$vo['display'] eq 1"><font color=green>显示</font><else/><i>否</i></if></td>
+				<td><a href="{pigcms::U('set',array('id'=>$vo['id']))}">编辑</a> <a href="{pigcms::U('del',array('id'=>$vo['id']))}">删除</a></td>
+			</tr>
+			</volist>
+
+			</tbody>
+		</table>
+
+	</div>
+	
+</div>
+<include file="Public:footer"/>

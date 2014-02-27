@@ -1,0 +1,47 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left">品牌列表</h4>
+		<div class="clr"></div>
+	</div>
+	
+	<div class="cLine">
+		<div class="pageNavigator left"> 
+			<a href="{pigcms::U('categorySet')}" title="添加" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">添加子楼盘</a>
+		</div>
+		<div class="clr"></div>
+	</div>
+	<div class="msgWrap">
+
+		<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<thead>
+				<tr>
+					<th width="60">名称</th>
+					
+					<th >描述</th>
+					<th width="100" class="norightborder">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+			<volist name='list' id='vo'>
+			<tr>
+				<td>{pigcms:$vo.name}</td>
+				
+				<td>{pigcms:$vo.info|substr=###,0,150}...</td>
+				<td><a href="{pigcms::U('categorySet',array('id'=>$vo['id']))}">编辑</a> <a href="{pigcms::U('categorydDel',array('id'=>$vo['id']))}">删除</a></td>
+			</tr>
+			</volist>
+
+			</tbody>
+		</table>
+
+	</div>
+	<div class="cLine">
+		<div class="pageNavigator right">
+			<div class="pages">{pigcms:$pagestr}</div>
+		</div>
+		<div class="clr"></div>
+	</div>
+</div>
+<include file="Public:footer"/>

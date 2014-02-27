@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimob2_content/reset.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimob2_content/common.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimob2_content/peak-3.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimob2_content/home-menu-4.css" media="all">
+<script type="text/javascript" src="{pigcms::RES}/weimob2_content/jQuery.js"></script>
+<title>{pigcms:$res.title}-{pigcms:$company.name}</title>
+        
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+
+        <!-- Mobile Devices Support @begin -->
+            
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+            <meta content="no-cache" http-equiv="pragma">
+            <meta content="0" http-equiv="expires">
+            <meta content="telephone=no, address=no" name="format-detection">
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+            <meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <!-- Mobile Devices Support @end -->
+        <style>
+           img{max-width:100%;}
+        </style>
+    <style type="text/css">#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}</style></head>
+    <body onselectstart="return true;" ondragstart="return false;">
+        <link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimob2_content/font-awesome.css" media="all">
+
+<div class="body" style="padding-bottom:60px;">
+						<article id="shareCover" class="toshare" onclick="$(&#39;#shareCover&#39;).toggleClass(&#39;on&#39;)">
+		<table>
+			<tbody><tr>
+				<td colspan="2" style="text-align:right;">
+					<img src="{pigcms::RES}/weimob2_content/share_1.png" style="width:120px!important;">
+					<img src="{pigcms::RES}/weimob2_content/share_2.png" style="width:30px!important;">
+				</td>
+			</tr>
+			<tr>
+				<td style="width:50%;">
+					<img src="{pigcms::RES}/weimob2_content/share_4.png">
+					<div>发送给朋友</div>
+				</td>
+				<td>
+					<img src="{pigcms::RES}/weimob2_content/share_3.png">
+					<div>分享到朋友圈</div>
+				</td>
+			</tr>
+		</tbody></table>
+	</article>
+	<script>
+		window.addEventListener("DOMContentLoaded", function(){
+			var nav = document.querySelectorAll(".nav_8")[0];
+			
+			var evts = {
+				handleEvent: function(evt){
+					if("A" == evt.target.nodeName){
+						evt.target.classList.toggle("active");
+					}
+				}
+			}
+			nav.addEventListener("mousedown", evts, false);
+			nav.addEventListener("mouseup", evts, false);
+			nav.addEventListener("touchstart", evts, false);
+			nav.addEventListener("touchend", evts, false);
+		});
+
+	</script>
+	<div class="top_bar footer_bar">
+			<section>
+					<div class="nav_8">
+									<ul class="box">
+							<li>
+								<a href="javascript:" onclick="history.go(-1)">
+									<p class="back2"></p>
+									<span>返回</span>
+								</a>
+							</li>
+															<li>
+								<a href="tel:{pigcms:$company.tel}">
+									<p class="tel"></p>
+									<span>联系电话</span>
+								</a>
+							</li>
+																					<li>
+								<a href="{pigcms::U('Wap/Index/index',array('token'=>$token))}">
+									<p class="home"></p>
+									<span>首页</span>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:$('#shareCover').toggleClass('on');">
+									<p class="share"></p>
+									<span>分享</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+			</section>
+		</div>
+		<section class="news_article" style="padding:20px;">
+		<header>
+			<h3 style="font-size:14px;">{pigcms:$res.title}</h3>
+			<small class="gray">{pigcms:$res.createtime|date="y-m-d",###}</small>
+		</header>
+		<article>
+			<p>
+									<img src="{pigcms:$res.pic}" style="width:100%;">
+								</p>{pigcms:$res.info|htmlspecialchars_decode}
+		</article>
+	</section>
+	<!--<section style="width:95%; margin:0px auto;">
+	<div id="mcover" onclick="document.getElementById(&#39;mcover&#39;).style.display=&#39;&#39;;" style="display:none;">
+		<img src="{pigcms::RES}/weimob2_content/guide.png">
+	</div>
+	<div class="text" id="content">
+		<div id="mess_share">
+			<div id="share_1">
+				<button class="button2" onclick="document.getElementById(&#39;mcover&#39;).style.display=&#39;block&#39;;">
+					<img src="{pigcms::RES}/weimob2_content/icon_msg.png">&nbsp;发送给朋友
+				</button>
+			</div>
+			<div id="share_2">
+				<button class="button2" onclick="document.getElementById(&#39;mcover&#39;).style.display=&#39;block&#39;;">
+					<img src="{pigcms::RES}/weimob2_content/icon_timeline.png">&nbsp;分享到朋友圈
+				</button>
+			</div>
+			<div class="clr"></div>
+		</div>
+	</div>
+</section>-->
+</div>        			
+	{pigcms::W('Plugmenu')}	
+	<script>
+	document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+WeixinJSBridge.call('hideToolbar');
+});
+	</script>
+</body></html>

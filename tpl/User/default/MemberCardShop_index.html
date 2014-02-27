@@ -1,0 +1,62 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+        <div class="content">
+<div class="cLineB">
+<h4 class="left">商铺账号管理</h4>
+<div class="searchbar right">
+<form method="get" action="">
+<input type="hidden" name="g" value="{pigcms::GROUP_NAME}"/>
+<input type="hidden" name="m" value="{pigcms::MODULE_NAME}"/>
+<input type="hidden" name="a" value="{pigcms::ACTION_NAME}"/>
+<input type="hidden" name="token" value="{pigcms:$token}"/>
+<input type="text" id="msgSearchInput" class="txt left" placeholder="输入店铺名" name="searchkey" value="{pigcms:$Think.request.searchkey}">
+<input type="submit" value="搜索"  class="btnGrayS" title="搜索">
+</form>
+</div>
+<div class="clr"></div>
+</div>
+
+<div class="cLine">
+<div class="pageNavigator left"> 
+	<a href="{pigcms::U('setShop')}" title="添加商铺账号" >[添加商铺账号]</a>
+	您的商铺独立页面：<input type="text" class="px" style="width:400px" value="http://www.weiyundian.com{pigcms::U('MemberCardShopUser/index',array('token'=>$token))}"/>
+</div>
+
+<div class="clr"></div>
+</div>
+<div class="msgWrap">
+<form method="post" action="">
+<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+<thead>
+<tr>
+<th width="100">账号</th>
+<th width="100">店铺名</th>
+<th width="360">联系方式</th>
+<th width="100" class="norightborder">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr></tr>
+<volist name="list" id="item"> 
+<tr>
+<td>{pigcms:$item.username}</td>
+<td>{pigcms:$item.shopname}</td>
+<td>{pigcms:$item.contact_name} {pigcms:$item.contact_tel} {pigcms:$item.address}</td>
+<td class="norightborder"><a href="{pigcms::U('setShop',array('id'=>$item['id'],'token'=>$token))}">修改</a> <a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('delShop',array('id'=>$item['id'],'token'=>$token))}');">删除</a></td>
+</tr>
+</volist>
+</tbody>
+</table>
+</form>
+</div>
+<div class="cLine">
+<div class="pageNavigator right">
+<div class="pages">{pigcms:$pagestr}</div>
+</div>
+<div class="clr"></div>
+</div>
+</div>
+<script type='text/javascript'>
+
+</script>
+<include file="Public:footer"/>

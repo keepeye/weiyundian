@@ -1,0 +1,209 @@
+<include file="Public:head"/>
+ <div class="content">
+          <div class="cLineB"><h4>添加文章分类</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a></div> 
+<div class="msgWrap">
+  <form class="form" method="post"   action="{pigcms::U('Classify/insert')}"  target="_top" enctype="multipart/form-data" >
+<TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
+  <THEAD>
+<TR>
+  <TH valign="top"><label for="keyword">分类名称：</label></TH>
+  <TD><input type="input" class="px" id="keyword" value="" name="name" style="width:500px" ><br />
+                  </TD>
+  <TD>&nbsp;</TD>
+</TR>
+                            </THEAD>
+  <TBODY>
+<TR>
+  <TH valign="top"><label for="keyword">分类描述：</label></TH>
+  <TD><input type="input" class="px" id="keyword" value="" name="info" style="width:500px" ><br />
+                  30个字简短分类描述，可为空   </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="keyword">分类图片：</label></TH>
+  <TD>
+      <img class="upload_image" src="{pigcms::RES}/images/defaulttypepic.jpg" style="display: none;max-height: 100px;" />
+      <input type="hidden" class="upload_image_filed" id="keyword" value="{pigcms::RES}/images/defaulttypepic.jpg" name="img" data-thumb="700,400"/>
+      <input type="button" class="btnGrayS upload_image_button" value="添加图片" data-ishas="false" />
+	  建议图片尺寸720*400 左右
+  </TD>
+  <TD>&nbsp;</TD>
+</TR>
+
+<TR>
+  <TH valign="top"><label for="keyword">分类图标：</label></TH>
+  <TD>
+<div class="i-cont tile-themed">
+                                                                                        <i class="icon-check" id="icon_i"></i>
+                                            <input type="hidden" id="icon" name="icon" value="icon-check">
+                                            <a class="sel-icon" href="javascript:void(0);">换一个</a>
+                                            <div class="icons-cont"><ul><li class="tile-themed"> <i class="icon-file-text"></i></li><li class="tile-themed"> <i class="icon-globe "></i></li><li class="tile-themed"> <i class="icon-credit-card"></i></li><li class="tile-themed"> <i class="icon-hand-up"></i></li><li class="tile-themed"> <i class="icon-dashboard "></i></li><li class="tile-themed"> <i class="icon-money "></i></li><li class="tile-themed"> <i class="icon-reorder"></i></li><li class="tile-themed"> <i class="icon-comments-alt "></i></li><li class="tile-themed"> <i class="icon-smile"></i></li><li class="tile-themed"> <i class="icon-thumbs-up"></i></li><li class="tile-themed"> <i class="icon-truck"></i></li><li class="tile-themed"> <i class="icon-shopping-cart"></i></li><li class="tile-themed"> <i class="icon-group"></i></li><li class="tile-themed"> <i class="icon-user-md"></i></li><li class="tile-themed"> <i class="icon-home"></i></li><li class="tile-themed"> <i class="icon-plane"></i></li><li class="tile-themed"> <i class="icon-gift"></i></li><li class="tile-themed"> <i class="icon-food"></i></li><li class="tile-themed"> <i class="icon-phone"></i></li><li class="tile-themed"> <i class="icon-tags"></i></li><li class="tile-themed"> <i class="icon-rocket"></i></li><li class="tile-themed"> <i class="icon-cloud"></i></li><li class="tile-themed"> <i class="icon-map-marker"></i></li><li class="tile-themed"> <i class="icon-music"></i></li><li class="tile-themed"> <i class="icon-trophy"></i></li><li class="tile-themed"> <i class="icon-android"></i></li><li class="tile-themed"> <i class="icon-apple"></i></li><li class="tile-themed"> <i class="icon-star"></i></li><li class="tile-themed"> <i class="icon-rss-sign"></i></li><li class="tile-themed"> <i class="icon-heart"></i></li><li class="tile-themed"> <i class="icon-envelope"></i></li><li class="tile-themed"> <i class="icon-bar-chart"></i></li><li class="tile-themed"> <i class="icon-picture"></i></li><li class="tile-themed"> <i class="icon-download"></i></li><li class="tile-themed"> <i class="icon-gamepad"></i></li><li class="tile-themed"> <i class="icon-comment"></i></li><li class="tile-themed"> <i class="icon-check"></i></li><li class="tile-themed"> <i class="icon-cog"></i></li><li class="tile-themed"> <i class="icon-camera"></i></li><li class="tile-themed"> <i class="icon-cloud"></i></li><li class="tile-themed"> <i class="icon-facetime-video"></i></li><li class="tile-themed"> <i class="icon-spinner"></i></li><li class="tile-themed"> <i class="icon-bullhorn"></i></li><li class="tile-themed"> <i class="icon-location-arrow"></i></li><li class="tile-themed"> <i class="icon-list-ul"></i></li><li class="tile-themed"> <i class="icon-weibo"></i></li><li class="tile-themed"> <i class="icon-windows"></i></li><li class="tile-themed"> <i class="icon-time"></i></li><li class="tile-themed"> <i class="icon-th"></i></li><li class="tile-themed"> <i class="icon-user"></i></li><li class="tile-themed"> <i class="icon-microphone"></i></li><li class="tile-themed"> <i class="icon-bookmark"></i></li><li class="tile-themed"> <i class="icon-flag-checkered"></i></li><li class="tile-themed"> <i class="icon-qrcode"></i></li><li class="tile-themed"> <i class="icon-glass"></i></li><li class="tile-themed"> <i class="icon-stethoscope"></i></li><li class="tile-themed"> <i class="icon-medkit"></i></li><li class="tile-themed"> <i class="icon-ambulance"></i></li><li class="tile-themed"> <i class="icon-hospital"></i></li><li class="tile-themed"> <i class="icon-foursquare"></i></li><li class="tile-themed"> <i class="icon-download-alt"></i></li><li class="tile-themed"> <i class="icon-coffee"></i></li><li class="tile-themed"> <i class="icon-building"></i></li><li class="tile-themed"> <i class="icon-edit"></i></li><li class="tile-themed"> <i class="icon-book"></i></li><li class="tile-themed"> <i class="icon-question-sign"></i></li><li class="tile-themed"> <i class="icon-legal"></i></li><li class="tile-themed"> <i class="icon-calendar-empty"></i></li><li class="tile-themed"> <i class="icon-ellipsis-horizontal"></i></li><li class="tile-themed"> <i class="icon-pencil"></i></li><li class="tile-themed"> <i class="icon-suitcase"></i></li><li class="tile-themed"> <i class="icon-warning-sign"></i></li><li class="tile-themed"> <i class="icon-jpy"></i></li><li class="tile-themed"> <i class="icon-list-alt"></i></li><li class="tile-themed"> <i class="icon-html5"></i></li><li class="tile-themed"> <i class="icon-gittip"></i></li><li class="tile-themed"> <i class="icon-search"></i></li><li class="tile-themed"> <i class="icon-wrench"></i></li><li class="tile-themed"> <i class="icon-lemon"></i></li><li class="tile-themed"> <i class="icon-indent-right"></i></li><li class="tile-themed"> <i class="icon-paste"></i></li><li class="tile-themed"> <i class="icon-archive"></i></li><li class="tile-themed"> <i class="icon-sun"></i></li><li class="tile-themed"> <i class="icon-bitbucket"></i></li></ul></div>
+                                        </div>
+							  </TD>
+  <TD>&nbsp;</TD>
+</TR>			
+
+
+<TR>
+  <TH valign="top"><label for="keyword">外链网站或活动 ：</label></TH>
+  <TD>
+      <input type="hidden" name="url" />
+	  <input type="hidden" name='type' value='0'/>
+      <select id="types">
+		  <option value="0">请选择类型</option>
+          <option value="input">输入网址</option>
+		  <option value="tel">电话号码</option>
+		  <option value="location">我的位置(地图)</option>
+		  <option disabled>-------------</option>
+          <option value="news">图文回复</option>
+          <option value="photos">3G相册</option>
+		  <if condition="$trade eq '所有' or $trade eq '娱乐场所'">
+          <option value="hosts">用订单(酒店,KTV)</option>
+		  </if>
+          <option value="selfforms">微报名</option>
+          <option value="lotterys">幸运大转盘</option>
+          <option value="coupons">优惠券</option>
+          <option value="guajiangs">刮刮卡</option>
+		  <if condition="$trade eq '所有' or $trade eq '电商'">
+          <option value="product">微商城</option>
+		  </if>
+          <option value="mermber_card">会员卡</option>
+		  <if condition="$trade eq '所有' or $trade eq '旅行社'">
+          <option value="travel">微旅行</option>
+		  </if>
+		  <if condition="$trade eq '所有' or $trade eq '房产'">
+          <option value="house">微房产</option>
+		  </if>
+		  <if condition="$trade eq '所有' or $trade eq '汽车'">
+          <option value="car">汽车4S</option>
+		  </if>
+      </select>
+      <div id="item_list" style="margin-top: 10px;">
+          
+      </div>
+      <script type="text/javascript">
+	  
+		  $(function(){
+
+			var list = ["icon-file-text", "icon-globe ", "icon-credit-card", "icon-hand-up", "icon-dashboard ", "icon-money ", "icon-reorder", "icon-comments-alt ", "icon-smile", "icon-thumbs-up", "icon-truck", "icon-shopping-cart", "icon-group", "icon-user-md", "icon-home", "icon-plane", "icon-gift", "icon-food", "icon-phone", "icon-tags", "icon-rocket", "icon-cloud", "icon-map-marker", "icon-music", "icon-trophy", "icon-android", "icon-apple", "icon-star", "icon-rss-sign", "icon-heart", "icon-envelope", "icon-bar-chart", "icon-picture", "icon-download", "icon-gamepad", "icon-comment", "icon-check", "icon-cog", "icon-camera", "icon-cloud", "icon-facetime-video", "icon-spinner", "icon-bullhorn", "icon-location-arrow", "icon-list-ul", "icon-weibo", "icon-windows", "icon-time", "icon-th", "icon-user", "icon-microphone", "icon-bookmark",
+				"icon-flag-checkered", "icon-qrcode", "icon-glass", "icon-stethoscope", "icon-medkit", "icon-ambulance", "icon-hospital", "icon-foursquare", "icon-download-alt", "icon-coffee", "icon-building", "icon-edit", "icon-book", "icon-question-sign", "icon-legal", "icon-calendar-empty", "icon-ellipsis-horizontal", "icon-pencil", "icon-suitcase", "icon-warning-sign", "icon-jpy", "icon-list-alt", "icon-html5", "icon-gittip", "icon-search", "icon-wrench", "icon-lemon", "icon-indent-right", "icon-paste", "icon-archive", "icon-sun", "icon-bitbucket"
+			];
+			var tmp = '<li class="tile-themed"> <i class="{0}"></i></li>';
+			var ul = '<ul>{0}</ul>';
+			var s = '';
+		
+			if (!String.prototype.format) {
+				String.prototype.format = function () {
+					var args = arguments;
+					return this.replace(/{(\d+)}/g, function (match, number) {
+						return typeof args[number] != 'undefined'
+						  ? args[number]
+						  : match
+						;
+					});
+				};
+			}
+
+			$.each(list, function (k, v) {
+				s += tmp.format(v);
+			})
+
+			$("div.icons-cont").html(ul.format(s));
+			$(".sel-icon").click(function () {
+				
+				$(".icons-cont").toggle();
+			});
+			$(".icons-cont li").live("click", function () {
+				var $thisclass = $(this).children().attr("class");
+				$("#icon_i").attr("class", $thisclass)
+				$("#icon").val($thisclass);
+				$(".icons-cont").hide();
+			});
+			$(".icons-cont").hover(function () {
+
+			}, function () {
+				$(".icons-cont").fadeOut();
+			});
+		
+		  })
+		  //用于改变隐藏表单值
+          function update_value(ob){
+              $("input[name=url]").val($(ob).val());
+          }
+
+          $("#types").change(function(){
+              var type=$(this).val();
+              if(type=="input"){
+				$("input[name=type]").val('2');//将类型设置为远程链接
+                $("#item_list").html('<input type="input" class="px" placeholder="http://" onkeyup="update_value(this);" style="width: 300px;"/>');
+              }else if(type=="tel"){
+				$("input[name=type]").val('3');//类型设置为电话
+				$("#item_list").html('<input type="input" class="px" placeholder="" value="{pigcms:$company.tel}" readonly style="width: 300px;"/>');
+				$("input[name=url]").val("{pigcms:$company.tel}");
+			  }else if(type=="location"){
+				$("input[name=type]").val('2');//地图，类型设置为远程链接
+				var apiurl = "http://api.map.baidu.com/marker?location={pigcms:$company.latitude},{pigcms:$company.longitude}&title={pigcms:$company.name|rawurlencode}&content={pigcms:$company.name|rawurlencode}&output=html";
+				$("#item_list").html('<input type="input" class="px" placeholder="" value="'+apiurl+'" style="width: 300px;" readonly/>');
+				$("input[name=url]").val(apiurl);
+			  }else{
+				
+                  $.get("/index.php?g=User&m=Classify&a=itemlist",{"type":type},function(data){
+                      if(data.error==0 && data.data.length>0){
+                          var html='<select onchange="update_value(this);">';
+                          for(d in data.data){
+                              html+='<option value="'+data.data[d].url+'">'+data.data[d].name+'</option>';
+                          }
+                          html+='</select>';
+                          $("#item_list").html(html);
+                          $("input[name=url]").val(data.data[0].url);
+						  $("input[name=type]").val('1');//类型设置为站内模块
+                      }
+                      else{
+						  if(data.error=="1"){
+							alert(data.msg)
+						  }else{
+							  $("#item_list").html('<input type="input" class="px" placeholder="http://" onkeyup="update_value(this);" style="width: 300px;"/>');
+							  $("input[name=type]").val('2');//将类型设置为远程链接
+						  }
+                      }
+                  },"json");
+              }
+          });
+      </script>
+  </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="keyword">排序：</label></TH>
+  <TD><input type="input" class="px" id="keyword" value="1" name="sorts" style="width:500px" ><br />
+                   </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH valign="top"><label for="keyword">是否显示：</label></TH>
+  <TD><input type="radio" class="px" id="keyword" value="1" name="status" checked />是<br />
+  <input type="radio" class="px" id="keyword" value="0" name="status" />否
+                   </TD>
+  <TD>&nbsp;</TD>
+</TR>
+<TR>
+  <TH></TH>
+  <TD><button type="submit"  name="button"  class="btnGreen left" >保存</button>
+  	<div class="clr"></div>
+  	</TD>
+  </TR>
+  </TBODY>
+</TABLE>
+  </form>
+  </div> 
+
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+
+<!--底部-->
+  	</div>
+<include file="Public:footer"/>

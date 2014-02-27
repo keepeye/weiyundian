@@ -1,0 +1,61 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left">保险申请列表</h4>
+		<div class="clr"></div>
+	</div>
+	<div class="msgWrap">
+
+		<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<thead>
+				<tr>
+					<th width="120">车牌</th>
+					<th width="150">申请时间</th>
+					<th width="100">联系人</th>
+					<th width="120">联系电话</th>
+					<th width="90">状态</th>
+					<th width="100" class="norightborder">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+			<volist name='list' id='vo'>
+			<tr>
+				<td>{pigcms:$vo.chepai}</td>
+				<td>{pigcms:$vo.adddate}</td>
+				<td>{pigcms:$vo.contact_name}</td>
+				<td>{pigcms:$vo.contact_phone}</td>
+				<td><eq name="vo['status']" value="0"><font color=red>待处理</font><else/>已处理</eq></td>
+				<td><a href="{pigcms::U('baoxianDetail',array('id'=>$vo['id']))}">详细 </a> <eq name="vo['status']" value="0"><a href="javascript:" onclick="markdone('{pigcms:$vo.id}')">标记已处理</a></eq></td>
+			</tr>
+			</volist>
+
+			</tbody>
+		</table>
+	</div>
+	<div class="cLine">
+		<div class="pageNavigator right">
+			<div class="pages">{pigcms:$pagestr}</div>
+		</div>
+		<div class="clr"></div>
+	</div>
+</div>
+<script>
+function markdone(id){
+	$.ajax({
+		url:"{pigcms::U('baoxianMark')}",
+		type:"post",
+		data:"id="+id,
+		dataType:"json",
+		error:function(){alert('请求失败，网络错误')},
+		success:function(data){
+			if(data && data.status){
+				window.location.reload();//标记成功刷新页面
+			}else{
+				alert('非法请求');
+			}
+		}
+	})
+}
+</script>
+<include file="Public:footer"/>

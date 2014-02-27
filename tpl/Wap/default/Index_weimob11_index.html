@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html><head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimob11_index/common.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimob11_index/reset.css" media="all">
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimob11_index/home-26.css" media="all">
+<script type="text/javascript" src="{pigcms::RES}/weimob11_index/jQuery.js"></script>
+<title>首页-{pigcms:$company.name}</title>
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <!-- Mobile Devices Support @begin -->
+            <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+            <meta content="no-cache" http-equiv="pragma">
+            <meta content="0" http-equiv="expires">
+            <meta content="telephone=no, address=no" name="format-detection">
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+            <meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <!-- Mobile Devices Support @end -->
+        <link rel="shortcut icon" href="{pigcms::RES}/favicon.ico">
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+        
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimob11_index/font-awesome.css" media="all">
+<style>
+	.body{
+		max-width:640px;
+		margin:auto;
+		min-height:100%;
+		background:url({pigcms:$home['bg_picurl']}) no-repeat 0 0 #f4f4f4;
+		position:relative;
+				background-size:100% 100%;
+	}
+	.list_font{float:left;}
+	.list_font li{padding:2px;margin:3px;}
+</style>
+
+<div class="body" style="display:block; padding-bottom:50px;">
+				<!--
+		用户分类管理
+        -->
+		<section>
+			<ul class="list_font">
+				<volist name="info" id="vo" mod="6">
+				<eq name="mod" value="0">
+				<li style="background-color:rgba(250, 103, 32, 0.85)">
+				</eq>
+				<eq name="mod" value="1"><li></eq>
+				<eq name="mod" value="2"><li></eq>
+				<eq name="mod" value="3"><li></eq>
+				<eq name="mod" value="4"><li></eq>
+				<eq name="mod" value="5"><li></eq>
+					<a href="{pigcms::WeParseUrl($vo['url'],$vo['type'],array('classid'=>$vo['id'],'token'=>$vo['token'],'wecha_id'=>$wecha_id))}">
+					<div><span class="{pigcms:$vo.icon}"></span></div>
+					<div><p>{pigcms:$vo.name}</p></div>
+					</a>
+				</li>
+				</volist> 
+			</ul>
+		</section>
+	
+	<!--
+导航菜单
+   后台设置的快捷菜单
+-->
+
+</div>        			
+        			<footer>
+				<div class="weimob-copyright">
+					<php>echo htmlspecialchars_decode(C('copyright'))</php>
+				</div>
+
+							</footer>
+				<div mark="stat_code" style="width:0px; height:0px; display:none;">
+					</div>
+</body></html>

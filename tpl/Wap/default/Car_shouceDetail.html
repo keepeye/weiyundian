@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="cache-control" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>{pigcms:$info.title}-车型手册 </title>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/main.css">
+
+<style type="text/css">
+body{padding-bottom:0px;}
+.red{color:#f00;}
+.infomation .carImg{float:left;width:100px;height:80px;margin:15px 15px 15px 20px;background-repeat:no-repeat;background-size:cover;background-position:center;}
+.infomation .infomation_detail{float:left;margin:15px 20px 15px 0;line-height:20px;}
+.infomation .infomation_detail ul li{max-width:300px;}
+/*参数详解*/
+#data{padding:0px;}
+.clearfix:after{content:"";display:block;clear:both;height:0;}
+/*switch title bar*/
+header {background-color: #BB3737;}
+.ui-tabs-nav li {
+border: solid #d4d4d4;
+border-width: 0px 0px 1px 0px;
+-webkit-box-flex: 1;
+text-align: center;
+color: #4a4a4a;
+font-size: 16px;
+background-color: #f4f4f4;
+height: 35px;
+line-height: 35px;
+white-space: nowrap;
+cursor: pointer;
+}
+.ui-tabs-nav li.ui-state-active {
+background-color: #fff;
+border-bottom-color: #fff;
+}
+img{max-width:100%;}
+</style>
+
+<style>.gmu-media-detect{-webkit-transition: width 0.001ms; width: 0; position: relative; bottom: -999999px;}
+@media screen and (width: 1920px) { #gmu-media-detect0 { width: 100px; } }
+</style></head>
+<body>
+<header>
+	<a href="javascript:history.go(-1)" class="btn_back"> </a>
+	<h1> {pigcms:$info.title} </h1>
+</header>
+
+<!--content-->
+<div>
+	<div class="tab ui-tabs">
+		
+		<!--参数详解-->
+
+
+
+		<div class="ui-viewport ui-tabs-content" style="padding:10px;">
+			<div id="data" class="ui-panel ui-tabs-panel ui-state-active" >
+				{pigcms:$info.content|htmlspecialchars_decode}
+			</div>
+
+		</div>
+		
+	</div>
+</div>
+{pigcms::W('Plugmenu')}
+</body>
+</html>

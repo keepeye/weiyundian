@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)http://app.aimapp.net/wx/4s/app/index/528197eaa8b3ac42d806d832/car?_f=piao.qq.com -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="cache-control" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>{pigcms:$brandInfo.name}-系列列表</title>
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/car/main.css">
+<style type="text/css">
+body{padding-bottom:0px;}
+.red{color:#f00;}
+
+.infomation_title{margin:0 10px;padding:8px 0;color:#333;border-bottom:1px solid #333;}
+.infomation{margin:0 10px;border-bottom:1px solid #ccc;}
+.infomation a{display:block;height:100%;width:100%;}
+.infomation a:after{content:"";display:block;clear:both;height:0;}
+.infomation a .carImg{float:left;width:100px;height:70px;margin:5px;background-repeat:no-repeat;background-size:cover;background-position:center;}
+.infomation a .infomation_detail{margin:15px 0px 15px 0;line-height:20px;}
+.infomation a .infomation_detail ul{padding-top:5px;}
+.infomation a .infomation_detail ul li{font-size:16px;line-height:26px;}
+.infomation a .infomation_detail ul li span{font-size:14px;}
+
+
+/*switch title bar*/
+header {background-color: #BB3737;}
+
+
+</style>
+</head>
+
+<body>
+<header>
+	<a href="javascript:history.go(-1)" class="btn_back"></a>
+	<h1>{pigcms:$brandInfo.name}</h1>
+</header>
+
+<!--infomation-->
+<div class="infomation_container">
+	<volist name="list" id="vo">
+
+	<div class="infomation clearfix">
+		<a href="{pigcms::U('versionList',array('sid'=>$vo['id'],'token'=>$token,'wecha_id'=>$wecha_id,'wxref'=>'mp.weixin.qq.com'))}"> <div class="carImg" style="background-image:url({pigcms:$vo['pic']})"></div>
+			<div class="infomation_detail">
+				<ul>
+					<li>
+					{pigcms:$vo.name}
+					</li>
+					<li>
+					{pigcms:$vo['short_name']}
+					</li>
+					<li>
+					<span class="red">{pigcms:$vo.minprice}-{pigcms:$vo.maxprice}万</span>
+					</li>
+				</ul>
+		</div> </a>
+	</div>
+	</volist>	
+</div>
+
+<!--Copyright-->
+{pigcms::W('Plugmenu')}
+
+</body>
+</html>

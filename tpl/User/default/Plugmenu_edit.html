@@ -1,0 +1,199 @@
+<include file="Public:head" />
+<div class="content"> 
+	<div class="cLineB">
+		<h4>编辑快捷菜单</h4>
+	</div>
+	<form action="" method="post">
+	<input type='hidden' name='id' value="{pigcms:$menu.id}"/>
+	<div class="shortcat_menu_content">
+		<div class="control-group">
+			<label class="control-label" for="name">快捷名称：</label>
+			<div class="controls">
+                <input type="text"  class="input-medium" value="{pigcms:$menu.name}" id="name" name="name"/>
+            </div>
+                        <div class="clr"></div>
+		</div>
+		<div class="control-group">
+            <label class="control-label" for="order">显示顺序：</label>
+            <div class="controls">
+                <input type="text" value="{pigcms:$menu.sort}"  class="input-mini" name="sort">
+            </div>
+            <div class="clr"></div>
+        </div>
+		<div class="control-group">
+            <label class="control-label" for="display">是否显示：</label>
+            <div class="controls">
+                <label class="radio inline"><input type="radio" name="is_show" value="1" <eq name="menu['is_show']" value="1">checked</eq>/>是</label>
+				<label class="radio inline"><input type="radio" name="is_show" value="0" <eq name="menu['is_show']" value="0">checked</eq>/>否</label>
+            </div>
+            <div class="clr"></div>
+        </div> 
+		<div class="control-group">
+            <label class="control-label" for="weixin">图标：</label>
+			<div class="controls">
+				<div class="i-cont tile-themed" style="width:100px;">
+				<input type="hidden" name="icon" value="{pigcms:$menu.icon}"/>
+					<i id="icon_i" class="{pigcms:$menu.icon}"></i>
+					<a href="#" class="sel-icon" >换一个</a>
+                        <div class="icons-cont" style="display: none;">
+                        <ul>
+                            <li class="tile-themed"> <i class="icon-file-text"></i></li>     <li class="tile-themed"> <i class="icon-globe "></i></li>
+                            <li class="tile-themed"> <i class="icon-credit-card"></i></li><li class="tile-themed"> <i class="icon-hand-up"></i></li>
+                            <li class="tile-themed"> <i class="icon-dashboard "></i></li><li class="tile-themed"> <i class="icon-money "></i></li>
+                            <li class="tile-themed"> <i class="icon-reorder"></i></li><li class="tile-themed"> <i class="icon-comments-alt "></i></li>
+                            <li class="tile-themed"> <i class="icon-smile"></i></li><li class="tile-themed"> <i class="icon-thumbs-up"></i></li>
+                            <li class="tile-themed"> <i class="icon-truck"></i></li><li class="tile-themed"> <i class="icon-shopping-cart"></i></li>
+                            <li class="tile-themed"> <i class="icon-group"></i></li><li class="tile-themed"> <i class="icon-user-md"></i></li>
+                            <li class="tile-themed"> <i class="icon-home"></i></li><li class="tile-themed"> <i class="icon-plane"></i></li>
+                            <li class="tile-themed"> <i class="icon-gift"></i></li><li class="tile-themed"> <i class="icon-food"></i></li>
+                            <li class="tile-themed"> <i class="icon-phone"></i></li><li class="tile-themed"> <i class="icon-tags"></i></li>
+                            <li class="tile-themed"> <i class="icon-rocket"></i></li><li class="tile-themed"> <i class="icon-cloud"></i></li>
+                            <li class="tile-themed"> <i class="icon-map-marker"></i></li><li class="tile-themed"> <i class="icon-music"></i></li>
+                            <li class="tile-themed"> <i class="icon-trophy"></i></li><li class="tile-themed"> <i class="icon-android"></i></li>
+                            <li class="tile-themed"> <i class="icon-apple"></i></li><li class="tile-themed"> <i class="icon-star"></i></li>
+                            <li class="tile-themed"> <i class="icon-rss-sign"></i></li><li class="tile-themed"> <i class="icon-heart"></i></li>
+                            <li class="tile-themed"> <i class="icon-envelope"></i></li><li class="tile-themed"> <i class="icon-bar-chart"></i></li>
+                            <li class="tile-themed"> <i class="icon-picture"></i></li><li class="tile-themed"> <i class="icon-download"></i></li>
+                            <li class="tile-themed"> <i class="icon-gamepad"></i></li><li class="tile-themed"> <i class="icon-comment"></i></li>
+                            <li class="tile-themed"> <i class="icon-check"></i></li>
+                            <li class="tile-themed"> <i class="icon-cog"></i></li><li class="tile-themed"> <i class="icon-camera"></i></li>
+                            <li class="tile-themed"> <i class="icon-cloud"></i></li><li class="tile-themed"> <i class="icon-facetime-video"></i></li>
+                            <li class="tile-themed"> <i class="icon-spinner"></i></li><li class="tile-themed"> <i class="icon-bullhorn"></i></li>
+                            <li class="tile-themed"> <i class="icon-location-arrow"></i></li><li class="tile-themed"> <i class="icon-list-ul"></i></li>
+                            <li class="tile-themed"> <i class="icon-weibo"></i></li><li class="tile-themed"> <i class="icon-windows"></i></li>
+                            <li class="tile-themed"> <i class="icon-time"></i></li><li class="tile-themed"> <i class="icon-th"></i></li>
+                            <li class="tile-themed"> <i class="icon-user"></i></li><li class="tile-themed"> <i class="icon-microphone"></i></li>
+                            <li class="tile-themed"> <i class="icon-bookmark"></i></li><li class="tile-themed"> <i class="icon-flag-checkered"></i></li>
+                            <li class="tile-themed"> <i class="icon-qrcode"></i></li><li class="tile-themed"> <i class="icon-glass"></i></li>
+                            <li class="tile-themed"> <i class="icon-stethoscope"></i></li><li class="tile-themed"> <i class="icon-medkit"></i></li>
+                            <li class="tile-themed"> <i class="icon-ambulance"></i></li><li class="tile-themed"> <i class="icon-hospital"></i></li>
+                            <li class="tile-themed"> <i class="icon-foursquare"></i></li><li class="tile-themed"> <i class="icon-download-alt"></i></li>
+                            <li class="tile-themed"> <i class="icon-coffee"></i></li><li class="tile-themed"> <i class="icon-building"></i></li>
+                            <li class="tile-themed"> <i class="icon-edit"></i></li><li class="tile-themed"> <i class="icon-book"></i></li>
+                            <li class="tile-themed"> <i class="icon-question-sign"></i></li><li class="tile-themed"> <i class="icon-legal"></i></li>
+                            <li class="tile-themed"> <i class="icon-calendar-empty"></i></li><li class="tile-themed"> <i class="icon-ellipsis-horizontal"></i></li>
+                            <li class="tile-themed"> <i class="icon-pencil"></i></li><li class="tile-themed"> <i class="icon-suitcase"></i></li>
+                            <li class="tile-themed"> <i class="icon-warning-sign"></i></li><li class="tile-themed"> <i class="icon-jpy"></i></li>
+                            <li class="tile-themed"> <i class="icon-list-alt"></i></li><li class="tile-themed"> <i class="icon-html5"></i></li>
+                            <li class="tile-themed"> <i class="icon-gittip"></i></li><li class="tile-themed"> <i class="icon-search"></i></li>
+                            <li class="tile-themed"> <i class="icon-wrench"></i></li><li class="tile-themed"> <i class="icon-lemon"></i></li>
+                            <li class="tile-themed"> <i class="icon-indent-right"></i></li><li class="tile-themed"> <i class="icon-paste"></i></li>
+                            <li class="tile-themed"> <i class="icon-archive"></i></li><li class="tile-themed"> <i class="icon-sun"></i></li>
+                            <li class="tile-themed"> <i class="icon-bitbucket"></i></li>
+                        </ul>
+                    </div>
+                    <script type="text/javascript">
+                        $(function(){
+                            var sel_icon = $(".sel-icon");
+                            var icon_i = $("#icon_i");
+                            var icons_cont = $(".icons-cont");
+                            sel_icon.click(function(){icons_cont.show();return false;});
+							icons_cont.mouseleave(function(){
+								icons_cont.hide();
+							})
+                            $(".tile-themed").each(
+                                function(){
+                                    $(this).click(
+                                        function(){
+											var icon = $(this).find("i").attr("class");
+											$("input[name='icon']").val(icon);
+                                            icon_i.attr("class",icon);
+                                            icons_cont.hide();
+                                            return false;
+                                        }
+                                    );
+                                }
+                            );
+                        })
+                    </script>
+				</div>
+				<span class="help-inline">图标在某些快捷菜单样式下生效</span>
+			</div>
+            <div class="clr"></div>
+		</div>
+		<div id="res_block">
+			<div class="control-group">
+                <label class="control-label">链接类型:：</label>
+                <div class="controls" style="width:200px">
+				<input type="hidden" name="url" value="{pigcms:$menu.url}"/>
+				<input type="hidden" name='type' value='{pigcms:$menu.type}'/>
+                   <select id="types" style="width:200px">
+					  <option value="0">请选择类型</option>
+					  <option value="input">输入网址</option>
+					  <option value="tel">电话号码</option>
+					  <option value="location">我的位置(地图)</option>
+					  <option disabled>-------------</option>
+					  <option value="news">图文回复</option>
+					  <option value="photos">3G相册</option>
+					  <option value="hosts">用订单(酒店,KTV)</option>
+					  <option value="selfforms">微报名</option>
+					  <option value="lotterys">幸运大转盘</option>
+					  <option value="coupons">优惠券</option>
+					  <option value="guajiangs">刮刮卡</option>
+					  <option value="product">微商城</option>
+					  <option value="mermber_card">会员卡</option>
+					  <option value="travel">微旅行</option>
+					  <option value="house">微房产</option>
+				  </select>
+				  <div id="item_list" style="margin-top: 10px;">
+					  <input type="input" class="px" placeholder="http://" value="{pigcms:$menu.url}" onchange="update_value(this);" style="width: 300px;" readonly/> 要修改链接,请选择更改类型并重新填写
+				  </div>
+                </div>
+                <div class="clr"></div>
+            </div>
+			
+			<div class="form-actions">
+                <input class="btn btn-primary" type="submit" value="提交">
+                <button onclick="window.history.go(-1)" class="btn" type="button">取消</button>
+            </div>
+		</div>
+	</div>
+	</form>
+</div>
+
+<script>
+//用于改变隐藏表单值
+          function update_value(ob){
+              $("input[name=url]").val($(ob).val());
+          }
+
+          $("#types").change(function(){
+              var type=$(this).val();
+              if(type=="input"){
+				$("input[name=type]").val('2');//将类型设置为远程链接
+                $("#item_list").html('<input type="input" class="px" placeholder="http://" onkeyup="update_value(this);" style="width: 300px;"/>');
+              }else if(type=="tel"){
+				$("input[name=type]").val('3');//类型设置为电话
+				$("#item_list").html('<input type="input" class="px" placeholder="" value="{pigcms:$company.tel}" readonly style="width: 300px;"/>');
+				$("input[name=url]").val("{pigcms:$company.tel}");
+			  }else if(type=="location"){
+				$("input[name=type]").val('2');//地图，类型设置为远程链接
+				var apiurl = "http://api.map.baidu.com/marker?location={pigcms:$company.latitude},{pigcms:$company.longitude}&title={pigcms:$company.name|rawurlencode}&content={pigcms:$company.name|rawurlencode}&output=html";
+				$("#item_list").html('<input type="input" class="px" placeholder="" value="'+apiurl+'" style="width: 300px;" readonly/>');
+				$("input[name=url]").val(apiurl);
+			  }else{
+				
+                  $.get("/index.php?g=User&m=Classify&a=itemlist",{"type":type},function(data){
+                      if(data.error==0 && data.data.length>0){
+                          var html='<select onchange="update_value(this);">';
+                          for(d in data.data){
+                              html+='<option value="'+data.data[d].url+'">'+data.data[d].name+'</option>';
+                          }
+                          html+='</select>';
+                          $("#item_list").html(html);
+                          $("input[name=url]").val(data.data[0].url);
+						  $("input[name=type]").val('1');//类型设置为站内模块
+                      }
+                      else{
+                          if(data.error=="1"){
+							alert(data.msg)
+						  }else{
+							  $("#item_list").html('<input type="input" class="px" placeholder="http://" onkeyup="update_value(this);" style="width: 300px;"/>');
+							  $("input[name=type]").val('2');//将类型设置为远程链接
+						  }
+                      }
+                  },"json");
+              }
+          });
+</script>
+<include file="Public:footer" />

@@ -1,0 +1,62 @@
+<include file="Public:head" /> 
+<div class="content">
+
+<div class="cLineB">
+  <h4>首页配置 </h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a>
+ </div>
+         
+    <div class="msgWrap bgfc">
+	  <form class="form" method="post" action="" target="_top" enctype="multipart/form-data">	 
+		<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr>
+				  <th valign="top"><span class="red">*</span>关键词：</th>
+				  <td>
+					<span class="red">首页 或者 home —— 当用户输入该关键词时，将会触发此回复。</span></td>
+				</tr>
+				<tr>
+					<th width="120">回复标题：</th>
+					<td><input type="text" name="title" value="{pigcms:$home.title}" class="px" style="width:550px;"></td>
+				</tr>
+				<tr>
+					<th width="120">内容介绍：</th>
+					<td><textarea style="width:560px;height:75px" name="info" id="info" class="px">{pigcms:$home.info}</textarea><br/>最多填写120个字</td>
+				</tr>
+				<tr>
+					<th>回复图片：</th>
+					<td>
+                        <img class="upload_image" src="{pigcms:$home.picurl}" style="display: none;max-height: 100px;" />
+                        <input type="hidden" class="upload_image_filed" id="keyword" value="{pigcms:$home.picurl}" name="picurl" data-thumb="720,400"/>
+                        <input type="button" class="btnGrayS upload_image_button" value="添加图片" data-ishas="false" />
+                        <br/>宽720像素，高400像素
+                    </td>
+				</tr>
+                <tr>
+                    <th>背景图片：</th>
+                    <td>
+                        <img class="upload_image" src="{pigcms:$home.bg_picurl}" style="display: none;max-height: 100px;" />
+                        <input type="hidden" class="upload_image_filed" id="keyword" value="{pigcms:$home.bg_picurl}" name="bg_picurl" data-thumb="640,960"/>
+                        <input type="button" class="btnGrayS upload_image_button" value="添加图片" data-ishas="false" />
+                        <br/>宽640高960
+                    </td>
+                </tr>
+                <tr>
+                    <th>首页预览：</th>
+                    <td><a href="/index.php?g=User&m=Home&a=preview&token={pigcms::session('token')}" target="_blank">{pigcms::C('site_url')}/index.php?g=Wap&m=Index&a=index&token={pigcms::session('token')}</a></td>
+                </tr>
+                <tr>
+				    <th>&nbsp;</th>
+					<td>
+						<button type="submit" name="button" class="btnGreen">保存</button>
+						<a href="javascript:history.go(-1);" class="btnGray vm">取消</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+  </div> 
+ 
+  
+        </div>
+		<div class="clr"></div>
+<include file="Public:footer"/>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://www.360info.com.cn/travel/detail.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>{pigcms:$contact.contact_name}-线路详情</title>
+<meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport"> 
+<meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" name="viewport"> 
+<meta content="yes" name="apple-mobile-web-app-capable"> 
+<meta content="black" name="apple-mobile-web-app-status-bar-style"> 
+<meta content="telephone=no" name="format-detection"> 
+<link rel="apple-touch-icon-precomposed" href="http://www.360info.com.cn/travel/images/icon.png">
+<link href="{pigcms::RES}/travel/style.css" rel="stylesheet" type="text/css">
+<!--幻灯片_Begin-->
+<script type="text/javascript" src="{pigcms::RES}/travel/touchslider.dev.js"></script> 
+<!--幻灯片_End-->  
+<script src="{pigcms::RES}/travel/jquery-1.9.1.js"></script>
+<script src="{pigcms::RES}/travel/jquery-ui.js"></script>
+<script>
+  $(function() {
+    $( "#accordion" ).accordion({
+        active: false, 
+    alwaysOpen: false, 
+    animated: false, 
+    autoheight: false 
+    });
+  });
+  function claerheight(){ 
+    var div = document.getElementById("trip_block_0")
+	div.style.height="auto"
+	
+
+  }
+  function showme(){
+        var div = document.getElementById("trip_block_0")
+		var boult=document.getElementById("list_boult_0")
+        var div1 = document.getElementById("trip_block_1")
+		var boult1=document.getElementById("list_boult_1")		
+        var div2 = document.getElementById("trip_block_2")
+		var boult2=document.getElementById("list_boult_2")
+        var div3 = document.getElementById("trip_block_3")
+		var boult3=document.getElementById("list_boult_3")	  					
+        if (div.style.display == "block") {
+            boult.src="{pigcms::RES}/travel/boult.png"
+			boult1.src="{pigcms::RES}/travel/boult.png"
+			boult2.src="{pigcms::RES}/travel/boult.png"
+			boult3.src="{pigcms::RES}/travel/boult.png"
+			div.style.height="auto"
+			div1.style.height="auto"
+			div2.style.height="auto"
+			div3.style.height="auto"
+        } else if (div.style.display == "none") {
+            boult.src="{pigcms::RES}/travel/boult2.png"
+			boult1.src="{pigcms::RES}/travel/boult.png"
+			boult2.src="{pigcms::RES}/travel/boult.png"
+			boult3.src="{pigcms::RES}/travel/boult.png"
+			div.style.height="auto"
+			div1.style.height="auto"
+			div2.style.height="auto"
+			div3.style.height="auto"			
+        }	
+    } 
+	function showme1(){
+        var div = document.getElementById("trip_block_0")
+		var boult=document.getElementById("list_boult_0")
+        var div1 = document.getElementById("trip_block_1")
+		var boult1=document.getElementById("list_boult_1")		
+        var div2 = document.getElementById("trip_block_2")
+		var boult2=document.getElementById("list_boult_2")
+        var div3 = document.getElementById("trip_block_3")
+		var boult3=document.getElementById("list_boult_3")		 
+        if (div1.style.display == "block") {
+            boult.src="{pigcms::RES}/travel/boult.png"
+			div1.style.height="auto"
+			boult1.src="{pigcms::RES}/travel/boult.png"
+			boult2.src="{pigcms::RES}/travel/boult.png"
+			boult3.src="{pigcms::RES}/travel/boult.png"
+	        div.style.height="auto"
+			div1.style.height="auto"
+			div2.style.height="auto"
+			div3.style.height="auto"
+        } else if (div1.style.display == "none") {
+            boult.src="{pigcms::RES}/travel/boult.png"
+			boult1.src="{pigcms::RES}/travel/boult2.png"
+			boult2.src="{pigcms::RES}/travel/boult.png"
+			boult3.src="{pigcms::RES}/travel/boult.png"
+			div.style.height="auto"
+			div1.style.height="auto"
+			div2.style.height="auto"
+			div3.style.height="auto"			
+        }
+	}
+	function showme2(){
+        var div = document.getElementById("trip_block_0")
+		var boult=document.getElementById("list_boult_0")
+        var div1 = document.getElementById("trip_block_1")
+		var boult1=document.getElementById("list_boult_1")		
+        var div2 = document.getElementById("trip_block_2")
+		var boult2=document.getElementById("list_boult_2")
+        var div3 = document.getElementById("trip_block_3")
+		var boult3=document.getElementById("list_boult_3")		 
+        if (div2.style.display == "block") {
+            boult.src="{pigcms::RES}/travel/boult.png"
+			div2.style.height="auto"
+			boult1.src="{pigcms::RES}/travel/boult.png"
+			boult2.src="{pigcms::RES}/travel/boult.png"
+			boult3.src="{pigcms::RES}/travel/boult.png"
+			div.style.height="auto"
+			div1.style.height="auto"
+			div2.style.height="auto"
+			div3.style.height="auto"			
+        } else if (div2.style.display == "none") {
+            boult.src="{pigcms::RES}/travel/boult.png"
+			boult1.src="{pigcms::RES}/travel/boult.png"
+			boult2.src="{pigcms::RES}/travel/boult2.png"
+			boult3.src="{pigcms::RES}/travel/boult.png"
+			div.style.height="auto"
+			div1.style.height="auto"
+			div2.style.height="auto"
+			div3.style.height="auto"			
+        }
+	}
+	function showme3(){
+        var div = document.getElementById("trip_block_0")
+		var boult=document.getElementById("list_boult_0")
+        var div1 = document.getElementById("trip_block_1")
+		var boult1=document.getElementById("list_boult_1")		
+        var div2 = document.getElementById("trip_block_2")
+		var boult2=document.getElementById("list_boult_2")
+        var div3 = document.getElementById("trip_block_3")
+		var boult3=document.getElementById("list_boult_3")		 
+        if (div3.style.display == "block") {
+            boult.src="{pigcms::RES}/travel/boult.png"
+			div3.style.height="auto"
+			boult1.src="{pigcms::RES}/travel/boult.png"
+			boult2.src="{pigcms::RES}/travel/boult.png"
+			boult3.src="{pigcms::RES}/travel/boult.png"
+			div.style.height="auto"
+			div1.style.height="auto"
+			div2.style.height="auto"
+			div3.style.height="auto"			
+        } else if (div3.style.display == "none") {
+            boult.src="{pigcms::RES}/travel/boult.png"
+			boult1.src="{pigcms::RES}/travel/boult.png"
+			boult2.src="{pigcms::RES}/travel/boult.png"
+			boult3.src="{pigcms::RES}/travel/boult2.png"
+			div.style.height="auto"
+			div1.style.height="auto"
+			div2.style.height="auto"
+			div3.style.height="auto"			
+        }
+	}		
+</script>  
+<style>
+img{max-width:100%;}
+</style>
+</head>
+
+<body style="background:url(images/main_bg.jpg);" onload="claerheight();">
+<div class="main_body">
+<!--头部_End-->
+  <div class="top">
+    <img class="back" src="{pigcms::RES}/travel/back.png" onclick="window.history.back()">
+    <span>线路详情</span>
+    <img class="top_bg" src="{pigcms::RES}/travel/top.png" border="0">
+    <img class="home" src="{pigcms::RES}/travel/home.png" onclick="location='{pigcms::U('Wap/Travel/index',array('token'=>$token,'wecha_id'=>$wecha_id,'wxref'=>'mp.weixin.qq.com'))}'">
+  </div>
+<!--头部_End-->
+
+<!--幻灯片区域_Begin-->
+  <div class="trip_pics">
+    <div class="swipe" style="overflow: hidden; visibility: visible; list-style: none; position: absolute;">
+      <!--
+ Powered by TouchSlider v1.2.5,
+ author: qiqiboy,
+ email: imqiqiboy@gmail.com,
+ blog: http://www.qiqiboy.com,
+ weibo: http://weibo.com/qiqiboy
+--><ul id="slider4" style="position: relative; overflow: hidden; -webkit-transition: left 600ms ease; transition: left 600ms ease; width: 1600px; left: -320px;">
+	<foreach name="details['imgurls']" item='img'>
+        <li style="display: block; float: left; width: 320px;"><img src="{pigcms:$img}" style="height:162px;margin:0 auto;display:block"></li>
+	</foreach>
+      </ul>
+    </div> 
+    <div id="pagenavi">
+	<foreach name="details['imgurls']" item='img'>
+        <a href="#" class="">{pigcms:$i}</a>
+	</foreach>
+    </div>     
+  </div>
+<!--幻灯片区域_End-->  
+
+  <div class="trip_title">
+    <span class="style_1">{pigcms:$details.type}</span>
+    <p>{pigcms:$details.title}</p>
+  </div>
+  
+  <div class="trip_price">
+    <div class="trip_top">
+      <span>网站价：</span>
+      <p><b>￥{pigcms:$details.dprice}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a>￥{{pigcms:$details.oprice}}</a></p>
+    </div>
+    <div class="trip_middle">
+      <span>出发地点：</span>
+      <p>{pigcms:$details.start_city}</p>
+    </div>
+    <div class="trip_bottom">
+      <span>发团日期：</span>
+      <p>{pigcms:$details.start_date|unserialize|implode=",",###}</p>
+    </div>
+  </div>
+  
+  <div class="trip_price ui-accordion ui-widget ui-helper-reset" style="margin-bottom:81px;" id="accordion" role="tablist">
+  
+    <div class="trip_top ui-accordion-header ui-helper-reset ui-state-default ui-accordion-header-active ui-state-active ui-corner-top ui-accordion-icons" onclick="showme();" role="tab" id="ui-accordion-accordion-header-0" aria-controls="trip_block_0" aria-selected="true" tabindex="0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span>
+      <img src="{pigcms::RES}/travel/list_icon_0.png" class="list_icon">
+      <h3>线路特色</h3>
+      <img id="list_boult_0" src="{pigcms::RES}/travel/boult2.png" class="list_boult">
+    </div>
+    <div id="trip_block_0" class="trip_block ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active" aria-labelledby="ui-accordion-accordion-header-0" role="tabpanel" aria-expanded="true" aria-hidden="false" style="display: block; height: auto;">
+	{pigcms:$details.feature|htmlspecialchars_decode}
+	</div>
+    <div class="trip_middle ui-accordion-header ui-helper-reset ui-state-default ui-corner-all ui-accordion-icons" onclick="showme1();" role="tab" id="ui-accordion-accordion-header-1" aria-controls="trip_block_1" aria-selected="false" tabindex="-1"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span>
+      <img src="{pigcms::RES}/travel/list_icon_1.png" class="list_icon">
+      <h3>参考行程</h3>
+      <img id="list_boult_1" src="{pigcms::RES}/travel/boult.png" class="list_boult">
+    </div>
+    <div id="trip_block_1" class="trip_block ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" aria-labelledby="ui-accordion-accordion-header-1" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none; height: 672.4000007510185px;">
+      {pigcms:$details.schedule|htmlspecialchars_decode}  
+    </div>
+    <div class="trip_middle ui-accordion-header ui-helper-reset ui-state-default ui-corner-all ui-accordion-icons" onclick="showme2();" role="tab" id="ui-accordion-accordion-header-2" aria-controls="trip_block_2" aria-selected="false" tabindex="-1"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span>
+      <img src="{pigcms::RES}/travel/list_icon_2.png" class="list_icon">
+      <h3>费用说明</h3>
+      <img id="list_boult_2" src="{pigcms::RES}/travel/boult.png" class="list_boult">
+    </div>  
+    <div id="trip_block_2" class="trip_block ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" aria-labelledby="ui-accordion-accordion-header-2" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none; height: 672.4000007510185px;">
+	{pigcms:$details.expense|htmlspecialchars_decode} 
+	</div>  
+    <div class="trip_bottom ui-accordion-header ui-helper-reset ui-state-default ui-corner-all ui-accordion-icons" onclick="showme3();" role="tab" id="ui-accordion-accordion-header-3" aria-controls="trip_block_3" aria-selected="false" tabindex="-1"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span>
+      <img src="{pigcms::RES}/travel/list_icon_3.png" class="list_icon">
+      <h3>预定指南</h3>
+      <img id="list_boult_3" src="{pigcms::RES}/travel/boult.png" class="list_boult">
+    </div>
+    <div id="trip_block_3" class="trip_block ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" style="border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: rgb(178, 178, 178); display: none; height: 672.4000007510185px;" aria-labelledby="ui-accordion-accordion-header-3" role="tabpanel" aria-expanded="false" aria-hidden="true">
+	{pigcms:$details.booking|htmlspecialchars_decode}
+	</div> 
+    
+  </div>  
+  
+<!--预定按钮区域_Begin-->  
+  <div id="bottom_button" style="display:block" class="bottom_button">
+    <div class="tel_book"><a href="tel:{pigcms:$contact.contact_phone}">电话咨询</a></div>
+    <div class="online_book" onclick="location='{pigcms::U('Wap/Travel/postApply',array('route_id'=>$details['id'],'token'=>$token,'wecha_id'=>$wecha_id,'wxref'=>'mp.weixin.qq.com'))}'">在线预定</div>
+  </div>
+<!--预定按钮区域_End-->  
+  
+
+  
+</div>
+
+<script type="text/javascript">
+console=window.console || {dir:new Function(),log:new Function()};
+var active=0,
+	as=document.getElementById('pagenavi').getElementsByTagName('a');
+for(var i=0;i<as.length;i++){
+	(function(){
+		var j=i;
+		as[i].onclick=function(){
+			t4.slide(j);
+			return false;
+		}
+	})();
+}
+var t1=new TouchSlider('slider',{speed:600, timeout:3000, direction:'left', fixWidth:false});
+var t11=new TouchSlider('slider1',{speed:600, timeout:3000, direction:'left', align:'left', fixWidth:false});
+var t2=new TouchSlider('slider2',{'auto':false, begin:1, speed:600, timeout:3000, direction:'up'});
+var t3=new TouchSlider('slider3',{speed:600, timeout:3000, mouseWheel:true});
+var t4=new TouchSlider({id:'slider4', speed:600, timeout:6000, before:function(index){
+		as[active].className='';
+		active=index;
+		as[active].className='active';
+	}});
+	$(function(){
+      windowScroll();	
+	  }
+	  )
+	  
+function windowScroll()
+{
+    $(window).scroll(function(){
+		var myScoll = ScollPostion();
+		if(myScoll.top >= 0){
+		    hideShowFoot(1);
+		}else{
+			hideShowFoot(0);
+		}
+	});
+}
+function ScollPostion()
+{
+        var t, l, w, h;
+        if (document.documentElement && document.documentElement.scrollTop) {
+            t = document.documentElement.scrollTop;
+            l = document.documentElement.scrollLeft;
+            w = document.documentElement.scrollWidth;
+            h = document.documentElement.scrollHeight;
+        } else if (document.body) {
+            t = document.body.scrollTop;
+            l = document.body.scrollLeft;
+            w = document.body.scrollWidth;
+            h = document.body.scrollHeight;
+        }
+        return { top: t, left: l, width: w, height: h };
+}	
+function hideShowFoot(val)
+{
+	var bottom_button=document.getElementById("bottom_button")
+     if(val == 1)
+        bottom_button.style.display="block"
+     else
+        bottom_button.style.display="none"
+}  
+</script>
+</body></html>

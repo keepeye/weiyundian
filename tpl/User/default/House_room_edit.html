@@ -1,0 +1,100 @@
+﻿<include file="Public:head"/>
+ <div class="content">
+          <div class="cLineB"><h4>添加户型</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a></div> 
+<div class="msgWrap">
+ <form class="form" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="{pigcms:$room.id}" />
+                                <div class="control-group">
+                                    <label for="name" style="float:left">户型名称：</label>
+                                    <div class="controls" style="float:left">
+                                        <input type="text" id="name" name="name" value="{pigcms:$room.name}" class="px">
+                                    </div>
+                                    <div class="clr"></div>   
+                                </div>
+							
+                                <div class="control-group">
+                                    <label for="floor" style="float:left">楼层：</label>
+                                    <div class="controls" style="float:left">
+                                        <input type="text" id="floor" name="floor" value="{pigcms:$room.floor}" class="px">
+                                    </div>
+                                    <div class="clr"></div>   
+                                </div>
+							
+                                <div class="control-group">
+                                    <label for="area" style="float:left">建筑面积：</label>
+                                    <div class="controls" style="float:left">
+                                        <input type="text" id="area" name="area" value="{pigcms:$room.area}" class="px">
+                                    </div>
+                                    <div class="clr"></div>   
+                                </div>
+								
+								
+                                <div class="control-group">
+                                    <label style="float:left">户型：</label>
+                                    <div class="controls" style="float:left">
+										<select name="fang" class="px" style="height:30px">
+											<notempty name="room['fang']"><option value="{pigcms:$room.fang}">{pigcms:$room.fang}</option></notempty>
+											<option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+										</select>室
+										<select name="ting" class="px" style="height:30px">
+											<notempty name="room['ting']"><option value="{pigcms:$room.ting}">{pigcms:$room.ting}</option></notempty>
+											<option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+										</select>厅
+                                    </div>
+                                    <div class="clr"></div>   
+                                </div>
+								
+						
+                                <div class="control-group">
+                                    <label for="order" style="float:left">显示顺序：</label>
+                                    <div class="controls" style="float:left">
+                                        <input type="text" id="order" name="order" value="{pigcms:$room.order}" class="px">
+                                    </div>
+                                    <div class="clr"></div>   
+                                </div>
+								
+							
+                                <div class="control-group">
+                                    <label for="info" style="float:left">户型介绍：</label>
+                                    <div class="controls" style="float:left">
+                                        <textarea type="text" id="info" name="info" class="px"> {pigcms:$room.info}</textarea>
+                                    </div>
+                                    <div class="clr"></div>   
+                                </div>
+								
+								<div class="control-group">
+                                    <label for="album_id" style="float:left">相册名称：</label>
+                                    <div class="controls" style="float:left">
+                                        <select id="album_id" name="album_id">
+                                            <option id="0">无相册</option>
+                                            <volist name="photos" id="vo">
+                                                <option id="{pigcms:$vo.id}" <if condition="$room.album_id eq $vo.id">selected="selected"</if>>{pigcms:$vo.title}</option>
+                                            </volist>
+                                        </select>
+                                    </div>
+                                    <div class="clr"></div>   
+                                </div>
+	<div class="btns">
+       <button type="submit" name="button" class="btnGreen">保存</button>
+	</div>
+  </form>
+  </div> 
+
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div> 
+
+<!--底部-->
+  	</div>
+<include file="Public:footer"/>

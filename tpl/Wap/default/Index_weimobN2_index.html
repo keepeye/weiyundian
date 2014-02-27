@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!-- saved from url=(0076)http://www.weimob.com/Weisite/Home?pid=22867&bid=41892&wechatid=fromUsername -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimobN2_index/common.css" media="all">
+        <link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimobN2_index/reset.css" media="all">
+        <link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimobN2_index/home-12.css" media="all">
+        <link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimobN2_index/font-awesome.css" media="all">
+        <script type="text/javascript" src="{pigcms::RES}/weimobN2_index/jQuery.js"></script>
+        <script type="text/javascript" src="{pigcms::RES}/weimobN2_index/swipe.js"></script>
+        <script type="text/javascript" src="{pigcms::RES}/weimobN2_index/zepto.js"></script>
+        <title>首页-{pigcms:$company.name}</title>
+
+        <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <!-- Mobile Devices Support @begin -->
+
+        <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+        <meta content="no-cache" http-equiv="pragma">
+        <meta content="0" http-equiv="expires">
+        <meta content="telephone=no, address=no" name="format-detection">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <!-- Mobile Devices Support @end -->
+        <link rel="shortcut icon" href="{pigcms::RES}/favicon.ico">
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+
+        <script>
+            $(function() {
+                var img = new Image();
+                img.src = "res/1.png";
+                console.log(img);
+                new Swipe(document.getElementById('topList_box'), {
+                    speed: 500,
+                    auto: 3000,
+                    callback: function() {
+                        var lis = $(this.element).next("ol").children();
+                        lis.removeClass("on").eq(this.index).addClass("on");
+                    },
+                    callback2: function() {
+                        console.log("user op");
+                    }
+                });
+            });
+        </script>
+        <div class="body">
+            <!--
+    幻灯片管理
+            -->
+            <div style="-webkit-transform:translate3d(0,0,0);">
+                <div id="banner_box" class="box_swipe" style="visibility: visible;">
+                    <ul style="list-style: none; width: 866px; transition: 500ms; -webkit-transition: 500ms; -webkit-transform: translate3d(-433px, 0, 0);">
+                        <volist name="flash" id="so">
+                            <li>
+                                <a href="{pigcms:$so.url}">
+                                    <img src="{pigcms:$so.img}" alt="{pigcms:$so.info}" data-touchable="touchable" style="width:100%;"/>
+                                </a>
+                            </li>
+                        </volist>
+                    </ul>
+                    <ol>
+                        <li class=""></li>
+                        <li class="on"></li>
+                    </ol>
+                </div>
+            </div>
+            <script>
+                $(function() {
+                    new Swipe(document.getElementById('banner_box'), {
+                        speed: 500,
+                        auto: 3000,
+                        callback: function() {
+                            var lis = $(this.element).next("ol").children();
+                            lis.removeClass("on").eq(this.index).addClass("on");
+                        }
+                    });
+                });
+            </script>
+            <section>
+                <ul class="v12_ul">
+                    <volist name="info" id="vo">
+                        <li class="card_lol">
+                        <a class="tbox" href="<if condition="$vo['url'] eq ''">{pigcms::U('Wap/Index/lists',array('classid'=>$vo['id'],'token'=>$vo['token']))}<else/>{pigcms:$vo.url|htmlspecialchars_decode}&classid={pigcms:$vo.id}&wecha_id={pigcms:$wecha_id}</if>">
+                            <div style="vertical-align:middle;"><label>{pigcms:$vo.name}</label><span>{pigcms:$vo.info}</span></div>
+                            <div style="background-image:url('{pigcms:$vo.img}');">
+                            </div>
+                        </a>
+                        </li>
+                    </volist>
+                </ul>
+                <script type="text/javascript">
+                    $(".v12_ul li:odd").css("direction","rtl");
+                </script>
+            </section>
+        </div>
+        <!--
+        导航菜单
+           后台设置的快捷菜单
+        -->
+        
+        <!--
+        分享前控制
+        -->
+       
+        <footer>
+				<div class="weimob-copyright">
+					<php>echo htmlspecialchars_decode(C('copyright'))</php>
+				</div>
+
+							</footer>
+				<div mark="stat_code" style="width:0px; height:0px; display:none;">
+					</div>
+
+
+    </body></html>

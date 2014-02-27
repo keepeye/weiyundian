@@ -1,0 +1,95 @@
+</div>
+</div>
+</div>
+
+<style>
+    .IndexFoot {
+        BACKGROUND-COLOR: #333; WIDTH: 100%; HEIGHT: 39px; padding-top:15px;
+    }
+    .foot{ width:988px; margin:0px auto; font-size:12px; line-height:21px;}
+    .foot .foot_page{ float:left; width:600px;color:white;}
+    .foot .foot_page a{ color:white; text-decoration:none;}
+    #copyright{ float:right; width:380px; text-align:right; font-size:12px; color:#FFF;}
+</style>
+<div class="IndexFoot" style="height:70px;clear:both">
+    <div class="foot">
+        <div class="foot_page" >
+            <a href="{pigcms::C('site_url')}">微云店微信公众平台营销</a><br/>
+            帮助您快速搭建属于自己的营销平台,构建自己的客户群体。<br/>
+            大转盘、刮刮卡，会员卡,优惠卷,订餐,订房等营销模块,客户易用,易懂,易营销。
+        </div>
+        <div id="copyright" style="color:white">
+            {pigcms::C('site_name')}(c)2013 cms版权所有<br/>
+
+        </div>
+    </div>
+</div>
+<style>
+/*kfqq*/
+.kfqq {width:100px;position:fixed;right:20px;bottom:200px;border:1px solid lightblue;z-index:9999;}
+.kfqq .title{height:30px;line-height:30px;background-color:lightblue;font-size:12px;padding-left:15px;font-weight:bolder;position:relative;}
+.kfqq .title span.close{position:absolute;right:5px;top:10px;font-size:11px;}
+.kfqq .kflist{padding:5px;}
+.kfqq .kflist ul li{text-align:center;line-height:30px;}
+</style>
+<div class="kfqq">
+	<div class="title">技术支持<span class="close" onclick="$('.kfqq').hide()">关闭</span></div>
+	<div class="kflist">
+		<ul>
+			<li><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1097122622&site=qq&menu=yes"><img border="0" src="http://combo.b.qq.com/bqq/v4/images/crm/wpa/btn_wpa.png" alt="联系我吧" title="联系我吧" width=90/></a></li>
+		</ul>
+	</div>
+
+</div>
+<script type="text/javascript">
+    KindEditor.ready(function (K) {
+        K('.upload_image_button').click(function (event) {
+            var button=$(event.currentTarget);
+            var img=button.parent().children(".upload_image");
+            var field=button.parent().children(".upload_image_filed");
+            if(button.attr("data-ishas")!="true"){
+                var editor = K.editor({
+                    allowImageUpload:true,
+                    allowFileManager: field.attr("data-filemanager") ? true : false,
+                    uploadJson:"/index.php?m=Image&a=upload"+(field.attr("data-thumb") ? "&thumb="+field.attr("data-thumb") : ""),
+                    FileManagerJson:field.attr("data-filemanager") || ""
+                });
+                editor.loadPlugin('image', function () {
+                    editor.plugin.imageDialog({
+                        imageUrl: img.val(),
+                        clickFn: function (url, title, width, height, border, align) {
+                            field.val(url);
+                            img.attr('src', url);
+                            img.show();
+                            button.val("删除图片");
+                            button.attr("data-ishas","true");
+                            editor.hideDialog();
+                        }
+                    });
+                });
+            }
+            else{
+                img.hide();
+                img.attr("src","");
+                field.val("");
+                button.val("添加图片");
+                button.attr("data-ishas","false");
+            }
+        });
+    });
+
+    (function(){
+        $(".upload_image_filed").each(function(index,ele){
+            if(trim($(ele).val())!=""){
+                var img=$(ele).parent().children(".upload_image");
+                var btn=$(ele).parent().children(".upload_image_button");
+                btn.attr("data-ishas","true");
+                btn.val("删除图片");
+                img.show();
+            }
+        });
+    })();
+</script>
+
+</body>
+</html>

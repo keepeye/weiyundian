@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)http://www.360info.com.cn/travel/book.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>{pigcms:$contact.contact_name}-填写订单</title>
+<meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport"> 
+<meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1" name="viewport"> 
+<meta content="yes" name="apple-mobile-web-app-capable"> 
+<meta content="black" name="apple-mobile-web-app-status-bar-style"> 
+<meta content="telephone=no" name="format-detection"> 
+<link rel="apple-touch-icon-precomposed" href="http://www.360info.com.cn/travel/images/icon.png">
+<link href="{pigcms::RES}/travel/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="main_body">
+<!--头部_End-->
+  <div class="top">
+    <img class="back" src="{pigcms::RES}/travel/back.png" onclick="window.history.back()">
+    <span>填写订单</span>
+    <img class="top_bg" src="{pigcms::RES}/travel/top.png" border="0">
+    <img class="home" src="{pigcms::RES}/travel/home.png" onclick="location='{pigcms::U('Wap/Travel/index',array('token'=>$token,'wecha_id'=>$wecha_id,'wxref'=>'mp.weixin.qq.com'))}';">
+  </div>
+<!--头部_End-->
+
+  <div class="book_title">线路名称</div>  
+  <div class="trip_title">
+    <span class="style_1">{pigcms:$details.type}</span>
+    <p>{pigcms:$details.title}</p>
+  </div>  
+
+<!--表单区域_Begin-->
+<form method='post' id='form1'>
+	<input type='hidden' name='route_id' value='{pigcms:$details.id}'/>
+	<input type='hidden' name='token' value='{pigcms:$contact.token}'/>
+  <div class="lan_area_2">
+    <div class="lan_top">
+      <span>线路类型</span>
+      <select class="trip_style" name='action'>
+		<foreach name="details['actions']" item='action'>
+        <option value='{pigcms:$action}'>{pigcms:$action}</option>
+		</foreach>
+      </select>
+    </div>
+    <div class="lan_middle">
+      <span>出发日期</span>
+	  <select class="trip_style" name='start_date'>
+		<foreach name="details['start_date']" item='start'>
+        <option value='{pigcms:$start}'>{pigcms:$start}</option>
+		</foreach>
+	  </select>
+    </div>    
+    <div class="lan_bottom">
+      <span>参团人数</span>
+      <a class="adult">成人</a>
+      <input type="number" class="adult_num" name='people_num' value=0>
+      <a class="child">儿童</a> 
+      <input type="number" class="child_num" name='children_num' value=0>    
+    </div>
+  </div>
+<!--表单区域_End-->
+ <div class="book_title">联系资料</div>  
+
+<!--表单区域_Begin-->
+  <div class="lan_area_2">
+    <div class="lan_top">
+      <span>联系人</span>
+      <input class="login_user" type="text" name='contact_name' placeholder="请输入真实姓名">
+    </div>
+    <div class="lan_middle">
+      <span>性&nbsp;&nbsp;&nbsp;&nbsp;别</span>
+      <select class="trip_style" name='contact_sex'>
+        <option>男</option>
+        <option>女</option>
+      </select>      
+    </div> 
+    <div class="lan_middle">
+      <span>手机号码</span>
+      <input class="login_user" name='contact_phone' type="tel" placeholder="请输入有效手机号">
+    </div> 
+    <div class="lan_middle">
+      <span>常用邮箱</span>
+      <input class="login_user" type="email" name='contact_email' placeholder="请输入常用邮箱">
+    </div>            
+    <div class="lan_bottom_2">
+      <span>预定留言</span>
+      <textarea class="message" name='contact_words'></textarea>
+    </div>
+  </div>
+<!--表单区域_End-->
+  <div class="buttons">
+    <div class="sign_button_3" onclick="form1.submit()">提交订单</div>
+  </div>
+</form>
+
+</div>
+</body></html>
