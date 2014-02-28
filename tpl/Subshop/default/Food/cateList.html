@@ -53,7 +53,7 @@
 								<thead>
 									<tr>
 										<th class='with-checkbox'>
-											<input type="checkbox" class="check_all" />
+											<input type="checkbox" />
 										</th>
 										<th>id</th>
 										<th>名称</th>
@@ -62,9 +62,9 @@
 								</thead>
 								<?php foreach($cateList as $cate): ?>
 									<tr>
-										<th class='with-checkbox'>
-											<input type="checkbox" class="check_all" />
-										</th>
+										<td class='with-checkbox'>
+											<input type="checkbox" />
+										</td>
 										<td><?php echo $cate['id'];?></td>
 										<td><?php echo $cate['name'];?></td>
 										<td><a href="">修改</a> <a href="">删除</a></td>
