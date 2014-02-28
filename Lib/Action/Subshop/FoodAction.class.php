@@ -10,12 +10,11 @@ class FoodAction extends SubshopAction{
 
 	//菜单分类列表
 	function cateList(){
-		echo $this->shopid;
 		$map = array(
 			"shopid" => $this->shopid，
 		);
-		$cateList = M('FoodCategory')->where($map)->order("sort ASC")->select();
-		dump(M()->getLastSql());
+		$cateList = M('FoodCategory')->where($map)->order("`sort` ASC")->select();
+		dump($map);
 		$this->assign("cateList",$cateList);
 		$this->display();
 	}
