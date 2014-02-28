@@ -11,15 +11,17 @@ class FoodAction extends SubshopAction{
 	//菜单分类列表
 	function cateList(){
 		dump($this->shopid);
-		$map = array(
+		$where = array(
 			"shopid" => $this->shopid，
 		);
-		dump($map);
+		dump($where);
 		$cateList = M('FoodCategory')->where($map)->order("`sort` ASC")->select();
 		
 		$this->assign("cateList",$cateList);
 		$this->display();
 	}
+
+
 	//添加、修改菜单
 	function setCate(){
 		$id = (int)$_REQUEST['id'];
