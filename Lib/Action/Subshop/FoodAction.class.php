@@ -35,9 +35,11 @@ class FoodAction extends SubshopAction{
 				}
 				if($re === false){
 					$this->error("更新数据失败，请检查数据合法性");
+				}else{
+					$this->success("恭喜，添加成功");
 				}
 			}else{
-				$this->error(M()->getError());
+				$this->error(M('FoodCategory')->getError());
 			}
 			
 		}else{
