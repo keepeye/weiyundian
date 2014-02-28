@@ -9,7 +9,7 @@ class FoodAction extends SubshopAction{
 	}
 
 	function cateList(){
-		echo '111';
+		$this->display();
 	}
 	
 }
