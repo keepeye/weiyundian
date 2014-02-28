@@ -83,6 +83,24 @@ class FoodAction extends SubshopAction{
 
 	//菜品列表
 	function foodList(){
+		$FoodM = M('FoodList');
+		$CateM = M('FoodCategory');
+		$CateListTemp = $CateM->where(array("shopid"=>$this->shopid))->select(); //读取分类列表
+		$CateList = array();
+		foreach($CateListTemp as $cate){
+			$CateList[$cate['id']] = $cate;
+		}
+		//foodm的map
+		$FoodMMap = array(
+			"shopid"=>$this->shopid
+		);
+		$count      = $FoodM->where($FoodMMap)->count();
+		$Page       = new Page($count,20);
+		$show       = $Page->show();
+		$FoodList = $M->field('*')->where($FoodMMap)->order('id desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+		$this->assign('pagestr',$show);
+		$this->assign("FoodList",$FoodList);
+		$this->assign("CateList",$CateList);
 		$this->display();
 	}
 

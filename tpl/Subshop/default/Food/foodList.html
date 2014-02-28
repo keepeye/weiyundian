@@ -62,23 +62,32 @@
 
 								<thead>
 									<tr>
-										<th class='with-checkbox' style="display:none;">
-											<input type="checkbox" class="check_all" /></th>
 										<th>名称</th>
 										<th>图片</th>
 										<th>分类</th>
-										<th>原价</th>
-										<th>标签</th>
+										<th>价格</th>
 										<th>是否上架</th>
 										<th>操作</th>
 									</tr>
 								</thead>
+								<?php foreach($FoodList as $food): ?>
+								<tr>
+									<td><?php echo $food['name'];?></td>
+									<td><img src="<?php echo $food['name'];?>" width=80 height=60/></td>
+									<td><?php echo $CateList[$food['category_id']]['name'];?></td>
+									<td><?php echo $food['oprice'];?> / <?php echo $food['price'];?></td>
+									<td><?php if($food['status']==1){echo "是";}else{echo "否";}?></td>
+									<td><a href="<?php echo U('setFood',array('id'=>$food['id']));?>" class="btn"><i class="icon-edit"></i></a> <a href="<?php echo U('delFood',array('id'=>$food['id']));?>" class="btn"><i class="icon-remove"></i></a></td>
+								</tr>
+								<?php endforeach;?>
 							</table>
 						</div>
 					</div>
 				</div>
 			</div>
-
+			<div class="span12">
+				<?php echo $pagestr;?>
+			</div>
 		</div>
 	</div>
 </div>
