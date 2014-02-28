@@ -12,7 +12,7 @@ class FoodAction extends SubshopAction{
 	function cateList(){
 		dump($this->shopid);
 		$where = array(
-			"shopid" => $this->shopid，
+			"shopid" => $this->shopid
 		);
 		dump($where);
 		$cateList = M('FoodCategory')->where($map)->order("`sort` ASC")->select();
