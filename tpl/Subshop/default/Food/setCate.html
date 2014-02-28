@@ -32,15 +32,15 @@
 					</div>
 
 					<div class="box-content">
-						<form>
+						<form method="post">
+							<input type="hidden" name="id" value="<?php echo $cate['id'];?>" />
 						  <fieldset>
-						    <legend>Legend</legend>
-						    <label>Label name</label>
-						    <input type="text" placeholder="Type something…">
-						    <span class="help-block">Example block-level help text here.</span>
-						    <label class="checkbox">
-						      <input type="checkbox"> Check me out
-						    </label>
+						    <legend>填写分类信息</legend>
+						    <label>分类名</label>
+						    <input type="text" name="name" placeholder="请输入分类名…" value="<?php echo $cate['name'];?>"/>
+
+						    <span class="help-block">分类名不可超过10个汉字.</span>
+						   
 						    <button type="submit" class="btn">Submit</button>
 						  </fieldset>
 						</form>
