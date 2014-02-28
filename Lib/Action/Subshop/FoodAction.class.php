@@ -10,6 +10,7 @@ class FoodAction extends SubshopAction{
 
 	//菜单分类列表
 	function cateList(){
+		dump($this->shopid);
 		$map = array(
 			"shopid" => $this->shopid，
 		);
