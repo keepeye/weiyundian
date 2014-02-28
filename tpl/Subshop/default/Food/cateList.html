@@ -61,7 +61,7 @@
 									<tr>
 										<td><?php echo $cate['id'];?></td>
 										<td><?php echo $cate['name'];?></td>
-										<td><a href="" class="btn"><i class="icon-edit"></i></a> <a href="" class="btn"><i class="icon-remove"></i></a></td>
+										<td><a href="<?php echo U('setCate',array('id'=>$cate['id']));?>" class="btn"><i class="icon-edit"></i></a> <a href="<?php echo U('delCate',array('id'=>$cate['id']));?>" class="btn"><i class="icon-remove"></i></a></td>
 									</tr>
 								<?php endforeach; ?>
 							</table>
