@@ -55,6 +55,7 @@
 										<th>id</th>
 										<th>名称</th>
 										<th>操作</th>
+										<th>顺序</th>
 									</tr>
 								</thead>
 								<?php foreach($cateList as $cate): ?>
@@ -62,6 +63,7 @@
 										<td><?php echo $cate['id'];?></td>
 										<td><?php echo $cate['name'];?></td>
 										<td><a href="<?php echo U('setCate',array('id'=>$cate['id']));?>" class="btn"><i class="icon-edit"></i></a> <a href="<?php echo U('delCate',array('id'=>$cate['id']));?>" class="btn"><i class="icon-remove"></i></a></td>
+										<td><?php echo $cate['sort'];?></td>
 									</tr>
 								<?php endforeach; ?>
 							</table>
