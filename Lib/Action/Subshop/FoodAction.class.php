@@ -26,7 +26,20 @@ class FoodAction extends SubshopAction{
 			$cate = M('FoodCategory')->where($map)->find();
 		}
 		if(IS_POST){
-
+			if(M('FoodCategory')->create()){
+				//修改
+				if(!empty($cate)){
+					$re = M('FoodCategory')->save();
+				}else{//插入
+					$re = M('FoodCategory')->add();
+				}
+				if($re === false){
+					$this->error("更新数据失败，请检查数据合法性");
+				}
+			}else{
+				$this->error(M()->getError());
+			}
+			
 		}else{
 			if(!empty($cate)){
 				$this->assign("cate",$cate);
