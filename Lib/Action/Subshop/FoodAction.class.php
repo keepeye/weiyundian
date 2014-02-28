@@ -97,7 +97,7 @@ class FoodAction extends SubshopAction{
 		$count      = $FoodM->where($FoodMMap)->count();
 		$Page       = new Page($count,20);
 		$show       = $Page->show();
-		$FoodList = $M->field('*')->where($FoodMMap)->order('id desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+		$FoodList = $FoodM->field('*')->where($FoodMMap)->order('id desc')->limit($Page->firstRow.','.$Page->listRows)->select();
 		$this->assign('pagestr',$show);
 		$this->assign("FoodList",$FoodList);
 		$this->assign("CateList",$CateList);
