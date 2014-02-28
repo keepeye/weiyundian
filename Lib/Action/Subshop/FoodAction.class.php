@@ -32,7 +32,7 @@ class FoodAction extends SubshopAction{
 			$data = $_POST;
 			$data['token'] = $this->token;
 			$data['shopid'] = $this->shopid;
-			if(M('FoodCategory')->create()){
+			if(M('FoodCategory')->create($data)){
 				//修改
 				if(!empty($cate)){
 					$re = M('FoodCategory')->save();
