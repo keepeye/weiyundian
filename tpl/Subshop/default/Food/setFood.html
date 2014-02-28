@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/inside.css?2014-01-07-2" media="all" />
 <script type="text/javascript" src="__PUBLIC__/subshop/jQuery.js?2014-01-07-2"></script>
 <script type="text/javascript" src="__PUBLIC__/subshop/bootstrap_min.js?2014-01-07-2"></script>
-<script type="text/javascript" src="__PUBLIC__/subshop/inside.js?2014-01-07-2"></script>
+
 <title>菜品-微餐饮</title>
 <!--[if lte IE 9]><script src="__PUBLIC__/subshop/src/watermark.js"></script><![endif]-->
 <!--[if IE 7]><link href="__PUBLIC__/subshop/css/font_awesome_ie7.css" rel="stylesheet" /><![endif]-->
@@ -51,53 +51,20 @@
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label for="price" class="control-label">菜品价格：</label>
+                                    <label for="price" class="control-label">原价：</label>
                                     <div class="controls">
                                         <input type="text" name="price" id="price" class="input-medium" value="" data-rule-required="true" data-rule-number="true">
                                         <span class="maroon">*</span><span class="help-inline">单位默认为元</span>
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label for="price" class="control-label"></label>
+                                    <label for="price" class="control-label">现价：</label>
                                     <div class="controls">
-                                        <button class="btn" type="button" id="add_discount">添加一条特价</button>
-                                        <!--存在特价 改成 移除特价-->
-                                        <script>
-                                            $(function () {
-                                                $("#add_discount").click(function () {
-                                                    var $special = $("#special"), h = 'hide', t = $(this);
-                                                    if ($special.hasClass(h)) {
-                                                        $special.removeClass(h);
-                                                        t.text("移除特价");
-                                                    } else {
-                                                        $special.addClass(h);
-                                                        t.text("添加一条特价");
-                                                        $("#discount_name").val(''); //清空特价
-                                                        $("#discount_price").val('');
-                                                    }
-                                                })
-                                                if('' != ''){
-													 $("#add_discount").click();
-													  $("#discount_name").val('');
-													  $("#discount_price").val('');
-												}
-                                            })
-                                        </script>
+                                        <input type="text" name="price" id="price" class="input-medium" value="" data-rule-required="true" data-rule-number="true">
+                                        <span class="maroon">*</span><span class="help-inline">单位默认为元</span>
                                     </div>
                                 </div>
-                                <div id="special" class="hide">
-                                    <!--有特价移除clas hide-->
-                                    <div class="control-group">
-                                        <label for="discount_name" class="control-label">特价名称：</label>
-                                        <div class="controls">
-                                            <input type="text" name="discount_name" id="discount_name" class="input-medium" value="" data-rule-required="true" data-rule-maxlength="2">
-                                            <span class="maroon">*</span><span class="help-inline">(不超过2个字符)</span>
-                                            特价：<input type="text" name="discount_price" id="discount_price" class="input-medium" value="" data-rule-required="true" data-rule-maxlength="20">
-                                            <span class="maroon">*</span><span class="help-inline">单位默认为元</span>
-                                        </div>
-                                    </div>
-
-                                </div>
+                                
                                 <div class="control-group">
                                     <label class="control-label">是否上架：</label>
                                     <div class="controls">
@@ -115,11 +82,7 @@
                                                                                     </select>
                                     </div>
                                 </div>
-                                <div class="control-group">
-                                    <label class="control-label">选择标签</label>
-                                    <div class="controls">
-										                                    </div>
-                                </div>
+                                
                                  <div class="control-group">
                                     <label class="control-label" for="pic">图片</label>
                                     <div class="controls">
