@@ -127,6 +127,8 @@ class FoodAction extends SubshopAction{
 			if(!empty($food)){
 				$this->assign("food",$food);
 			}
+			$cateList = M('FoodCategory')->where(array("shopid"=>$this->shopid))->select();
+			$this->assign("cateList",$cateList);
 			$this->display();
 		}
 	}
