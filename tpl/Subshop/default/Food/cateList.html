@@ -52,9 +52,6 @@
 
 								<thead>
 									<tr>
-										<th class='with-checkbox'>
-											<input type="checkbox" />
-										</th>
 										<th>id</th>
 										<th>名称</th>
 										<th>操作</th>
@@ -62,12 +59,9 @@
 								</thead>
 								<?php foreach($cateList as $cate): ?>
 									<tr>
-										<td class='with-checkbox'>
-											<input type="checkbox" />
-										</td>
 										<td><?php echo $cate['id'];?></td>
 										<td><?php echo $cate['name'];?></td>
-										<td><a href="">修改</a> <a href="">删除</a></td>
+										<td><a href=""><i class="icon-edit"></i></a> <a href=""><i class="icon-remove"></i></a></td>
 									</tr>
 								<?php endforeach; ?>
 							</table>
