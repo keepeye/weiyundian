@@ -52,7 +52,7 @@ class FoodAction extends SubshopAction{
 				if($re === false){
 					$this->error("更新数据失败，请检查数据合法性");
 				}else{
-					$this->success("恭喜，添加成功");
+					$this->success("恭喜配置成功");
 				}
 			}else{
 				$this->error(M('FoodCategory')->getError());
@@ -64,6 +64,20 @@ class FoodAction extends SubshopAction{
 			}
 			$this->display();
 		}
+	}
+
+	//删除分类
+	function delCate(){
+		$id = (int)$_REQUEST['id'];
+		if($id <= 0 ){
+			$this->error("删除失败");
+		}
+		//删除菜品
+		M('FoodList')->where(array("shopid"=>$this->shopid,"category_id"=>$id))->delete();
+		//删除分类
+		M('FoodCategory')->where(array("shopid"=>$this->shopid,"id"=>$id))->delete();
+
+		$this->success("删除成功");
 	}
 	
 }
