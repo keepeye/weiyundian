@@ -112,10 +112,10 @@ class FoodAction extends SubshopAction{
 		if($id > 0){
 			$map = array(
 				"id" => $id,
-				"shopid" => $this->shopid,
+				"shopid" => $this->shopid
 			);
 			$food = M('FoodList')->where($map)->find();
-			if(empty($cate)){
+			if(empty($food)){
 				$this->error("菜品不存在");
 			}
 		}
