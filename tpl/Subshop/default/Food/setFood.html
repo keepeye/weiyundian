@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/bootstrap_min.css?2014-01-07-2" media="all" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/bootstrap_responsive_min.css?2014-01-07-2" media="all" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/style.css?2014-01-07-2" media="all" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/todc_bootstrap.css?2014-01-07-2" media="all" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/themes.css?2014-01-07-2" media="all" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/inside.css?2014-01-07-2" media="all" />
+<script type="text/javascript" src="__PUBLIC__/subshop/jQuery.js?2014-01-07-2"></script>
+<script type="text/javascript" src="__PUBLIC__/subshop/bootstrap_min.js?2014-01-07-2"></script>
+<script type="text/javascript" src="__PUBLIC__/subshop/inside.js?2014-01-07-2"></script>
+<title>菜品-微餐饮</title>
+<!--[if lte IE 9]><script src="__PUBLIC__/subshop/src/watermark.js"></script><![endif]-->
+<!--[if IE 7]><link href="__PUBLIC__/subshop/css/font_awesome_ie7.css" rel="stylesheet" /><![endif]-->
+</head>
+<body>
+
+<div id="main">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+
+				<div class="box">
+					<div class="box-title">
+						<div class="span8">
+							<h3><i class="icon-table"></i>分类设置-微餐饮</h3>
+						</div>
+
+					</div>
+					
+					<div class="box-content">
+						<div class="row-fluid">
+
+							<div class="span8 control-group">
+								<a href="javascript:" class="btn" id="add_menu" onclick="window.location.reload()"><i class="icon-refresh"></i>刷新</a>
+								
+							</div>
+							
+
+						</div>
+						<form action="/sps/foodpanel/dishessave?aid=77916&amp;v=c64b33dac9739c5aac2407ee6a732e27" method="post" class="form-horizontal form-validate" novalidate="novalidate">
+                                <input type="hidden" name="id" value="">
+                                <div class="control-group">
+                                    <label for="name" class="control-label">菜品名称：</label>
+                                    <div class="controls">
+                                        <input type="text" name="name" id="name" class="input-medium" value="" data-rule-required="true" data-rule-maxlength="20">
+                                        <span class="maroon">*</span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label for="price" class="control-label">菜品价格：</label>
+                                    <div class="controls">
+                                        <input type="text" name="price" id="price" class="input-medium" value="" data-rule-required="true" data-rule-number="true">
+                                        <span class="maroon">*</span><span class="help-inline">单位默认为元</span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label for="price" class="control-label"></label>
+                                    <div class="controls">
+                                        <button class="btn" type="button" id="add_discount">添加一条特价</button>
+                                        <!--存在特价 改成 移除特价-->
+                                        <script>
+                                            $(function () {
+                                                $("#add_discount").click(function () {
+                                                    var $special = $("#special"), h = 'hide', t = $(this);
+                                                    if ($special.hasClass(h)) {
+                                                        $special.removeClass(h);
+                                                        t.text("移除特价");
+                                                    } else {
+                                                        $special.addClass(h);
+                                                        t.text("添加一条特价");
+                                                        $("#discount_name").val(''); //清空特价
+                                                        $("#discount_price").val('');
+                                                    }
+                                                })
+                                                if('' != ''){
+													 $("#add_discount").click();
+													  $("#discount_name").val('');
+													  $("#discount_price").val('');
+												}
+                                            })
+                                        </script>
+                                    </div>
+                                </div>
+                                <div id="special" class="hide">
+                                    <!--有特价移除clas hide-->
+                                    <div class="control-group">
+                                        <label for="discount_name" class="control-label">特价名称：</label>
+                                        <div class="controls">
+                                            <input type="text" name="discount_name" id="discount_name" class="input-medium" value="" data-rule-required="true" data-rule-maxlength="2">
+                                            <span class="maroon">*</span><span class="help-inline">(不超过2个字符)</span>
+                                            特价：<input type="text" name="discount_price" id="discount_price" class="input-medium" value="" data-rule-required="true" data-rule-maxlength="20">
+                                            <span class="maroon">*</span><span class="help-inline">单位默认为元</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">是否上架：</label>
+                                    <div class="controls">
+                                        <label class="radio inline">
+                                            <input type="radio" value="1" name="is_show" checked="checked">是</label>
+                                        <label class="radio inline">
+                                            <input type="radio" value="0" name="is_show">否</label>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="class_id">菜品分类：</label>
+                                    <div class="controls">
+                                        <select id="classId" name="class_id" class="input-medium valid">
+											                                            <option value="8071">fffff </option>
+                                                                                    </select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">选择标签</label>
+                                    <div class="controls">
+										                                    </div>
+                                </div>
+                                 <div class="control-group">
+                                    <label class="control-label" for="pic">图片</label>
+                                    <div class="controls">
+																					<input class="input-xlarge" type="text" id="pic" readonly="" name="pic" data-rule-required="true">
+                                                                                <span class="maroon">*</span>
+                                        <span class="help-inline">
+                                            <button class="btn select_img" type="button">选择图片</button><span class="help-inline">建议尺寸：800像素 * 600像素</span>
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <div class="control-group">
+                                    <label for="sort" class="control-label">显示顺序：</label>
+                                    <div class="controls">
+                                        <input type="text" id="sort" name="sort" value="" class="input-mini" data-rule-required="true" data-rule-number="true"><span class="maroon">*</span>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label for="note" class="control-label">菜品详情 ：</label>
+                                    <div class="controls">
+                                        <textarea name="note" rows="5" id="note" placeholder="请将字数控制在200字以内" data-rule-required="true" class="input-xxlarge" data-rule-maxlength="200"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button id="bsubmit" type="submit" data-loading-text="提交中..." class="btn btn-primary">保存</button>
+                                    <button type="button" class="btn" onclick="Javascript:window.history.go(-1)">取消</button>
+                                </div>
+                            </form>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
