@@ -11,6 +11,8 @@
 <link rel="stylesheet" type="text/css" href="__PUBLIC__/subshop/inside.css?2014-01-07-2" media="all" />
 <script type="text/javascript" src="__PUBLIC__/subshop/jQuery.js?2014-01-07-2"></script>
 <script type="text/javascript" src="__PUBLIC__/subshop/bootstrap_min.js?2014-01-07-2"></script>
+<script src="./tpl/static/kindeditor/kindeditor-min.js" type="text/javascript"></script>
+<script src="./tpl/static/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
 
 <title>菜品-微餐饮</title>
 <!--[if lte IE 9]><script src="__PUBLIC__/subshop/src/watermark.js"></script><![endif]-->
@@ -86,10 +88,10 @@
                                  <div class="control-group">
                                     <label class="control-label" for="pic">图片</label>
                                     <div class="controls">
-																					<input class="input-xlarge" type="text" id="pic" readonly="" name="pic" data-rule-required="true">
+																					<input class="input-xlarge upload_image_filed" type="text" id="pic" readonly="" name="pic" data-thumb="720,400" />
                                                                                 <span class="maroon">*</span>
                                         <span class="help-inline">
-                                            <button class="btn select_img" type="button">选择图片</button><span class="help-inline">建议尺寸：800像素 * 600像素</span>
+                                            <button class="btn select_img upload_image_button" type="button">选择图片</button><span class="help-inline">建议尺寸：800像素 * 600像素</span>
                                         </span>
                                     </div>
                                 </div>
@@ -121,6 +123,55 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+    KindEditor.ready(function (K) {
+        K('.upload_image_button').click(function (event) {
+            var button=$(event.currentTarget);
+            var img=button.parent().children(".upload_image");
+            var field=button.parent().children(".upload_image_filed");
+            if(button.attr("data-ishas")!="true"){
+                var editor = K.editor({
+                    allowImageUpload:true,
+                    allowFileManager: field.attr("data-filemanager") ? true : false,
+                    uploadJson:"/index.php?m=Image&a=upload"+(field.attr("data-thumb") ? "&thumb="+field.attr("data-thumb") : ""),
+                    FileManagerJson:field.attr("data-filemanager") || ""
+                });
+                editor.loadPlugin('image', function () {
+                    editor.plugin.imageDialog({
+                        imageUrl: img.val(),
+                        clickFn: function (url, title, width, height, border, align) {
+                            field.val(url);
+                            img.attr('src', url);
+                            img.show();
+                            button.val("删除图片");
+                            button.attr("data-ishas","true");
+                            editor.hideDialog();
+                        }
+                    });
+                });
+            }
+            else{
+                img.hide();
+                img.attr("src","");
+                field.val("");
+                button.val("添加图片");
+                button.attr("data-ishas","false");
+            }
+        });
+    });
+
+    (function(){
+        $(".upload_image_filed").each(function(index,ele){
+            if(trim($(ele).val())!=""){
+                var img=$(ele).parent().children(".upload_image");
+                var btn=$(ele).parent().children(".upload_image_button");
+                btn.attr("data-ishas","true");
+                btn.val("删除图片");
+                img.show();
+            }
+        });
+    })();
+</script>
 
 </body>
 </html>
