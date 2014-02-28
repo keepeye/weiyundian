@@ -83,7 +83,7 @@ class FoodAction extends SubshopAction{
 
 	//菜品列表
 	function foodList(){
-
+		$this->display();
 	}
 
 	//添加修改菜品
