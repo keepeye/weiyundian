@@ -91,8 +91,8 @@
                                  <div class="control-group">
                                     <label class="control-label" for="pic">图片</label>
                                     <div class="controls">
-										<img class="upload_image" src="" style="max-width:100px;max-height:100px;" />
-										<input class="upload_image_filed" type="hidden"  name="pic" data-thumb="200,200" />
+										<img class="upload_image" src="<?php echo $food['pic'];?>" style="max-width:100px;max-height:100px;" />
+										<input class="upload_image_filed" type="hidden" value="<?php echo $food['pic'];?>"  name="pic" data-thumb="200,200" />
                                         <span class="maroon">*</span>
                                         <span class="help-inline">
                                             <input  class="btn select_img upload_image_button" type="button" value="选择图片"><span class="help-inline">建议尺寸：800像素 * 600像素</span>
@@ -112,7 +112,7 @@
                                 <div class="control-group">
                                     <label for="note" class="control-label">菜品详情 ：</label>
                                     <div class="controls">
-                                        <textarea name="info" rows="5"  placeholder="请将字数控制在200字以内" data-rule-required="true" class="input-xxlarge" ></textarea>
+                                        <textarea name="info" rows="5"  placeholder="请将字数控制在200字以内" data-rule-required="true" class="input-xxlarge" ><?php echo $food['info'];?></textarea>
                                     </div>
                                 </div>
 
