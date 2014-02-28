@@ -49,21 +49,21 @@
                                 <div class="control-group">
                                     <label for="name" class="control-label">菜品名称：</label>
                                     <div class="controls">
-                                        <input type="text" name="name" id="name" class="input-medium" value="" data-rule-required="true" data-rule-maxlength="20">
+                                        <input type="text" name="name" class="input-medium" value="<?php echo $food['name'];?>">
                                         <span class="maroon">*</span>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label for="price" class="control-label">原价：</label>
                                     <div class="controls">
-                                        <input type="text" name="price" id="price" class="input-medium" value="" data-rule-required="true" data-rule-number="true">
+                                        <input type="text" name="oprice"  class="input-medium" value="<?php echo $food['oprice'];?>" />
                                         <span class="maroon">*</span><span class="help-inline">单位默认为元</span>
                                     </div>
                                 </div>
                                 <div class="control-group">
                                     <label for="price" class="control-label">现价：</label>
                                     <div class="controls">
-                                        <input type="text" name="price" id="price" class="input-medium" value="" data-rule-required="true" data-rule-number="true">
+                                        <input type="text" name="price"  class="input-medium" value="<?php echo $food['price'];?>" />
                                         <span class="maroon">*</span><span class="help-inline">单位默认为元</span>
                                     </div>
                                 </div>
@@ -71,18 +71,20 @@
                                 <div class="control-group">
                                     <label class="control-label">是否上架：</label>
                                     <div class="controls">
-                                        <label class="radio inline">
-                                            <input type="radio" value="1" name="is_show" checked="checked">是</label>
-                                        <label class="radio inline">
-                                            <input type="radio" value="0" name="is_show">否</label>
-                                    </div>
+                                    	<label class="radio inline">
+                                    		<input type="radio" value="1" name="status" <?php if(!isset($food['status']) || $food['status']=="1"): ;?>checked="checked"<?php endif;?>>是</label>
+                                    		<label class="radio inline">
+                                    			<input type="radio" value="0" name="status" <?php if(isset($food['status']) && $food['status']=="0"): ;?>checked="checked"<?php endif;?>>否</label>
+                                    		</div>
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label" for="class_id">菜品分类：</label>
                                     <div class="controls">
-                                        <select id="classId" name="class_id" class="input-medium valid">
-											                                            <option value="8071">fffff </option>
-                                                                                    </select>
+                                    <select id="classId" name="category_id" class="input-medium valid">
+                                    	<?php foreach($cateList as $cate): ?>
+										<option value="<?php echo $cate['id'];?>" <?php if($cate['id']==$food['category_id']): ?>selected<?php endif;?>><?php echo $cate['name'];?></option>
+                                    	<?php endforeach;?>
+                                    </select>
                                     </div>
                                 </div>
                                 
@@ -90,7 +92,7 @@
                                     <label class="control-label" for="pic">图片</label>
                                     <div class="controls">
 										<img class="upload_image" src="" style="max-width:100px;max-height:100px;" />
-										<input class="upload_image_filed" type="hidden" id="pic" name="pic" data-thumb="200,200" />
+										<input class="upload_image_filed" type="hidden"  name="pic" data-thumb="200,200" />
                                         <span class="maroon">*</span>
                                         <span class="help-inline">
                                             <input  class="btn select_img upload_image_button" type="button" value="选择图片"><span class="help-inline">建议尺寸：800像素 * 600像素</span>
@@ -103,14 +105,14 @@
                                 <div class="control-group">
                                     <label for="sort" class="control-label">显示顺序：</label>
                                     <div class="controls">
-                                        <input type="text" id="sort" name="sort" value="" class="input-mini" data-rule-required="true" data-rule-number="true"><span class="maroon">*</span>
+                                        <input type="text" name="sort" value="" class="input-mini"><span class="maroon">*</span>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
                                     <label for="note" class="control-label">菜品详情 ：</label>
                                     <div class="controls">
-                                        <textarea name="note" rows="5" id="note" placeholder="请将字数控制在200字以内" data-rule-required="true" class="input-xxlarge" data-rule-maxlength="200"></textarea>
+                                        <textarea name="info" rows="5"  placeholder="请将字数控制在200字以内" data-rule-required="true" class="input-xxlarge" ></textarea>
                                     </div>
                                 </div>
 
