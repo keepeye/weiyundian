@@ -24,8 +24,14 @@ class FoodAction extends SubshopAction{
 				"shopid" => $this->shopid,
 			);
 			$cate = M('FoodCategory')->where($map)->find();
+			if(empty($cate)){
+				$this->error("分类不存在");
+			}
 		}
 		if(IS_POST){
+			$data = $_POST;
+			$data['token'] = $this->token;
+			$data['shopid'] = $this->shopid;
 			if(M('FoodCategory')->create()){
 				//修改
 				if(!empty($cate)){
