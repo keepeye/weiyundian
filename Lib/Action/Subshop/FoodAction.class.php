@@ -107,6 +107,11 @@ class FoodAction extends SubshopAction{
 			$data['shopid'] = $this->shopid;
 			$data['name'] = substr($data['name'],0,30);
 			$data['sort'] = max(0,(int)$data['sort']);
+			$data['info'] = substr($data['info'],0,600);
+			//检测分类合法性
+			if(!M('FoodCategory')->where(array('shopid'=>$this->shopid,'id'=>(int)$data['category_id']))->find()){
+				$this->error("分类不存在");
+			}
 			if(M('FoodCategory')->create($data)){
 				//修改
 				if(!empty($food)){
