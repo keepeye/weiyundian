@@ -112,12 +112,12 @@ class FoodAction extends SubshopAction{
 			if(!M('FoodCategory')->where(array('shopid'=>$this->shopid,'id'=>(int)$data['category_id']))->find()){
 				$this->error("分类不存在");
 			}
-			if(M('FoodCategory')->create($data)){
+			if(M('FoodList')->create($data)){
 				//修改
 				if(!empty($food)){
-					$re = M('FoodCategory')->save();
+					$re = M('FoodList')->save();
 				}else{//插入
-					$re = M('FoodCategory')->add();
+					$re = M('FoodList')->add();
 				}
 				if($re === false){
 					$this->error("更新数据失败，请检查数据合法性");
@@ -125,7 +125,7 @@ class FoodAction extends SubshopAction{
 					$this->success("恭喜配置成功");
 				}
 			}else{
-				$this->error(M('FoodCategory')->getError());
+				$this->error(M('FoodList')->getError());
 			}
 			
 		}else{
