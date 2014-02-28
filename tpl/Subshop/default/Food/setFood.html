@@ -92,7 +92,7 @@
 																					<input class="input-xlarge upload_image_filed" type="text" id="pic" readonly="" name="pic" data-thumb="720,400" />
                                                                                 <span class="maroon">*</span>
                                         <span class="help-inline">
-                                            <button class="btn select_img upload_image_button" type="button">选择图片</button><span class="help-inline">建议尺寸：800像素 * 600像素</span>
+                                            <input  class="btn select_img upload_image_button" type="button" value="选择图片"><span class="help-inline">建议尺寸：800像素 * 600像素</span>
                                         </span>
                                     </div>
                                 </div>
@@ -128,8 +128,8 @@
     KindEditor.ready(function (K) {
         K('.upload_image_button').click(function (event) {
             var button=$(event.currentTarget);
-            var img=button.parent().children(".upload_image");
-            var field=button.parent().children(".upload_image_filed");
+            var img=button.parent().parent().children(".upload_image");
+            var field=button.parent().parent().children(".upload_image_filed");
             if(button.attr("data-ishas")!="true"){
                 var editor = K.editor({
                     allowImageUpload:true,
@@ -163,7 +163,7 @@
 
     (function(){
         $(".upload_image_filed").each(function(index,ele){
-            if(trim($(ele).val())!=""){
+            if($(ele).val()!=""){
                 var img=$(ele).parent().children(".upload_image");
                 var btn=$(ele).parent().children(".upload_image_button");
                 btn.attr("data-ishas","true");
