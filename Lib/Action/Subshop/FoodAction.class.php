@@ -88,12 +88,52 @@ class FoodAction extends SubshopAction{
 
 	//添加修改菜品
 	function setFood(){
-
+		$id = (int)$_REQUEST['id'];
+		$food = array();//待修改的分类信息
+		//修改模式
+		if($id > 0){
+			$map = array(
+				"id" => $id,
+				"shopid" => $this->shopid,
+			);
+			$food = M('FoodList')->where($map)->find();
+			if(empty($cate)){
+				$this->error("菜品不存在");
+			}
+		}
+		if(IS_POST){
+			$data = $_POST;
+			$data['token'] = $this->token;
+			$data['shopid'] = $this->shopid;
+			$data['name'] = substr($data['name'],0,30);
+			$data['sort'] = max(0,(int)$data['sort']);
+			if(M('FoodCategory')->create($data)){
+				//修改
+				if(!empty($food)){
+					$re = M('FoodCategory')->save();
+				}else{//插入
+					$re = M('FoodCategory')->add();
+				}
+				if($re === false){
+					$this->error("更新数据失败，请检查数据合法性");
+				}else{
+					$this->success("恭喜配置成功");
+				}
+			}else{
+				$this->error(M('FoodCategory')->getError());
+			}
+			
+		}else{
+			if(!empty($food)){
+				$this->assign("food",$food);
+			}
+			$this->display();
+		}
 	}
 
 	//删除菜品
 	function delFood(){
-		
+
 	}
 	
 }
