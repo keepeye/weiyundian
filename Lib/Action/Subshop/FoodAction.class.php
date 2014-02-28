@@ -79,5 +79,21 @@ class FoodAction extends SubshopAction{
 
 		$this->success("删除成功");
 	}
+
+
+	//菜品列表
+	function foodList(){
+
+	}
+
+	//添加修改菜品
+	function setFood(){
+
+	}
+
+	//删除菜品
+	function delFood(){
+		
+	}
 	
 }
