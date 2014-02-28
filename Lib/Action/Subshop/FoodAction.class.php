@@ -140,7 +140,7 @@ class FoodAction extends SubshopAction{
 				if($re === false){
 					$this->error("更新数据失败，请检查数据合法性");
 				}else{
-					$this->success("恭喜配置成功");
+					$this->success("菜品保存成功");
 				}
 			}else{
 				$this->error(M('FoodList')->getError());
