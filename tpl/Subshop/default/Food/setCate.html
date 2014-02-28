@@ -30,20 +30,31 @@
 						</div>
 
 					</div>
-
+					
 					<div class="box-content">
-						<form method="post">
-							<input type="hidden" name="id" value="<?php echo $cate['id'];?>" />
-						  <fieldset>
-						    <legend>填写分类信息</legend>
-						    <label>分类名</label>
-						    <input type="text" name="name" placeholder="请输入分类名…" value="<?php echo $cate['name'];?>"/>
+						<div class="row-fluid">
 
-						    <span class="help-block">分类名不可超过10个汉字.</span>
-						   
-						    <button type="submit" class="btn">提交</button>
-						  </fieldset>
-						</form>
+							<div class="span8 control-group">
+								<a href="javascript:" class="btn" id="add_menu" onclick="window.location.reload()"><i class="icon-refresh"></i>刷新</a>
+								
+							</div>
+							
+
+						</div>
+						<div class="row-fluid">
+							<form method="post">
+								<input type="hidden" name="id" value="<?php echo $cate['id'];?>" />
+							  <fieldset>
+							    <legend>填写分类信息</legend>
+							    <label>分类名</label>
+							    <input type="text" name="name" placeholder="请输入分类名…" value="<?php echo $cate['name'];?>"/>
+
+							    <span class="help-block">分类名不可超过10个汉字.</span>
+							   
+							    <button type="submit" class="btn">提交</button>
+							  </fieldset>
+							</form>
+						<div>
 					</div>
 				</div>
 			</div>
