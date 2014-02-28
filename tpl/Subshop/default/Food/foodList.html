@@ -73,7 +73,7 @@
 								<?php foreach($FoodList as $food): ?>
 								<tr>
 									<td><?php echo $food['name'];?></td>
-									<td><img src="<?php echo $food['name'];?>" width=80 height=60/></td>
+									<td><img src="<?php echo $food['pic'];?>" width=80 height=60/></td>
 									<td><?php echo $CateList[$food['category_id']]['name'];?></td>
 									<td><?php echo $food['oprice'];?> / <?php echo $food['price'];?></td>
 									<td><?php if($food['status']==1){echo "是";}else{echo "否";}?></td>
