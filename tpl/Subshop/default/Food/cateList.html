@@ -42,15 +42,6 @@
 								</div>
 							</div>
 							<div class="span4">
-								<form action="" method="get" class="form-horizontal">
-									<input type="hidden" name="aid" value="45550"/>
-									<input type="hidden" name="v" value="ffa31b692827f043b1706fe493d8b822"/>
-									<input type="text" id="keyword-input" name="keyword" class="input-small-z" placeholder="菜品名称" data-rule-required="true" />
-									<select name="type" class="input-small">
-										<option selected="selected" value="">全部</option>
-									</select>
-									<button class="btn">查询</button>
-								</form>
 							</div>
 
 						</div>
@@ -61,7 +52,7 @@
 
 								<thead>
 									<tr>
-										<th class='with-checkbox' style="display:none;">
+										<th class='with-checkbox'>
 											<input type="checkbox" class="check_all" />
 										</th>
 										<th>id</th>
@@ -71,7 +62,7 @@
 								</thead>
 								<?php foreach($cateList as $cate): ?>
 									<tr>
-										<th class='with-checkbox' style="display:none;">
+										<th class='with-checkbox'>
 											<input type="checkbox" class="check_all" />
 										</th>
 										<td><?php echo $cate['id'];?></td>
