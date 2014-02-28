@@ -158,7 +158,14 @@ class FoodAction extends SubshopAction{
 
 	//删除菜品
 	function delFood(){
-
+		$id = (int)$_REQUEST['id'];
+		if($id <= 0 ){
+			$this->error("删除失败");
+		}
+		//删除菜品
+		M('FoodList')->where(array("shopid"=>$this->shopid,"id"=>$id))->delete();
+		
+		$this->success("删除成功");
 	}
 	
 }
