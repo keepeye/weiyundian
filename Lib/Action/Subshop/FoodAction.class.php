@@ -10,6 +10,11 @@ class FoodAction extends SubshopAction{
 
 	//菜单分类列表
 	function cateList(){
+		$map = array(
+			"shopid" => $this->shopid;
+		);
+		$cateList = M('FoodCategory')->where($map)->order("sort ASC")->select();
+		$this->assign("cateList",$cateList);
 		$this->display();
 	}
 	//添加、修改菜单
@@ -32,6 +37,8 @@ class FoodAction extends SubshopAction{
 			$data = $_POST;
 			$data['token'] = $this->token;
 			$data['shopid'] = $this->shopid;
+			$data['name'] = substr($data['name'],0,30);
+			$data['sort'] = max(0,(int)$data['sort']);
 			if(M('FoodCategory')->create($data)){
 				//修改
 				if(!empty($cate)){

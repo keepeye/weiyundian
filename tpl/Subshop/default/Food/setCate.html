@@ -50,7 +50,8 @@
 							    <input type="text" name="name" placeholder="请输入分类名…" value="<?php echo $cate['name'];?>"/>
 
 							    <span class="help-block">分类名不可超过10个汉字.</span>
-							   
+							   	<label>显示顺序</label>
+							   	<input type="text" name="sort" value="<?php (int)$cate['sort'];?>" />
 							    <button type="submit" class="btn">提交</button>
 							  </fieldset>
 							</form>
