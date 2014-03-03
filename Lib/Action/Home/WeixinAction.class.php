@@ -312,10 +312,7 @@ class WeixinAction extends Action
 				break;
 
 			default:
-				return array(
-					"回复：$key",
-					'text'
-					);
+
 				return $this->keyword($key);
 				break;
 		}
@@ -1050,6 +1047,10 @@ class WeixinAction extends Action
 		$like['token'] = $this->token;
 		$like['keyword'] = array('like','%'.$key.'%');
 		$data = M('keyword')->where($like)->find();
+		return array(
+					"回复：测试中",
+					'text'
+					);
 		Log::write($this->token,Log::INFO);
 		if ($data != false) 
 		{
