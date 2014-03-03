@@ -973,19 +973,28 @@ class WeixinAction extends Action
         $dataarray = array(
             'id' => $user['uid']
         );
-        $users     = $usersdata->field('gid,connectnum,activitynum,viptime')->where(array(
+        $users     = $usersdata->field('gid,connectnum,activitynum,viptime,month_time')->where(array(
             'id' => $user['uid']
         ))->find();
         $group     = M('User_group')->where(array(
             'id' => $users['gid']
         ))->find();
-        
-        if ($users['connectnum'] < $group['connectnum']) {
-            $data['connectnum'] = 1;
-            if ($action == 'connectnum') {
-                $usersdata->where($dataarray)->setInc('connectnum');
-            }
+        $data['connectnum']=0;
+        if($users['month_time']==0 || (time()-$users['month_time'])>86400*30){
+        	//第一次请求或者已经超过一个月，则更新month_time到当前时间，归零connectnum
+        	$usersdata->where($dataarray)->data(array('month_time'=>time(),'connectnum'=>'0'))->save();
+        	$data['connectnum'] = 1;
+        }else{
+        	if ($users['connectnum'] < $group['connectnum']) {
+
+	            $data['connectnum'] = 1;
+	            if ($action == 'connectnum') {
+	                $usersdata->where($dataarray)->setInc('connectnum');//自增请求次数
+	                
+	            }
+	        }
         }
+        $users['viptime'] = 0;
         if ($users['viptime'] > time()) {
             $data['viptime'] = 1;
         }
