@@ -1048,15 +1048,12 @@ class WeixinAction extends Action
     function keyword($key){
     	
 		//Log::write($key,Log::INFO);
-		$like['token'] = $this->token;
-		$like['keyword'] = array('like','%'.$key.'%');
-		$data = M('keyword')->where($like)->find();
+		$where['token'] = $this->token;
+		$where['keyword'] = $key;
+		$data = M('keyword')->where($where)->find();
 		//file_put_contents("./sql.txt",M()->getLastSql());
 		//Log::write($this->token,Log::INFO);
-		return array(
-							"$key",
-							'text'
-							);
+		
 		if ($data != false) 
 		{
 
