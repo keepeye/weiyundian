@@ -21,7 +21,7 @@ class WeixinAction extends Action
     
     private function reply($data)
     {
-		Log::write($data['Event'],Log::INFO);
+		//Log::write($data['Event'],Log::INFO);
 	    if ('CLICK' == $data['Event'])
 	    {
 		    $data['Content'] = $data['EventKey'];
@@ -913,7 +913,7 @@ class WeixinAction extends Action
 	    $open = M('Token_open')->where(array(
 					'token' => $this->_get('token')
 				    ))->find();
-		Log::write($open['queryname'],Log::INFO);
+		//Log::write($open['queryname'],Log::INFO);
 	    $datafun   = explode(',', $open['queryname']);
 		$fun=M('Function')->where(array('status'=>1,'isserve'=>1))->select();
 		
@@ -1046,12 +1046,12 @@ class WeixinAction extends Action
 
     //非模块级关键词匹配
     function keyword($key){
-		Log::write($key,Log::INFO);
+		//Log::write($key,Log::INFO);
 		$like['token'] = $this->token;
 		$like['keyword'] = array('like','%'.$key.'%');
 		$data = M('keyword')->where($like)->find();
 		//file_put_contents("./sql.txt",M()->getLastSql());
-		Log::write($this->token,Log::INFO);
+		//Log::write($this->token,Log::INFO);
 		if ($data != false) 
 		{
 
@@ -1108,7 +1108,7 @@ class WeixinAction extends Action
 											'id' => $infot['id'],
 											'wxref'=>'mp.weixin.qq.com'
 											));
-								Log::write($url,Log::INFO);
+								//Log::write($url,Log::INFO);
 							}
 							$return[] = array(
 									$infot['title'],
@@ -1192,7 +1192,7 @@ class WeixinAction extends Action
 										'id' => $data['pid']
 										))->find();
                             
-		                    Log::write($data['pid'],Log::INFO);
+		                    //Log::write($data['pid'],Log::INFO);
 							return array(
 									array(
 										array(
