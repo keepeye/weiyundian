@@ -97,7 +97,7 @@ class Wechat
             
         );
         $sign = $_GET['signature'];
-        sort($data);
+        $data = sort($data,SORT_STRING);
         $signature = sha1(implode($data));
         $debug = "sign1:$sign \n sign2:$signature \n".var_export($data,true)."\n";
         file_put_contents("./sign.txt", $debug,FILE_APPEND);
