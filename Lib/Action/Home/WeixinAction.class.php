@@ -1047,10 +1047,7 @@ class WeixinAction extends Action
 		$like['token'] = $this->token;
 		$like['keyword'] = array('like','%'.$key.'%');
 		$data = M('keyword')->where($like)->find();
-		return array(
-					"回复：".empty($data)?"测试":"ceshi",
-					'text'
-					);
+		
 		Log::write($this->token,Log::INFO);
 		if ($data != false) 
 		{
@@ -1342,7 +1339,8 @@ class WeixinAction extends Action
 				}
 			}
 			return array(
-					$this->chat($key),
+					//$this->chat($key),
+					'回复帮助获取更多信息',
 					'text'
 					);
 		}
