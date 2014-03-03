@@ -7,16 +7,20 @@ class WeixinAction extends Action
     private $my = '微信机器人';
     public function index()
     {
-    	file_put_contents("./response.txt","----".date("Y-m-d H:i:s",time())."\n",FILE_APPEND);
+    	//file_put_contents("./response.txt","----".date("Y-m-d H:i:s",time())."\n",FILE_APPEND);
         $this->token = $this->_get('token');
         $weixin      = new Wechat($this->token);
-        file_put_contents("./response.txt","----wechat\n",FILE_APPEND);
+        //file_put_contents("./response.txt","----wechat\n",FILE_APPEND);
         $this->data  = $weixin->request();
-        file_put_contents("./response.txt","----request\n",FILE_APPEND);
+        //file_put_contents("./response.txt","----request\n",FILE_APPEND);
         $this->my    = C('site_my');
         list($content, $type) = $this->reply($this->data);
-        file_put_contents("./response.txt","content:".var_export($content,true)."\n".$type."\n",FILE_APPEND);
-        file_put_contents("./response.txt","end----\n",FILE_APPEND);
+        if(empty($content)){
+        	$content = "服务器繁忙，你可以发送'帮助'来获取更多信息";
+        	$type = "text";
+        }
+        //file_put_contents("./response.txt","content:".var_export($content,true)."\n".$type."\n",FILE_APPEND);
+        //file_put_contents("./response.txt","end----\n",FILE_APPEND);
         $weixin->response($content, $type);
     }
     
@@ -705,6 +709,9 @@ class WeixinAction extends Action
         @$str = 'http://api.ajaxsns.com/api.php?key=free&appid=0&msg=' . urlencode('歌词' . $name);
         $json = json_decode(file_get_contents($str));
         $str  = str_replace('{br}', "\n", $json->content);
+        if(trim($str)==""){
+        	$str = "你说话太快了，请休息20秒";
+        }
         return str_replace('mzxing_com', 'weiyundian', $str);
     }
     function yuming($n)
@@ -713,6 +720,9 @@ class WeixinAction extends Action
         @$str = 'http://api.ajaxsns.com/api.php?key=free&appid=0&msg=' . urlencode('域名' . $name);
         $json = json_decode(file_get_contents($str));
         $str  = str_replace('{br}', "\n", $json->content);
+        if(trim($str)==""){
+        	$str = "你说话太快了，请休息20秒";
+        }
         return str_replace('mzxing_com', 'weiyundian', $str);
     }
     function tianqi($n)
@@ -721,6 +731,9 @@ class WeixinAction extends Action
         @$str = 'http://api.ajaxsns.com/api.php?key=free&appid=0&msg=' . urlencode('天气' . $name);
         $json = json_decode(file_get_contents($str));
         $str  = str_replace('{br}', "\n", $json->content);
+        if(trim($str)==""){
+        	$str = "你说话太快了，请休息20秒";
+        }
         return $str;
     }
     function shouji($n)
@@ -859,6 +872,9 @@ class WeixinAction extends Action
         }
         $json = json_decode($json, true);
         $str  = $json['text']['content'];
+        if(trim($str)==""){
+        	$str = "你说话太快了，请休息20秒";
+        }
         return $str;
     }
     function getmp3($data)
@@ -875,6 +891,9 @@ class WeixinAction extends Action
         @$str = 'http://api.ajaxsns.com/api.php?key=free&appid=0&msg=' . urlencode('笑话' . $name);
         $json = json_decode(file_get_contents($str));
         $str  = str_replace('{br}', "\n", $json->content);
+        if(trim($str)==""){
+        	$str = "你说话太快了，请休息20秒";
+        }
         return str_replace('mzxing_com', 'weiyundian', $str);
     }
     function liaotian($name)
