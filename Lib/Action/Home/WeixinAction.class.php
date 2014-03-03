@@ -14,7 +14,7 @@ class WeixinAction extends Action
         
         $this->my    = C('site_my');
         list($content, $type) = $this->reply($this->data);
-        file_put_contents("./response.txt",$content."\n".$type,FILE_APPEND);
+        file_put_contents("./response.txt",var_export($content,true)."\n".$type,FILE_APPEND);
         $weixin->response($content, $type);
     }
     
