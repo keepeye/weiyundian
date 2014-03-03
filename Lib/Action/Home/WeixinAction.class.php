@@ -1047,13 +1047,14 @@ class WeixinAction extends Action
 		$like['token'] = $this->token;
 		$like['keyword'] = array('like','%'.$key.'%');
 		$data = M('keyword')->where($like)->find();
-		return array(
-					"回复：测试中",
-					'text'
-					);
+		
 		Log::write($this->token,Log::INFO);
 		if ($data != false) 
 		{
+			return array(
+					"回复：测试中",
+					'text'
+					);
 			switch ($data['module']) 
 			{
 				case 'Img':
