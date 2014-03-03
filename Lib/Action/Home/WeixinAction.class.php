@@ -94,10 +94,7 @@ class WeixinAction extends Action
                     );
 
         }
-        return array(
-							"回复帮助1",
-							'text'
-							);
+        
 	    $Pin       = new GetPin();
 	    $key       = $data['Content'];
 	    $open      = M('Token_open')->where(array(
@@ -107,6 +104,10 @@ class WeixinAction extends Action
 	    $datafun   = explode(',', $open['queryname']);//获取用户开启的功能
 	    $tags      = $this->get_tags($key);//对用户发送的内容进行分词
 	    $back      = explode(',', $tags);//将分词结果转换为数组
+	    return array(
+					"回复帮助2",
+					'text'
+					);
 		//遍历分词结果tags,匹配小功能
 	    foreach ($back as $keydata => $data)
 	    {
