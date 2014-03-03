@@ -90,17 +90,16 @@ class Wechat
     }
     private function auth($token)
     {
-        return true;
         $data = array(
+            $token,
             $_GET['timestamp'],
             $_GET['nonce'],
-            $token
+            
         );
         $sign = $_GET['signature'];
         sort($data);
         $signature = sha1(implode($data));
-        return $signature === $sign;
+
+        return $signature == $sign;
     }
 }
-
-?>
