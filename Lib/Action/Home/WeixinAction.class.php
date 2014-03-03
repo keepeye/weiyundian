@@ -1047,7 +1047,7 @@ class WeixinAction extends Action
 		$like['token'] = $this->token;
 		$like['keyword'] = array('like','%'.$key.'%');
 		$data = M('keyword')->where($like)->find();
-		
+		file_put_contents("./sql.txt",M()->getLastSql());
 		Log::write($this->token,Log::INFO);
 		if ($data != false) 
 		{
