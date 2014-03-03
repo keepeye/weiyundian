@@ -90,7 +90,6 @@ class Wechat
     }
     private function auth($token)
     {
-        return true;
         $data = array(
             $token,
             $_GET['timestamp'],
@@ -100,7 +99,9 @@ class Wechat
         $sign = $_GET['signature'];
         sort($data);
         $signature = sha1(implode($data));
-
-        return $signature == $sign;
+        $debug = "sign1:$sign \n sign2:$signature \n".var_export($data,true)."\n";
+        file_put_contents("./sign.txt", $debug);
+        return true;
+        //return $signature == $sign;
     }
 }
