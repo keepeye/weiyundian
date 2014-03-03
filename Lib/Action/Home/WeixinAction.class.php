@@ -96,12 +96,12 @@ class WeixinAction extends Action
         }
         
 	    $Pin       = new GetPin();
+	    
+	    $key       = $data['Content'];
 	    return array(
 					"回复：$key",
 					'text'
 					);
-	    $key       = $data['Content'];
-
 	    $open      = M('Token_open')->where(array(
 					'token' => $this->_get('token')
 				    ))->find();
