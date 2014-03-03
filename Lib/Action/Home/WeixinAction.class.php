@@ -1046,6 +1046,10 @@ class WeixinAction extends Action
 
     //非模块级关键词匹配
     function keyword($key){
+    	return array(
+							"$key",
+							'text'
+							);
 		//Log::write($key,Log::INFO);
 		$like['token'] = $this->token;
 		$like['keyword'] = array('like','%'.$key.'%');
