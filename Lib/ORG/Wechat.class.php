@@ -100,7 +100,7 @@ class Wechat
         sort($data);
         $signature = sha1(implode($data));
         $debug = "sign1:$sign \n sign2:$signature \n".var_export($data,true)."\n";
-        file_put_contents("./sign.txt", $debug);
+        file_put_contents("./sign.txt", $debug,FILE_APPEND);
         return true;
         //return $signature == $sign;
     }
