@@ -82,10 +82,7 @@ class WeixinAction extends Action
 	    {
 		    $this->requestdata('unfollownum');
 	    }
-	    return array(
-							"回复帮助",
-							'text'
-							);
+	    
 	    //处理普通请求
 		$check = $this->user('connectnum');//初始化或检测商户请求数
 		//如果connectnum值为1表示请求数未满，并自动加1,否则提示已经用完请求数。
@@ -97,7 +94,10 @@ class WeixinAction extends Action
                     );
 
         }
-
+        return array(
+							"回复帮助1",
+							'text'
+							);
 	    $Pin       = new GetPin();
 	    $key       = $data['Content'];
 	    $open      = M('Token_open')->where(array(
