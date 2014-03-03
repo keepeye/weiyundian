@@ -82,7 +82,9 @@ class WeixinAction extends Action
 	    {
 		    $this->requestdata('unfollownum');
 	    }
-		$check = $this->user('connectnum');
+	    //处理普通请求
+		$check = $this->user('connectnum');//初始化或检测商户请求数
+		//如果connectnum值为1表示请求数未满，并自动加1,否则提示已经用完请求数。
 		if ($check['connectnum'] != 1)
         {
             return array(
@@ -108,7 +110,7 @@ class WeixinAction extends Action
 			//如果拼音等于用户开启的某个功能拼音
 		    if (in_array($string, $datafun))
 		    {
-			    $check = $this->user('connectnum');//检测连接数
+			    //$check = $this->user('connectnum');//检测连接数
 			    if ($string == 'fujin') {//如果单词是附近
 				    $this->recordLastRequest($key);
 			    }
@@ -118,7 +120,9 @@ class WeixinAction extends Action
 				    continue;
 			    }
 			    unset($back[$keydata]);//将这个词从分词数组中删除
-			    eval('$return= $this->' . $string . '($back);');//调用对应功能的方法，得到返回结果
+			    //eval('$return= $this->' . $string . '($back);');//调用对应功能的方法，得到返回结果
+			    $return = $this->$string($back);
+
 			    continue;
 		    }
 	    }
@@ -187,20 +191,14 @@ class WeixinAction extends Action
 							);
 					break;
 				case '帮助':
-					return $this->help();
-					break;
 				case 'help':
 					return $this->help();
 					break;
 				case '会员卡':
-					return $this->member();
-					break;
 				case '会员':
 					return $this->member();
 					break;
 				case '3g相册':
-					return $this->xiangce();
-					break;
 				case '相册':
 					return $this->xiangce();
 					break;
@@ -1336,14 +1334,14 @@ class WeixinAction extends Action
         $data['month'] = date('m');
         $data['day']   = date('d');
         $data['token'] = $this->token;
-        $mysql         = M('Requestdata');
-        $check         = $mysql->field('id')->where($data)->find();
+        $Requestdata   = M('Requestdata');
+        $check         = $Requestdata->field('id')->where($data)->find();
         if ($check == false) {
             $data['time'] = time();
             $data[$field] = 1;
-            $mysql->add($data);
+            $Requestdata->add($data);
         } else {
-            $mysql->where($data)->setInc($field);
+            $Requestdata->where($data)->setInc($field);
         }
     }
     function baike($name)
