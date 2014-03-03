@@ -1247,10 +1247,14 @@ class WeixinAction extends Action
         } elseif ($name == '网站' || $name == '官网' || $name == '网址' || $name == '3g网址') {
             return "【Weiyundian官网网址】\n" . C('site_url') . "!";
         }
+        return "请回复\"帮助\"获取更多信息";
+        //取消机器人聊天，提高响应速度，避免网络问题导致空回复
+        /*
         $str  = 'http://api.ajaxsns.com/api.php?key=free&appid=0&msg=' . urlencode($name);
         $json = json_decode(file_get_contents($str));
         $str  = str_replace('菲菲', $this->my, str_replace('提示：', $this->my . '提醒您:', str_replace('{br}', "\n", $json->content)));
         return str_replace('mzxing_com', 'weiyundian', $str);
+        */
     }
     public function fistMe($data)
     {
