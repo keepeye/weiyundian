@@ -15,7 +15,7 @@ class WeixinAction extends Action
         file_put_contents("./response.txt","----request\n",FILE_APPEND);
         $this->my    = C('site_my');
         list($content, $type) = $this->reply($this->data);
-        file_put_contents("./response.txt",var_export($content,true)."\n".$type."\n",FILE_APPEND);
+        file_put_contents("./response.txt","content:".var_export($content,true)."\n".$type."\n",FILE_APPEND);
         file_put_contents("./response.txt","end----\n",FILE_APPEND);
         $weixin->response($content, $type);
     }
@@ -1345,8 +1345,7 @@ class WeixinAction extends Action
 				}
 			}
 			return array(
-					//$this->chat($key),
-					'回复帮助获取更多信息',
+					$this->chat($key),
 					'text'
 					);
 		}
