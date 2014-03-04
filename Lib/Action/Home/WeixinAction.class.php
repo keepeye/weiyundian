@@ -21,7 +21,7 @@ class WeixinAction extends Action
         $this->my    = C('site_my');
         list($content, $type) = $this->reply($this->data);
         if(empty($content)){
-        	$content = "服务器繁忙，你可以发送'帮助'来获取更多信息";
+        	$content = "服务器繁忙，你可以发送'系统帮助'来获取更多信息";
         	$type = "text";
         }
         //file_put_contents("./response.txt","content:".var_export($content,true)."\n".$type."\n",FILE_APPEND);
@@ -198,11 +198,10 @@ class WeixinAction extends Action
 			// 			'text'
 			// 			);
 			// 	break;
-			// case '帮助':
-			// case 'help':
-			// 	$this->requestdata('textnum');//记录访问
-			// 	return $this->help();
-			// 	break;
+			case '系统帮助':
+				$this->requestdata('textnum');//记录访问
+				return $this->help();
+				break;
 			case '会员卡':
 			case '会员':
 				$this->requestdata('imgnum');//记录访问
@@ -458,7 +457,7 @@ class WeixinAction extends Action
                 'news'
             );
         } else {
-            return '商家还未及时更新淘宝店铺的信息,回复帮助,查看功能详情';
+            return '商家还未及时更新淘宝店铺的信息,回复 系统帮助 ,查看功能详情';
         }
     }
     function choujiang($name)
@@ -918,7 +917,7 @@ class WeixinAction extends Action
         } elseif ($name == '网站' || $name == '官网' || $name == '网址' || $name == '3g网址') {
             return "【Weiyundian官网网址】\n" . C('site_url') . "!";
         }
-        return "请回复\"帮助\"获取更多信息";
+        return "请回复\"系统帮助\"获取更多信息";
         //取消机器人聊天，提高响应速度，避免网络问题导致空回复
         /*
         $str  = 'http://api.ajaxsns.com/api.php?key=free&appid=0&msg=' . urlencode($name);
@@ -1317,7 +1316,7 @@ class WeixinAction extends Action
 								))->find();
 					if ($other == false) {
 						return array(
-								'回复帮助，可了解所有功能',
+								'回复 帮助，可了解所有功能',
 								'text'
 								);
 					} else {
