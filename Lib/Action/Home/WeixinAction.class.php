@@ -1316,6 +1316,11 @@ class WeixinAction extends Action
 								'text'
 								);
 					} else {
+						return array(
+									$other['info'],
+									'text'
+									);
+						/*
 						if (empty($other['keyword'])) {
 							return array(
 									$other['info'],
@@ -1357,6 +1362,7 @@ class WeixinAction extends Action
 									'news'
 									);
 						}
+						*/
 					}
 				}
 				return array(
