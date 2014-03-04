@@ -10,6 +10,11 @@ class WeixinAction extends Action
     	//file_put_contents("./response.txt","----".date("Y-m-d H:i:s",time())."\n",FILE_APPEND);
         $this->token = $this->_get('token');
         $weixin      = new Wechat($this->token);
+        //检测token是否存在
+        if(M('Wxuser')->where(array("token"=>$this->token))->find() == false){
+        	$weixin->response("商家尚未绑定微信公众号", 'text');
+        	exit;
+        }
         //file_put_contents("./response.txt","----wechat\n",FILE_APPEND);
         $this->data  = $weixin->request();
         //file_put_contents("./response.txt","----request\n",FILE_APPEND);
