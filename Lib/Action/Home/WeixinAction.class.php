@@ -198,11 +198,11 @@ class WeixinAction extends Action
 			// 			'text'
 			// 			);
 			// 	break;
-			case '帮助':
-			case 'help':
-				$this->requestdata('textnum');//记录访问
-				return $this->help();
-				break;
+			// case '帮助':
+			// case 'help':
+			// 	$this->requestdata('textnum');//记录访问
+			// 	return $this->help();
+			// 	break;
 			case '会员卡':
 			case '会员':
 				$this->requestdata('imgnum');//记录访问

@@ -40,8 +40,11 @@ class BaseAction extends Action
                     $data['pid']     = $id;
                     $data['module']  = $name;
                     $data['token']   = session('token');
-                    $data['keyword'] = $_POST['keyword'];
-                    M('Keyword')->add($data);
+                    $keywords = explode(" ",$_POST['keyword']);
+                    foreach($keywords as $keyword){
+                        $data['keyword'] = $keyword;
+                        M('Keyword')->add($data);
+                    }
                 }
                 $this->success('操作成功', U(MODULE_NAME . $back));
             } else {
@@ -97,8 +100,11 @@ class BaseAction extends Action
                     $data['module'] = $name;
                     $data['token']  = session('token');
 					M('Keyword')->where($data)->delete();
-					$data['keyword']  = $_POST['keyword'];
-                    M('Keyword')->add($data);
+					$keywords = explode(" ",$_POST['keyword']);
+                    foreach($keywords as $keyword){
+                        $data['keyword'] = $keyword;
+                        M('Keyword')->add($data);
+                    }
 					
                 }
                 $this->success('操作成功', U(MODULE_NAME . $back));
