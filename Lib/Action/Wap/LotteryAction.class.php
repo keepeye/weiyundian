@@ -22,8 +22,15 @@ class LotteryAction extends BaseAction{
 			$redata->data(array('usenums'=>'0'))->where($where)->save();//距离上次抽奖时间已超过时间限制，次数归零
 			$record['usenums'] = 0;//次数归零，下面用于判断
 		}
-		//1.活动过期,显示结束
-		  
+		//1.活动已关闭
+		if (empty($Lottery)) {
+			 $data['end'] = 1;
+			 $data['endinfo'] = "活动已结束";
+			 $this->assign('Dazpan',$data);
+			 $this->display();
+			 exit();
+		}
+		//活动过期
 		//4.显示奖项,说明,时间
 		if ($Lottery['enddate'] < time()) {
 			 $data['end'] = 1;
