@@ -41,7 +41,7 @@ class IndexAction extends BaseAction{
 	public function classify(){
 		$this->assign('info',$this->info);
 		
-		$this->display($this->tpl['tpltypename']);
+		$this->display($this->tpl['tpltypename']?$this->tpl['tpltypename']:'muban1_index');
 	}
 	
 	public function index(){
@@ -60,7 +60,7 @@ class IndexAction extends BaseAction{
 		$this->assign('tpl',$this->tpl);
 		$this->assign('copyright',$this->copyright);
 		$this->assign('home',$home);
-		$this->display($this->tpl['tpltypename']);
+		$this->display($this->tpl['tpltypename']?$this->tpl['tpltypename']:'muban1_index');
 	}
 	
 	public function lists(){
@@ -91,7 +91,7 @@ class IndexAction extends BaseAction{
 		$this->assign('res',$res);
 		$this->assign('copyright',$this->copyright);
 		$this->assign('pagestr',$pagestr);//分页链接
-		$this->display($this->tpl['tpllistname']);
+		$this->display($this->tpl['tpllistname']?$this->tpl['tpllistname']:'weimob1_list');
 	}
 	
 	public function content(){
@@ -106,7 +106,7 @@ class IndexAction extends BaseAction{
 		$this->assign('res',$res);			//内容详情;
 		$this->assign('tpl',$this->tpl);				//微信帐号信息
 		$this->assign('copyright',$this->copyright);	//版权是否显示
-		$this->display($this->tpl['tplcontentname']);
+		$this->display($this->tpl['tplcontentname']?$this->tpl['tplcontentname']:'weimob1_content');
 	}
 	
 	public function flash(){
