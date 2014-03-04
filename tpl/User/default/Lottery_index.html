@@ -59,7 +59,7 @@
 				   <a href="index.php?g=User&m=Lottery&a=edit&id={pigcms:$list.id}">编辑</a>  
 				   <a href="
 				   <if condition="$list['status'] gt 0">				   
-				   javascript:drop_confirm('你确定要结束活动吗，结束后不可再开启本活动!', 'index.php?g=User&m=Lottery&a=setdes&id={pigcms:$list.id}');<else/>index.php?g=User&m=Lottery&a=setinc&id={pigcms:$list.id}   
+				   javascript:drop_confirm('你确定要结束活动吗!', 'index.php?g=User&m=Lottery&a=setdes&id={pigcms:$list.id}');<else/>index.php?g=User&m=Lottery&a=setinc&id={pigcms:$list.id}   
 				   </if>">
 				   <if condition="$list['status'] gt 0">结束<else/>开启</if> 
 				   </a>
