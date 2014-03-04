@@ -23,7 +23,7 @@ class LotteryAction extends UserAction{
 		$data=M('Lottery')->where(array('token'=>session('token'),'id'=>$id))->find();
 		$record=M('Lottery_record')->where('token="'.session('token').'" and lid='.$id.' and sn!=""')->select();
 		$recordcount=M('Lottery_record')->where('token="'.session('token').'" and lid='.$id.' and sn!=""')->count();
-		$datacount=$data['fistnums']+$data['secondnums']+$data['thirdnums']+$data['four']+$data['five']+$data['six'];
+		$datacount=$data['fistnums']+$data['secondnums']+$data['thirdnums']+$data['fournums']+$data['fivenums']+$data['sixnums'];
 		$this->assign('datacount',$datacount);
 		$this->assign('recordcount',$recordcount);
 		$this->assign('record',$record);	
@@ -62,7 +62,7 @@ class LotteryAction extends UserAction{
 		$where=array('id'=>$id,'token'=>session('token'));
 		$check=M('Lottery')->where($where)->find();
 		if($check==false)$this->error('非法操作');
-		$data=M('Lottery')->where($where)->save(array('status'=>1));
+		$data=M('Lottery')->where($where)->data(array('status'=>1))->save();
 		if($data!=false){
 			$this->success('恭喜你,活动已经开始');
 		}else{
@@ -75,7 +75,7 @@ class LotteryAction extends UserAction{
 		$where=array('id'=>$id,'token'=>session('token'));
 		$check=M('Lottery')->where($where)->find();
 		if($check==false)$this->error('非法操作');
-		$data=M('Lottery')->where($where)->setDec('status');
+		$data=M('Lottery')->where($where)->data(array("status"=>0))->save();
 		if($data!=false){
 			$this->success('活动已经结束');
 		}else{
