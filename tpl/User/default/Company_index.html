@@ -75,7 +75,7 @@ function setlatlng(longitude,latitude){
     <div class="msgWrap bgfc"> 
      <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
       <tbody> 
-       <tr> 
+       <tr id="guide_company_1"> 
         <th><span class="red">*</span>名称：</th> 
         <td><input type="text" id="name" name="name" value="{pigcms:$set.name}" class="px require" style="width:400px;" /></td> 
        </tr>
@@ -95,7 +95,7 @@ function setlatlng(longitude,latitude){
         <th><span class="red">*</span>地址：</th> 
         <td><input type="text" id="address" name="address" value="{pigcms:$set.address}" class="px require" style="width:400px;" /></td> 
        </tr> 
-       <tr> 
+       <tr id="guide_company_2"> 
         <th><span class="red">*</span>Logo：</th>
         <td>
             <img class="upload_image" src="{pigcms:$set.logourl}" style="display: none;max-height: 100px;" />
@@ -105,14 +105,14 @@ function setlatlng(longitude,latitude){
        </tr>
         <tr> 
         <th><span class="red">*</span>地图坐标：</th> 
-        <td>经度 <input type="text" id="longitude"  name="longitude" size="14" class="px" value="{pigcms:$set.longitude}" /> 纬度 <input type="text"  name="latitude" size="14" id="latitude" class="px" value="{pigcms:$set.latitude}" /> <a href="###" onclick="setlatlng($('#longitude').val(),$('#latitude').val())">在地图中选取坐标</a></td> 
+        <td>经度 <input type="text" id="longitude"  name="longitude" size="14" class="px" value="{pigcms:$set.longitude}" /> 纬度 <input type="text"  name="latitude" size="14" id="latitude" class="px" value="{pigcms:$set.latitude}" /> <a id="guide_company_3" href="###" onclick="setlatlng($('#longitude').val(),$('#latitude').val())">在地图中选取坐标</a></td> 
        </tr>
        <tr> 
         <th><span class="red"></span>顺序：</th> 
         <td><input type="text" id="taxis" name="taxis" value="{pigcms:$set.taxis}" class="px require" style="width:100px;" /></td> 
        </tr>
         <TR>
-                  <TH valign="top"><label for="info">图文详细页内容：</label></TH>
+                  <TH valign="top"><label for="info">公司简介：</label></TH>
                   <TD><textarea name="intro" id="intro"  rows="5" style="width:590px;height:360px">{pigcms:$set.intro}</textarea></TD>
                 </TR>  
        <tr>         
@@ -149,4 +149,22 @@ $(function(){
 })
 </script>
 <div class="clr"></div>
+<ul id="tlyPageGuide" data-tourtitle="公司设置向导，点击查看">
+  <li class="tlypageguide_left" data-tourtarget="#guide_company_1">
+    <div>
+      填写公司的基本信息
+    </div>
+  </li>
+  <li class="tlypageguide_left" data-tourtarget="#guide_company_2">
+    <div>
+      logo就是你公司的标志
+    </div>
+  </li>
+  <li class="tlypageguide_left" data-tourtarget="#guide_company_3">
+    <div>
+      在地图上标注一下你公司的位置吧，用于导航功能
+    </div>
+  </li>
+  
+</ul>
 <include file="Public:footer"/>
