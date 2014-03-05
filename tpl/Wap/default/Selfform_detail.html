@@ -16,27 +16,7 @@
 <style>
 .deploy_ctype_tip{z-index:1001;width:100%;text-align:center;position:fixed;top:50%;margin-top:-23px;left:0;}.deploy_ctype_tip p{display:inline-block;padding:13px 24px;border:solid #d6d482 1px;background:#f5f4c5;font-size:16px;color:#8f772f;line-height:18px;border-radius:3px;}
 </style>
-<div class="banner">
-<div id="wrapper">
-<div id="scroller">
-<ul id="thelist">
-               
-<li><p>{pigcms:$thisForm.name}</p>
 
-<if condition="$thisForm['logourl'] neq ''">
-<a href="{pigcms::U('Selfform/detail',array('token'=>$token,'id'=>$thisForm['id'],'wecha_id'=>$wecha_id))}">
-<img src="{pigcms:$thisForm.logourl}" alt="{pigcms:$thisForm.name}" style="width:100%"/></a>
-</if>
-
-</li>
- 
-
-</ul>
-</div>
-</div>
-
-<div class="clr"></div>
-</div>
 
 
 <div class="cardexplain">
@@ -57,6 +37,6 @@
 <li><a href="{pigcms::U('Selfform/index',array('token'=>$token,'id'=>$thisForm['id'],'wecha_id'=>$wecha_id))}"><span style="color:#666">返回</span></a></li>
 </ul>
 </div>
-{pigcms::W('Plugmenu')}
+
 </body>
 </html>
