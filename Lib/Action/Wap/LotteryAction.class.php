@@ -97,11 +97,11 @@ class LotteryAction extends BaseAction{
 	protected function get_rand($proArr,$total) { 
 		    $result = 7; 
 		    $randNum = mt_rand(1, $total); 
-		    foreach ($proArr as $k => $v) {
+		    foreach ($proArr as $v) {
 		    	
 		    	if ($v['v']>0){//奖项存在或者奖项之外
 		    		if ($randNum>$v['start']&&$randNum<=$v['end']){
-		    			$result=$k;
+		    			$result=$v['id'];
 		    			break;
 		    		}
 		    	}
@@ -119,6 +119,7 @@ class LotteryAction extends BaseAction{
 		$fifthNum=intval($Lottery['fivenums']);
 		$sixthNum=intval($Lottery['sixnums']);
 		$multi=intval($Lottery['canrqnums']);//最多抽奖次数
+		$total = intval($Lottery['allpeople'])*$multi;
 		$prize_arr = array(
 			'0' => array('id'=>1,'prize'=>'一等奖','v'=>$firstNum,'start'=>0,'end'=>$firstNum), 
 			'1' => array('id'=>2,'prize'=>'二等奖','v'=>$secondNum,'start'=>$firstNum,'end'=>$firstNum+$secondNum), 
@@ -126,12 +127,10 @@ class LotteryAction extends BaseAction{
 			'3' => array('id'=>4,'prize'=>'四等奖','v'=>$fourthNum,'start'=>$firstNum+$secondNum+$thirdNum,'end'=>$firstNum+$secondNum+$thirdNum+$fourthNum),
 			'4' => array('id'=>5,'prize'=>'五等奖','v'=>$fifthNum,'start'=>$firstNum+$secondNum+$thirdNum+$fourthNum,'end'=>$firstNum+$secondNum+$thirdNum+$fourthNum+$fifthNum),
 			'5' => array('id'=>6,'prize'=>'六等奖','v'=>$sixthNum,'start'=>$firstNum+$secondNum+$thirdNum+$fourthNum+$fifthNum,'end'=>$firstNum+$secondNum+$thirdNum+$fourthNum+$fifthNum+$sixthNum),
-			'6' => array('id'=>7,'prize'=>'谢谢参与','v'=>(intval($Lottery['allpeople']))*$multi-($firstNum+$secondNum+$thirdNum+$fourthNum+$fifthNum+$sixthNum),'start'=>$firstNum+$secondNum+$thirdNum+$fourthNum+$fifthNum+$sixthNum,'end'=>intval($Lottery['allpeople'])*$multi)
+			'6' => array('id'=>7,'prize'=>'谢谢参与','v'=>(intval($Lottery['allpeople']))*$multi-($firstNum+$secondNum+$thirdNum+$fourthNum+$fifthNum+$sixthNum),'start'=>$firstNum+$secondNum+$thirdNum+$fourthNum+$fifthNum+$sixthNum,'end'=>$total)
 		);
 		//
-		foreach ($prize_arr as $key => $val) { 
-			$arr[$val['id']] = $val; 
-		} 
+		
 		//-------------------------------	 
 		//随机抽奖[如果预计活动的人数为1为各个奖项100%中奖]
 		//-------------------------------	 
@@ -144,7 +143,7 @@ class LotteryAction extends BaseAction{
 			}			
 			 
 		}else{
-			$prizetype = $this->get_rand($arr,intval($Lottery['allpeople'])*$multi); 
+			$prizetype = $this->get_rand($prize_arr,$total); 
 		}
 		 
 		//$winprize = $prize_arr[$rid-1]['prize'];
@@ -156,11 +155,15 @@ class LotteryAction extends BaseAction{
 					 $prizetype = ''; 
 					 //$winprize = '谢谢参与'; 
 				}else{
-					 
-					$prizetype = 1; 					
-				    M('Lottery')->where(array('id'=>$id))->setInc('fistlucknums');
+					if(empty($Lottery['first']) || empty($Lottery['firstnums'])){
+						$prizetype = '';
+					}else{
+						$prizetype = 1; 					
+				    	M('Lottery')->where(array('id'=>$id))->setInc('fistlucknums');
+					}
+					
 				}
-			break;
+				break;
 				
 			case 2:
 				if ($Lottery['secondlucknums'] >= $Lottery['secondnums']) {
@@ -168,7 +171,7 @@ class LotteryAction extends BaseAction{
 						//$winprize = '谢谢参与';
 				}else{
 					//判断是否设置了2等奖&&数量
-					if(empty($Lottery['second']) && empty($Lottery['secondnums'])){
+					if(empty($Lottery['second']) || empty($Lottery['secondnums'])){
 						$prizetype = ''; 
 						//$winprize = '谢谢参与';
 					}else{ //输出中了二等奖
@@ -184,7 +187,7 @@ class LotteryAction extends BaseAction{
 					 $prizetype = ''; 
 					// $winprize = '谢谢参与';
 				}else{
-					if(empty($Lottery['third']) && empty($Lottery['thirdnums'])){
+					if(empty($Lottery['third']) || empty($Lottery['thirdnums'])){
 						 $prizetype = ''; 
 						// $winprize = '谢谢参与';
 					}else{
@@ -200,7 +203,7 @@ class LotteryAction extends BaseAction{
 					  $prizetype =  ''; 
 					// $winprize = '谢谢参与';
 				}else{
-					 if(empty($Lottery['four']) && empty($Lottery['fournums'])){
+					 if(empty($Lottery['four']) || empty($Lottery['fournums'])){
 					   	$prizetype =  ''; 
 					 	//$winprize = '谢谢参与';
 					 }else{
@@ -215,7 +218,7 @@ class LotteryAction extends BaseAction{
 					 $prizetype =  ''; 
 					 //$winprize = '谢谢参与';
 				}else{
-					if(empty($Lottery['five']) && empty($Lottery['fivenums'])){
+					if(empty($Lottery['five']) || empty($Lottery['fivenums'])){
 						$prizetype =  ''; 
 					 	//$winprize = '谢谢参与';
 					}else{
@@ -230,7 +233,7 @@ class LotteryAction extends BaseAction{
 					 $prizetype =  ''; 
 					// $winprize = '谢谢参与';
 				}else{
-					 if(empty($Lottery['six']) && empty($Lottery['sixnums'])){
+					 if(empty($Lottery['six']) || empty($Lottery['sixnums'])){
 					 	$prizetype =  ''; 
 					 	//$winprize = '谢谢参与';
 					 }else{
