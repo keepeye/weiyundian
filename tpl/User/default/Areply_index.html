@@ -1,8 +1,8 @@
 <include file="Public:head"/>
         <div class="content">
 
-<div class="cLineB">
-  <h4 id="#guide_areply_0">关注时自动回复内容 </h4>
+<div class="cLineB" id="#guide_areply_0">
+  <h4 >关注时自动回复内容 </h4>
  </div>
          <div class="zdhuifu">
                   <form method="post"  action="{pigcms::U('Areply/insert')}">
@@ -12,16 +12,16 @@
   <tr><td height="5"></td><td></td></tr>
   
   <tr>
-<th valign="top" id="guide_areply_1">模式：</th>
+<th valign="top" ><span id="guide_areply_1">模式</span>：</th>
 	<td valign="top">							
 		<input type="radio" name="status" value="1" id="RadioGroup10" <if condition="$areply['status'] eq 1">checked="checked"</if> >文本模式　<br />
-		<input type="radio" name="status" value="3" id="RadioGroup10" <if condition="$areply['status'] eq 3">checked="checked"</if> >图文模式   
-    <input type="radio" name="status" value="2" id="RadioGroup10" <if condition="$areply['status'] eq 2">checked="checked"</if> >微官网 <br />    
+		<input type="radio" name="status" value="3" id="RadioGroup10" <if condition="$areply['status'] eq 3">checked="checked"</if> >图文模式   <br /> 
+    <input type="radio" name="status" value="2" id="RadioGroup10" <if condition="$areply['status'] eq 2">checked="checked"</if> >微官网    
 	</td>
 </tr>
   
     <tr>
-<th valign="top" id="guide_areply_2">图文模式：</th>
+<th valign="top" ><span id="guide_areply_2">图文模式</span>：</th>
 	<td valign="top">	
 	   <p style="line-height:21px; color:#808080">
 关键词：<input type="input" style="width:100px;" class="px" id="keyword" value="{pigcms:$areply.keyword}" name="keyword" style="width:500px" > 注：只有图文模式需要填写
@@ -31,7 +31,7 @@
 </tr>
   
 <tr>
-<th valign="top" id="guide_areply_3">文本模式：</th>
+<th valign="top" ><span id="guide_areply_3">文本模式</span>：</th>
 <td valign="top" width="420"><textarea class="px" style="width:420px; height:450px; margin:5px 0"  id="Hfcontent" name="content">
 {pigcms:$areply.content}
 </textarea>
