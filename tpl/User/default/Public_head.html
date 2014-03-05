@@ -108,9 +108,9 @@
 							<ul>
 							<div class="nav-header">我的微云店</div>
 								<div class="toggle">
-									<li id="guid_myweizhan"  <if condition="MODULE_NAME eq 'Tongji'" >class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Tongji/index',array('token'=>$token,'id'=>session('wxid')))}">快捷面板</a>
+									<li <if condition="MODULE_NAME eq 'Tongji'" >class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Tongji/index',array('token'=>$token,'id'=>session('wxid')))}">快捷面板</a>
 									</li>
-									<li <if condition="MODULE_NAME eq 'Company'">class="selected" <else/>class="subCatalogList"</if> id="#guide_pub_1"> <a href="{pigcms::U('Company/index',array('token'=>$token))}" >公司设置</a>
+									<li id="guid_myweizhan" <if condition="MODULE_NAME eq 'Company'">class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Company/index',array('token'=>$token))}" >公司设置</a>
 									</li>
 									<li   <if condition="MODULE_NAME eq 'Adma'">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Adma/index',array('token'=>$token))}">宣传页</a>
 									</li>
