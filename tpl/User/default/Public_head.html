@@ -114,10 +114,10 @@
 					<div  class="sideBar" id="sideBar">
 						<script type="text/javascript">
 							$(function(){
-								$(".nav-header").toggle(function(){
-									$(this).next(".toggle").slideUp('slow');
+								$("ul.nav-header").toggle(function(){
+									$(this).parent().find(".toggle").slideUp('slow');
 								},function(){
-									$(this).next(".toggle").slideDown('slow');
+									$(this).parent().find(".toggle").slideDown('slow');
 								});
 							});
 						</script>
