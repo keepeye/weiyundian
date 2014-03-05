@@ -116,6 +116,7 @@
 							$(function(){
 								$("ul>.nav-header").click(function(){
 									var menu = $(this).next("div.toggle").eq(0);
+									alert(menu)
 									if(menu.hasClass('isClose')){
 										menu.slideUp();
 										menu.removeClass('isClose')
