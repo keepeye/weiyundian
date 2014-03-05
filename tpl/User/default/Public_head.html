@@ -96,14 +96,14 @@ padding-left: 0px;
         <!--左侧功能菜单-->
            <div  class="sideBar" id="sideBar">
 		   <script type="text/javascript">
-		   $(document).ready(function(){
-   $(".nav-header").toggle(function(){
-     $(this).next(".toggle").animate({height: 'toggle', opacity: 'toggle'}, "slow");
-   },function(){
-$(this).next(".toggle").animate({height: 'toggle', opacity: 'toggle'}, "slow");
-   });
-});
-</script>
+		   $(function(){
+			   $(".nav-header").toggle(function(){
+			     $(this).next(".toggle").animate({height: 'toggle', opacity: 'toggle'}, "slow");
+			   },function(){
+			$(this).next(".toggle").animate({height: 'toggle', opacity: 'toggle'}, "slow");
+			   });
+			});
+			</script>
 <div class="catalogList">
 <ul>
 <div class="nav-header">我的微云店</div>
