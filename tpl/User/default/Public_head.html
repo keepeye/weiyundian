@@ -14,24 +14,24 @@
 	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js" type="text/javascript"></script>
 	<script src="{pigcms::STATICS}/kindeditor/kindeditor-min.js" type="text/javascript"></script>
 	<script src="{pigcms::STATICS}/kindeditor/lang/zh_CN.js" type="text/javascript"></script>
-<!--<script src="{pigcms::RES}/js/common.js" type="text/javascript"></script>-->
-<script>
-function drop_confirm(msg, url){
-    if(confirm(msg)){
-        window.location = url;
-    }
-}
-function mb_strlen(str) {
-	var len = 0;
-	for(var i = 0; i < str.length; i++) {
-		len += str.charCodeAt(i) < 0 || str.charCodeAt(i) > 255 ? (charset == 'utf-8' ? 3 : 2) : 1;
-	}
-	return len;
-}
-function trim(str) {
-	return (str + '').replace(/(\s+)$/g, '').replace(/^\s+/g, '');
-}
-</script>
+	<!--<script src="{pigcms::RES}/js/common.js" type="text/javascript"></script>-->
+	<script>
+		function drop_confirm(msg, url){
+			if(confirm(msg)){
+				window.location = url;
+			}
+		}
+		function mb_strlen(str) {
+			var len = 0;
+			for(var i = 0; i < str.length; i++) {
+				len += str.charCodeAt(i) < 0 || str.charCodeAt(i) > 255 ? (charset == 'utf-8' ? 3 : 2) : 1;
+			}
+			return len;
+		}
+		function trim(str) {
+			return (str + '').replace(/(\s+)$/g, '').replace(/^\s+/g, '');
+		}
+	</script>
 </head>
 <body id="nv_member" class="pg_CURMODULE">
 	<div class="topbg">
@@ -123,7 +123,7 @@ function trim(str) {
 						</script>
 						<div class="catalogList">
 							<ul>
-							<div class="nav-header">我的微云店</div>
+								<div class="nav-header">我的微云店</div>
 								<div class="toggle">
 									<li <if condition="MODULE_NAME eq 'Tongji'" >class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Tongji/index',array('token'=>$token,'id'=>session('wxid')))}">快捷面板</a>
 									</li>
@@ -149,145 +149,146 @@ function trim(str) {
 
 									<li <if condition="MODULE_NAME eq 'Other'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Other/index',array('token'=>$token))}">回答不上来的配置</a>
 									</li>
-</div>
-</ul>
-<ul>
-	<div class="nav-header">官网设置</div>
-	<div class="toggle">
-		<li id="guide_pub_4" <if condition="MODULE_NAME eq 'Home'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Home/set',array('token'=>$token))}" >首页配置</a>
-		</li>
-		<li id="guide_pub_5" <if condition="MODULE_NAME eq 'Classify'">class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Classify/index',array('token'=>$token))}">分类管理</a>
-		</li>
-		<li id="guide_pub_3"   <if condition="MODULE_NAME eq 'Tmpls'">class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Tmpls/index',array('token'=>$token))}">模板管理</a>
-		</li>
-		<li   <if condition="MODULE_NAME eq 'Plugmenu'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Plugmenu/index',array('token'=>$token))}">快捷菜单</a>
-		</li>
-		<li   <if condition="MODULE_NAME eq 'Flash'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Flash/index',array('token'=>$token))}">首页幻灯片</a>
-		</li>
-		<li   <if condition="MODULE_NAME eq 'Diymen'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Diymen/index',array('token'=>$token))}">自定义菜单</a>
-		</li>
-	</div>
-</ul>
-<ul>
-	<div class="nav-header">微相册</div>
-	<div class="toggle">
-		<li   <if condition="MODULE_NAME eq 'Photo'">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Photo/index',array('token'=>$token))}">3G图集(相册)</a></li>
+								</div>
+							</ul>
+							<ul>
+								<div class="nav-header">官网设置</div>
+								<div class="toggle">
+									<li id="guide_pub_4" <if condition="MODULE_NAME eq 'Home'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Home/set',array('token'=>$token))}" >首页配置</a>
+									</li>
+									<li id="guide_pub_5" <if condition="MODULE_NAME eq 'Classify'">class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Classify/index',array('token'=>$token))}">分类管理</a>
+									</li>
+									<li id="guide_pub_3"   <if condition="MODULE_NAME eq 'Tmpls'">class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Tmpls/index',array('token'=>$token))}">模板管理</a>
+									</li>
+									<li   <if condition="MODULE_NAME eq 'Plugmenu'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Plugmenu/index',array('token'=>$token))}">快捷菜单</a>
+									</li>
+									<li   <if condition="MODULE_NAME eq 'Flash'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Flash/index',array('token'=>$token))}">首页幻灯片</a>
+									</li>
+									<li   <if condition="MODULE_NAME eq 'Diymen'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Diymen/index',array('token'=>$token))}">自定义菜单</a>
+									</li>
+								</div>
+							</ul>
+							<ul>
+								<div class="nav-header">微相册</div>
+								<div class="toggle">
+									<li   <if condition="MODULE_NAME eq 'Photo'">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Photo/index',array('token'=>$token))}">3G图集(相册)</a></li>
 
 
-	</div>
+								</div>
 
-</ul>
-
-
-<ul>
-	<div class="nav-header">微服务</div>
-	<div class="toggle">
-		<li <if condition="MODULE_NAME eq 'Function'">class="selected" <else/> class="subCatalogList"</if>> <a href="{pigcms::U('Function/index',array('token'=>$token,'id'=>session('wxid')))}">功能管理</a>
-		</li>
-		</div>
-	</ul>
-
-	
+							</ul>
 
 
-		<ul>
-			<div class="nav-header">微报名</div>
-
-			<div class="toggle">
-				<li   <if condition="MODULE_NAME eq 'Selfform'">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Selfform/index',array('token'=>$token))}">微报名</a></li>
-			</div>
-		</ul>
-
-		
-
-			<ul>
-				<div class="nav-header">微推广</div>
-				<div class="toggle">
-					<li   <if condition="MODULE_NAME eq 'Lottery'">class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Lottery/index',array('token'=>$token))}">幸运大转盘</a></li>
-					<li   <if condition="MODULE_NAME eq 'Coupon'">class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Coupon/index',array('token'=>$token))}">优惠券</a></li>
-					<li   <if condition="MODULE_NAME eq 'Guajiang'">class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Guajiang/index',array('token'=>$token))}">刮刮卡</a></li>
-				</div>
-			</ul>
-
-			<ul>
-				<div class="nav-header">微会员</div>
-				<div class="toggle">
-					<li <if condition="ACTION_NAME eq 'info'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Member_card/info',array('token'=>$token))}">会员卡商家设置</a></li>
-					<li <if condition="MODULE_NAME eq 'MemberCardShop'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('MemberCardShop/index')}">商铺账号设置</a></li>
-					<li <if condition="(MODULE_NAME eq 'Member_card') AND (ACTION_NAME eq 'index')">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Member_card/index',array('token'=>$token))}">会员卡设计</a></li>
-					<li <if condition="ACTION_NAME eq 'privilege'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Member_card/privilege',array('token'=>$token))}">会员特权</a></li>
-
-					<li  <if condition="ACTION_NAME eq 'exchange'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Member_card/exchange',array('token'=>$token))}">积分设置</a></li>
-					<li   <if condition="MODULE_NAME eq 'Member'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Member/index',array('token'=>$token))}">会员资料管理</a></li>
-				</div>
-			</ul>
-
-			<ul>
-				<div class="nav-header">门店系统</div>
-				<div class="toggle">
-					<li   <if condition="MODULE_NAME eq 'Subshop'">class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Subshop/lists')}">门店管理</a></li>
-				</div>
-			</ul>
+							<ul>
+								<div class="nav-header">微服务</div>
+								<div class="toggle">
+									<li <if condition="MODULE_NAME eq 'Function'">class="selected" <else/> class="subCatalogList"</if>> <a href="{pigcms::U('Function/index',array('token'=>$token,'id'=>session('wxid')))}">功能管理</a>
+									</li>
+								</div>
+							</ul>
 
 
-			<if condition="$trade eq '所有' or $trade eq '电商'">
-				<ul>
-					<div class="nav-header">微电商</div>
 
 
-					<div class="toggle">
-						<li   <if condition="(MODULE_NAME eq 'Product') and (ACTION_NAME eq 'index')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Product/index',array('token'=>$token))}">微商城</a></li>
+							<ul>
+								<div class="nav-header">微报名</div>
 
+								<div class="toggle">
+									<li   <if condition="MODULE_NAME eq 'Selfform'">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Selfform/index',array('token'=>$token))}">微报名</a></li>
+								</div>
+							</ul>
+
+
+
+							<ul>
+								<div class="nav-header">微推广</div>
+								<div class="toggle">
+									<li   <if condition="MODULE_NAME eq 'Lottery'">class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Lottery/index',array('token'=>$token))}">幸运大转盘</a></li>
+									<li   <if condition="MODULE_NAME eq 'Coupon'">class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Coupon/index',array('token'=>$token))}">优惠券</a></li>
+									<li   <if condition="MODULE_NAME eq 'Guajiang'">class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Guajiang/index',array('token'=>$token))}">刮刮卡</a></li>
+								</div>
+							</ul>
+
+							<ul>
+								<div class="nav-header">微会员</div>
+								<div class="toggle">
+									<li <if condition="ACTION_NAME eq 'info'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Member_card/info',array('token'=>$token))}">会员卡商家设置</a></li>
+									<li <if condition="MODULE_NAME eq 'MemberCardShop'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('MemberCardShop/index')}">商铺账号设置</a></li>
+									<li <if condition="(MODULE_NAME eq 'Member_card') AND (ACTION_NAME eq 'index')">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Member_card/index',array('token'=>$token))}">会员卡设计</a></li>
+									<li <if condition="ACTION_NAME eq 'privilege'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Member_card/privilege',array('token'=>$token))}">会员特权</a></li>
+
+									<li  <if condition="ACTION_NAME eq 'exchange'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Member_card/exchange',array('token'=>$token))}">积分设置</a></li>
+									
+									<li   <if condition="MODULE_NAME eq 'Member'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Member/index',array('token'=>$token))}">会员资料管理</a></li>
+								</div>
+							</ul>
+
+							<ul>
+								<div class="nav-header">门店系统</div>
+								<div class="toggle">
+									<li   <if condition="MODULE_NAME eq 'Subshop'">class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Subshop/lists')}">门店管理</a></li>
+								</div>
+							</ul>
+
+
+							<if condition="$trade eq '所有' or $trade eq '电商'">
+								<ul>
+									<div class="nav-header">微电商</div>
+
+
+									<div class="toggle">
+										<li   <if condition="(MODULE_NAME eq 'Product') and (ACTION_NAME eq 'index')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Product/index',array('token'=>$token))}">微商城</a></li>
+
+									</div>
+								</ul>
+							</if>
+							<if condition="$trade eq '所有' or $trade eq '娱乐场所'">
+								<ul>
+									<div class="nav-header">微酒店</div>
+									<div class="toggle">
+										<li   <if condition="MODULE_NAME eq 'Host'">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Host/index',array('token'=>$token))}">通用订单(酒店,KTV)</a></li> 
+
+									</div>
+								</if>
+							</ul>
+
+							<if condition="$trade eq '所有' or $trade eq '旅行社'">
+								<ul>
+									<div class="nav-header">旅行社</div>
+									<div class="toggle">
+										<li   <if condition="MODULE_NAME eq 'Travel'">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Travel/index',array('token'=>$token))}">旅行社</a></li> 
+
+									</div>
+								</ul>
+							</if>
+
+							<if condition="$trade eq '所有' or $trade eq '房产'">
+								<ul>
+									<div class="nav-header">微房产</div>
+									<div class="toggle">
+										<li   <if condition="MODULE_NAME eq 'House' and (ACTION_NAME eq 'set')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('House/set',array('token'=>$token))}">楼盘设置</a></li> 
+										<li   <if condition="MODULE_NAME eq 'House' and (ACTION_NAME eq 'category')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('House/category')}">子楼盘设置</a></li>
+										<li   <if condition="MODULE_NAME eq 'House'  and (ACTION_NAME eq 'room_index')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('House/room_index',array('token'=>$token))}">户型设置</a></li>
+										<li   <if condition="MODULE_NAME eq 'House'  and (ACTION_NAME eq 'impress')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('House/impress')}">房友印象</a></li>
+										<li   <if condition="MODULE_NAME eq 'House'  and (ACTION_NAME eq 'dianping')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('House/dianping')}">专家点评</a></li>
+									</div>
+								</ul>
+							</if>
+
+							<if condition="$trade eq '所有' or $trade eq '汽车'">
+								<ul>
+
+									<div class="nav-header">微汽车</div>
+									<div class="toggle">
+										<li   <if condition="MODULE_NAME eq 'Car' and (ACTION_NAME eq 'brandList')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Car/brandList')}">车型展示</a></li>
+										<li   <if condition="MODULE_NAME eq 'Car' and (ACTION_NAME eq 'reserveList')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Car/reserveList')}">预约服务</a></li>
+										<li   <if condition="MODULE_NAME eq 'Car' and (ACTION_NAME eq 'renewList')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Car/renewList')}">二手置换</a></li>
+										<li   <if condition="MODULE_NAME eq 'Car' and (ACTION_NAME eq 'baoxianList')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Car/baoxianList')}">汽车保险</a></li>
+										<li   <if condition="MODULE_NAME eq 'Car' and (ACTION_NAME eq 'shouceList')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Car/shouceList')}">汽车手册</a></li>
+										<li   <if condition="MODULE_NAME eq 'Car' and (ACTION_NAME eq 'settings')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Car/settings')}">回复设置</a></li>
+									</div>
+								</ul>
+							</if>
+
+						</div>
 					</div>
-				</ul>
-			</if>
-			<if condition="$trade eq '所有' or $trade eq '娱乐场所'">
-				<ul>
-					<div class="nav-header">微酒店</div>
-					<div class="toggle">
-						<li   <if condition="MODULE_NAME eq 'Host'">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Host/index',array('token'=>$token))}">通用订单(酒店,KTV)</a></li> 
-
-					</div>
-				</if>
-			</ul>
-
-			<if condition="$trade eq '所有' or $trade eq '旅行社'">
-				<ul>
-					<div class="nav-header">旅行社</div>
-					<div class="toggle">
-						<li   <if condition="MODULE_NAME eq 'Travel'">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Travel/index',array('token'=>$token))}">旅行社</a></li> 
-
-					</div>
-				</ul>
-			</if>
-
-			<if condition="$trade eq '所有' or $trade eq '房产'">
-				<ul>
-					<div class="nav-header">微房产</div>
-					<div class="toggle">
-						<li   <if condition="MODULE_NAME eq 'House' and (ACTION_NAME eq 'set')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('House/set',array('token'=>$token))}">楼盘设置</a></li> 
-						<li   <if condition="MODULE_NAME eq 'House' and (ACTION_NAME eq 'category')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('House/category')}">子楼盘设置</a></li>
-						<li   <if condition="MODULE_NAME eq 'House'  and (ACTION_NAME eq 'room_index')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('House/room_index',array('token'=>$token))}">户型设置</a></li>
-						<li   <if condition="MODULE_NAME eq 'House'  and (ACTION_NAME eq 'impress')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('House/impress')}">房友印象</a></li>
-						<li   <if condition="MODULE_NAME eq 'House'  and (ACTION_NAME eq 'dianping')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('House/dianping')}">专家点评</a></li>
-					</div>
-				</ul>
-			</if>
-
-			<if condition="$trade eq '所有' or $trade eq '汽车'">
-				<ul>
-
-					<div class="nav-header">微汽车</div>
-					<div class="toggle">
-						<li   <if condition="MODULE_NAME eq 'Car' and (ACTION_NAME eq 'brandList')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Car/brandList')}">车型展示</a></li>
-						<li   <if condition="MODULE_NAME eq 'Car' and (ACTION_NAME eq 'reserveList')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Car/reserveList')}">预约服务</a></li>
-						<li   <if condition="MODULE_NAME eq 'Car' and (ACTION_NAME eq 'renewList')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Car/renewList')}">二手置换</a></li>
-						<li   <if condition="MODULE_NAME eq 'Car' and (ACTION_NAME eq 'baoxianList')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Car/baoxianList')}">汽车保险</a></li>
-						<li   <if condition="MODULE_NAME eq 'Car' and (ACTION_NAME eq 'shouceList')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Car/shouceList')}">汽车手册</a></li>
-						<li   <if condition="MODULE_NAME eq 'Car' and (ACTION_NAME eq 'settings')">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Car/settings')}">回复设置</a></li>
-					</div>
-				</ul>
-			</if>
-
-		</div>
-	</div>
