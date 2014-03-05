@@ -46,7 +46,7 @@
 </TR>
 <TR>
 	<th><span class="red">*</span>活动时间：</th>
-	<td><input type="input" class="px" id="statdate" value="<if condition="$vo['statdate'] neq ''">{pigcms:$vo.statdate|date="Y-m-d H:i:s",###}</if>" onClick="WdatePicker()" name="statdate" />                
+	<td><input type="input" class="px" id="statdate" value="<if condition="$vo['statdate'] neq ''">{pigcms:$vo.statdate|date="Y-m-d H:i:s",###}</if>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="statdate" />                
 		到
 		<input type="input" class="px" id="enddate" value="<if condition="$vo['enddate'] neq ''">{pigcms:$vo.enddate|date="Y-m-d H:i:s",###}</if>" name="enddate"  onClick="WdatePicker()"  /> 
 	</td>
