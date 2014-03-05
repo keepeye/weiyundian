@@ -2,7 +2,7 @@
         <div class="content">
 
 <div class="cLineB">
-  <h4>关注时自动回复内容 <span class="FAQ">可参考右边的范例来写，拷贝到输入框后修改！</span></h4>
+  <h4 id="#guide_areply_0">关注时自动回复内容 </h4>
  </div>
          <div class="zdhuifu">
                   <form method="post"  action="{pigcms::U('Areply/insert')}">
@@ -12,16 +12,16 @@
   <tr><td height="5"></td><td></td></tr>
   
   <tr>
-<th valign="top">模式：</th>
+<th valign="top" id="guide_areply_1">模式：</th>
 	<td valign="top">							
 		<input type="radio" name="status" value="1" id="RadioGroup10" <if condition="$areply['status'] eq 1">checked="checked"</if> >文本模式　<br />
-		<input type="radio" name="status" value="2" id="RadioGroup10" <if condition="$areply['status'] eq 2">checked="checked"</if> >微官网模式（图文详情请在微官网模块设置）  <br />
-		<input type="radio" name="status" value="3" id="RadioGroup10" <if condition="$areply['status'] eq 3">checked="checked"</if> >图文模式       
+		<input type="radio" name="status" value="3" id="RadioGroup10" <if condition="$areply['status'] eq 3">checked="checked"</if> >图文模式   
+    <input type="radio" name="status" value="2" id="RadioGroup10" <if condition="$areply['status'] eq 2">checked="checked"</if> >微官网 <br />    
 	</td>
 </tr>
   
     <tr>
-<th valign="top">图文回复设置：</th>
+<th valign="top" id="guide_areply_2">图文模式：</th>
 	<td valign="top">	
 	   <p style="line-height:21px; color:#808080">
 关键词：<input type="input" style="width:100px;" class="px" id="keyword" value="{pigcms:$areply.keyword}" name="keyword" style="width:500px" > 注：只有图文模式需要填写
@@ -31,7 +31,7 @@
 </tr>
   
 <tr>
-<th valign="top">文本回复设置：</th>
+<th valign="top" id="guide_areply_3">文本模式：</th>
 <td valign="top" width="420"><textarea class="px" style="width:420px; height:450px; margin:5px 0"  id="Hfcontent" name="content">
 {pigcms:$areply.content}
 </textarea>
@@ -216,4 +216,27 @@ $(this).attr('checked',$('.checkall').attr('checked'));
   </script>
   <!--底部-->
   	</div>
+<ul id="tlyPageGuide" data-tourtitle="关注回复设置向导，点击查看">
+  <li class="tlypageguide_top" data-tourtarget="#guide_areply_0">
+    <div>
+      这是什么？关注时回复指的是当用户关注你的公众号时，系统自动发送给用户的第一条消息。
+    </div>
+  </li>
+  <li class="tlypageguide_top" data-tourtarget="#guide_areply_1">
+    <div>
+      模式？文本模式你可以写一段纯文字的内容发送给用户，图文模式你可以发送一条带有图片和描述的内容发送给用户，用户点击图文后还可以查看详情，而微官网指的是将官网链接发送给用户(需要先配置微官网)。
+    </div>
+  </li>
+  <li class="tlypageguide_top" data-tourtarget="#guide_areply_2">
+    <div>
+      如果你想要设定图文模式，你需要先在左侧-"图文回复"-模块中添加一个文章，并设置好关键词，这里填写文章的关键词。
+    </div>
+  </li>
+  <li class="tlypageguide_top" data-tourtarget="#guide_areply_3">
+    <div>
+      如果是文本模式，请在这里填写你想发送给用户的文字消息。
+    </div>
+  </li>
+  
+</ul>
 <include file="Public:footer"/>	
