@@ -30,6 +30,14 @@ class LotteryAction extends BaseAction{
 			 $this->display();
 			 exit();
 		}
+		//活动尚未开始
+		if($Lottery['statdate'] > time()){
+			$data['end'] = 1;
+			$data['endinfo'] = "活动将在 ".date("Y-m-d H:i:s",$Lottery['statdate'])." 开始";
+			$this->assign('Dazpan',$data);
+			$this->display();
+			exit();
+		}
 		//活动过期
 		//4.显示奖项,说明,时间
 		if ($Lottery['enddate'] < time()) {
