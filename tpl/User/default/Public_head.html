@@ -114,11 +114,14 @@
 					<div  class="sideBar" id="sideBar">
 						<script type="text/javascript">
 							$(function(){
-								$("ul>.nav-header").toggle(function(){
-									$(this).parent().find(".toggle").slideUp('slow');
-								},function(){
-									$(this).parent().find(".toggle").slideDown('slow');
-								});
+								$("ul>.nav-header").click(function(){
+									var menu = $(this).next("div.toggle").eq(0);
+									if(menu.hasClass('isShow')){
+										menu.slideUp();
+									}else{
+										menu.slideDown();
+									}
+								})
 							});
 						</script>
 						<div class="catalogList">
