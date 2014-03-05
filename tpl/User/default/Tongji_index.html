@@ -143,41 +143,7 @@
                         </a>
 
                     </div>
-                       <script type="text/javascript">
-                          $(function () {
-                             var $p = window.top.document;
-                             var $left_a = $("#left a", $p);
-                             var keyArray = new Array;
-                             $left_a.each(function () {
-                                 keyArray.push($(this).attr("href"))
-                             })
-                             $(" div.block-tiles a:not(.not)").click(function (e) {
-                                 e.preventDefault();
-                                 var $this = $(this);
-                                 var $h = $(this).attr("href");
-                                 var $eq = $.inArray($h, keyArray);
-                                 if ($eq) {
-                                     window.parent.lfet_select_menu($eq);
-                                     if ($this.attr("rel")) {
-                                         window.top.location = $h;
-                                     } else {
-                                         if ($h != "javascript:void(0)") {
-                                             $("#mainFrame", $p).attr("src", $h);
-                                         }
-
-                                     }
-                                 } else {
-                                       G.ui.tips.suc("研发中 敬请期待")
-                                 }
-
-                             });
-
-
-
-
-                         });
-
-                    </script>
+                       
 </div>               
        
 
