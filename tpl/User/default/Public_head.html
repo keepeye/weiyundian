@@ -28,6 +28,9 @@ function mb_strlen(str) {
 	}
 	return len;
 }
+function trim(str) {
+	return (str + '').replace(/(\s+)$/g, '').replace(/^\s+/g, '');
+}
 </script>
 </head>
 <body id="nv_member" class="pg_CURMODULE">
