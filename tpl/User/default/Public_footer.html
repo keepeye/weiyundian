@@ -78,7 +78,7 @@
         });
     });
 
-    (function(){
+    $(function(){
         $(".upload_image_filed").each(function(index,ele){
             if(trim($(ele).val())!=""){
                 var img=$(ele).parent().children(".upload_image");
@@ -88,7 +88,7 @@
                 img.show();
             }
         });
-    })();
+    });
 </script>
 <script src="__PUBLIC__/guide/js/pageguide.min.js"></script>
 <script>
