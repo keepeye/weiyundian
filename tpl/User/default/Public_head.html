@@ -111,7 +111,7 @@ $(this).next(".toggle").animate({height: 'toggle', opacity: 'toggle'}, "slow");
 </li>
 
 
-<li   <if condition="MODULE_NAME eq 'Company'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Company/index',array('token'=>$token))}">公司设置</a>
+<li   <if condition="MODULE_NAME eq 'Company'">class="selected" <else/>class="subCatalogList"</if> id="#guide_pub_1"> <a href="{pigcms::U('Company/index',array('token'=>$token))}" >公司设置</a>
 	<li   <if condition="MODULE_NAME eq 'Adma'">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Adma/index',array('token'=>$token))}">宣传页</a></li>
 </li>
 </div>
@@ -120,7 +120,7 @@ $(this).next(".toggle").animate({height: 'toggle', opacity: 'toggle'}, "slow");
 <ul>
 <div class="nav-header">基础设置</div>
 <div class="toggle">
-<li <if condition="MODULE_NAME eq 'Areply'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Areply/index',array('token'=>$token))}">关注时回复</a>
+<li <if condition="MODULE_NAME eq 'Areply'">class="selected" <else/>class="subCatalogList"</if> id="#guide_pub_2"> <a href="{pigcms::U('Areply/index',array('token'=>$token))}">关注时回复</a>
 </li>
 <li <if condition="MODULE_NAME eq 'Text'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Text/index',array('token'=>$token))}">文本回复</a>
 </li>
@@ -138,11 +138,11 @@ $(this).next(".toggle").animate({height: 'toggle', opacity: 'toggle'}, "slow");
 <ul>
 <div class="nav-header">官网设置</div>
 <div class="toggle">
-<li <if condition="MODULE_NAME eq 'Home'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Home/set',array('token'=>$token))}">首页配置</a>
+<li <if condition="MODULE_NAME eq 'Home'">class="selected" <else/>class="subCatalogList"</if> id="#guide_pub_4"> <a href="{pigcms::U('Home/set',array('token'=>$token))}" >首页配置</a>
 </li>
-<li <if condition="MODULE_NAME eq 'Classify'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Classify/index',array('token'=>$token))}">分类管理</a>
+<li <if condition="MODULE_NAME eq 'Classify'">class="selected" <else/>class="subCatalogList"</if> id="#guide_pub_5"> <a href="{pigcms::U('Classify/index',array('token'=>$token))}">分类管理</a>
 </li>
-<li   <if condition="MODULE_NAME eq 'Tmpls'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Tmpls/index',array('token'=>$token))}">模板管理</a>
+<li   <if condition="MODULE_NAME eq 'Tmpls'">class="selected" <else/>class="subCatalogList"</if> id="#guide_pub_3"> <a href="{pigcms::U('Tmpls/index',array('token'=>$token))}">模板管理</a>
 </li>
 <li   <if condition="MODULE_NAME eq 'Plugmenu'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Plugmenu/index',array('token'=>$token))}">快捷菜单</a>
 </li>
