@@ -57,7 +57,7 @@ class WeixinAction extends Action
 		    }
 		    //自定义图文回复
 		    if($data['status']==3 && !empty($data['keyword'])){
-		    	return $this->keyword($key);
+		    	return $this->keyword($data['keyword']);
 		    } 
 		    
 	    }
