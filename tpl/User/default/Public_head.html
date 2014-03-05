@@ -121,7 +121,7 @@
 							<ul>
 								<div class="nav-header">基础设置</div>
 								<div class="toggle">
-									<li <if condition="MODULE_NAME eq 'Areply'">class="selected" <else/>class="subCatalogList"</if> id="#guide_pub_2"> <a href="{pigcms::U('Areply/index',array('token'=>$token))}">关注时回复</a>
+									<li id="guide_pub_2" <if condition="MODULE_NAME eq 'Areply'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Areply/index',array('token'=>$token))}">关注时回复</a>
 									</li>
 									<li <if condition="MODULE_NAME eq 'Text'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Text/index',array('token'=>$token))}">文本回复</a>
 									</li>
@@ -132,18 +132,16 @@
 
 									<li <if condition="MODULE_NAME eq 'Other'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Other/index',array('token'=>$token))}">回答不上来的配置</a>
 									</li>
-<!--li   <if condition="MODULE_NAME eq 'lbslist'">class="selected" <else/>class="subCatalogList"</if>> <a href="javascript:alert('已经实现智能地理位置回复，无需人工设置')">LBS回复</a><span class="new"></span>
-</li-->
 </div>
 </ul>
 <ul>
 	<div class="nav-header">官网设置</div>
 	<div class="toggle">
-		<li <if condition="MODULE_NAME eq 'Home'">class="selected" <else/>class="subCatalogList"</if> id="#guide_pub_4"> <a href="{pigcms::U('Home/set',array('token'=>$token))}" >首页配置</a>
+		<li id="guide_pub_4" <if condition="MODULE_NAME eq 'Home'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Home/set',array('token'=>$token))}" >首页配置</a>
 		</li>
-		<li <if condition="MODULE_NAME eq 'Classify'">class="selected" <else/>class="subCatalogList"</if> id="#guide_pub_5"> <a href="{pigcms::U('Classify/index',array('token'=>$token))}">分类管理</a>
+		<li id="guide_pub_5" <if condition="MODULE_NAME eq 'Classify'">class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Classify/index',array('token'=>$token))}">分类管理</a>
 		</li>
-		<li   <if condition="MODULE_NAME eq 'Tmpls'">class="selected" <else/>class="subCatalogList"</if> id="#guide_pub_3"> <a href="{pigcms::U('Tmpls/index',array('token'=>$token))}">模板管理</a>
+		<li id="guide_pub_3"   <if condition="MODULE_NAME eq 'Tmpls'">class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Tmpls/index',array('token'=>$token))}">模板管理</a>
 		</li>
 		<li   <if condition="MODULE_NAME eq 'Plugmenu'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Plugmenu/index',array('token'=>$token))}">快捷菜单</a>
 		</li>
@@ -168,10 +166,11 @@
 	<div class="nav-header">微服务</div>
 	<div class="toggle">
 		<li <if condition="MODULE_NAME eq 'Function'">class="selected" <else/> class="subCatalogList"</if>> <a href="{pigcms::U('Function/index',array('token'=>$token,'id'=>session('wxid')))}">功能管理</a>
+		</li>
 		</div>
 	</ul>
 
-	<ul>
+	
 
 
 		<ul>
@@ -182,7 +181,7 @@
 			</div>
 		</ul>
 
-		<ul>
+		
 
 			<ul>
 				<div class="nav-header">微推广</div>
