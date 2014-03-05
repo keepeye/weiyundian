@@ -115,12 +115,13 @@
 						<script type="text/javascript">
 							$(function(){
 								$("ul>.nav-header").click(function(){
-									alert('a');
 									var menu = $(this).next("div.toggle").eq(0);
-									if(menu.hasClass('isShow')){
+									if(menu.hasClass('isClose')){
 										menu.slideUp();
+										menu.removeClass('isClose')
 									}else{
 										menu.slideDown();
+										menu.removeClass('isClose')
 									}
 								})
 							});
