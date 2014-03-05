@@ -307,10 +307,10 @@ $(function() {
             }
             
             if (backdata.success) { 
-                prize = backdata.prizetype;
+                prize = backdata.prizetype;//奖项 1,2,3,4,5,6 
                  if(prize!=''){
-                    sncode = backdata.sn;
-                    start(prizeDeg[backdata.prizetype - 1])
+                    sncode = backdata.sn;//sn号
+                    start(prizeDeg[backdata.prizetype - 1])//对应prizeDeg中的坐标
                  }else{
                     prize = null;
 					usenums=backdata.usenums;
