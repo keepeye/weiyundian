@@ -1,2 +1,179 @@
-<include file="Public:head"/>
+<html>
+<head>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js" type="text/javascript"></script>
+</head>
+<body>
+<div  class="sideBar" id="sideBar">
+  <script type="text/javascript">
+    $(function(){
+      $("#sideBar > .catalogList > ul >.nav-header").click(function(){
+        var menu = $(this).next("div.toggle").eq(0);
+        if(menu.hasClass('isClose')){
+          menu.slideDown('800');
+          menu.removeClass('isClose')
 
+        }else{
+          menu.slideUp('800');
+          menu.addClass('isClose')
+        }
+      })
+    });
+  </script>
+  <div class="catalogList">
+    <ul>
+      <div class="nav-header">我的微云店</div>
+      <div class="toggle">
+        <li class="selected"  > <a href="/index.php?g=User&m=Tongji&a=index&token=daopengkeji&id=26">快捷面板</a>
+        </li>
+        <li id="guide_pub_1" class="subCatalogList" > <a href="/index.php?g=User&m=Company&a=index&token=daopengkeji" >公司设置</a>
+        </li>
+        <li   class="subCatalogList" > <a href="/index.php?g=User&m=Adma&a=index&token=daopengkeji">宣传页</a>
+        </li>
+
+      </div>
+    </ul>
+
+    <ul>
+      <div class="nav-header">基础设置</div>
+      <div class="toggle">
+        <li id="guide_pub_2" class="subCatalogList"> <a href="/index.php?g=User&m=Areply&a=index&token=daopengkeji">关注时回复</a>
+        </li>
+        <li class="subCatalogList"> <a href="/index.php?g=User&m=Text&a=index&token=daopengkeji">文本回复</a>
+        </li>
+        <li  class="subCatalogList"> <a href="/index.php?g=User&m=Img&a=index&token=daopengkeji">图文回复</a>
+        </li>
+        <li   class="subCatalogList"> <a href="/index.php?g=User&m=Voiceresponse&a=index&token=daopengkeji">语音回复</a>
+        </li>
+
+        <li class="subCatalogList"> <a href="/index.php?g=User&m=Other&a=index&token=daopengkeji">回答不上来的配置</a>
+        </li>
+      </div>
+    </ul>
+    <ul>
+      <div class="nav-header">官网设置</div>
+      <div class="toggle">
+        <li id="guide_pub_4" class="subCatalogList"> <a href="/index.php?g=User&m=Home&a=set&token=daopengkeji" >首页配置</a>
+        </li>
+        <li id="guide_pub_5" class="subCatalogList" > <a href="/index.php?g=User&m=Classify&a=index&token=daopengkeji">分类管理</a>
+        </li>
+        <li id="guide_pub_3"   class="subCatalogList" > <a href="/index.php?g=User&m=Tmpls&a=index&token=daopengkeji">模板管理</a>
+        </li>
+        <li   class="subCatalogList"> <a href="/index.php?g=User&m=Plugmenu&a=index&token=daopengkeji">快捷菜单</a>
+        </li>
+        <li   class="subCatalogList"> <a href="/index.php?g=User&m=Flash&a=index&token=daopengkeji">首页幻灯片</a>
+        </li>
+        <li   class="subCatalogList"> <a href="/index.php?g=User&m=Diymen&a=index&token=daopengkeji">自定义菜单</a>
+        </li>
+      </div>
+    </ul>
+    <ul>
+      <div class="nav-header">微相册</div>
+      <div class="toggle">
+        <li   class="subCatalogList" > <a href="/index.php?g=User&m=Photo&a=index&token=daopengkeji">3G图集(相册)</a></li>
+
+
+      </div>
+
+    </ul>
+
+
+    <ul>
+      <div class="nav-header">微服务</div>
+      <div class="toggle">
+        <li  class="subCatalogList"> <a href="/index.php?g=User&m=Function&a=index&token=daopengkeji&id=26">功能管理</a>
+        </li>
+      </div>
+    </ul>
+
+
+
+
+    <ul>
+      <div class="nav-header">微报名</div>
+
+      <div class="toggle">
+        <li   class="subCatalogList" > <a href="/index.php?g=User&m=Selfform&a=index&token=daopengkeji">微报名</a></li>
+      </div>
+    </ul>
+
+
+
+    <ul>
+      <div class="nav-header">微推广</div>
+      <div class="toggle">
+        <li   class="subCatalogList" > <a href="/index.php?g=User&m=Lottery&a=index&token=daopengkeji">幸运大转盘</a></li>
+        <li   class="subCatalogList" > <a href="/index.php?g=User&m=Coupon&a=index&token=daopengkeji">优惠券</a></li>
+        <li   class="subCatalogList" > <a href="/index.php?g=User&m=Guajiang&a=index&token=daopengkeji">刮刮卡</a></li>
+      </div>
+    </ul>
+
+    <ul>
+      <div class="nav-header">微会员</div>
+      <div class="toggle">
+        <li class="subCatalogList"> <a href="/index.php?g=User&m=Member_card&a=info&token=daopengkeji">会员卡商家设置</a></li>
+        <li class="subCatalogList"> <a href="/index.php?g=User&m=MemberCardShop&a=index">商铺账号设置</a></li>
+        <li class="subCatalogList"> <a href="/index.php?g=User&m=Member_card&a=index&token=daopengkeji">会员卡设计</a></li>
+        <li class="subCatalogList"> <a href="/index.php?g=User&m=Member_card&a=privilege&token=daopengkeji">会员特权</a></li>
+
+        <li  class="subCatalogList"> <a href="/index.php?g=User&m=Member_card&a=exchange&token=daopengkeji">积分设置</a></li>
+
+        <li   class="subCatalogList"> <a href="/index.php?g=User&m=Member&a=index&token=daopengkeji">会员资料管理</a></li>
+      </div>
+    </ul>
+
+    <ul>
+      <div class="nav-header">门店系统</div>
+      <div class="toggle">
+        <li   class="subCatalogList" > <a href="/index.php?g=User&m=Subshop&a=lists">门店管理</a></li>
+      </div>
+    </ul>
+
+
+    <ul>
+      <div class="nav-header">微电商</div>
+
+
+      <div class="toggle">
+        <li   class="subCatalogList" > <a href="/index.php?g=User&m=Product&a=index&token=daopengkeji">微商城</a></li>
+
+      </div>
+    </ul>             <ul>
+    <div class="nav-header">微酒店</div>
+    <div class="toggle">
+      <li   class="subCatalogList" > <a href="/index.php?g=User&m=Host&a=index&token=daopengkeji">通用订单(酒店,KTV)</a></li> 
+
+    </div>              </ul>
+
+    <ul>
+      <div class="nav-header">旅行社</div>
+      <div class="toggle">
+        <li   class="subCatalogList" > <a href="/index.php?g=User&m=Travel&a=index&token=daopengkeji">旅行社</a></li> 
+
+      </div>
+    </ul>
+    <ul>
+      <div class="nav-header">微房产</div>
+      <div class="toggle">
+        <li   class="subCatalogList" > <a href="/index.php?g=User&m=House&a=set&token=daopengkeji">楼盘设置</a></li> 
+        <li   class="subCatalogList" > <a href="/index.php?g=User&m=House&a=category">子楼盘设置</a></li>
+        <li   class="subCatalogList" > <a href="/index.php?g=User&m=House&a=room_index&token=daopengkeji">户型设置</a></li>
+        <li   class="subCatalogList" > <a href="/index.php?g=User&m=House&a=impress">房友印象</a></li>
+        <li   class="subCatalogList" > <a href="/index.php?g=User&m=House&a=dianping">专家点评</a></li>
+      </div>
+    </ul>
+    <ul>
+
+      <div class="nav-header">微汽车</div>
+      <div class="toggle">
+        <li   class="subCatalogList" > <a href="/index.php?g=User&m=Car&a=brandList">车型展示</a></li>
+        <li   class="subCatalogList" > <a href="/index.php?g=User&m=Car&a=reserveList">预约服务</a></li>
+        <li   class="subCatalogList" > <a href="/index.php?g=User&m=Car&a=renewList">二手置换</a></li>
+        <li   class="subCatalogList" > <a href="/index.php?g=User&m=Car&a=baoxianList">汽车保险</a></li>
+        <li   class="subCatalogList" > <a href="/index.php?g=User&m=Car&a=shouceList">汽车手册</a></li>
+        <li   class="subCatalogList" > <a href="/index.php?g=User&m=Car&a=settings">回复设置</a></li>
+      </div>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
