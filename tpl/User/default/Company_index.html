@@ -75,9 +75,9 @@ function setlatlng(longitude,latitude){
     <div class="msgWrap bgfc"> 
      <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
       <tbody> 
-       <tr id="guide_company_1"> 
+       <tr> 
         <th><span class="red">*</span>名称：</th> 
-        <td><input type="text" id="name" name="name" value="{pigcms:$set.name}" class="px require" style="width:400px;" /></td> 
+        <td id="guide_company_1"><input type="text" id="name" name="name" value="{pigcms:$set.name}" class="px require" style="width:400px;" /></td> 
        </tr>
        <tr> 
         <th><span class="red">*</span>简称：</th> 
@@ -95,8 +95,8 @@ function setlatlng(longitude,latitude){
         <th><span class="red">*</span>地址：</th> 
         <td><input type="text" id="address" name="address" value="{pigcms:$set.address}" class="px require" style="width:400px;" /></td> 
        </tr> 
-       <tr id="guide_company_2"> 
-        <th><span class="red">*</span>Logo：</th>
+       <tr> 
+        <th><span class="red" id="guide_company_2">*</span>Logo：</th>
         <td>
             <img class="upload_image" src="{pigcms:$set.logourl}" style="display: none;max-height: 100px;" />
             <input type="hidden" class="upload_image_filed" id="keyword" value="{pigcms:$set.logourl}" name="logourl" data-thumb="80,80"/>
@@ -150,7 +150,7 @@ $(function(){
 </script>
 <div class="clr"></div>
 <ul id="tlyPageGuide" data-tourtitle="公司设置向导，点击查看">
-  <li class="tlypageguide_left" data-tourtarget="#guide_company_1">
+  <li class="tlypageguide_top" data-tourtarget="#guide_company_1">
     <div>
       填写公司的基本信息
     </div>
@@ -160,7 +160,7 @@ $(function(){
       logo就是你公司的标志
     </div>
   </li>
-  <li class="tlypageguide_left" data-tourtarget="#guide_company_3">
+  <li class="tlypageguide_right" data-tourtarget="#guide_company_3">
     <div>
       在地图上标注一下你公司的位置吧，用于导航功能
     </div>
