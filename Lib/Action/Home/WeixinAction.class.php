@@ -51,44 +51,15 @@ class WeixinAction extends Action
 					    'text'
 					);
 			}
+
 		    if ($data['keyword'] == '首页' || $data['keyword'] == 'home') {
 			    return $this->shouye();
 		    }
-		    if ($data['home'] == 1) {
-			    $like['keyword'] = array(
-					    'like',
-					    '%' . $data['keyword'] . '%'
-					    );
-			    $like['token']   = $this->token;
-			    $back            = M('Img')->field('id,text,pic,url,title')->limit(9)->order('id desc')->where($like)->select();
-			    foreach ($back as $keya => $infot) {
-				    if ($infot['url'] != false) {
-					    $url = $infot['url'];
-				    } else {
-					    $url = rtrim(C('site_url'), '/') . U('Wap/Index/content', array(
-								    'token' => $this->token,
-								    'id' => $infot['id']
-								    ));
-				    }
-				    $return[] = array(
-						    $infot['title'],
-						    $infot['text'],
-						    $infot['pic'],
-						    $url
-						    );
-			    }
-			    return array(
-					    $return,
-					    'news'
-					);
+		    //自定义图文回复
+		    if($data['status']==3 && !empty($data['keyword'])){
+		    	return $this->keyword($key);
 		    } 
-		    else
-		    {
-			    return array(
-					    $data['content'],
-					    'text'
-					);
-		    }
+		    
 	    }
 		//用户取消关注时的事件
 	    elseif ('unsubscribe' == $data['Event'])
