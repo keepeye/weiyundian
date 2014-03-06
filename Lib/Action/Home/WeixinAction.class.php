@@ -17,7 +17,7 @@ class WeixinAction extends Action
         }
         //file_put_contents("./response.txt","----wechat\n",FILE_APPEND);
         $this->data  = $weixin->request();
-        file_put_contents("./debug.txt", time().$this->data['content']."\n",FILE_APPEND);
+        file_put_contents("./debug.txt", time().var_export($this->data,true)."\n",FILE_APPEND);
         //file_put_contents("./response.txt","----request\n",FILE_APPEND);
         $this->my    = C('site_my');
         list($content, $type) = $this->reply($this->data);
