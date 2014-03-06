@@ -9,8 +9,10 @@ header("Content-type: text/html; charset=utf-8");
   $_GET = array_map('stripslashes_deep', $_GET);
   $_COOKIE = array_map('stripslashes_deep', $_COOKIE);
  }
+if(isset($_GET['debug'])){
+	 define('APP_DEBUG',true);
+}
 
- define('APP_DEBUG',true);
  define('APP_NAME', 'viicms');
  define('CONF_PATH','./config/');
  define('RUNTIME_PATH','./logs/');
@@ -18,4 +20,3 @@ header("Content-type: text/html; charset=utf-8");
  define('APP_PATH','./');
  define('CORE','./Core/');
  require(CORE.'/viicms.php');
- ?>
