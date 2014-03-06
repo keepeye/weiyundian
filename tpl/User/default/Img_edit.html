@@ -28,6 +28,7 @@ items :[
           <div class="cLineB"><h4>编辑图文自定义内容</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a></div>
          
           <form method="post"   action="{pigcms::U('Img/upsave')}"  enctype="multipart/form-data" >
+          <input type=hidden name='type' value='2'/>
           <div class="msgWrap form">
             <TABLE class="userinfoArea" border="0" cellSpacing="0" cellPadding="0" width="100%">
               <THEAD>
@@ -36,13 +37,7 @@ items :[
                   <TD><input type="input" class="px" id="keyword" value="{pigcms:$info.keyword}"  name="keyword" style="width:580px;"><br />
                   多个关键词请用空格格开：例如: 美丽&nbsp;漂亮&nbsp;好看 <br/><font color='red'>当出现自动回复的消息不匹配的时候，可能是关键词冲突，换个关键词再试</font></TD>
                 </TR>
-                 <TR>
-  <TH valign="top">关键词类型：</TH>
-  <TD>
-  <label for="radio1"><input id="radio1" class="radio" type="radio" name="type" value="2"  <eq name="info.type" value="2">checked="checked"</eq> /> 完全匹配  用户输入的和此关键词一样才会触发!</label>
-  <br />
-  <label for="radio2"><input class="radio" id="radio2" type="radio" name="type" value="1" <eq name="info.type" value="1">checked="checked"</eq> /> 包含匹配 (只要用户输入的文字包含本关键词就触发!v2用户才生效)</label></TD>
-</TR>
+                 
               </THEAD>
               <TBODY>
                <TR>

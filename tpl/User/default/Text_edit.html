@@ -3,6 +3,7 @@
           <div class="cLineB"><h4>编辑文本自定义内容</h4><a href="javascript:history.go(-1);"  class="right btnGrayS vm" style="margin-top:-27px" >返回</a></div> 
 <div class="msgWrap">
   <form class="form" method="post"   action="{pigcms::U('Text/upsave')}"  target="_top" enctype="multipart/form-data" >
+  <input type=hidden name='type' value=2/>
 <TABLE class="userinfoArea" style=" margin:20px 0 0 0;" border="0" cellSpacing="0" cellPadding="0" width="100%">
   <THEAD>
 <TR>
@@ -11,12 +12,7 @@
                   多个关键词请用空格格开：例如: 美丽&nbsp;漂亮&nbsp;好看   </TD>
   <TD>&nbsp;</TD>
 </TR>
-                            <TR>
-  <TH valign="top">是否匹配关键词：</TH>
-  <TD><label for="radio1">
-  <input id="radio1" class="radio" type="radio" name="type" value="1" <if condition="$info['type'] eq 1"> checked="checked"</if>/>是</label>
-  <br /><label for="radio2"><input class="radio" id="radio2" type="radio" name="type" value="2" <if condition="$info['type'] eq 2"> checked="checked"</if>/>否</label></TD>
-</TR>
+                            
                             </THEAD>
   <TBODY>
   <input type="hidden" name="id" value="{pigcms:$info.id}" />
