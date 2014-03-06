@@ -95,7 +95,6 @@ class LotteryAction extends BaseAction{
 	 * @return unknown
 	 */
 	protected function get_rand($proArr,$total) { 
-		exit($total);
 		    $result = 7; 
 		    $randNum = mt_rand(1, $total); 
 		    foreach ($proArr as $v) {
@@ -307,7 +306,8 @@ class LotteryAction extends BaseAction{
 			);
 			M('Lottery_record')->where(array('id'=>$rid))->data($newdata)->save();//更新时间和次数
 			$record = M('Lottery_record')->where(array('id'=>$rid))->find();
-			$prizetype	=	$this->get_prize($id);			
+			$prizetype	=	$this->get_prize($id);	
+			exit($prizetype);		
 			if ($prizetype >= 1 && $prizetype <= 6) {				 
 				$sn 	= uniqid();				
 				echo '{"success":1,"sn":"'.$sn.'","prizetype":"'.$prizetype.'","usenums":"'.$record['usenums'].'"}';
