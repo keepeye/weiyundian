@@ -158,7 +158,7 @@ class LotteryAction extends BaseAction{
 					 $prizetype = ''; 
 					 //$winprize = '谢谢参与'; 
 				}else{
-					exit('ddds');
+					dump($Lottery);exit;
 					if(empty($Lottery['first']) || empty($Lottery['firstnums'])){
 						$prizetype = '';
 					}else{
