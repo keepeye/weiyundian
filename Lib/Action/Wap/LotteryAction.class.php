@@ -261,11 +261,11 @@ class LotteryAction extends BaseAction{
 		
 		$token 		=	$this->_post('token');
 		$wecha_id	=	$this->_post('oneid');
-		$id 		=	$this->_post('id');
-		$rid 		= 	$this->_post('rid');	
+		$id 		=	$this->_post('id');//lid
+		$rid 		= 	$this->_post('rid');//id	
 		$redata 	=	M('Lottery_record');
 		$where 		= 	array('token'=>$token,'wecha_id'=>$wecha_id,'lid'=>$id);
-		$record 	=	$redata->where($where)->find();	
+		$record 	=	$redata->where($where)->find();	//用户抽奖记录
 		
 		// 1. 中过奖金	
 		if ($record['islottery'] == 1) {				
@@ -307,16 +307,22 @@ class LotteryAction extends BaseAction{
 				'time'=>time(),
 				'usenums'=>array('exp','`usenums`+1')
 			);
-			M('Lottery_record')->where(array('id'=>$rid))->data($newdata)->save();//更新时间和次数
-			$record = M('Lottery_record')->where(array('id'=>$rid))->find();
+			$map = array('id'=>$rid,'wecha_id'=>$wecha_id,'lid'=>$id);
+			
+			//$record = M('Lottery_record')->where(array('id'=>$rid))->find();
 			$prizetype	=	$this->get_prize($id);	
 
 			if ($prizetype >= 1 && $prizetype <= 6) {				 
-				$sn 	= uniqid();				
-				echo '{"success":1,"sn":"'.$sn.'","prizetype":"'.$prizetype.'","usenums":"'.$record['usenums'].'"}';
+				$sn 	= uniqid();
+				$prize = str_replace(array(1,2,3,4,5,6),array('一','二','三','四','五','六'),$prizetype)."等奖";
+				$newdata['sn'] = $sn;//写入sn号码
+				$newdata['prize'] = $prize;	//中奖等级描述
+				$newdata['islottery'] = 1;
+				echo '{"success":1,"sn":"'.$sn.'","prizetype":"'.$prizetype.'","usenums":"'.($record['usenums']+1).'"}';
 			}else{
-				echo '{"success":0,"prizetype":"","usenums":"'.$record['usenums'].'"}';
-			}			
+				echo '{"success":0,"prizetype":"","usenums":"'.($record['usenums']+1).'"}';
+			}
+			M('Lottery_record')->where($map)->data($newdata)->save();//更新抽奖记录、若中奖则写入sn号码		
 			exit;
 		} 
 	}
@@ -327,15 +333,22 @@ class LotteryAction extends BaseAction{
 		 if($_POST['action'] ==  'add' ){
 			$lid 				= $this->_post('lid');
 			$wechaid 			= $this->_post('wechaid');
-			$data['sn']			= $this->_post('sncode');
+			$sn		= $this->_post('sncode');
 			$data['phone'] 		= $this->_post('tel');
-			$data['prize']		= $this->_post('prizetype');
 			$data['wecha_name'] = $this->_post('wxname');
-			$data['time']		= time(); 
-			$data['islottery']	= 1;			
 
-			$rollback = M('Lottery_record')->where(array('lid'=> $lid,
-				'wecha_id'=>$wechaid))->save($data);
+			$where = array('lid'=>$lid,'wecha_id'=>$wechaid);
+			//检测奖项是否真实存在
+			$record = M('Lottery_record')->where($where)->find();
+			if(!$record || $record['islottery'] != 1 || $record['sn']==""){
+				$this->ajaxReturn(array('success'=>'1','msg'=>'未检测到中奖记录'));
+			}
+			//奖品已经派发
+			if($record['sendstutas'] != 0){
+				$this->ajaxReturn(array('success'=>'1','msg'=>'奖品已派发，请不要重复提交'));
+			}
+			//记录用户联系信息
+			$rollback = M('Lottery_record')->where($where)->save($data);
 			
 			echo'{"success":1,"msg":"恭喜！尊敬的 '.$data['wecha_name'].',请您保持手机通畅！你的领奖序号:'.$data['sn'].'"}';
 			exit;
