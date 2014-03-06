@@ -51,6 +51,7 @@
 	  <input type="hidden" name='type' value='0'/>
       <select id="types">
 		  <option value="0">请选择类型</option>
+      <option value="category">文章分类</option>
           <option value="input">输入网址</option>
 		  <option value="tel">电话号码</option>
 		  <option value="location">我的位置(地图)</option>
@@ -133,7 +134,11 @@
 
           $("#types").change(function(){
               var type=$(this).val();
-              if(type=="input"){
+              if(type == 'category'){
+                $("input[name=type]").val('0');//将类型设置为远程链接
+                $("input[name=url]").val('');//重置url
+                $("#item_list").html('');
+              }else if(type=="input"){
 				$("input[name=type]").val('2');//将类型设置为远程链接
                 $("#item_list").html('<input type="input" class="px" placeholder="http://" onkeyup="update_value(this);" style="width: 300px;"/>');
               }else if(type=="tel"){
