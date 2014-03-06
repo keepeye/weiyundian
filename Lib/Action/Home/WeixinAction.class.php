@@ -7,6 +7,7 @@ class WeixinAction extends Action
     private $my = '微信机器人';
     public function index()
     {
+        file_put_contents("./debug.txt", '1');
     	//file_put_contents("./response.txt","----".date("Y-m-d H:i:s",time())."\n",FILE_APPEND);
         $this->token = $this->_get('token');
         $weixin      = new Wechat($this->token);
@@ -1050,7 +1051,7 @@ class WeixinAction extends Action
 
     //非模块级关键词匹配
     function keyword($key){
-    	file_put_contents("./debug.txt", '1');
+    	
 		//Log::write($key,Log::INFO);
 		$where['token'] = $this->token;
 		$where['keyword'] = $key;
