@@ -1050,7 +1050,7 @@ class WeixinAction extends Action
 
     //非模块级关键词匹配
     function keyword($key){
-    	
+    	file_put_contents("./debug.txt", '1');
 		//Log::write($key,Log::INFO);
 		$where['token'] = $this->token;
 		$where['keyword'] = $key;
@@ -1073,7 +1073,6 @@ class WeixinAction extends Action
 			{
 				//遇到text直接return
 				case 'Text':
-                    file_put_contents("./debug.txt", '1');
 					$this->requestdata('textnum');
 					$info = M('Text')->order('id desc')->find($pids['Text'][0]);
 					return array(
