@@ -50,6 +50,7 @@
                 <input type="hidden" name='type' value='{pigcms:$info.type}'/>
                 <select id="types">
                  <option value="0">更改类型请选择</option>
+                 <option value="category">作为文章分类</option>
                  <option value="input">输入外链</option>
                  <option value="tel">电话号码</option>
                  <option value="location">我的位置(地图)</option>
@@ -136,8 +137,9 @@
 
           $("#types").change(function(){
               var type=$(this).val();
-              if(type == 0){
+              if(type == 'category'){
                 $("input[name=type]").val('0');//将类型设置为远程链接
+                $("input[name=url]").val('');//重置url
                 $("#item_list").html('');
               }
               else if(type=="input"){
