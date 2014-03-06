@@ -110,7 +110,7 @@ class LotteryAction extends BaseAction{
 	}  
 	
 	protected function get_prize($id){
-		exit($id);
+
 		$Lottery 	= M('Lottery')->where(array('id'=>$id))->find();
 		//
 		$firstNum=intval($Lottery['fistnums']);
@@ -144,7 +144,9 @@ class LotteryAction extends BaseAction{
 			}			
 			 
 		}else{
+
 			$prizetype = $this->get_rand($prize_arr,$total); 
+			exit('ddd:'.$prizetype);
 		}
 		 
 		//$winprize = $prize_arr[$rid-1]['prize'];
