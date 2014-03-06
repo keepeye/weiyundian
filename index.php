@@ -11,7 +11,9 @@ header("Content-type: text/html; charset=utf-8");
  }
 if(isset($_GET['debug'])){
 	 define('APP_DEBUG',true);
-}
+	}else{
+		define('APP_DEBUG',false);
+	}
 
  define('APP_NAME', 'viicms');
  define('CONF_PATH','./config/');
