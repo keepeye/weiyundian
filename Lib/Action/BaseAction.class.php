@@ -105,7 +105,6 @@ class BaseAction extends Action
                     foreach($keywords as $keyword){
                         $data['keyword'] = $keyword;
                         M('Keyword')->add($data);
-                        dump(M()->getDbError());
                     }
 					
                 }
