@@ -14,11 +14,11 @@
               <tbody>
                 <tr>
                   <th><span class="red">*</span>公众号原始id：</th>
-                  <td><input type="text" required="" name="wxid" value="" onmouseup="this.value=this.value.replace('_430','')" class="px" tabindex="1" size="25">　<span class="red">请认真填写，错了不能修改。</span>比如：gh_423dwjkeww3 <a href="http://jingyan.baidu.com/article/63f23628eb6b490209ab3d6b.html" target="_blank"><img src="{pigcms::RES}/images/help.png" class="vm helpimg" title="帮助"></a></td>
+                  <td><input type="text" required="" name="wxid" value="" onmouseup="this.value=this.value.replace('_430','')" class="px" tabindex="1" size="25">　<span class="red">请认真填写，错了不能修改。</span>比如：gh_423dwjkeww3 <a href="http://jingyan.baidu.com/article/63f23628eb6b490209ab3d6b.html" target="_blank"></td>
                 </tr>
                 <tr>
                   <th><span class="red">*</span>微信号：</th>
-                  <td><input type="text" required="" name="weixin" value="" class="px" tabindex="1" size="25">　比如：weiyundian </td>
+                  <td><input type="text" required="" name="weixin" value="" class="px" tabindex="1" size="25">　可以是你的公众号名 </td>
                 </tr>
                   <tr>
                   <th><span class="red">*</span>头像：</th>
@@ -30,7 +30,7 @@
                 </tr>
                  <tr>
                   <th><span class="red">*</span>TOKEN：</th>
-                  <td><input type="text" name="token" value="" class="px" tabindex="1" size="40">(填写你的公众号)例：token123,请勿填写文,或者其它特殊字符，此处token和腾讯平台必须一致!</td>
+                  <td><input type="text" name="token" value="<?php echo uniqid();?>" class="px" tabindex="1" size="40">此处的token系统自动生成，也可以自己设置，用于和微信官方平台对接。</td>
                 </tr>
                 
                 <tr>
@@ -46,7 +46,7 @@
                 </tr>
                  <tr>
                   <th><span class="red">*</span>粉丝数：</th>
-                  <td><input type="text" required="" name="wxfans" value="" class="px" tabindex="1" size="25"></td>
+                  <td><input type="text" required="" name="wxfans" value="100" class="px" tabindex="1" size="25"></td>
                 </tr>
              
                 <tr>
