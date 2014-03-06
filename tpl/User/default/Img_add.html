@@ -34,10 +34,7 @@ items : [
                   <TD><input type="input" class="px" id="keyword" value=""  name="keyword" style="width:580px;"><br />
                   多个关键词请用空格格开：例如: 美丽&nbsp;漂亮&nbsp;好看<br/><font color='red'>当出现自动回复的消息不匹配的时候，可能是关键词冲突，换个关键词再试</font> </TD>
                 </TR>
-                 <TR>
-  <TH valign="top">关键词类型：</TH>
-  <TD><label for="radio1"><input id="radio1" class="radio" type="radio" name="type" value="2"  checked="checked"    > 完全匹配  用户输入的和此关键词一样才会触发!</label><br /><label for="radio2"><input class="radio" id="radio2" type="radio" name="type" value="1"   > 包含匹配 (只要用户输入的文字包含本关键词就触发!v2用户才生效)</label></TD>
-</TR>
+                 
               </THEAD>
               <TBODY>
                <TR>
@@ -61,12 +58,9 @@ items : [
                     </select><a href="{pigcms::U('Classify/add')}"  target="ddd" >添加分类</a>
                   </TD>
                 </TR>
-                <TR>
-                  <TH valign="top"><label for="picurl">封面图片：</label></TH>
-                  <TD>（尺寸：宽720像素，高400像素） 小于500k;<div style="display:none"><input name="upfile" type="file"  class="text textMiddle inputQ" value="请选择图片" />不上传不设置系统会自动随机分配</div></TD>
-                </TR>
                 
-                          <TR>
+                
+               <TR>
                   <TH valign="top"><label for="pic">封面图片地址：</label></TH>
                   <TD>
                       <img class="upload_image" src="" style="display: none;max-height: 100px;" />
