@@ -84,6 +84,9 @@ class LotteryAction extends BaseAction{
 		$data['title']		= $Lottery['title'];
 		$data['statdate']	= $Lottery['statdate'];
 		$data['enddate']	= $Lottery['enddate'];		
+		$data['animpic'] = $Lottery['animpic'];
+		$data['hitangle'] = $Lottery['hitangle'];
+		$data['lostangle'] = $Lottery['lostangle'];
 		$this->assign('Dazpan',$data);
 		//var_dump($data);exit();
 		$this->display();

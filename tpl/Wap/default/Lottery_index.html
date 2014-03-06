@@ -81,7 +81,7 @@ var loadingObj = new loading(document.getElementById('loading'),{radius:20,circl
 <else/>
     <div id="outercont"  >
         <div id="outer-cont">
-            <div id="outer"><img src="{pigcms::RES}/css/guajiang/images/activity-lottery-5.png"></div>
+            <div id="outer"><img src="<empty name="Dazpan.animpic">{pigcms::RES}/css/guajiang/images/activity-lottery-5.png<else/>{pigcms:$Dazpan.animpic}</empty>"></div>
         </div>
         <div id="inner-cont">
             <div id="inner"><img src="{pigcms::RES}/css/guajiang/images/activity-lottery-2.png"></div>
@@ -181,8 +181,8 @@ $(function() {
 
     var totalDeg = 360 * 3 + 0;
     var steps = []; 
-    var lostDeg = [36, 96, 156, 216, 276,336];
-    var prizeDeg = [6, 66, 126,186,246,306];
+    var lostDeg = [<?php echo empty($Dazpan['lostangle'])?"36, 96, 156, 216, 276,336":$Dazpan['lostangle'];?>];
+    var prizeDeg = [<?php echo empty($Dazpan['hitangle'])?"6, 66, 126,186,246,306":$Dazpan['hitangle'];?>];
     var prize, sncode;
 	var usenums = 0;
     var count = 0; 
