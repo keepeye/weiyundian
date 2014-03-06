@@ -95,7 +95,6 @@ class LotteryAction extends BaseAction{
 	 * @return unknown
 	 */
 	protected function get_rand($proArr,$total) { 
-			exit($total);
 		    $result = 7; 
 		    $randNum = mt_rand(1, $total); 
 		    foreach ($proArr as $v) {
