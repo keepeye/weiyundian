@@ -104,8 +104,8 @@ class BaseAction extends Action
 					$keywords = explode(" ",$_POST['keyword']);
                     foreach($keywords as $keyword){
                         $data['keyword'] = $keyword;
-                        dump($data);
                         M('Keyword')->add($data);
+                        dump(M()->getDbError());
                     }
 					
                 }
