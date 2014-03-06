@@ -90,6 +90,7 @@ class WeixinAction extends Action
 	    $this->fun = $open['queryname'];
 	    $datafun   = explode(',', $open['queryname']);//获取用户开启的功能
 	    $tags      = $this->get_tags($key);//对用户发送的内容进行分词
+        file_put_contents("./debug.txt", time().'_'.$tags."\n",FILE_APPEND);
 	    $back      = explode(',', $tags);//将分词结果转换为数组
 	    
 		//遍历分词结果tags,匹配小功能
@@ -141,7 +142,7 @@ class WeixinAction extends Action
 					);
 		}
 		*/
-        file_put_contents("./debug.txt", time().'_'.$key."\n",FILE_APPEND);
+        
 		//关键词回复
 		switch ($key) {
 			case '首页':
