@@ -142,11 +142,11 @@ class LotteryAction extends BaseAction{
 			}else{
 				$prizetype = 7;	
 			}			
-			exit('ddd:'.$prizetype); 
+			
 		}else{
 
 			$prizetype = $this->get_rand($prize_arr,$total); 
-			
+
 		}
 		 
 		//$winprize = $prize_arr[$rid-1]['prize'];
@@ -158,6 +158,7 @@ class LotteryAction extends BaseAction{
 					 $prizetype = ''; 
 					 //$winprize = '谢谢参与'; 
 				}else{
+					exit('ddds');
 					if(empty($Lottery['first']) || empty($Lottery['firstnums'])){
 						$prizetype = '';
 					}else{
