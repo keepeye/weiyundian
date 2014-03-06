@@ -35,7 +35,7 @@
 				<tr>
                   <td>  {pigcms:$i}</td>
                   <td>{pigcms:$vo.keyword}</td>
-                  <td><div class="answer_text">{pigcms:$vo.text}</div></td>
+                  <td><div class="answer_text">{pigcms:$vo.text|substr=###,0,30}..</div></td>
                   
                   <td>{pigcms:$vo.click}</td>
                     <td><php>echo date('Y-m-d',$vo['updatetime']);</php></td>
