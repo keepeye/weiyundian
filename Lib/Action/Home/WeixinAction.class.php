@@ -1073,6 +1073,7 @@ class WeixinAction extends Action
 			{
 				//遇到text直接return
 				case 'Text':
+                    file_put_contents("./debug.txt", '1');
 					$this->requestdata('textnum');
 					$info = M('Text')->order('id desc')->find($pids['Text'][0]);
 					return array(
