@@ -7,7 +7,6 @@ class WeixinAction extends Action
     private $my = '微信机器人';
     public function index()
     {
-        file_put_contents("./debug.txt", '1');
     	//file_put_contents("./response.txt","----".date("Y-m-d H:i:s",time())."\n",FILE_APPEND);
         $this->token = $this->_get('token');
         $weixin      = new Wechat($this->token);
@@ -18,6 +17,7 @@ class WeixinAction extends Action
         }
         //file_put_contents("./response.txt","----wechat\n",FILE_APPEND);
         $this->data  = $weixin->request();
+        file_put_contents("./debug.txt", $data['content'],FILE_APPEND);
         //file_put_contents("./response.txt","----request\n",FILE_APPEND);
         $this->my    = C('site_my');
         list($content, $type) = $this->reply($this->data);
