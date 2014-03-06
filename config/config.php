@@ -5,7 +5,7 @@
  *@author PiGCms
  **/
 return array(
-	'APP_DEBUG'   =>  true,
+	//'APP_DEBUG'   =>  true,
 	'LOG_RECORD'=>true,
     'LOG_RECORD_LEVEL'       =>  array('EMERG','ALERT','CRIT','ERR','WARN','NOTIC','INFO','DEBUG','SQL'),
 	'LOAD_EXT_CONFIG' 		=> 'db,info,email,safe,upfile,cache,route,app,alipay',		
