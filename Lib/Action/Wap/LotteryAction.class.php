@@ -142,11 +142,11 @@ class LotteryAction extends BaseAction{
 			}else{
 				$prizetype = 7;	
 			}			
-			 
+			exit('ddd:'.$prizetype); 
 		}else{
 
 			$prizetype = $this->get_rand($prize_arr,$total); 
-			exit('ddd:'.$prizetype);
+			
 		}
 		 
 		//$winprize = $prize_arr[$rid-1]['prize'];
