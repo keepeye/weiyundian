@@ -97,7 +97,6 @@ class BaseAction extends Action
 
                 $m_arr = array_keys($this->getKewordModules());
                 if (in_array($name, $m_arr) && !empty($_POST['keyword'])) {
-                    dump($_POST['keyword']);
                     $data['pid']    = $_POST['id'];
                     $data['module'] = $name;
                     $data['token']  = session('token');
@@ -105,6 +104,7 @@ class BaseAction extends Action
 					$keywords = explode(" ",$_POST['keyword']);
                     foreach($keywords as $keyword){
                         $data['keyword'] = $keyword;
+                        echo "$keyword";
                         M('Keyword')->add($data);
                     }
 					
