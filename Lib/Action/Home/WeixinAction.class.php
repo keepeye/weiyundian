@@ -89,7 +89,7 @@ class WeixinAction extends Action
 				    ))->find();
 	    $this->fun = $open['queryname'];
 	    $datafun   = explode(',', $open['queryname']);//获取用户开启的功能
-        file_put_contents("./debug.txt", time().'_'.$key."\n",FILE_APPEND);
+
 	    $tags      = $this->get_tags($key);//对用户发送的内容进行分词
 
 	    $back      = explode(',', $tags);//将分词结果转换为数组
@@ -1048,6 +1048,9 @@ class WeixinAction extends Action
         $tags = array();
         foreach ($words as $val) {
             $tags[] = $val['word'];
+        }
+        if(empty($tags)){
+            return $title;//如果分词结果为空，则原样返回
         }
         return implode(',', $tags);
     }
