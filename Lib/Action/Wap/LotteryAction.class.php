@@ -110,6 +110,7 @@ class LotteryAction extends BaseAction{
 	}  
 	
 	protected function get_prize($id){
+		exit($id);
 		$Lottery 	= M('Lottery')->where(array('id'=>$id))->find();
 		//
 		$firstNum=intval($Lottery['fistnums']);
@@ -307,7 +308,7 @@ class LotteryAction extends BaseAction{
 			M('Lottery_record')->where(array('id'=>$rid))->data($newdata)->save();//更新时间和次数
 			$record = M('Lottery_record')->where(array('id'=>$rid))->find();
 			$prizetype	=	$this->get_prize($id);	
-			exit($prizetype);		
+
 			if ($prizetype >= 1 && $prizetype <= 6) {				 
 				$sn 	= uniqid();				
 				echo '{"success":1,"sn":"'.$sn.'","prizetype":"'.$prizetype.'","usenums":"'.$record['usenums'].'"}';
