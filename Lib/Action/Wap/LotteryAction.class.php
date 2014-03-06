@@ -154,11 +154,10 @@ class LotteryAction extends BaseAction{
 		switch($prizetype){
 			case 1:
 					 
-				if ($Lottery['fistlucknums'] >= $Lottery['fistnums']) {
+				if ($Lottery['fistlucknums'] >= $Lottery['firstnums']) {
 					 $prizetype = ''; 
 					 //$winprize = '谢谢参与'; 
 				}else{
-					dump($Lottery);exit;
 					if(empty($Lottery['first']) || empty($Lottery['firstnums'])){
 						$prizetype = '';
 					}else{
