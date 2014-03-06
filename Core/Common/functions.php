@@ -56,6 +56,7 @@ function halt($error) {
                 $e['message'] = C('ERROR_MESSAGE');
         }
     }
+    echo "aaa";
     // 包含异常页面模板
     include C('TMPL_EXCEPTION_FILE');
     exit;
