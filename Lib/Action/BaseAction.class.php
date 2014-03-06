@@ -94,9 +94,10 @@ class BaseAction extends Action
         } else {
             $id = $db->save();
             if ($id!==false) {
-                dump($_POST['keyword']);
+
                 $m_arr = array_keys($this->getKewordModules());
                 if (in_array($name, $m_arr) && !empty($_POST['keyword'])) {
+                    dump($_POST['keyword']);
                     $data['pid']    = $_POST['id'];
                     $data['module'] = $name;
                     $data['token']  = session('token');
