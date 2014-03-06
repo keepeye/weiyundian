@@ -60,7 +60,7 @@
 			<a href="{pigcms::U('Index/login')}">注册</a>
 			<else/>
 			你好,<a href="/#" hidefocus="true"  ><span style="color:#C5A684">{pigcms:$Think.session.uname}</span></a>（uid:{pigcms:$Think.session.uid}）
-			<a href="/#" onclick="Javascript:window.open('{pigcms::U('System/Admin/logout')}','_blank')" >退出</a>
+			<a href="{pigcms::U('System/Admin/logout')}" >退出</a>
 	</if>	
 	</div>
 </div>
@@ -70,9 +70,9 @@
             <div class="navr">
         <ul id="topMenu">           
             <li <if condition="(ACTION_NAME eq 'index') and (GROUP_NAME eq 'Home')">class="menuon"</if> ><a href="/">首页</a></li>
-                <li <eq name="ACTION_NAME" value="fc">class="menuon"</eq>><a href="{pigcms::U('Home/Index/fc')}">功能介绍</a></li>
-                <li <eq name="ACTION_NAME" value="about">class="menuon"</eq>><a href="{pigcms::U('Home/Index/about')}">关于我们</a></li>
-                <li <eq name="ACTION_NAME" value="price">class="menuon"</eq>><a href="{pigcms::U('Home/Index/price')}">资费说明</a></li>
+                
+                
+                
                 <li <eq name="GROUP_NAME" value="User">class="menuon"</eq>><a href="{pigcms::U('User/Index/index')}">管理中心</a></li>
                 <li <eq name="ACTION_NAME" value="help">class="menuon"</eq>><a href="{pigcms::U('Home/Index/help')}">帮助中心</a></li>
 				<li><a href="{pigcms::U('Home/Index/suggest')}">建议反馈</a></li>
