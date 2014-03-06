@@ -37,7 +37,6 @@ class BaseAction extends Action
             if ($id) {
                 $m_arr = array_keys($this->getKewordModules());//关键词关联模块列表 by 成
                 if (in_array($name, $m_arr) && !empty($_POST['keyword'])) {
-                    echo 'aaaaaa';
                     $data['pid']     = $id;
                     $data['module']  = $name;
                     $data['token']   = session('token');
@@ -94,7 +93,8 @@ class BaseAction extends Action
             $this->error($db->getError());
         } else {
             $id = $db->save();
-            if ($id) {
+            if ($id!==false) {
+                dump($_POST['keyword']);
                 $m_arr = array_keys($this->getKewordModules());
                 if (in_array($name, $m_arr) && !empty($_POST['keyword'])) {
                     $data['pid']    = $_POST['id'];
