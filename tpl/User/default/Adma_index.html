@@ -22,7 +22,23 @@ background: url({pigcms::RES}/images/adma/erweimabg.png) repeat scroll 0 0  tran
 .yulan .footer p{
     background: url({pigcms::RES}/images/adma/erweima_footer.png) no-repeat scroll center top transparent;font-size:12px;line-height: 48px;}
 </style>
+<script>
 
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('#info', {
+pasteType: 1,//粘贴时删除所有样式
+resizeType : 1,
+allowPreviewEmoticons : false,
+uploadJson  : "/index.php?m=Image&a=upload",
+items : [
+'source','undo','clearhtml','hr','fontsize','forecolor','hilitecolor',
+'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+'insertunorderedlist', '|', 'emoticons', 'image','link', 'unlink','baidumap','lineheight','table','anchor','preview','print','template','code','cut']
+});
+
+});
+</script>
 <div class="content">
 
 <div class="cLineB">
