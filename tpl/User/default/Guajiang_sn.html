@@ -3,17 +3,26 @@
          
           <div class="cLineB">
               <h4 class="left">刮刮卡SN码发放管理</h4>
-              <div class="searchbar right">  
-                  <form method="post">
-                    <input type="text"  class="txt left" placeholder="输入sn码,可以是前几位"  name="sn" value="">
-                    <input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="查找">
-                  </form>
-                  </div>
+             
               <div class="clr"></div> 
           </div>
         
   <div class="cLineB">
              本次活动奖品总数：<span class="redamount">{pigcms:$datacount}</span>个　　　中奖人数：<span class="redamount">{pigcms:$recordcount} </span>个　　已领取奖品：<span class="redamount">{pigcms::$sendCount}</span>个          </div>
+  <div class="searchbar">  
+      <form method="get">
+        <input type="hidden" name="g" value="<?php echo GROUP_NAME;?>"/>
+        <input type="hidden" name="m" value="<?php echo MODULE_NAME;?>"/>
+        <input type="hidden" name="a" value="<?php echo ACTION_NAME;?>"/>
+        <input type="hidden" name="id" value="<?php echo $_GET['id'];?>"/>
+        <input type="hidden" name="type" value="2"/>
+       sn码：<input type="text"  class="txt" placeholder="输入sn码"  name="filter[sn]" value="">&nbsp;
+       手机号：<input type="text"  class="txt"   name="filter[phone]" value="">&nbsp;
+
+        <input type="submit" value="查找" id="msgSearchBtn" href="" class="btnGrayS" title="查找">
+        <small>列出所有的记录，把条件清空，直接点击查找即可</small>
+      </form>
+  </div>
   <div class="cLine" style=" padding: 8px 0">
           </div>
           <div class="msgWrap">
