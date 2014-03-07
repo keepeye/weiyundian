@@ -6,7 +6,7 @@ class LotteryAction extends BaseAction{
 		$token		= $this->_get('token');
 		$wecha_id	= $this->_get('wecha_id') || cookie('openid');
 		if($wecha_id == ""){
-			$this->error("请通过微信进入本页面");
+			$this->redirect("Home/Adma/index?token=".$token);
 		}
 		
 		$id 		= $this->_get('id');

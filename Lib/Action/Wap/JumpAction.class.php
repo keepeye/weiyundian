@@ -9,4 +9,5 @@ class JumpAction extends Action{
 		//dump(htmlspecialchars_decode($appurl));
 		redirect(htmlspecialchars_decode($appurl));
 	}
+
 }
