@@ -21,10 +21,14 @@ class GuajiangAction extends UserAction{
 		$id=$this->_get('id');
 		$data=M('Lottery')->where(array('token'=>session('token'),'id'=>$id,'type'=>2))->find();
 		if(!$data){
-			$this->error("活动不存在");
+			$this->error("刮刮卡活动不存在");
 		}
-		$record=M('Lottery_record')->where('token="'.session('token').'" and lid='.$id.' and sn!=""')->select();
-		$recordcount=M('Lottery_record')->where('token="'.session('token').'" and lid='.$id.' and sn!=""')->count();
+		$map = array('token'=>session('token'),'lid'=>$id,'sn'=>array('neq',''));
+		if(IS_POST && isset($_POST['sn']) && !empty($_POST['sn'])){
+			$map['sn']=array('like',"{$_POST['sn']}%");
+		}
+		$record=M('Lottery_record')->where($map)->select();
+		$recordcount=M('Lottery_record')->where($map)->count();
 		$datacount=$data['fistnums']+$data['secondnums']+$data['thirdnums'];
 		$this->assign('datacount',$datacount);//奖品数量
 		$this->assign('recordcount',$recordcount);//中讲数量
