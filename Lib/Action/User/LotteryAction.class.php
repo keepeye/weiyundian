@@ -24,6 +24,7 @@ class LotteryAction extends UserAction{
 		$map = array('token'=>session('token'),'lid'=>$id,'islottery'=>1);
 		if(isset($_REQUEST['filter']) && !empty($_REQUEST['filter'])){
 			$map = array_merge($map,$_REQUEST['filter']);
+			dump($map);
 		}
 		
 		$recordcount=M('Lottery_record')->where($map)->count();//中奖总数
