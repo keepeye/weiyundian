@@ -4,11 +4,9 @@
           <div class="cLineB">
               <h4 class="left">幸运大转盘SN码发放管理</h4>
               <div class="searchbar right">  
-                  <form method="get"  action="index.php"  >
-                  <input type="text" id="msgSearchInput" class="txt left" placeholder="输入sn码"  name="keyz" value="">
-                  <input type="hidden" name="ac" value="activity-lottery-list"  />
-                  <input type="hidden" name="id" value="9878"  />
-                  <input type="hidden" name="wxid" value="gh_423dwjkewad"  />
+                  <form method="get">
+                  <input type="text"  class="txt left" placeholder="输入sn码"  name="sn" value="">
+                  
                  
                   <input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="查找">
                   </form>
@@ -22,9 +20,8 @@
   <div class="cLine" style=" padding: 8px 0">
           </div>
           <div class="msgWrap">
-          <form method="post"  action="" id="info" >
-          <input name="delall"  type="hidden" value="" />
-           <input name="wxid"  type="hidden" value="" />
+         
+          
             <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
               <THEAD>
                 <TR style="text-align: center;">
@@ -67,7 +64,7 @@
 				</volist>
 			  </TBODY>
             </TABLE>
-           </form> 
+            
            <script>
    function checkvotethis() {
 var aa=document.getElementsByName('del_id[]');
