@@ -92,6 +92,9 @@ img{max-width: 99%}
 	
 		<div class="main">
 		<h1>{pigcms:$adma.title}</h1>
+        <div class="content" id="gzhinfo">
+                {pigcms:$adma.info|htmlspecialchars_decode}
+        </div>
 		<div class="erweima"><img id="gzhewm" src="{pigcms:$adma.url}"></div>
 		<div class="beizhu">
 		<div class="beizhubg">
@@ -100,9 +103,7 @@ img{max-width: 99%}
 		<p>请使用微信扫描二维码关注此公众号</p>
 		</div>
 		</div>
-		<div class="content" id="gzhinfo">
-				{pigcms:$adma.info|htmlspecialchars_decode}
-		</div>
+		
 		<div class="clr"></div>
 		<div class="footer"><p id="gzhcopyright">{pigcms:$adma.copyright}</p></div>
 		</div>
