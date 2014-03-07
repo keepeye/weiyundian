@@ -29,26 +29,7 @@
         <link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimob2_content/font-awesome.css" media="all">
 
 <div class="body" style="padding-bottom:60px;">
-						<article id="shareCover" class="toshare" onclick="$(&#39;#shareCover&#39;).toggleClass(&#39;on&#39;)">
-		<table>
-			<tbody><tr>
-				<td colspan="2" style="text-align:right;">
-					<img src="{pigcms::RES}/weimob2_content/share_1.png" style="width:120px!important;">
-					<img src="{pigcms::RES}/weimob2_content/share_2.png" style="width:30px!important;">
-				</td>
-			</tr>
-			<tr>
-				<td style="width:50%;">
-					<img src="{pigcms::RES}/weimob2_content/share_4.png">
-					<div>发送给朋友</div>
-				</td>
-				<td>
-					<img src="{pigcms::RES}/weimob2_content/share_3.png">
-					<div>分享到朋友圈</div>
-				</td>
-			</tr>
-		</tbody></table>
-	</article>
+						
 	<script>
 		window.addEventListener("DOMContentLoaded", function(){
 			var nav = document.querySelectorAll(".nav_8")[0];
@@ -67,38 +48,7 @@
 		});
 
 	</script>
-	<div class="top_bar footer_bar">
-			<section>
-					<div class="nav_8">
-									<ul class="box">
-							<li>
-								<a href="javascript:" onclick="history.go(-1)">
-									<p class="back2"></p>
-									<span>返回</span>
-								</a>
-							</li>
-															<li>
-								<a href="tel:{pigcms:$company.tel}">
-									<p class="tel"></p>
-									<span>联系电话</span>
-								</a>
-							</li>
-																					<li>
-								<a href="{pigcms::U('Wap/Index/index',array('token'=>$token))}">
-									<p class="home"></p>
-									<span>首页</span>
-								</a>
-							</li>
-							<li>
-								<a href="javascript:$('#shareCover').toggleClass('on');">
-									<p class="share"></p>
-									<span>分享</span>
-								</a>
-							</li>
-						</ul>
-					</div>
-			</section>
-		</div>
+	
 		<section class="news_article" style="padding:20px;">
 		<header>
 			<h3 style="font-size:14px;">{pigcms:$res.title}</h3>
