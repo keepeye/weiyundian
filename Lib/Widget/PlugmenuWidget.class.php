@@ -10,7 +10,7 @@ class PlugmenuWidget extends Widget{
 		}
 		$menus = $this->getMenus();//获取快捷菜单列表
 		$settings = $this->getSettings();//获取快捷菜单样式设置
-		if(empty($menus) || empty($settings)){
+		if(empty($menus) || empty($settings) || $settings['style']==-1){
 			return "";
 		}
 		$tpl = "style".$settings['style'];//指定模板
