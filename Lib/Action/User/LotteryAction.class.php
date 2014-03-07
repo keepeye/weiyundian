@@ -29,7 +29,7 @@ class LotteryAction extends UserAction{
 		$recordcount=M('Lottery_record')->where($map)->count();//中奖总数
 		//分页
 		$count      = $recordcount;
-		$Page       = new Page($count,1);
+		$Page       = new Page($count,20);
 		$pagestr       = $Page->show();
 		$record=M('Lottery_record')->where($map)->order('`time` desc')->limit($Page->firstRow.','.$Page->listRows)->select();//中奖列表
 		$this->assign('pagestr',$pagestr);
