@@ -23,7 +23,7 @@ class LotteryAction extends UserAction{
 		$data=M('Lottery')->where(array('token'=>session('token'),'id'=>$id))->find();
 		$map = array('token'=>session('token'),'lid'=>$id,'sn'=>array('neq',''));
 		if(IS_POST && isset($_POST['sn']) && !empty($_POST['sn'])){
-			$map['sn']=$_POST['sn'];
+			$map['sn']=array('like',"{$_POST['sn']}%");
 		}
 		$record=M('Lottery_record')->where($map)->select();
 		$recordcount=M('Lottery_record')->where($map)->count();
