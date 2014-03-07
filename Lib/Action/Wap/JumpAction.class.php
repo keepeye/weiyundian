@@ -6,6 +6,6 @@ class JumpAction extends Action{
 		$openid = $_GET['openid'];//微信用户唯一id
 		cookie("openid",$openid);
 		cookie("wecha_id",$wecha_id);
-		echo "正在启用应用...<script>window.location.href=\"{$appurl}\"</script>";
+		echo "正在启用应用...{$appurl}";
 	}
 }
