@@ -1,7 +1,6 @@
 <?php
 class GuajiangAction extends UserAction{
 	public function index(){
-		dump(C('TMPL_STRIP_SPACE'));
 		if(session('gid')==1){
 			$this->error('vip0无法使用抽奖活动,请充值后再使用',U('User/Index/index'));
 		}
