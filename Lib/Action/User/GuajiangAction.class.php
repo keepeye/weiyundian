@@ -19,7 +19,10 @@ class GuajiangAction extends UserAction{
 			$this->error('vip0无法使用抽奖活动,请充值后再使用',U('User/Index/index'));
 		}
 		$id=$this->_get('id');
-		$data=M('Lottery')->where(array('token'=>session('token'),'id'=>$id))->find();
+		$data=M('Lottery')->where(array('token'=>session('token'),'id'=>$id,'type'=>2))->find();
+		if(!$data){
+			$this->error("活动不存在");
+		}
 		$record=M('Lottery_record')->where('token="'.session('token').'" and lid='.$id.' and sn!=""')->select();
 		$recordcount=M('Lottery_record')->where('token="'.session('token').'" and lid='.$id.' and sn!=""')->count();
 		$datacount=$data['fistnums']+$data['secondnums']+$data['thirdnums'];
