@@ -21,8 +21,12 @@ class LotteryAction extends UserAction{
 		}
 		$id=$this->_get('id');
 		$data=M('Lottery')->where(array('token'=>session('token'),'id'=>$id))->find();
-		$record=M('Lottery_record')->where('token="'.session('token').'" and lid='.$id.' and sn!=""')->select();
-		$recordcount=M('Lottery_record')->where('token="'.session('token').'" and lid='.$id.' and sn!=""')->count();
+		$map = array('token'=>session('token'),'lid'=>$id,'sn'=>array('neq',''));
+		if(IS_POST && isset($_POST['sn']) && !empty($_POST['sn'])){
+			$map['sn']=$_POST['sn'];
+		}
+		$record=M('Lottery_record')->where($map)->select();
+		$recordcount=M('Lottery_record')->where($map)->count();
 		$datacount=$data['fistnums']+$data['secondnums']+$data['thirdnums']+$data['fournums']+$data['fivenums']+$data['sixnums'];
 		$this->assign('datacount',$datacount);
 		$this->assign('recordcount',$recordcount);
