@@ -3,7 +3,7 @@ class AdmaModel extends Model{
 	protected $_validate = array(
 			array('title','require','标题不能为空',1),
 			array('info','require','功能介绍内容必须填写',1),
-			array('url','require','二维码链接必须填写',1),
+			
 			array('copyright','require','版权信息必须填写',1),
 			//array('id','checkid','非法操作',2,'callback',2),
 
