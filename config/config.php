@@ -5,6 +5,7 @@
  *@author PiGCms
  **/
 return array(
+	'TMPL_STRIP_SPACE'      => 	false,
 	//'APP_DEBUG'   =>  true,
 	'LOG_RECORD'=>true,
     'LOG_RECORD_LEVEL'       =>  array('EMERG','ALERT','CRIT','ERR','WARN','NOTIC','INFO','DEBUG','SQL'),
