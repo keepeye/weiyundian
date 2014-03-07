@@ -49,7 +49,10 @@ class CardAction extends BaseAction{
 		//	echo '此功能只能在微信浏览器中使用';exit;
 		}
 		$token=$this->_get('token');
-		$wecha_id=$this->_get('wecha_id');
+		$wecha_id	= $this->_get('wecha_id') || cookie('openid');
+		if($wecha_id == ""){
+			$this->redirect("Home/Adma/index?token=".$token);
+		}
 		$get_card=M('member_card_create')->where(array('wecha_id'=>$wecha_id))->find();
 
 		if($get_card!=false){
@@ -110,7 +113,10 @@ class CardAction extends BaseAction{
 			//echo '此功能只能在微信浏览器中使用';exit;
 		}
 		$token=$this->_get('token');
-		$wecha_id=$this->_get('wecha_id');
+		$wecha_id	= $this->_get('wecha_id') || cookie('openid');
+		if($wecha_id == ""){
+			$this->redirect("Home/Adma/index?token=".$token);
+		}
 		 
 		if($token!=false){
 			//会员卡信息

@@ -381,20 +381,23 @@ class WeixinAction extends Action
             $data['picurl']  = rtrim(C('site_url'), '/') . '/tpl/static/images/member.jpg';
             $data['title']   = $memCardInfo['weixin_title'];
             $data['keyword'] =  $memCardInfo['weixin_description'];
-            $data['url']     = rtrim(C('site_url'), '/') . U('Wap/Card/get_card', array(
+            $appurl     = rtrim(C('site_url'), '/') . U('Wap/Card/get_card', array(
                 'token' => $this->token,
-                'wecha_id' => $this->data['FromUserName'],
+                //'wecha_id' => $this->data['FromUserName'],
 				'wxref'=>'mp.weixin.qq.com'
             ));
+            $data['url'] = C('site_url').U("Wap/Jump/jumpto",array('appurl'=>rawurlencode($appurl),'openid'=>$this->data['FromUserName']));
         } else {
             $data['picurl']  = rtrim(C('site_url'), '/') . '/tpl/static/images/vip.jpg';
             $data['title']   = $cardInfo['cardname'];
             $data['keyword'] = $cardInfo['msg'];
-            $data['url']     = rtrim(C('site_url'), '/') . U('Wap/Card/vip', array(
+
+            $appurl    = rtrim(C('site_url'), '/') . U('Wap/Card/vip', array(
                 'token' => $this->token,
-                'wecha_id' => $this->data['FromUserName'],
+                //'wecha_id' => $this->data['FromUserName'],
 				'wxref'=>'mp.weixin.qq.com'
             ));
+            $data['url'] = C('site_url').U("Wap/Jump/jumpto",array('appurl'=>rawurlencode($appurl),'openid'=>$this->data['FromUserName']));
         }
         return array(
             array(
