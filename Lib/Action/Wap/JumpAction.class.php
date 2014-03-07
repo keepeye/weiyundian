@@ -7,6 +7,6 @@ class JumpAction extends Action{
 		cookie("openid",$openid);
 		cookie("wecha_id",$wecha_id);
 		//dump(htmlspecialchars_decode($appurl));
-		redirect($appurl);
+		redirect(htmlspecialchars_decode($appurl));
 	}
 }
