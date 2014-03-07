@@ -20,7 +20,7 @@ class AdmaAction extends UserAction{
 					}
 				}else{
 					$_POST['id']=$adma['id'];
-					if($data->save($_POST)){
+					if(false!==$data->save($_POST)){
 						$this->success('操作成功');					
 					}else{
 						$this->error('服务器繁忙，请稍候再试');
