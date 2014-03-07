@@ -25,7 +25,7 @@ class LotteryAction extends UserAction{
 		if(IS_POST && isset($_POST['sn']) && !empty($_POST['sn'])){
 			$map['sn']=array('like',"{$_POST['sn']}%");
 		}
-		$record=M('Lottery_record')->where($map)->select();
+		$record=M('Lottery_record')->where($map)->order('`time` desc')->select();
 		$recordcount=M('Lottery_record')->where($map)->count();
 		$datacount=$data['fistnums']+$data['secondnums']+$data['thirdnums']+$data['fournums']+$data['fivenums']+$data['sixnums'];
 		$this->assign('datacount',$datacount);
