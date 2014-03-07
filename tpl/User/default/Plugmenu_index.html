@@ -81,6 +81,16 @@ overflow: hidden;
         <form action="{pigcms::U('Plugmenu/save_style')}" method="POST" enctype="multipart/form-data">
 		<table>
 			<tr style="height:60px;">
+				<td>
+					<label class="radio">
+						<input type="radio" value="-1" name="style" <eq name="style['style']" value="-1">checked</eq>>不显示
+					</label>
+				</td>
+				<td colspan="2">
+					
+				</td>
+			</tr>
+			<tr style="height:60px;">
 				<td width="100px">
 					<label class="radio">
 						<input type="radio" checked="checked" value="0" name="style" <eq name="style['style']" value="0">checked</eq>>样式0
