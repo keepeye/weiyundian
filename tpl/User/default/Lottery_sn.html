@@ -8,7 +8,7 @@
                     <input type="text"  class="txt left" placeholder="输入sn码,可以是前几位"  name="sn" value="">
                     <input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="查找">
                   </form>
-                  </div>
+              </div>
               <div class="clr"></div> 
           </div>
         
@@ -61,30 +61,13 @@
 			  </TBODY>
             </TABLE>
             
-           <script>
-   function checkvotethis() {
-var aa=document.getElementsByName('del_id[]');
-var mnum = aa.length;
-j=0;
-for(i=0;i<mnum;i++){
-if(aa[i].checked){
-j++;
-}
-}
-if(j>0) {
-document.getElementById('info').submit();
-} else {
-alert('未选中任何文章或回复！')
-}
-}
-
-   </script>
+           
           </div>
             
  
           <div class="cLine">
             <div class="pageNavigator right">
-                 <div class="pages"></div>
+                 <div class="pages"><?php echo $pagestr;?></div>
               </div>
             <div class="clr"></div>
           </div>
