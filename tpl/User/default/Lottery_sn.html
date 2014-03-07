@@ -13,7 +13,7 @@
           </div>
         
   <div class="cLineB">
-            本次活动奖品总数：<span class="redamount">{pigcms:$datacount}</span>个　　　中奖人数：<span class="redamount">{pigcms:$recordcount} </span>个　　已领取奖品：<span class="redamount">0</span>个          
+            本次活动奖品总数：<span class="redamount">{pigcms:$datacount}</span>个　　　中奖人数：<span class="redamount">{pigcms:$recordcount} </span>个          
   </div>
   <div class="cLine" style=" padding: 8px 0">
           </div>
@@ -53,8 +53,6 @@
 						<td>
                <if condition="$record['sendstutas'] eq 0"> 
                  <a href="index.php?g=User&m=Lottery&a=sendprize&id={pigcms:$record.id}">发奖</a>
-              <else/>
-               <a href="index.php?g=User&m=Lottery&a=sendnull&id={pigcms:$record.id}">取消发奖</a>
               </if>
              
             </td>
