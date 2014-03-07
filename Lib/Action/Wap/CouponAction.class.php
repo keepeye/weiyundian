@@ -12,7 +12,7 @@ class CouponAction extends BaseAction{
 			$redata->add($where);
 			$record = $redata->where($where)->find();
 		}
-		$Lottery 	= M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>3,'status'=>1))->find();
+		$Lottery 	= M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>3,'status'=>1))->find();//活动信息
 		//var_dump($Lottery);
 		//0. 判断优惠券是否领完了 
 		if($Lottery['fistlucknums']  == $Lottery['fistnums'] && 
@@ -47,7 +47,6 @@ class CouponAction extends BaseAction{
 					}else{
 						//3.没有领过,次数没达到,开始随机发放优惠券
 						M('Lottery_record')->where(array('id'=>$record['id']))->setInc('usenums');
-						$record = M('Lottery_record')->where(array('id'=>$record['id']))->find();
 						//排除没有设置的优惠券
 						//奖品数 != 已经领取该奖品数 => 还有奖品
 						if ($Lottery['thirdlucknums'] != $Lottery['thirdnums']) {
