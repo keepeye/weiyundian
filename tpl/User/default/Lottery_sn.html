@@ -4,7 +4,10 @@
           <div class="cLineB">
               <h4 class="left">幸运大转盘SN码发放管理</h4>
               <div class="searchbar right">  
-                  <form method="post">
+                  <form method="get">
+                    <input type="hidden" name="g" value="<?php echo GROUP_NAME;?>"/>
+                    <input type="hidden" name="m" value="<?php echo ACTION_NAME;?>"/>
+                    <input type="hidden" name="a" value="<?php echo METHOD_NAME;?>"/>
                     <input type="text"  class="txt left" placeholder="输入sn码,可以是前几位"  name="sn" value="">
                     <input type="submit" value="搜索" id="msgSearchBtn" href="" class="btnGrayS" title="查找">
                   </form>
