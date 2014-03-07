@@ -9,9 +9,9 @@ class SelfformAction extends BaseAction{
 		parent::__construct();
 		$this->token		= $this->_get('token');
 		$this->assign('token',$this->token);
-		$this->wecha_id	= $this->_get('wecha_id');
+		$this->wecha_id	= $this->_get('wecha_id') || cookie('openid');
 		if (!$this->wecha_id){
-			$this->wecha_id='null';
+			$this->redirect("Home/Adma/index?token=".$this->token);
 		}
 		$this->assign('wecha_id',$this->wecha_id);
 		//
