@@ -355,7 +355,7 @@ class LotteryAction extends BaseAction{
 			//记录用户联系信息
 			$rollback = M('Lottery_record')->where($where)->save($data);
 			
-			echo'{"success":1,"msg":"恭喜！尊敬的 '.$data['wecha_name'].',请您保持手机通畅！你的领奖序号:'.$data['sn'].'"}';
+			echo'{"success":1,"msg":"恭喜！尊敬的 '.$data['wecha_name'].',请您保持手机通畅！你的领奖序号:'.$sn.'"}';
 			exit;
 		}
 	}
