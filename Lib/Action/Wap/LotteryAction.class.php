@@ -2,7 +2,7 @@
 class LotteryAction extends BaseAction{
 	
 	public function index(){
-		dump($$_SERVER['HTTP_REFERER']);
+		
 		$agent = $_SERVER['HTTP_USER_AGENT']; 
 		$token		= $this->_get('token');
 		$wecha_id	= $this->_get('wecha_id') || cookie('openid');
