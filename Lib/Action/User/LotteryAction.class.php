@@ -22,7 +22,6 @@ class LotteryAction extends UserAction{
 		$id=$this->_get('id');
 		$data=M('Lottery')->where(array('token'=>session('token'),'id'=>$id))->find();
 		$map = array('token'=>session('token'),'lid'=>$id,'islottery'=>1);
-		dump($_REQUEST['filter']);
 		if(isset($_REQUEST['sn']) && !empty($_REQUEST['sn'])){
 			$map['sn']=array('like',"{$_REQUEST['sn']}%");
 		}
