@@ -1,12 +1,14 @@
 <?php
 class LotteryAction extends BaseAction{
+	
 	public function index(){
 		$agent = $_SERVER['HTTP_USER_AGENT']; 
 		$token		= $this->_get('token');
-		$wecha_id	= $this->_get('wecha_id');
+		$wecha_id	= $this->_get('wecha_id') || cookie('openid');
 		if($wecha_id == ""){
 			$this->error("请通过微信进入本页面");
 		}
+		
 		$id 		= $this->_get('id');
 		$redata		= M('Lottery_record');
 		$where 		= array('token'=>$token,'wecha_id'=>$wecha_id,'lid'=>$id);
