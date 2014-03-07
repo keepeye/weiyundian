@@ -3,7 +3,15 @@
          
           <div class="cLineB">
               <h4 class="left">幸运大转盘中奖管理</h4>
-              <div class="searchbar right">  
+              
+              <div class="clr"></div> 
+          </div>
+        
+  <div class="cLineB">
+            奖品总数：<span class="redamount">{pigcms:$datacount}</span>个  已中奖：<span class="redamount">{pigcms:$recordcount} </span> 个          
+  </div>
+  <div class="cLine" style=" padding: 8px 0">
+  <div class="searchbar right">  
                   <form method="get">
                     <input type="hidden" name="g" value="<?php echo GROUP_NAME;?>"/>
                     <input type="hidden" name="m" value="<?php echo MODULE_NAME;?>"/>
@@ -13,13 +21,6 @@
                     <input type="submit" value="查找" id="msgSearchBtn" href="" class="btnGrayS" title="查找">
                   </form>
               </div>
-              <div class="clr"></div> 
-          </div>
-        
-  <div class="cLineB">
-            奖品总数：<span class="redamount">{pigcms:$datacount}</span>个  已中奖：<span class="redamount">{pigcms:$recordcount} </span> 个          
-  </div>
-  <div class="cLine" style=" padding: 8px 0">
           </div>
           <div class="msgWrap">
          
