@@ -53,6 +53,7 @@ items : [
 <tr>
 <th width="120">推广页地址：</th>
 <td width="430"><a href="{pigcms::C('site_url')}/index.php?g=Home&m=Adma&a=index&token={pigcms:$Think.session.token}" target="ddd" title="点击查看推广页" target="_blank">{pigcms::C('site_url')}/index.php?g=Home&m=Adma&a=index&token={pigcms:$Think.session.token}</a></td>
+<!--
 <td rowspan="6" valign="top" class="yulan">
 <div class="main">
 <h1 id="adtitle">{pigcms:$adma.title}</h1>
@@ -71,6 +72,7 @@ items : [
 <div class="footer"><p id="gzhcopyright">{pigcms:$adma.copyright}</p></div>
 </div>
 </td>
+-->
 </tr>
  <tr>
 <th valign="top">宣传页标题名：</th>
@@ -92,15 +94,10 @@ items : [
                             <tr>
 <th valign="top"><br>
 功能介绍：</th>
-<td valign="top"><textarea class="px" id="info" name="info" style="width:400px;height:120px" onkeyup="DivFollowingText2()">{pigcms:$adma.info}</textarea> 
-<script type="text/javascript">
-function DivFollowingText2()
-{
-document.getElementById("gzhinfo").innerHTML=document.getElementById("info").value;}
-</script> 
+<td valign="top"><textarea class="px" id="info" name="info" style="width:100%;height:200px" >{pigcms:$adma.info}</textarea> 
+
 <br>
-请简单描述您的微信公众号可以给粉丝带来什么好处，<br>
-尽量控制在<span class="red">150文字以内</span>。</td>
+请简单描述您的微信公众号可以给粉丝带来什么好处</td>
 </tr>
 <tr>
 	<th width="120" valign="top">版权信息:</th>
