@@ -6,7 +6,7 @@ class GuajiangAction extends BaseAction{
 		$token	  =  $this->_get('token');
 		$wecha_id = $this->_get('wecha_id');
 		if (!$wecha_id){
-			//$wecha_id='null';
+			$this->error("请通过微信进入");
 		}
 		$id 	  = $this->_get('id');
 		$redata	  = M('Lottery_record');
