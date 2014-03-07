@@ -6,6 +6,7 @@
  **/
 return array(
 	'TMPL_STRIP_SPACE'      => 	false,
+	'TMPL_CACHE_ON'=>true,
 	//'APP_DEBUG'   =>  true,
 	'LOG_RECORD'=>true,
     'LOG_RECORD_LEVEL'       =>  array('EMERG','ALERT','CRIT','ERR','WARN','NOTIC','INFO','DEBUG','SQL'),
@@ -21,4 +22,3 @@ return array(
 	'TMPL_R_DELIM'			=>'}',				//模板引擎普通标签结束标记
 	'baidu_map_api'=>'CB39f8f69f732c5499f4dfb0ca98d07e',
 );
-?>
