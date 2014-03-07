@@ -8,7 +8,7 @@
           </div>
         
   <div class="cLineB">
-             本次活动奖品总数：<span class="redamount">{pigcms:$datacount}</span>个　　　中奖人数：<span class="redamount">{pigcms:$recordcount} </span>个　　已领取奖品：<span class="redamount">{pigcms::$sendCount}</span>个          </div>
+             本次活动奖品总数：<span class="redamount">{pigcms:$datacount}</span>个　　　中奖人数：<span class="redamount">{pigcms:$recordcount} </span></div>
   <div class="searchbar">  
       <form method="get">
         <input type="hidden" name="g" value="<?php echo GROUP_NAME;?>"/>
@@ -61,8 +61,6 @@
 						<td>
                <if condition="$record['sendstutas'] eq 0"> 
                  <a href="index.php?g=User&m=Guajiang&a=sendprize&id={pigcms:$record.id}">发奖</a>
-              <else/>
-               <a href="index.php?g=User&m=Guajiang&a=sendnull&id={pigcms:$record.id}">取消发奖</a>
               </if>
              
             </td>
@@ -94,7 +92,7 @@ alert('未选中任何文章或回复！')
  
           <div class="cLine">
             <div class="pageNavigator right">
-                 <div class="pages"></div>
+                 <div class="pages"><?php echo $pagestr;?></div>
               </div>
             <div class="clr"></div>
           </div>

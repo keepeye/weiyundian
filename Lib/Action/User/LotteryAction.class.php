@@ -21,6 +21,9 @@ class LotteryAction extends UserAction{
 		}
 		$id=$this->_get('id');
 		$data=M('Lottery')->where(array('token'=>session('token'),'id'=>$id))->find();
+		if(!$data){
+			$this->error("活动不存在");
+		}
 		$map = array('token'=>session('token'),'lid'=>$id,'islottery'=>1);
 		if(isset($_REQUEST['filter']) && !empty($_REQUEST['filter'])){
 			$map = array_merge($map,array_filter($_REQUEST['filter']));

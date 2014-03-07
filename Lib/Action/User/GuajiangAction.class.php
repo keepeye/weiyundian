@@ -24,18 +24,21 @@ class GuajiangAction extends UserAction{
 			$this->error("刮刮卡活动不存在");
 		}
 		$map = array('token'=>session('token'),'lid'=>$id,'sn'=>array('neq',''));
-		if(IS_POST && isset($_POST['sn']) && !empty($_POST['sn'])){
-			$map['sn']=array('like',"{$_POST['sn']}%");
+		if(isset($_REQUEST['filter']) && !empty($_REQUEST['filter'])){
+			$map = array_merge($map,array_filter($_REQUEST['filter']));
 		}
-		$record=M('Lottery_record')->where($map)->select();
 		$recordcount=M('Lottery_record')->where($map)->count();
+		//分页
+		$count      = $recordcount;
+		$Page       = new Page($count,20);
+		$pagestr       = $Page->show();
+		$record=M('Lottery_record')->where($map)->order('`time` desc')->limit($Page->firstRow.','.$Page->listRows)->select();//中奖列表
+		$this->assign('pagestr',$pagestr);
+		//分页结束
 		$datacount=$data['fistnums']+$data['secondnums']+$data['thirdnums'];
 		$this->assign('datacount',$datacount);//奖品数量
 		$this->assign('recordcount',$recordcount);//中讲数量
 		$this->assign('record',$record);
-		//
-		$sendCount=M('Lottery_record')->where('lid='.$id.' and sendstutas=1 and sn!=""')->count();
-		$this->assign('sendCount',$sendCount);
 		$this->display();
 	
 	
