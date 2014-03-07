@@ -22,8 +22,8 @@ class LotteryAction extends UserAction{
 		$id=$this->_get('id');
 		$data=M('Lottery')->where(array('token'=>session('token'),'id'=>$id))->find();
 		$map = array('token'=>session('token'),'lid'=>$id,'islottery'=>1);
-		if(isset($_REQUEST['sn']) && !empty($_REQUEST['sn'])){
-			$map['sn']=array('like',"{$_REQUEST['sn']}%");
+		if(isset($_REQUEST['filter']) && !empty($_REQUEST['filter'])){
+			$map = array_merge($map,$_REQUEST['filter']);
 		}
 		
 		$recordcount=M('Lottery_record')->where($map)->count();//中奖总数
