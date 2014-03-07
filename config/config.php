@@ -11,7 +11,7 @@ return array(
     'LOG_RECORD_LEVEL'       =>  array('EMERG','ALERT','CRIT','ERR','WARN','NOTIC','INFO','DEBUG','SQL'),
 	'LOAD_EXT_CONFIG' 		=> 'db,info,email,safe,upfile,cache,route,app,alipay',		
 	'APP_AUTOLOAD_PATH'     =>'@.ORG',
-	'OUTPUT_ENCODE'         =>  true, 			//页面压缩输出
+	'OUTPUT_ENCODE'         =>  false, 			//页面压缩输出
 	'PAGE_NUM'				=> 15,
 	/*Cookie配置*/
 	'COOKIE_PATH'           => '/',     		// Cookie路径
