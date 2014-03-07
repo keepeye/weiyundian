@@ -19,7 +19,7 @@ class GuajiangAction extends UserAction{
 			$this->error('vip0无法使用抽奖活动,请充值后再使用',U('User/Index/index'));
 		}
 		$id=$this->_get('id');
-		$data=M('Lottery')->where(array('token'=>session('token'),'id'=>$id,'type'=>2))->find();
+		$data=M('Lottery')->where(array('token'=>session('token'),'id'=>$id))->find();
 		$record=M('Lottery_record')->where('token="'.session('token').'" and lid='.$id.' and sn!=""')->select();
 		$recordcount=M('Lottery_record')->where('token="'.session('token').'" and lid='.$id.' and sn!=""')->count();
 		$datacount=$data['fistnums']+$data['secondnums']+$data['thirdnums'];
@@ -81,7 +81,7 @@ class GuajiangAction extends UserAction{
 		$where=array('id'=>$id,'token'=>session('token'));
 		$check=M('Lottery')->where($where)->find();
 		if($check==false)$this->error('非法操作');
-		$data=M('Lottery')->where($where)->setInc('status');
+		$data=M('Lottery')->where($where)->data(array("status"=>1))->save();
 		if($data!=false){
 			$this->success('恭喜你,活动已经开始');
 		}else{
@@ -94,7 +94,7 @@ class GuajiangAction extends UserAction{
 		$where=array('id'=>$id,'token'=>session('token'));
 		$check=M('Lottery')->where($where)->find();
 		if($check==false)$this->error('非法操作');
-		$data=M('Lottery')->where($where)->setDec('status');
+		$data=M('Lottery')->where($where)->data(array("status"=>0))->save();
 		if($data!=false){
 			$this->success('活动已经结束');
 		}else{
