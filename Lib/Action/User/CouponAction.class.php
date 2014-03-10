@@ -26,7 +26,7 @@ class CouponAction extends UserAction{
 	}
 	//添加修改活动信息
 	public function set(){
-		$CouponM = M('Coupon');//实例化模型
+		$CouponM = D('Coupon');//实例化模型
 		$id = I('request.id','0','intval');//获取主键id
 		$isNew = $id > 0?false:true;//判断是否添加操作
 		if(!$isNew){
@@ -41,7 +41,21 @@ class CouponAction extends UserAction{
 			$this->assign("coupon",$coupon);
 			$this->display();//显示视图
 		}else{
-
+			unset($_POST['given_num']);//禁止修改已派发优惠券数量
+			$_POST['token'] = $this->token;//将token添加到表单数据中，避免丢失
+			$_POST['id'] = $id;//同上
+			if($CouponM->create()){
+				$re = $isNew?$CouponM->add():$CouponM->save($id);
+				if($re !== false){
+					//更新关键词
+					D('Keyword')->setKeyword(I("post.keyword"),$id,$this->token,"Coupon",1);
+					$this->success("保存成功");
+				}else{
+					$this->error("保存数据失败");
+				}
+			}else{
+				$this->error("创建失败");
+			}
 		}
 
 
