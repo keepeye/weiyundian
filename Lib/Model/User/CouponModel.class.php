@@ -10,7 +10,7 @@ class CouponModel extends Model{
 			array('end_time','require','结束时间不能为空',1),
 			array('end_time', 'checkdate', '结束时间不能小于开始时间',Model::MUST_VALIDATE,'callback',3),
 			array('info','require','活动说明不能为空',1),
-			array('info','1,600','介绍最多200个字',1,'length'),
+			array('info','1,1000','介绍最多1000个字',1,'length'),
 			array('num', 'checknum', '优惠券必须是大于0的数字',Model::MUST_VALIDATE,'callback',3),
 	 );
 	protected $_auto = array (    
