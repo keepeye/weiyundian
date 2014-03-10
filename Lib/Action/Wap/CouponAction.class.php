@@ -24,7 +24,7 @@ class CouponAction extends BaseAction{
 		$CouponM = M('Coupon');
 		$coupon = $CouponM->where(array("id"=>$id,"token"=>$this->token))->find();
 		if(!$coupon){
-			$this->error("活动已被删除".$CouponM->getLastSql());
+			$this->error("活动已被删除");
 		}
 		//判断活动是否开启
 		if($coupon['status'] != 1){
@@ -54,7 +54,7 @@ class CouponAction extends BaseAction{
 		if(!$coupon){
 			$return = array(
 					"status"=>"0",
-					"info"=>"活动已被删除"
+					"info"=>"活动已被删除".M('Coupon')->getLastSql()
 				);
 			$this->ajaxReturn($return);
 		}
