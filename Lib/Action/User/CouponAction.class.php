@@ -58,7 +58,7 @@ class CouponAction extends UserAction{
 					$this->error("保存数据失败:".$CouponM->getLastSql());
 				}
 			}else{
-				$this->error("创建失败");
+				$this->error(M()->getError());
 			}
 		}
 
