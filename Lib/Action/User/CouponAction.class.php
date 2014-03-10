@@ -35,6 +35,7 @@ class CouponAction extends UserAction{
 				$this->error("活动不存在");
 			}
 			$coupon['keyword'] = M('Keyword')->where(array("pid"=>$id,"module"=>"Lottery","token"=>$this->token))->getField("keyword");//获取关键词
+			dump($coupon['keyword']);
 		}
 		//判断是否提交表单
 		if(!IS_POST){
