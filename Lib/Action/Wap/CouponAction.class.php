@@ -54,7 +54,7 @@ class CouponAction extends BaseAction{
 		if(!$coupon){
 			$return = array(
 					"status"=>"0",
-					"info"=>"活动已被删除".M('Coupon')->getLastSql()
+					"info"=>"活动已被删除"
 				);
 			$this->ajaxReturn($return);
 		}
