@@ -54,7 +54,7 @@ class CouponAction extends UserAction{
 					}
 					$this->success("保存成功");
 				}else{
-					$this->error("保存数据失败".$CouponM->getDbError());
+					$this->error("保存数据失败:".$CouponM->getDbError());
 				}
 			}else{
 				$this->error("创建失败");
