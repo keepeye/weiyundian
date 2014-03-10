@@ -46,8 +46,8 @@
     </form>
 </div>
 <br/>
-<?php if($coupon['given_num']<=$coupon['num']): ?>
-<div class="Pop-upbox" id="usermsg" >
+<?php if($coupon['given_num'] >= $coupon['num']): ?>
+<div class="Pop-upbox">
 优惠券已发完了，请关注下次活动。
 </div>
 <?php else: ?>
@@ -100,19 +100,22 @@
                 alert('请求发送失败');
             },
             success:function(data){
-
+                if(data){
+                    if(data.status == 1){
+                        $('#usermsg').hide();
+                        $('#sncode').text(data.sn);
+                        $('#snmsg').show();
+                    }else{
+                        $('#usermsg').html(data.info);
+                    }
+                }else{
+                    $('#usermsg').html('发生错误，请稍后再试');
+                }
+                
             },
 
         })
-      ajax('yhqok-add.html',{ tel:tel,un:un,id:'2'},function(m){
-          if(m=='rep'){
-             location.href=location.href;
-         }
-         alert('领取成功');
-         $('#usermsg').hide();
-         $('#sncode').text(m);
-         $('#snmsg').show();
-     });    
+         
   }
 
 </script>
