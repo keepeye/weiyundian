@@ -2,7 +2,7 @@
 //项目公共函数库
 //约定：自定义函数为避免与框架和php自带函数命名冲突，统一采用驼峰式命名，在函数名前面加上 We，如WeParseUrl , WeRedirect -- 2013/11/25 成
 /**
-深度过滤函数，默认htmlspecialchars无法处理多维数组 by 成
+*深度过滤函数，默认htmlspecialchars无法处理多维数组 by 成
 */
 function htmlspecialchars_deep($value){
 	$value = is_array($value)?array_map('htmlspecialchars_deep',$value):htmlspecialchars($value);
@@ -47,14 +47,14 @@ function WeParseUrl($url,$type,$params=array()){
 }
 
 /**
-获取当前时间格式化字符串
+*获取当前时间格式化字符串
 */
 function getDateTime(){
 	return date('Y-m-d H:i:s',time());
 }
 
 /**
-会员卡模块更新会员卡等级
+*会员卡模块更新会员卡等级
 */
 function member_upviplevel($token,$wecha_id){
 	$set_exchange = M('Member_card_exchange')->field('silver_card_score,gold_card_score,diamond_card_score')->where(array('token'=>$token))->find();//商家积分设置
@@ -82,4 +82,79 @@ function member_upviplevel($token,$wecha_id){
 		$mdata['card_type'] = $card_type;
 		M('member_card_create')->where(array('wecha_id'=>$wecha_id,'token'=>$token))->save($mdata);
 	}
+}
+/**
+ * 获取输入参数 支持过滤和默认值
+ * 使用方法:
+ * <code>
+ * I('id',0); 获取id参数 自动判断get或者post
+ * I('post.name','','htmlspecialchars'); 获取$_POST['name']
+ * I('get.'); 获取$_GET
+ * </code>
+ * @param string $name 变量的名称 支持指定类型
+ * @param mixed $default 不存在的时候默认值
+ * @param mixed $filter 参数过滤方法
+ * @return mixed
+ */
+function I($name,$default='',$filter=null) {
+    if(strpos($name,'.')) { // 指定参数来源
+        list($method,$name) =   explode('.',$name,2);
+    }else{ // 默认为自动判断
+        $method =   'param';
+    }
+    switch(strtolower($method)) {
+        case 'get'     :   $input =& $_GET;break;
+        case 'post'    :   $input =& $_POST;break;
+        case 'put'     :   parse_str(file_get_contents('php://input'), $input);break;
+        case 'param'   :
+            switch($_SERVER['REQUEST_METHOD']) {
+                case 'POST':
+                    $input  =  $_POST;
+                    break;
+                case 'PUT':
+                    parse_str(file_get_contents('php://input'), $input);
+                    break;
+                default:
+                    $input  =  $_GET;
+            }
+            break;
+        case 'request' :   $input =& $_REQUEST;   break;
+        case 'session' :   $input =& $_SESSION;   break;
+        case 'cookie'  :   $input =& $_COOKIE;    break;
+        case 'server'  :   $input =& $_SERVER;    break;
+        case 'globals' :   $input =& $GLOBALS;    break;
+        default:
+            return NULL;
+    }
+    if(empty($name)) { // 获取全部变量
+        $data       =   $input;
+        array_walk_recursive($data,'filter_exp');
+        $filters    =   isset($filter)?$filter:C('DEFAULT_FILTER');
+        if($filters) {
+            $filters    =   explode(',',$filters);
+            foreach($filters as $filter){
+                $data   =   array_map_recursive($filter,$data); // 参数过滤
+            }
+        }
+    }elseif(isset($input[$name])) { // 取值操作
+        $data       =   $input[$name];
+        is_array($data) && array_walk_recursive($data,'filter_exp');
+        $filters    =   isset($filter)?$filter:C('DEFAULT_FILTER');
+        if($filters) {
+            $filters    =   explode(',',$filters);
+            foreach($filters as $filter){
+                if(function_exists($filter)) {
+                    $data   =   is_array($data)?array_map_recursive($filter,$data):$filter($data); // 参数过滤
+                }else{
+                    $data   =   filter_var($data,is_int($filter)?$filter:filter_id($filter));
+                    if(false === $data) {
+                        return   isset($default)?$default:NULL;
+                    }
+                }
+            }
+        }
+    }else{ // 变量默认值
+        $data       =    isset($default)?$default:NULL;
+    }
+    return $data;
 }

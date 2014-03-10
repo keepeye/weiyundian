@@ -1,7 +1,9 @@
 <?php
 class CouponAction extends UserAction{
+	private $token;
 	function _initialize(){
 		parent::_initialize();
+		$this->token = session('token');//保存token信息
 		if(!$_GET['debug']){
 			$this->error('该模块重构中，暂不开放。');
 		}
@@ -22,6 +24,28 @@ class CouponAction extends UserAction{
 		$this->display();
 	
 	}
+	//添加修改活动信息
+	public function set(){
+		$CouponM = M('Coupon');//实例化模型
+		$id = I('request.id','0','intval');//获取主键id
+		$isNew = $id > 0?false:true;//判断是否添加操作
+		if(!$isNew){
+			$coupon = $CouponM->where(array('id'=>$id,'token'=>$this->token))->find();//更新模式下检查活动是否存在
+			if(!$coupon){
+				$this->error("活动不存在");
+			}
+			$coupon['keyword'] = M('Keyword')->where(array("pid"=>$id,"module"=>"Lottery","token"=>$this->token))->getField("keyword");//获取关键词
+		}
+		//判断是否提交表单
+		if(!IS_POST){
+			$this->assign("coupon",$coupon);
+			$this->display();//显示视图
+		}else{
+
+		}
+
+
+	}
 	public function sn(){
 		if(session('gid')==1){
 			$this->error('vip0无法使用抽奖活动,请充值后再使用',U('User/Index/index'));
@@ -39,50 +63,50 @@ class CouponAction extends UserAction{
 	
 	
 	}
-	public function add(){
-		if(session('gid')==1){
-			$this->error('vip0无法使用优惠券管理,请充值后再使用',U('User/Index/index'));
-		}
-		$user=M('Users')->field('gid,activitynum')->where(array('id'=>session('uid')))->find();
-		$group=M('User_group')->where(array('id'=>$user['gid']))->find();
-		if($user['activitynum']>=$group['activitynum']){
-			$this->error('您的免费活动创建数已经全部使用完,请充值后再使用',U('User/Index/index'));
-		}
+	// public function add(){
+	// 	if(session('gid')==1){
+	// 		$this->error('vip0无法使用优惠券管理,请充值后再使用',U('User/Index/index'));
+	// 	}
+	// 	$user=M('Users')->field('gid,activitynum')->where(array('id'=>session('uid')))->find();
+	// 	$group=M('User_group')->where(array('id'=>$user['gid']))->find();
+	// 	if($user['activitynum']>=$group['activitynum']){
+	// 		$this->error('您的免费活动创建数已经全部使用完,请充值后再使用',U('User/Index/index'));
+	// 	}
 		
-		if(IS_POST){
-			$data=D('Lottery');
-			$_POST['statdate']=strtotime($this->_post('statdate'));
-			$_POST['enddate']=strtotime($this->_post('enddate'));
-			$_POST['token']=session('token');
-			$_POST['type']=3;
-			if($_POST['enddate'] < $_POST['statdate']){
-				$this->error('结束时间不能小于开始时间');
-			}else{
-				if($data->create()!=false){
-					if($id=$data->add()){
-						$data1['pid']=$id;
-						$data1['module']='Lottery';
-						$data1['token']=session('token');
-						$data1['keyword']=$this->_post('keyword');
-						M('Keyword')->add($data1);
-						$user=M('Users')->where(array('id'=>session('uid')))->setInc('activitynum');
-						$this->success('活动创建成功',U('Coupon/index'));
-					}else{
-						$this->error('服务器繁忙,请稍候再试');
-					}
-				}else{
-					$this->error($data->getError());
-				}
-			}
+	// 	if(IS_POST){
+	// 		$data=D('Lottery');
+	// 		$_POST['statdate']=strtotime($this->_post('statdate'));
+	// 		$_POST['enddate']=strtotime($this->_post('enddate'));
+	// 		$_POST['token']=session('token');
+	// 		$_POST['type']=3;
+	// 		if($_POST['enddate'] < $_POST['statdate']){
+	// 			$this->error('结束时间不能小于开始时间');
+	// 		}else{
+	// 			if($data->create()!=false){
+	// 				if($id=$data->add()){
+	// 					$data1['pid']=$id;
+	// 					$data1['module']='Lottery';
+	// 					$data1['token']=session('token');
+	// 					$data1['keyword']=$this->_post('keyword');
+	// 					M('Keyword')->add($data1);
+	// 					$user=M('Users')->where(array('id'=>session('uid')))->setInc('activitynum');
+	// 					$this->success('活动创建成功',U('Coupon/index'));
+	// 				}else{
+	// 					$this->error('服务器繁忙,请稍候再试');
+	// 				}
+	// 			}else{
+	// 				$this->error($data->getError());
+	// 			}
+	// 		}
 			
-		}else{
-			$lottery["starpicurl"]="/tpl/Wap/default/common/css/guajiang/images/activity-coupon-start.jpg";
-			$lottery["zjpic"]="/tpl/Wap/default/common/css/guajiang/images/activity-coupon-winning.jpg";
-			$lottery["endpicurl"]="/tpl/Wap/default/common/css/guajiang/images/activity-coupon-end.jpg";
-			$this->assign('vo',$lottery);
-			$this->display();
-		}
-	}
+	// 	}else{
+	// 		$lottery["starpicurl"]="/tpl/Wap/default/common/css/guajiang/images/activity-coupon-start.jpg";
+	// 		$lottery["zjpic"]="/tpl/Wap/default/common/css/guajiang/images/activity-coupon-winning.jpg";
+	// 		$lottery["endpicurl"]="/tpl/Wap/default/common/css/guajiang/images/activity-coupon-end.jpg";
+	// 		$this->assign('vo',$lottery);
+	// 		$this->display();
+	// 	}
+	// }
 	public function setinc(){
 		if(session('gid')==1){
 			$this->error('vip0无法开启活动,请充值后再使用',U('User/Index/index'));

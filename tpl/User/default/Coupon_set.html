@@ -1,0 +1,56 @@
+<include file="Public:head"/>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+<form class="form" method="post" action=""  target="_top" enctype="multipart/form-data" >
+<div class="content">
+<!--活动开始-->
+<div class="cLineB">
+  <h4>编辑优惠券活动开始内容</h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a></div>  
+<div class="msgWrap bgfc">
+ 
+<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"><tbody>
+<tr>
+  <th valign="top"><span class="red">*</span>关键词：</th>
+  <td><input type="input" class="px"  value="{pigcms:$coupon.keyword}" name="keyword" style="width:400px"><br>
+  	<span class="red">设定一个关键词</span>，用户发送此关键词将可以参加活动。</td>
+  <td rowspan="7" valign="top">
+      <div style="margin-left:20px">
+          <strong>活动宣传图片：</strong><br />
+          <img class="upload_image" src="{pigcms:$coupon.pic}" style="display: none;max-width:100%;" /><br /><br />
+          <input type="hidden" class="upload_image_filed"  value="{pigcms:$coupon.pic}" name="pic" data-thumb="720,400"/>
+          <input type="button" class="btnGrayS upload_image_button" value="添加图片" data-ishas="false" />
+      </div>
+  </td>
+</tr>
+<tr>
+  <th valign="top"><span class="red">*</span>活动名称：</th>
+  <td><input type="input" class="px" value="{pigcms:$coupon.title}" name="title" style="width:400px">
+  	<br>
+  	请不要多于50字!
+  	</td>
+  </tr>
+
+<tr>
+  <th valign="top"><span class="red">*</span>优惠券数量：</th>
+  <td><input type="input" class="px" value="{pigcms:$coupon.num}" name="num" style="width:400px">
+    <br>
+    请不要多于50字!
+    </td>
+  </tr>
+<tr>
+	<th><span class="red">*</span>活动时间：</th>
+	<td><input type="input" class="px"  value="{pigcms:$coupon.start_time|date='Y-m-d H:i:s',###}" onClick="WdatePicker()" name="start_time" />                
+		到
+		<input type="input" class="px"  value="{pigcms:$coupon.end_time|date='Y-m-d H:i:s',###}" name="end_time" onClick="WdatePicker()"  /> 
+	</td>
+</tr>
+<tr>
+<th valign="top"><span class="red">*</span>活动介绍：</th>
+<td><textarea class="px" id="info" name="info" style="width: 400px; height: 125px;">{pigcms:$vo.info}</textarea>
+活动说明. </td>
+</tr>
+</tbody>
+</table>
+ </div> 
+</div>
+</form>
+<include file="Public:footer"/> 
