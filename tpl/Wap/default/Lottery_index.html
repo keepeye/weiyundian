@@ -52,24 +52,9 @@ Unknown property name.-ms-filter: progid:DXImageTransform.Microsoft.gradient(Gra
 <script>
     //提交联系人信息
     function tijiaoxinxi(){
-        var type="";
-        var prize = {pigcms:$Dazpan.prize};
-        if (prize == 1) {
-            type = "一等奖"
-        } else if (prize == 2) {
-            type = "二等奖"
-        } else if (prize == 3) {
-            type = "三等奖"
-        }
-        else if (prize == 4) {
-            type = "四等奖"
-        }
-        else if (prize == 5) {
-            type = "五等奖"
-        }
-        else if (prize == 6) {
-            type = "六等奖"
-        }
+
+        var type = "{pigcms:$Dazpan.prize}";
+        
         $("#prizetype").text(type);
         $("#winprize").val(type);
         $("#result").slideToggle(500);  
