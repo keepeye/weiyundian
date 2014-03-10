@@ -319,16 +319,26 @@ class LotteryAction extends BaseAction{
 			
 			//$record = M('Lottery_record')->where(array('id'=>$rid))->find();
 			$prizetype	=	$this->get_prize($id);	
-
+			//这里不应当先生成sn号码，应该用户提交联系人信息后生成并返回给用户
 			if ($prizetype >= 1 && $prizetype <= 6) {				 
-				$sn 	= uniqid();
+				//$sn 	= uniqid();
 				$prize = str_replace(array(1,2,3,4,5,6),array('一','二','三','四','五','六'),$prizetype)."等奖";
-				$newdata['sn'] = $sn;//写入sn号码
+				//$newdata['sn'] = $sn;//写入sn号码
 				$newdata['prize'] = $prize;	//中奖等级描述
 				$newdata['islottery'] = 1;
-				echo '{"success":1,"sn":"'.$sn.'","prizetype":"'.$prizetype.'","usenums":"'.($record['usenums']+1).'"}';
+				//echo '{"success":1,"sn":"'.$sn.'","prizetype":"'.$prizetype.'","usenums":"'.($record['usenums']+1).'"}';
+				$this->ajaxReturn(array(
+						"success"=>1,
+						"prizetype"=>$prizetype,
+						"usenums"=>$record['usenums']+1
+					));
 			}else{
-				echo '{"success":0,"prizetype":"","usenums":"'.($record['usenums']+1).'"}';
+				//echo '{"success":0,"prizetype":"","usenums":"'.($record['usenums']+1).'"}';
+				$this->ajaxReturn(array(
+						"success"=>"0",
+						"prizetype"=>"",
+						"usenums"=>$record['usenums']+1
+					));
 			}
 			M('Lottery_record')->where($map)->data($newdata)->save();//更新抽奖记录、若中奖则写入sn号码		
 			exit;
@@ -341,7 +351,8 @@ class LotteryAction extends BaseAction{
 		 if($_POST['action'] ==  'add' ){
 			$lid 				= $this->_post('lid');
 			$wechaid 			= $this->_post('wechaid');
-			$sn		= $this->_post('sncode');
+			//$sn		= $this->_post('sncode');
+			$data['sn'] = $sn = uniqid();//生成sn码
 			$data['phone'] 		= $this->_post('tel');
 			$data['wecha_name'] = $this->_post('wxname');
 
@@ -355,7 +366,7 @@ class LotteryAction extends BaseAction{
 			if($record['sendstutas'] != 0){
 				$this->ajaxReturn(array('success'=>'1','msg'=>'奖品已派发，请不要重复提交'));
 			}
-			//记录用户联系信息
+			//记录用户联系信息,sn号码
 			$rollback = M('Lottery_record')->where($where)->save($data);
 			
 			echo'{"success":1,"msg":"恭喜！尊敬的 '.$data['wecha_name'].',请您保持手机通畅！你的领奖序号:'.$sn.'"}';

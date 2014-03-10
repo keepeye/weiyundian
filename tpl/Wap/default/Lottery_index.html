@@ -94,7 +94,7 @@ var loadingObj = new loading(document.getElementById('loading'),{radius:20,circl
         <div class="title-orange"><span>恭喜您中奖了</span></div>
         <div class="Detail">    
             <p>你中了：<span class="red" id="prizetype" >   </span></p>
-            <p>兑奖SN码：<span class="red" id="sncode" ></span></p>
+            <!--<p>兑奖SN码：<span class="red" id="sncode" ></span></p>-->
             <p class="red" id="red">{pigcms:$Dazpan.sttxt}</p>
             <p>
             <input name=""  class="px" id="tel" value="" type="text" placeholder="请输入您的手机号">
@@ -210,7 +210,7 @@ $(function() {
              
             setTimeout(function() {
                 if (prize != null) {  //中奖
-                    $("#sncode").text(sncode);
+                    //$("#sncode").text(sncode);
                     var type = "";
                     if (prize == 1) {
                         type = "一等奖"
@@ -309,7 +309,7 @@ $(function() {
             if (backdata.success) { 
                 prize = backdata.prizetype;//奖项 1,2,3,4,5,6 
                  if(prize!=''){
-                    sncode = backdata.sn;//sn号
+                    //sncode = backdata.sn;//sn号
                     start(prizeDeg[backdata.prizetype - 1])//对应prizeDeg中的坐标
                  }else{
                     prize = null;
