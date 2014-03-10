@@ -49,6 +49,32 @@ Unknown property name.-ms-filter: progid:DXImageTransform.Microsoft.gradient(Gra
 }
 
 </style>
+<script>
+    //提交联系人信息
+    function tijiaoxinxi(){
+        var prize = {pigcms:$Dazpan.prize};
+        if (prize == 1) {
+            type = "一等奖"
+        } else if (prize == 2) {
+            type = "二等奖"
+        } else if (prize == 3) {
+            type = "三等奖"
+        }
+        else if (prize == 4) {
+            type = "四等奖"
+        }
+        else if (prize == 5) {
+            type = "五等奖"
+        }
+        else if (prize == 6) {
+            type = "六等奖"
+        }
+        $("#prizetype").text(type);
+        $("#winprize").val(type);
+        $("#result").slideToggle(500);  
+        $("#outercont").slideUp(500)
+    }
+</script>
 </head>
 <body class="activity-lottery-winning" >
 <div  class="main" >
@@ -239,30 +265,7 @@ $(function() {
             }, 200)
         } //if
     } //setps()
-    //提交联系人信息
-    function tijiaoxinxi(){
-        var prize = {pigcms:$Dazpan.prize};
-        if (prize == 1) {
-            type = "一等奖"
-        } else if (prize == 2) {
-            type = "二等奖"
-        } else if (prize == 3) {
-            type = "三等奖"
-        }
-        else if (prize == 4) {
-            type = "四等奖"
-        }
-        else if (prize == 5) {
-            type = "五等奖"
-        }
-        else if (prize == 6) {
-            type = "六等奖"
-        }
-        $("#prizetype").text(type);
-        $("#winprize").val(type);
-        $("#result").slideToggle(500);  
-        $("#outercont").slideUp(500)
-    }
+
     function start(deg) {       
         deg = deg || lostDeg[parseInt(lostDeg.length * Math.random())];
         running = true;
