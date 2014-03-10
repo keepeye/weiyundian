@@ -17,7 +17,7 @@ body{ background: #fff; font-family: '微软雅黑'; color: #333; font-size: 16p
 </head>
 <body>
 	<div class="system-message">
-		<p style="height:35px;background:url(/PigData/conf/images/msg_top_bg.png) #ccc;padding-left:10px;line-height:35px;color:white">微云店提醒</p>
+		<p style="height:35px;background:url(/PigData/conf/images/msg_top_bg.png) #ccc;padding-left:10px;line-height:35px;color:white">提示信息</p>
 		<div style="padding:24px;">
 			<present name="message">		
 				<div class="success"><img style="margin-right: 9px;padding-top:10px;" src="/conf/images/success.png"><span><?php echo($message); ?></span></div>
