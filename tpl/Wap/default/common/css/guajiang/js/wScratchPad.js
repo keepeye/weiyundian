@@ -279,6 +279,7 @@
 
 		scratchDown: function(e, $this)
 		{
+			$(this.canvas).css('margin-right', $(this.canvas).css('margin-right') == "0px" ? "1px" : "0px");
 			$this.ctx.globalCompositeOperation = 'destination-out';
 			$this.ctx.lineJoin = "round";
 			$this.ctx.lineCap = "round";
@@ -298,12 +299,14 @@
 		
 		scratchMove: function(e, $this)
 		{
+			$(this.canvas).css('margin-right', $(this.canvas).css('margin-right') == "0px" ? "1px" : "0px");
 			$this.ctx.lineTo(e.pageX, e.pageY);
 			$this.ctx.stroke();
 		},
 		
 		scratchUp: function(e, $this)
 		{
+			$(this.canvas).css('margin-right', $(this.canvas).css('margin-right') == "0px" ? "1px" : "0px");
 			$this.ctx.closePath();
 		},
 	}
