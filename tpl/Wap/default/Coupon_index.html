@@ -88,7 +88,8 @@
         var phone = $.trim($("#contact_phone").val());
         var weixin = $.trim($("#contact_weixin").val());
         var token = "<?php echo $token;?>";
-        var id = "{pigcmd:$coupon.id}";
+        var id = "{pigcms:$coupon.id}";
+        var wecha_id = "{pigcms:$wecha_id}";
        if(name=='' || phone=='' || weixin==''){
           alert('请完善用户信息');
           return;
@@ -96,7 +97,7 @@
         $.ajax({
             url:"<?php echo U('add');?>",
             type:"post",
-            data:{"name":name,"phone":phone,"weixin":weixin,"token":token},
+            data:{"name":name,"phone":phone,"weixin":weixin,"token":token,"wecha_id":wecha_id},
             dataType:"json",
             error:function(){
                 alert('请求发送失败');
