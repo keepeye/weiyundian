@@ -47,8 +47,11 @@ class CouponAction extends UserAction{
 			if($CouponM->create()){
 				$re = $isNew?$CouponM->add():$CouponM->save($id);
 				if($re !== false){
-					//更新关键词
-					D('Keyword')->setKeyword(I("post.keyword"),$id,$this->token,"Coupon",1);
+					$pid = $isNew?$re:$id;//获取主键
+					if($pid > 0){
+						//更新关键词
+						D('Keyword')->setKeyword(I("post.keyword"),$pid,$this->token,"Coupon",1);
+					}
 					$this->success("保存成功");
 				}else{
 					$this->error("保存数据失败");
