@@ -2,7 +2,7 @@
 class CouponAction extends BaseAction{
 	function _initialize(){
 		parent::_initialize();
-		$this->error('功能重构中...');
+		$this->error('该功能重构中...');
 	}
 	public function index(){
 		$agent = $_SERVER['HTTP_USER_AGENT']; 
