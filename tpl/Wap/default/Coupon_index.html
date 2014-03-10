@@ -96,6 +96,7 @@
         $.ajax({
             url:"<?php echo U('add');?>",
             data:{"name":name,"phone":phone,"weixin":weixin,"wecha_id":wecha_id,"token":token},
+            dataType:"json",
             error:function(){
                 alert('请求发送失败');
             },
