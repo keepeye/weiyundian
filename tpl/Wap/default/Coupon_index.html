@@ -88,14 +88,15 @@
         var phone = $.trim($("#contact_phone").val());
         var weixin = $.trim($("#contact_weixin").val());
         var token = "<?php echo $token;?>";
-        var wecha_id = "<?php echo $wecha_id;?>";
+        var id = "{pigcmd:$coupon.id}";
        if(name=='' || phone=='' || weixin==''){
           alert('请完善用户信息');
           return;
         }
         $.ajax({
             url:"<?php echo U('add');?>",
-            data:{"name":name,"phone":phone,"weixin":weixin,"wecha_id":wecha_id,"token":token},
+            type:"post",
+            data:{"name":name,"phone":phone,"weixin":weixin,"token":token},
             dataType:"json",
             error:function(){
                 alert('请求发送失败');

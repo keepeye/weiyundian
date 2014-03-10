@@ -4,8 +4,8 @@ class CouponAction extends BaseAction{
 	private $wecha_id;
 	function _initialize(){
 		parent::_initialize();
-		$this->token		= $this->_get('token');
-		$this->wecha_id	= $this->_get('wecha_id') || cookie('wecha_id');
+		$this->token		= I('request.token');
+		$this->wecha_id	= I('request.wecha_id') || cookie('wecha_id');
 		if($this->wecha_id == ""){
 			$this->redirect("Home/Adma/index?token=".$token);
 		}
@@ -43,12 +43,45 @@ class CouponAction extends BaseAction{
 	
 	//中奖后填写信息
 	public function add(){
-		$return = array(
-				"status"=>"0",
-				"info"=>"糟糕，被人抢先一步，优惠券被领完了！"
+		$return = array();
+		$CouponRecordM = M('CouponRecord');
+		$id = I("post.id");//活动id		
+		$map = array(
+				"id"=>$id,
+				"token"=>$this->token
 			);
-		$this->ajaxReturn($return);
+		$coupon = M('Coupon')->where($map)->find();
+		if(!$coupon){
+			$return = array(
+					"status"=>"0",
+					"info"=>"活动已被删除"
+				);
+			$this->ajaxReturn($return);
+		}
+
+		//判断活动是否关闭
+		if($coupon['status'] != 1){
+			$this->error("活动已被关闭");
+		}
+		
+		$record = $CouponRecordM->where(array("wecha_id"=>$this->wecha_id))->find();
+		if($record){
+			$this->error("你已经领取过优惠券");
+		}
+
+		//生成优惠券
+		$data['sn'] = uniqid();
+		$data['pid'] = $id;
+		$data['wecha_id'] = $this->wecha_id;
+		$data['time'] = time();
+		$data['contact_name'] = I("post.name");
+		$data['contact_phone'] = I("post.phone");
+		$data['contact_weixin'] = I("post.weixin");
+		if($CouponRecordM->add($data)){
+			$this->ajaxReturn(array("status"=>"1","sn"=>$sn));
+		}else{
+			$this->error("优惠码已被领取完了。。");
+		}
+
 	}
 }
-	
-?>
