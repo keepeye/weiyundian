@@ -80,7 +80,7 @@ class CouponAction extends BaseAction{
 		if($CouponRecordM->add($data)){
 			$this->ajaxReturn(array("status"=>"1","sn"=>$sn));
 		}else{
-			$this->error("优惠码已被领取完了。。".$CouponRecordM->getDbError());
+			$this->error("优惠码已被领取完了。。");
 		}
 
 	}
