@@ -1,5 +1,11 @@
 <?php
 class CouponAction extends UserAction{
+	function _initialize(){
+		parent::_initialize();
+		if(!$_GET['debug']){
+			$this->error('该模块重构中，暂不开放。');
+		}
+	}
 	public function index(){
 	//dump(session('token'));
 		if(session('gid')==1){
