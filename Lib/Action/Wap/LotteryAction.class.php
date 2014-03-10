@@ -361,7 +361,7 @@ class LotteryAction extends BaseAction{
 			$where = array('lid'=>$lid,'wecha_id'=>$wechaid);
 			//检测奖项是否真实存在
 			$record = M('Lottery_record')->where($where)->find();
-			if(!$record || $record['islottery'] != 1 || $record['sn']==""){
+			if(!$record || $record['islottery'] != 1){
 				$this->ajaxReturn(array('success'=>'1','msg'=>'未检测到中奖记录'));
 			}
 			//奖品已经派发
