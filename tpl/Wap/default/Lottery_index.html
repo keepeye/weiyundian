@@ -116,7 +116,7 @@ var loadingObj = new loading(document.getElementById('loading'),{radius:20,circl
             <div class="box">
                 <div class="title-red">恭喜:</div>
                 <div class="Detail">
-                <p> 尊敬的:<font color='red'>{pigcms:$Dazpan.uname} </font>,您已经中了<font color='red'> {pigcms:$Dazpan.prize} </font> ,<notempty name="Dazpan.sn">您的领奖序列号:<font color='red'> {pigcms:$Dazpan.sn} </font>请您牢记及尽快与我们联系<else/>点击提交联系信息</notempty></p>
+                <p> 尊敬的:<font color='red'>{pigcms:$Dazpan.uname} </font>,您已经中了<font color='red'> {pigcms:$Dazpan.prize} </font> ,<notempty name="Dazpan.sn">您的领奖序列号:<font color='red'> {pigcms:$Dazpan.sn} </font>请您牢记及尽快与我们联系<else/><input type="button" value="点击提交联系信息" onclick="tijiaoxinxi()"/></notempty></p>
                 </div>
             </div>
         </div>
@@ -239,7 +239,30 @@ $(function() {
             }, 200)
         } //if
     } //setps()
-    
+    //提交联系人信息
+    function tijiaoxinxi(){
+        var prize = {pigcms:$Dazpan.prize};
+        if (prize == 1) {
+            type = "一等奖"
+        } else if (prize == 2) {
+            type = "二等奖"
+        } else if (prize == 3) {
+            type = "三等奖"
+        }
+        else if (prize == 4) {
+            type = "四等奖"
+        }
+        else if (prize == 5) {
+            type = "五等奖"
+        }
+        else if (prize == 6) {
+            type = "六等奖"
+        }
+        $("#prizetype").text(type);
+        $("#winprize").val(type);
+        $("#result").slideToggle(500);  
+        $("#outercont").slideUp(500)
+    }
     function start(deg) {       
         deg = deg || lostDeg[parseInt(lostDeg.length * Math.random())];
         running = true;
