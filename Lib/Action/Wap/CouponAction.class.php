@@ -9,6 +9,8 @@ class CouponAction extends BaseAction{
 		if($this->wecha_id == ""){
 			$this->redirect("Home/Adma/index?token=".$token);
 		}
+		$this->assign("token",$this->token);
+		$this->assign("wecha_id",$this->wecha_id);
 		//$this->error('该功能重构中...');
 	}
 
