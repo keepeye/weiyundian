@@ -70,7 +70,7 @@ class CouponAction extends BaseAction{
 		}
 
 		//生成优惠券
-		$data['sn'] = uniqid();
+		$sn = $data['sn'] = uniqid();
 		$data['pid'] = $id;
 		$data['wecha_id'] = $this->wecha_id;
 		$data['time'] = time();
