@@ -5,7 +5,7 @@ class JumpAction extends Action{
 		$appurl = $_GET['appurl'];
 		$openid = $_GET['openid'];//微信用户唯一id
 		cookie("openid",$openid,3600);
-		cookie("wecha_id",$wecha_id,3600);
+		cookie("wecha_id",$openid,3600);
 		//dump(htmlspecialchars_decode($appurl));
 		redirect(htmlspecialchars_decode($appurl));
 	}
