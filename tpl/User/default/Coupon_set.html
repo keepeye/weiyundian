@@ -38,9 +38,9 @@
   </tr>
 <tr>
 	<th><span class="red">*</span>活动时间：</th>
-	<td><input type="input" class="px"  value="{pigcms:$coupon.start_time|date='Y-m-d H:i:s',###}" onClick="WdatePicker()" name="start_time" />                
+	<td><input type="input" class="px"  value="<notempty name='coupon.start_time'>{pigcms:$coupon.start_time|date='Y-m-d H:i:s',###}</notempty>" onClick="WdatePicker()" name="start_time" />                
 		到
-		<input type="input" class="px"  value="{pigcms:$coupon.end_time|date='Y-m-d H:i:s',###}" name="end_time" onClick="WdatePicker()"  /> 
+		<input type="input" class="px"  value="<notempty name='coupon.end_time'>{pigcms:$coupon.end_time|date='Y-m-d H:i:s',###}</notempty>" name="end_time" onClick="WdatePicker()"  /> 
 	</td>
 </tr>
 <tr>
