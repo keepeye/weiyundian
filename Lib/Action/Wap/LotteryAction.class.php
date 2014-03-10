@@ -327,20 +327,22 @@ class LotteryAction extends BaseAction{
 				$newdata['prize'] = $prize;	//中奖等级描述
 				$newdata['islottery'] = 1;
 				//echo '{"success":1,"sn":"'.$sn.'","prizetype":"'.$prizetype.'","usenums":"'.($record['usenums']+1).'"}';
-				$this->ajaxReturn(array(
+				$ajaxData = array(
 						"success"=>1,
 						"prizetype"=>$prizetype,
 						"usenums"=>$record['usenums']+1
-					));
+					);
+				
 			}else{
 				//echo '{"success":0,"prizetype":"","usenums":"'.($record['usenums']+1).'"}';
-				$this->ajaxReturn(array(
+				$ajaxData = array(
 						"success"=>"0",
 						"prizetype"=>"",
 						"usenums"=>$record['usenums']+1
-					));
+					);
 			}
 			M('Lottery_record')->where($map)->data($newdata)->save();//更新抽奖记录、若中奖则写入sn号码		
+			$this->ajaxReturn($ajaxData);
 			exit;
 		} 
 	}
