@@ -45,7 +45,7 @@ class CouponAction extends UserAction{
 			$_POST['token'] = $this->token;//将token添加到表单数据中，避免丢失
 			$_POST['id'] = $id;//同上
 			if($CouponM->create()){
-				$re = $isNew?$CouponM->add():$CouponM->save($id);
+				$re = $isNew?$CouponM->add():$CouponM->save();
 				if($re !== false){
 					$pid = $isNew?$re:$id;//获取主键
 					if($pid > 0){
