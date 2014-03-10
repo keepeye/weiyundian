@@ -35,12 +35,14 @@
         </div>
         <br/>
         <div class="m_ylzjxx">
-            优惠代金券，满300立减100！</div>
+            {pigcms:$coupon.info}
+        </div>
 
             <form action="" method="post"><input type="hidden" value="531d79764b7e3" name="YYUC_FORM_TOKEN"/><div class="m_yljpsm">
                 <div class="m_yljpsms">
                     <span style="color: gray;font-size:12px;">
-                        活动时间：2014-03-04 16:12:54--2014-04-01 16:12:54</span>
+                        活动时间：{pigcms:$coupon.start_time|date='Y-m-d H:i:s',###}--{pigcms:$coupon.end_time|date='Y-m-d H:i:s',###}
+                    </span>
                     </div>
                 </div>
             </form>
@@ -62,7 +64,7 @@
 
          </div>
          <div class="upbox_cen">
-            <a href="javascript:lingqu()"><div class="button_1"><span>确认领取</span></div></a>
+            <a href="javascript:lingqu()"><div class="button_1"><span>提交信息！开抢！</span></div></a>
         </div>
     </div>
     <div class="Pop-upbox" id="snmsg"  style="display: none;">
