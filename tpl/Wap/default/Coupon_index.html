@@ -93,14 +93,14 @@ $(function(){
      var un = $.trim($('#un').val());
      var tel = $.trim($('#tel').val());
      if(un=='' || tel==''){
-      tusi('请完善用户信息');
+      alert('请完善用户信息');
       return;
   }
   ajax('yhqok-add.html',{ tel:tel,un:un,id:'2'},function(m){
       if(m=='rep'){
        location.href=location.href;
    }
-   tusi('领取成功');
+   alert('领取成功');
    $('#usermsg').hide();
    $('#sncode').text(m);
    $('#snmsg').show();
