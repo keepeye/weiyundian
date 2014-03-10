@@ -1210,6 +1210,37 @@ class WeixinAction extends Action
 		                    //Log::write($data['pid'],Log::INFO);
 							
 							break;
+                //优惠券
+                case 'Coupon':
+                    $this->requestdata('other');
+                    $infos = M('Coupon')->where(array('id'=>array('in',$pids['Coupon'])))->select();
+                    foreach($infos as $info){
+                        $id   = $info['id'];
+
+                        $picurl = $info['pic'];
+                        $title  = $info['title'];
+                        $id     = $info['id'];
+                        $info   = $info['info'];
+                        
+                            
+                        //构建应用页面url
+                        $appurl = C('site_url') . U('Wap/Coupon/index', array(
+                            'token' => $this->token,
+                            'id' => $id,
+                            'wxref'=>'mp.weixin.qq.com'
+                            ));
+                                //appurl从Jump模块跳转，用于将openid写入cookie，避免用户转发时带入个人id
+                        $url = C('site_url').U("Wap/Jump/jumpto",array("appurl"=>rawurlencode($appurl),"openid"=>$this->data['FromUserName']));
+
+                        $return[]=array(
+                            $title,
+                            $info,
+                            $picurl,
+                            $url
+                            );
+                        
+                    }
+                    break;
 				case 'Lottery':
 							$this->requestdata('other');
 							//$info = M('Lottery')->find($data['pid']);
@@ -1248,7 +1279,6 @@ class WeixinAction extends Action
                                             'token' => $this->token,
                                             'type' => $type,
                                             'id' => $id,
-                                            'type' => $type,
                                             'wxref'=>'mp.weixin.qq.com'
                                             ));
                                 //appurl从Jump模块跳转，用于将openid写入cookie，避免用户转发时带入个人id
