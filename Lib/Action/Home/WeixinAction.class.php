@@ -923,7 +923,10 @@ class WeixinAction extends Action
     }
     public function help()
     {
-        return "您可以尝试发送[首页]查看微官网，如果底部有菜单，可以点击菜单体验不同的功能。";
+        return array(
+                "您可以尝试发送[首页]查看微官网，如果底部有菜单，可以点击菜单体验不同的功能。",
+                "text"
+            );
 	    $open = M('Token_open')->where(array(
 					'token' => $this->_get('token')
 				    ))->find();
