@@ -79,21 +79,16 @@ class WeixinAction extends Action
                     );
 
         }
-        
-	    $Pin       = new GetPin();
+        $open      = M('Token_open')->where(array(
+                    'token' => $this->_get('token')
+                    ))->find();
+        $this->fun = $open['queryname'];
+        $key       = $data['Content'];
 
-	    $key       = $data['Content'];
-
-	    $open      = M('Token_open')->where(array(
-					'token' => $this->_get('token')
-				    ))->find();
-	    $this->fun = $open['queryname'];
-	    $datafun   = explode(',', $open['queryname']);//获取用户开启的功能
-
-	    $tags      = $this->get_tags($key);//对用户发送的内容进行分词
-
-	    $back      = explode(',', $tags);//将分词结果转换为数组
-	    
+	    //$Pin       = new GetPin();
+	    //$datafun   = explode(',', $open['queryname']);//获取用户开启的功能
+	    //$tags      = $this->get_tags($key);//对用户发送的内容进行分词
+	    //$back      = explode(',', $tags);//将分词结果转换为数组
 		//遍历分词结果tags,匹配小功能
 	  //   foreach ($back as $keydata => $data)
 	  //   {
