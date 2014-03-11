@@ -4,8 +4,7 @@ class GuajiangAction extends BaseAction{
 		$agent = $_SERVER['HTTP_USER_AGENT'];
 
 		$token	  =  $this->_get('token');
-		$wecha_id = I('request.wecha_id');
-		dump($wecha_id);
+		$wecha_id = I('request.wecha_id',cookie('wecha_id'));
 		if (!$wecha_id){
 			$this->error("请通过微信进入");
 		}
@@ -18,7 +17,6 @@ class GuajiangAction extends BaseAction{
 			//sleep(1);
 			$record =$redata->where($where)->find();
 		}
-		dump($record);
 		$Lottery =	M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>2))->find();
 		$data = array();
 
