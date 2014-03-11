@@ -67,36 +67,10 @@
 			nav.addEventListener("touchend", evts, false);
 		});
 	</script>
-	<div class="top_bar footer_bar">
-			<section>
-					<div class="nav_8">
-						<ul class="box">
-							
-															<li>
-								<a href="tel:{pigcms:$company.tel}">
-									<p class="tel"></p>
-									<span>联系电话</span>
-								</a>
-							</li>
-																					<li>
-								<a href="{pigcms::U('Wap/Index/index',array('token'=>$token))}">
-									<p class="home"></p>
-									<span>首页</span>
-								</a>
-							</li>
-							<li>
-								<a href="javascript:$('#shareCover').toggleClass('on');">
-									<p class="share"></p>
-									<span>分享</span>
-								</a>
-							</li>
-						</ul>
-					</div>
-			</section>
-		</div>
+	
 	    <div class="weimob-content">
         <h3>{pigcms:$res.title}</h3>
-        <div class="pub_time">{pigcms:$res.createtime|date="y-m-d",###}</div>
+        <!--<div class="pub_time">{pigcms:$res.createtime|date="y-m-d",###}</div>-->
         <div class="head_logo" onclick="location.href='{pigcms::U('Index/index',array('token'=>$res['token']))}'">
         	
             <div>
