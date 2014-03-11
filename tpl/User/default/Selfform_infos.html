@@ -39,7 +39,8 @@
 <volist name="list" id="item"> 
 <tr>
 <td>{pigcms:$item.id}</td>
-<volist name="item" id="citem">
+<td>{pigcms:$item.time}</td>
+<volist name="item.vallist" id="citem">
 <td>{pigcms:$citem}</td>
 </volist>
 <td class="norightborder"><a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Selfform/infoDelete',array('id'=>$item['id'],'token'=>$token))}');">删除</a></td>

@@ -282,20 +282,15 @@ class SelfformAction extends UserAction{
 		}
 		$list=$this->selfform_value_model->where($infoWhere)->order('time DESC')->limit($Page->firstRow.','.$Page->listRows)->select();
 		if ($list){
-			$i=0;
-			foreach ($list as $l){
+			foreach ($list as $k=>$l){
 				$values=unserialize($l['values']);
 				if ($fields){
 					foreach ($fields as $f){
-						$list[$i][$f['fieldname']]=$values[$f['fieldname']];
+						$list[$k]['vallist'][$f['fieldname']]=$values[$f['fieldname']];
 					}
 				}
-				$list[$i]['time']=date('Y-m-d H:i:s',$l['time']);
-				unset($list[$i]['formid']);
-				//unset($list[$i]['id']);
-				unset($list[$i]['values']);
-				unset($list[$i]['wecha_id']);
-				$i++;
+				$list[$k]['time']=date('Y-m-d H:i:s',$l['time']);
+				
 			}
 			
 		}
