@@ -95,31 +95,31 @@ class WeixinAction extends Action
 	    $back      = explode(',', $tags);//将分词结果转换为数组
 	    
 		//遍历分词结果tags,匹配小功能
-	    foreach ($back as $keydata => $data)
-	    {
-		    $string = $Pin->Pinyin($data);//将单词转换为拼音
-			//如果拼音等于用户开启的某个功能拼音
-		    if (in_array($string, $datafun))
-		    {
-			    //$check = $this->user('connectnum');//检测连接数
-			    // if ($string == 'fujin') {//如果单词是附近
-				   //  $this->recordLastRequest($key);
-			    // }
-			    $this->requestdata('textnum');
-			    unset($back[$keydata]);//将这个词从分词数组中删除
-			    //eval('$return= $this->' . $string . '($back);');//调用对应功能的方法，得到返回结果
-			    $return = $this->$string($back);
-			    //直接返回小功能结果
-			    if (is_array($return)){
-					return $return;
-				}else{
-					return array(
-							$return,
-							'text'
-							);
-				}
-		    }
-	    }
+	  //   foreach ($back as $keydata => $data)
+	  //   {
+		 //    $string = $Pin->Pinyin($data);//将单词转换为拼音
+			// //如果拼音等于用户开启的某个功能拼音
+		 //    if (in_array($string, $datafun))
+		 //    {
+			//     //$check = $this->user('connectnum');//检测连接数
+			//     // if ($string == 'fujin') {//如果单词是附近
+			// 	   //  $this->recordLastRequest($key);
+			//     // }
+			//     $this->requestdata('textnum');
+			//     unset($back[$keydata]);//将这个词从分词数组中删除
+			//     //eval('$return= $this->' . $string . '($back);');//调用对应功能的方法，得到返回结果
+			//     $return = $this->$string($back);
+			//     //直接返回小功能结果
+			//     if (is_array($return)){
+			// 		return $return;
+			// 	}else{
+			// 		return array(
+			// 				$return,
+			// 				'text'
+			// 				);
+			// 	}
+		 //    }
+	  //   }
 		/*
 		if ($this->data['Location_X']) {
 			$this->recordLastRequest($this->data['Location_Y'] . ',' . $this->data['Location_X'], 'location');
