@@ -1,5 +1,5 @@
 <?php
-class WeixinAction extends Action
+class Weixin1Action extends Action
 {
     private $token;
     private $fun;
