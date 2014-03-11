@@ -61,7 +61,7 @@
 						<td>
                <if condition="$record['sendstutas'] eq 0"> 
                  <a href="index.php?g=User&m=Lottery&a=sendprize&id={pigcms:$record.id}">发奖</a> 
-                 <a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('del',array('id'=>$record['id'],'token'=>$token))}');">删除</a>
+                 <a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('delRecord',array('id'=>$record['id'],'token'=>$token))}');">删除</a>
               </if>
              
             </td>

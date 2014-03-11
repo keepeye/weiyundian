@@ -155,7 +155,12 @@ class LotteryAction extends UserAction{
 	
 	
 	}
-	
+	function delRecord(){
+		$id=I('id');
+		$where=array('id'=>$id,'token'=>session('token'));
+		M('LotteryRecord')->where($where)->delete();
+		$this->success("删除成功");
+	}
 	public function sendprize(){
 		$id=$this->_get('id');
 		$where=array('id'=>$id,'token'=>session('token'));
