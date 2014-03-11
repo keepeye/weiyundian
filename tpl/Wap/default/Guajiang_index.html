@@ -346,22 +346,27 @@ $(function(){
 		width : 150,
 		height : 40,
 		color : "#a9a9a7",
-		scratchMove : function(){
-			num++;
-			if(num==2){ //不中奖[谢谢参与]
-				document.getElementById('prize').innerHTML="{pigcms:$Guajiang.winprize}";
-			}
-			if(zjl==0&&goon){ //不中奖[谢谢参与]
-				goon = false;
-				document.getElementById('txt').innerHTML="{pigcms:$Guajiang.winprize}";
-				$("#windowcenter").slideToggle(500);
-			}
-			if(zjl&&num>3&&goon){
-				//$("#zjl").fadeIn();
-				goon = false;
-				$("#zjl").slideToggle(500);
-				//$("#outercont").slideUp(500)
-			}
+		scratchMove : function(e, percent){
+			if(percent > 70){
+
+                this.clear();
+                num++;
+				if(num==2){ //不中奖[谢谢参与]
+					document.getElementById('prize').innerHTML="{pigcms:$Guajiang.winprize}";
+				}
+				if(zjl==0&&goon){ //不中奖[谢谢参与]
+					goon = false;
+					document.getElementById('txt').innerHTML="{pigcms:$Guajiang.winprize}";
+					$("#windowcenter").slideToggle(500);
+				}
+				if(zjl&&num>3&&goon){
+					//$("#zjl").fadeIn();
+					goon = false;
+					$("#zjl").slideToggle(500);
+					//$("#outercont").slideUp(500)
+				}
+				}
+			
 		}
 	});
 
