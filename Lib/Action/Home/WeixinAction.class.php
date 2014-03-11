@@ -1218,8 +1218,8 @@ class WeixinAction extends Action
 											$pro['name'],
 											strip_tags(htmlspecialchars_decode($pro['intro'])),
 											$pro['logourl'],
-                                            C('site_url').U("Wap/Jump/jumpto",array("appurl"=>rawurlencode(C('site_url') . '/index.php?g=Wap&m=Selfform&a=index&token=' . $this->token. '&id=' . $pro['id'].'&wxref=mp.weixin.qq.com'),"openid"=>$this->data['FromUserName']))
-											
+                                            //C('site_url').U("Wap/Jump/jumpto",array("appurl"=>rawurlencode(C('site_url') . '/index.php?g=Wap&m=Selfform&a=index&token=' . $this->token. '&id=' . $pro['id'].'&wxref=mp.weixin.qq.com'),"openid"=>$this->data['FromUserName']))
+											C('site_url') . '/index.php?g=Wap&m=Selfform&a=index&token=' . $this->token. '&id=' . $pro['id'].'&wxref=mp.weixin.qq.com&wecha_id='.$this->data['FromUserName']
 										);
                             }
 		                    //Log::write($data['pid'],Log::INFO);
