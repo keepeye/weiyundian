@@ -66,9 +66,9 @@ $(function() {
 <h2>客服</h2>
 <div class="text">
 <?php if(!empty($thisForm['contact_tel'])): ?>
-tel: <a href="tel:{pigcms:$thisForm['contact_tel']}" style="color:red">{pigcms:$thisForm['contact_tel']}</a>
+TEL: <a href="tel:{pigcms:$thisForm['contact_tel']}" style="color:red">{pigcms:$thisForm['contact_tel']}</a>
 	<?php if(!empty($thisForm['contact_qq'])): ?>
-	<br/>qq: <a style="color:red">{pigcms:$thisForm['contact_qq']}</a>
+	<br/>QQ: <a style="color:red">{pigcms:$thisForm['contact_qq']}</a>
 	<?php endif;?>
 <?php else: ?>
 商家未设置客服
