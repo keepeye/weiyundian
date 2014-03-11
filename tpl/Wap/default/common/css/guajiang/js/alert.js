@@ -39,7 +39,7 @@ document.writeln("	");
 document.writeln("}");
 document.writeln(".window .content {");
 document.writeln("	\/*min-height:100px;*\/");
-document.writeln("	overflow:auto;");
+document.writeln("	overflow:auto;margin-bottom:0;");
 document.writeln("	padding:10px;");
 document.writeln("	background: linear-gradient(#FBFBFB, #EEEEEE) repeat scroll 0 0 #FFF9DF;");
 document.writeln("    color: #222222;");
