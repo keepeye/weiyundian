@@ -4,8 +4,8 @@ class JumpAction extends Action{
 	function jumpto(){
 		$appurl = $_GET['appurl'];
 		$openid = $_GET['openid'];//微信用户唯一id
-		cookie("openid",$openid,3600);
-		cookie("wecha_id",$openid,3600);
+		cookie("openid",$openid,300);
+		cookie("wecha_id",$openid,300);
 		//dump(htmlspecialchars_decode($appurl));
 		redirect(htmlspecialchars_decode($appurl));
 	}
