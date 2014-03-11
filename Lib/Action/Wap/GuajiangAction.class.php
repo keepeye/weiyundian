@@ -4,7 +4,7 @@ class GuajiangAction extends BaseAction{
 		$agent = $_SERVER['HTTP_USER_AGENT'];
 
 		$token	  =  $this->_get('token');
-		$wecha_id = '' || 'df';
+		$wecha_id = $_REQUST['wecha_id'];
 		dump($wecha_id);
 		if (!$wecha_id){
 			$this->error("请通过微信进入");
