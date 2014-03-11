@@ -158,7 +158,7 @@ loading.prototype = {
 	<div class="main">
 <div class="cover">
 	<img src="{pigcms::RES}/css/guajiang/images/activity-scratch-card-bannerbg.png">
-	<div id="prize"> <if condition="$Guajiang['usenums'] eq 1">刮奖次数已用完</if></div>
+	<div id="prize"> <if condition="$Guajiang['usenums'] eq 1">刮奖次数已用完<else/>{pigcms:$Guajiang.winprize}</if></div>
 	<div id="scratchpad"></div>
 </div>
 <div class="content">
@@ -347,25 +347,22 @@ $(function(){
 		height : 40,
 		color : "#a9a9a7",
 		scratchMove : function(e, percent){
-			if(percent > 70){
-
+			if(percent > 30){
                 this.clear();
-                num++;
-				if(num==2){ //不中奖[谢谢参与]
-					document.getElementById('prize').innerHTML="{pigcms:$Guajiang.winprize}";
-				}
+                
 				if(zjl==0&&goon){ //不中奖[谢谢参与]
 					goon = false;
-					document.getElementById('txt').innerHTML="{pigcms:$Guajiang.winprize}";
+					//document.getElementById('txt').innerHTML="{pigcms:$Guajiang.winprize}";
 					$("#windowcenter").slideToggle(500);
 				}
-				if(zjl&&num>3&&goon){
+				//中奖了
+				if(zjl&&goon){
 					//$("#zjl").fadeIn();
 					goon = false;
 					$("#zjl").slideToggle(500);
 					//$("#outercont").slideUp(500)
 				}
-				}
+			}
 			
 		}
 	});
