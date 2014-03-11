@@ -58,7 +58,16 @@ items : [
         <th><span class="red">*</span>截止日期：</th> 
         <td><input type="input" class="px" id="enddate" value="{pigcms:$set.endtime|date="Y-m-d",###}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="enddate" /></td> 
        </tr>
-
+       </tr>
+        <tr> 
+        <th><span class="red"></span>联系电话：</th>
+        <td><input type="text" name="contact_tel"  value="{pigcms:$set.contact_tel}" class="px" style="width:200px;" /></td> 
+       </tr>
+       </tr>
+        <tr> 
+        <th><span class="red"></span>客服QQ：</th>
+        <td><input type="text" name="contact_qq"  value="{pigcms:$set.contact_qq}" class="px" style="width:200px;" /></td> 
+       </tr>
         <tr> 
         <th><span class="red">*</span>Logo：</th>
         <td>
