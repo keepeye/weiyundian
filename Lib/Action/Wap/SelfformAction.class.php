@@ -81,8 +81,6 @@ class SelfformAction extends BaseAction{
 			}else {
 				$submitted=0;
 			}
-			//读取公司信息
-			$company = M('Company')->field("mp,tel")->where(array('token'=>$this->token))->find();
 			$this->assign('company',$company);
 			$this->assign('submitted',$submitted);
 			$this->assign('list',$list);
