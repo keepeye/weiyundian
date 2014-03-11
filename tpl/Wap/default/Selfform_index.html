@@ -66,7 +66,7 @@ $(function() {
 <h2>联系我们</h2>
 <div class="text">
 <?php if(!empty($thisForm['contact_tel']) && ($contact_tel=explode("#",$thisForm['contact_tel']))): ?>
-联系电话: <a href="tel:<?php echo $contact_tel[0];?>" style="color:red"><?php echo $contact_tel[0];?></a> 转分机：<?php echo $contact_tel[1];?>
+联系电话: <a href="tel:<?php echo $contact_tel[0];?>" style="color:red"><?php echo $contact_tel[0];?></a> 转：<?php echo $contact_tel[1];?>
 	<?php if(!empty($thisForm['contact_qq'])): ?>
 	<br/>客服QQ: <a style="color:red">{pigcms:$thisForm['contact_qq']}</a>
 	<?php endif;?>
