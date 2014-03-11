@@ -64,7 +64,8 @@ class SelfformAction extends BaseAction{
 			$this->redirect(U('Selfform/index',array('token'=>$this->token,'wecha_id'=>$this->wecha_id,'id'=>$thisForm['id'],'success'=>1)));
 		}else {
 			//判断是否提交过信息了
-			$submitInfo=$this->selfform_value_model->where(array('wecha_id'=>$this->wecha_id,'formid'=>$thisForm['id']))->find();
+			//$submitInfo=$this->selfform_value_model->where(array('wecha_id'=>$this->wecha_id,'formid'=>$thisForm['id']))->find();
+			$submitInfo = "";
 			if ($submitInfo){
 				$info=unserialize($submitInfo['values']);
 				if ($info){
@@ -78,7 +79,7 @@ class SelfformAction extends BaseAction{
 				$imgSrc=generateQRfromGoogle(C('site_url').'/index.php?g=Wap&m=Selfform&a=submitInfo&token='.$this->token.'&wecha_id='.$this->wecha_id.'&id='.$thisForm['id']);
 				
 				$this->assign('imgSrc',$imgSrc);
-			}else {
+			}else{
 				$submitted=0;
 			}
 			$this->assign('company',$company);
