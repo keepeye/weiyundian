@@ -5,7 +5,7 @@ class CouponAction extends BaseAction{
 	function _initialize(){
 		parent::_initialize();
 		$this->token		= I('request.token');
-		$this->wecha_id	= I('request.wecha_id') || cookie('wecha_id');
+		$this->wecha_id	= I('request.wecha_id',cookie('wecha_id'));
 		if($this->wecha_id == ""){
 			$this->redirect("Home/Adma/index?token=".$token);
 		}
