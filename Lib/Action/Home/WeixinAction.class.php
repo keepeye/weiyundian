@@ -440,36 +440,47 @@ class WeixinAction extends Action
     }
     function choujiang($name)
     {
-        $data = M('lottery')->field('id,keyword,info,title,starpicurl')->where(array(
-            'token' => $this->token,
-            'status' => 1,
-            'type' => 1
-        ))->order('id desc')->find();
-        if ($data == false) {
-            return array(
-                '暂无抽奖活动',
-                'text'
-            );
+        $keywords = M('Keyword')->field('keyword')->where(array('token'=>$this->token,'module'=>'Lottery'))->select();
+        $re=array();
+        foreach($keywords as $v){
+            $re[] = $v['keyword'];
         }
-        $pic = $data['starpicurl'] ? $data['starpicurl'] : rtrim(C('site_url'), '/') . '/tpl/User/default/common/images/img/activity-lottery-start.jpg';
-        $url = rtrim(C('site_url'), '/') . U('Wap/Lottery/index', array(
-            'type' => 1,
-            'token' => $this->token,
-            'id' => $data['id'],
-            'wecha_id' => $this->data['FromUserName'],
-			'wxref'=>'mp.weixin.qq.com'
-        ));
-        return array(
-            array(
-                array(
-                    $data['title'],
-                    $data['info'],
-                    $pic,
-                    $url
-                )
-            ),
-            'news'
-        );
+        if(!empty($re)){
+            $str = "当前有以下抽奖活动，请发送对应名字查看详情：\n".implode("\n",$re);
+        }else{
+            $str = "暂无抽奖活动";
+        }
+        return $str;
+   //      $data = M('lottery')->field('id,keyword,info,title,starpicurl')->where(array(
+   //          'token' => $this->token,
+   //          'status' => 1,
+   //          'type' => 1
+   //      ))->order('id desc')->find();
+   //      if ($data == false) {
+   //          return array(
+   //              '暂无抽奖活动',
+   //              'text'
+   //          );
+   //      }
+   //      $pic = $data['starpicurl'] ? $data['starpicurl'] : rtrim(C('site_url'), '/') . '/tpl/User/default/common/images/img/activity-lottery-start.jpg';
+   //      $url = rtrim(C('site_url'), '/') . U('Wap/Lottery/index', array(
+   //          'type' => 1,
+   //          'token' => $this->token,
+   //          'id' => $data['id'],
+   //          //'wecha_id' => $this->data['FromUserName'],
+			// 'wxref'=>'mp.weixin.qq.com'
+   //      ));
+   //      return array(
+   //          array(
+   //              array(
+   //                  $data['title'],
+   //                  $data['info'],
+   //                  $pic,
+   //                  $url
+   //              )
+   //          ),
+   //          'news'
+   //      );
     }
     
     function home()
