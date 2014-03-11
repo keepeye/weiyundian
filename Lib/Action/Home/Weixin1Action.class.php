@@ -80,15 +80,23 @@ class WeixinAction extends Action
 
         }
         $open      = M('Token_open')->where(array(
-                    'token' => $this->_get('token')
+                    'token' => I('token')
                     ))->find();
-        $this->fun = $open['queryname'];
-        $key       = $data['Content'];
+        $this->fun = $open['queryname'];//用户开启的小功能
+        $key       = $data['Content'];//用户发送的内容字符串
 
-        //1.检测模块匹配
-        //2.检测图文匹配
-        //3.检测小工具匹配
-        //4.聊天
+        
+        if(!$return = $this->moduleReply($key)){//1.检测模块匹配
+            if(!$return = $this->keywordReply($key)){//2.检测图文匹配
+                if(!$return = $this->queryReply($key)){//3.检测小工具匹配
+                    $return = $this->chat($key);//4.聊天
+                }
+            }
+        }
+        return $return;
+        
+        
+        
         
 	    //$Pin       = new GetPin();
 	    //$datafun   = explode(',', $open['queryname']);//获取用户开启的功能
