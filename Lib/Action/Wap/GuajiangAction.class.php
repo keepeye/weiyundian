@@ -17,7 +17,7 @@ class GuajiangAction extends BaseAction{
 			//sleep(1);
 			$record =$redata->where($where)->find();
 		}
-
+		dump($record);
 		$Lottery =	M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>2))->find();
 		$data = array();
 
