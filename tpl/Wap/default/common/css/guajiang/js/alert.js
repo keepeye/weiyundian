@@ -146,6 +146,6 @@ function alert(title){
 $("#windowcenter").slideToggle("slow"); 
 $("#txt").html(title);
 //$("#windowcenter").hide("slow"); 
-//setTimeout('$("#windowcenter").slideUp(500)',8000);
+setTimeout('$("#windowcenter").slideUp(500)',5000);
 } 
 
