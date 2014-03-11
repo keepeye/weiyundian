@@ -67,7 +67,7 @@ $(function() {
 <div class="text">
 <?php if(!empty($thisForm['contact_tel'])): ?>
 tel: <a href="tel:{pigcms:$thisForm['contact_tel']}" style="color:red">{pigcms:$thisForm['contact_tel']}</a>
-<?php elseif(!empty($company['contact_qq'])): ?>
+<?php elseif(!empty($thisForm['contact_qq'])): ?>
 qq: {pigcms:$thisForm['contact_qq']}
 <?php else: ?>
 商家未设置联系方式
