@@ -65,12 +65,12 @@ $(function() {
 <li>
 <h2>联系方式</h2>
 <div class="text">
-<?php if(!empty($company['tel'])): ?>
-<a href="tel:{pigcms:$company['tel']}" style="color:red">{pigcms:$company['tel']}</a>
-<?php elseif(!empty($company['mp'])): ?>
-<a href="tel:{pigcms:$company['mp']}" style="color:red">{pigcms:$company['mp']}</a>
+<?php if(!empty($thisForm['contact_tel'])): ?>
+tel: <a href="tel:{pigcms:$thisForm['contact_tel']}" style="color:red">{pigcms:$thisForm['contact_tel']}</a>
+<?php elseif(!empty($company['contact_qq'])): ?>
+qq: {pigcms:$thisForm['contact_qq']}
 <?php else: ?>
-商家未设置联系电话
+商家未设置联系方式
 <?php endif;?>
 </div>
 </li>
