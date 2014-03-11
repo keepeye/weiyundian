@@ -207,7 +207,7 @@ loading.prototype = {
 <div style="clear:both;"></div>
 </div>	
 </if>	
-{pigcms::W('Plugmenu')}
+
 <script src="{pigcms::RES}/css/guajiang/js/alert.js" type="text/javascript"></script>
 <style type="text/css">
 .window {
@@ -352,10 +352,10 @@ $(function(){
                 
 				if(zjl==0&&goon){ //不中奖[谢谢参与]
 					goon = false;
-					//document.getElementById('txt').innerHTML="{pigcms:$Guajiang.winprize}";
+					document.getElementById('txt').innerHTML="{pigcms:$Guajiang.winprize}";
 					$("#windowcenter").slideToggle(500);
 				}
-				//中奖了
+				
 				if(zjl&&goon){
 					//$("#zjl").fadeIn();
 					goon = false;
