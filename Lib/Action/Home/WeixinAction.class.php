@@ -85,6 +85,11 @@ class WeixinAction extends Action
         $this->fun = $open['queryname'];
         $key       = $data['Content'];
 
+        //1.检测模块匹配
+        //2.检测图文匹配
+        //3.检测小工具匹配
+        //4.聊天
+        
 	    //$Pin       = new GetPin();
 	    //$datafun   = explode(',', $open['queryname']);//获取用户开启的功能
 	    //$tags      = $this->get_tags($key);//对用户发送的内容进行分词
@@ -918,6 +923,7 @@ class WeixinAction extends Action
     }
     public function help()
     {
+        return "您可以尝试发送[首页]查看微官网，如果底部有菜单，可以点击菜单体验不同的功能。";
 	    $open = M('Token_open')->where(array(
 					'token' => $this->_get('token')
 				    ))->find();
@@ -1330,7 +1336,8 @@ class WeixinAction extends Action
 				// 		'news'
 				// 	);
 				// }
-				//
+            //小功能匹配
+            
 				if (false === strpos($this->fun, 'liaotian')) {//这里应该用false严格判断，因为如果liaotian出现在字符串开头返回的将是0。
 					$other = M('Other')->where(array(
 								'token' => $this->token
@@ -1345,49 +1352,7 @@ class WeixinAction extends Action
 									$other['info'],
 									'text'
 									);
-						/*
-						if (empty($other['keyword'])) {
-							return array(
-									$other['info'],
-									'text'
-									);
-						} else {
-							$img = M('Img')->field('id,text,pic,url,title')->limit(5)->order('id desc')->where(array(
-										'token' => $this->token,
-										'keyword' => array(
-											'like',
-											'%' . $other['keyword'] . '%'
-											)
-										))->select();
-							if ($img == false) {
-								return array(
-										'无此图文信息,请提醒商家，重新设定关键词',
-										'text'
-										);
-							}
-							foreach ($img as $keya => $infot) {
-								if ($infot['url'] != false) {
-									$url = $infot['url'];
-								} else {
-									$url = rtrim(C('site_url'), '/') . U('Wap/Index/content', array(
-												'token' => $this->token,
-												'id' => $infot['id'],
-												'wxref'=>'mp.weixin.qq.com'
-												));
-								}
-								$return[] = array(
-										$infot['title'],
-										$infot['text'],
-										$infot['pic'],
-										$url
-										);
-							}
-							return array(
-									$return,
-									'news'
-									);
-						}
-						*/
+						
 					}
 				}
 				return array(
