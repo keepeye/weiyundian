@@ -63,7 +63,7 @@ $(function() {
 </div>
 </li>
 <li>
-<h2>客服</h2>
+<h2>联系我们</h2>
 <div class="text">
 <?php if(!empty($thisForm['contact_tel']) && ($contact_tel=explode("#",$thisForm['contact_tel']))): ?>
 联系电话: <a href="tel:<?php echo $contact_tel[0];?>" style="color:red"><?php echo $contact_tel[0];?></a> 分机号：<?php echo $contact_tel[1];?>
@@ -71,7 +71,7 @@ $(function() {
 	<br/>客服QQ: <a style="color:red">{pigcms:$thisForm['contact_qq']}</a>
 	<?php endif;?>
 <?php else: ?>
-商家未设置客服
+商家未设置客服信息
 <?php endif;?>
 </div>
 </li>
