@@ -2,7 +2,7 @@ document.writeln("<style type=\"text\/css\">");
 document.writeln("");
 document.writeln(".window {");
 document.writeln("	width:290px;");
-document.writeln("	position:absolute;");
+document.writeln("	position:fixed;");
 document.writeln("	display:none;");
 document.writeln("	bottom:30px;");
 document.writeln("	left:50%;");
