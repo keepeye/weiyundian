@@ -76,6 +76,7 @@ class SelfformAction extends UserAction{
 			if($check==false)$this->error('非法操作');
 			if($this->selfform_model->create()){
 				if(false !== $this->selfform_model->where($where)->save()){
+					echo $this->selfform_model->getLastSql();
 					$this->success('修改成功',U('Selfform/index',array('token'=>$this->token)));
 					$keyword_model=M('Keyword');
 					$keyword_model->where(array('token'=>$this->token,'pid'=>$id,'module'=>'Selfform'))->save(array('keyword'=>$_POST['keyword']));
