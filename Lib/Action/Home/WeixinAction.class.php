@@ -1320,21 +1320,21 @@ class WeixinAction extends Action
 				);
 		}else{
 			//判断是否有与关键词匹配的分类，有则返回分类列表的链接
-				$classify = M('Classify')->field('url,id,type,name,info,img')->where(array('token'=>$this->token,'name'=>$key))->find();
-				if(!empty($classify)){
-					$href = WeParseUrl($classify['url'],$classify['type'],array('token'=>$this->token,'wecha_id'=>$this->data['FromUserName'],'classid'=>$classify['id'],'wxref'=>'mp.weixin.qq.com'));
-					return array(
-						array(
-							array(
-								$classify['name'],//自动回复信息，分类名
-								$classify['info'],//描述信息
-								$classify['img'],//图片链接
-								C('site_url') . $href,//网页链接
-								)
-							),
-						'news'
-					);
-				}
+				// $classify = M('Classify')->field('url,id,type,name,info,img')->where(array('token'=>$this->token,'name'=>$key))->find();
+				// if(!empty($classify)){
+				// 	$href = WeParseUrl($classify['url'],$classify['type'],array('token'=>$this->token,'wecha_id'=>$this->data['FromUserName'],'classid'=>$classify['id'],'wxref'=>'mp.weixin.qq.com'));
+				// 	return array(
+				// 		array(
+				// 			array(
+				// 				$classify['name'],//自动回复信息，分类名
+				// 				$classify['info'],//描述信息
+				// 				$classify['img'],//图片链接
+				// 				C('site_url') . $href,//网页链接
+				// 				)
+				// 			),
+				// 		'news'
+				// 	);
+				// }
 				//
 				if (false === strpos($this->fun, 'liaotian')) {//这里应该用false严格判断，因为如果liaotian出现在字符串开头返回的将是0。
 					$other = M('Other')->where(array(
