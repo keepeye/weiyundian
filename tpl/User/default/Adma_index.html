@@ -102,11 +102,12 @@ items : [
 <tr>
 	<th width="120" valign="top">版权信息:</th>
 	<td>
-	<input type="text" name="copyright" value="{pigcms:$adma.copyright}" class="px" style="width:400px;text-align:left;color:rgb(0, 0, 0);float:none"" id="copyright" onclick="document.getElementById('gzhcopyright').innerHTML=this.value;" onkeyup="DivFollowingText3()"/>
+	<input type="text" name="copyright" value="{pigcms:$adma.copyright}" class="px" style="width:400px;text-align:left;color:rgb(0, 0, 0);float:none" id="copyright" onclick="document.getElementById('gzhcopyright').innerHTML=this.value;" onkeyup="DivFollowingText3()"/>
 	<script type="text/javascript">
 	function DivFollowingText3()
 	{
-	document.getElementById("gzhcopyright").innerHTML=document.getElementById("copyright").value;}
+		document.getElementById("gzhcopyright").innerHTML=document.getElementById("copyright").value;
+	}
 	</script> 
 		<br/>
 		<span>例如：© 2001-2013 {pigcms::C('site_name')}版权所有</span>
@@ -119,7 +120,14 @@ items : [
 <a href="{pigcms::C('site_url')}/index.php?g=Home&m=Adma&a=index&token={pigcms:$Think.session.token}" class="right btnGray vm" target="ddd" style=" margin-right:20px" target="_blank">查看推广页</a>
 </td>
 </tr>
-
+<tr>
+<th valign="top">跳转到：</th>
+<td>
+<input type="text" name="redirect" value="{pigcms:$adma.redirect}" class="px" style="width:400px;"  >
+<br>
+设置该项后，宣传页将直接跳转到该地址。
+</td>
+</tr>
 </tbody>
 </table>
 </div> 
