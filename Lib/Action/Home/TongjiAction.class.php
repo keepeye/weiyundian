@@ -18,7 +18,7 @@ class TongjiAction extends TongjiBaseAction{
 		$this->_token = I('token');//商户token
 		//检测请求是否合法或是否已经统计过当前用户
 		if(!$this->check(ACTION_NAME)){
-			exit('1');
+			exit('21');
 		}
 		$this->_now['time'] = $nowtime = time();//当前时间戳
 		$this->_now['year'] = date("Y",$nowtime);//当前年份数字
