@@ -18,7 +18,7 @@ class TongjiAction extends TongjiBaseAction{
 		$this->_token = I('token');//商户token
 		//检测请求是否合法或是否已经统计过当前用户
 		if(!$this->check(ACTION_NAME)){
-			eixt('1');
+			exit('1');
 		}
 		$this->_now['time'] = $nowtime = time();//当前时间戳
 		$this->_now['year'] = date("Y",$nowtime);//当前年份数字
@@ -46,8 +46,8 @@ class TongjiAction extends TongjiBaseAction{
 
 	//更新转发统计
 	function share(){
-		$this->_record->shares = $this->_record['shares']+1;
-		$this->_record->save();//###########################################
+		M('tongji')->shares = $this->_record['shares']+1;
+		M('tongji')->save();//###########################################
 		exit('0');
 	}
 
