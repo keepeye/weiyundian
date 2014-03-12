@@ -7,6 +7,10 @@ class AdmaAction extends BaseAction{
 			if($adma==false){
 				$this->error('不在的宣传页',U('Home/Index/index'));
 			}else{
+				if($adma['redirect']!=""){
+					redirect($adma['redirect']);//如果设置了外链，则直接跳转到外链页面
+					exit;
+				}
 				$this->assign('adma',$adma);
 			}
 		}else{
