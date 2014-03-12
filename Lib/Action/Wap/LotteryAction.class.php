@@ -33,6 +33,30 @@ class LotteryAction extends BaseAction{
 		$data['wecha_id']	= $record['wecha_id'];		
 		$data['lid']		= $record['lid'];
 		$data['rid']		= $record['id'];
+		$data['usenums'] 	= $record['usenums'];
+		$data['canrqnums']	= $Lottery['canrqnums'];//抽奖次数限制
+		$data['interval']	= $Lottery['interval'];//抽奖时间限制
+		$data['fist'] 		= $Lottery['fist'];
+		$data['second'] 	= $Lottery['second'];
+		$data['third'] 		= $Lottery['third'];
+		$data['four'] 		= $Lottery['four'];
+		$data['five'] 		= $Lottery['five'];
+		$data['six'] 		= $Lottery['six'];
+		$data['fistnums'] 	= $Lottery['fistnums'];
+		$data['secondnums'] = $Lottery['secondnums'];
+		$data['thirdnums'] 	= $Lottery['thirdnums'];	
+		$data['fournums'] 	= $Lottery['fournums'];
+		$data['fivenums'] 	= $Lottery['fivenums'];
+		$data['sixnums'] 	= $Lottery['sixnums'];
+		$data['info']		= $Lottery['info'];
+		$data['txt']		= $Lottery['txt'];
+		$data['sttxt']		= $Lottery['sttxt'];		
+		$data['title']		= $Lottery['title'];
+		$data['statdate']	= $Lottery['statdate'];
+		$data['enddate']	= $Lottery['enddate'];		
+		$data['animpic'] = $Lottery['animpic'];
+		$data['hitangle'] = $Lottery['hitangle'];
+		$data['lostangle'] = $Lottery['lostangle'];
 		//1.活动已关闭
 		if (empty($Lottery)) {
 			 $data['end'] = 1;
@@ -68,32 +92,6 @@ class LotteryAction extends BaseAction{
 		}
 		
 		$data['On'] 		= 1;
-		
-		
-		$data['usenums'] 	= $record['usenums'];
-		$data['canrqnums']	= $Lottery['canrqnums'];//抽奖次数限制
-		$data['interval']	= $Lottery['interval'];//抽奖时间限制
-		$data['fist'] 		= $Lottery['fist'];
-		$data['second'] 	= $Lottery['second'];
-		$data['third'] 		= $Lottery['third'];
-		$data['four'] 		= $Lottery['four'];
-		$data['five'] 		= $Lottery['five'];
-		$data['six'] 		= $Lottery['six'];
-		$data['fistnums'] 	= $Lottery['fistnums'];
-		$data['secondnums'] = $Lottery['secondnums'];
-		$data['thirdnums'] 	= $Lottery['thirdnums'];	
-		$data['fournums'] 	= $Lottery['fournums'];
-		$data['fivenums'] 	= $Lottery['fivenums'];
-		$data['sixnums'] 	= $Lottery['sixnums'];
-		$data['info']		= $Lottery['info'];
-		$data['txt']		= $Lottery['txt'];
-		$data['sttxt']		= $Lottery['sttxt'];		
-		$data['title']		= $Lottery['title'];
-		$data['statdate']	= $Lottery['statdate'];
-		$data['enddate']	= $Lottery['enddate'];		
-		$data['animpic'] = $Lottery['animpic'];
-		$data['hitangle'] = $Lottery['hitangle'];
-		$data['lostangle'] = $Lottery['lostangle'];
 		$this->assign('Dazpan',$data);
 		//var_dump($data);exit();
 		
