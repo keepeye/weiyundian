@@ -21,8 +21,8 @@ class LotteryAction extends BaseAction{
 			//浏览次数+1
 			M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->setInc('click',1);
 		}
-		$Lottery 	= M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1))->find();
-		dump($Lottery);
+		$Lottery = M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1))->find();
+		dump(M('Lottery')->getLastSql());
 		//检测抽奖时间和抽奖次数，是否将抽奖次数归零
 		if($Lottery['interval'] > 0 && (time()-$record['time']) > $Lottery['interval']){
 			$redata->data(array('usenums'=>'0'))->where($where)->save();//距离上次抽奖时间已超过时间限制，次数归零
