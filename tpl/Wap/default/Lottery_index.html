@@ -387,7 +387,7 @@ function() {
     //分享控制
     var dataForWeixin = {
         appId: 'wx78f81724e6590b1d', //服务号appid
-        TLImg: "{pigcms::C('site_url')}/{pigcms::RES}/css/guajiang/images/activity-lottery-2.png",//图片
+        //TLImg: "{pigcms::C('site_url')}/{pigcms::RES}/css/guajiang/images/activity-lottery-2.png",//图片
         url: window.location.href.replace(/wecha_id=[^&]*&?/,''),//分享链接
         title: "{pigcms:$Dazpan.title}",//定义分享标题
         desc: "{pigcms:$Dazpan.title}"//描述
@@ -399,7 +399,7 @@ function() {
         WeixinJSBridge.on('menu:share:appmessage', function(argv){
             WeixinJSBridge.invoke('sendAppMessage', {
                 "appid": dataForWeixin.appId,
-                "img_url": dataForWeixin.TLImg,
+                //"img_url": dataForWeixin.TLImg,
                 "img_width": "120",
                 "img_height": "120",
                 "link": dataForWeixin.url,
@@ -412,7 +412,7 @@ function() {
         WeixinJSBridge.on('menu:share:timeline', function(argv){
             WeixinJSBridge.invoke('shareTimeline', {
                 "appid": dataForWeixin.appId,
-                "img_url":dataForWeixin.TLImg,
+                //"img_url":dataForWeixin.TLImg,
                 "img_width": "120",
                 "img_height": "120",
                 "link": dataForWeixin.url,
