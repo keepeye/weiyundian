@@ -10,7 +10,7 @@ class TongjiAction extends TongjiBaseAction{
 	function _initialize(){
 
 		parent::_initialize();
-		
+		exit('fs');
 		$this->_type = I('type');//类别
 		$this->_pid = I('pid');//文档主键
 		$this->_title = I('title');//文档标题
