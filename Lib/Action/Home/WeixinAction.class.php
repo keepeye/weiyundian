@@ -383,7 +383,7 @@ class WeixinAction extends Action
             $data['keyword'] =  $memCardInfo['weixin_description'];
             $appurl     = rtrim(C('site_url'), '/') . U('Wap/Card/get_card', array(
                 'token' => $this->token,
-                //'wecha_id' => $this->data['FromUserName'],
+                'wecha_id' => $this->data['FromUserName'],
 				'wxref'=>'mp.weixin.qq.com'
             ));
             $data['url'] = C('site_url').U("Wap/Jump/jumpto",array('appurl'=>rawurlencode($appurl),'openid'=>$this->data['FromUserName']));
@@ -394,10 +394,11 @@ class WeixinAction extends Action
 
             $appurl    = rtrim(C('site_url'), '/') . U('Wap/Card/vip', array(
                 'token' => $this->token,
-                //'wecha_id' => $this->data['FromUserName'],
+                'wecha_id' => $this->data['FromUserName'],
 				'wxref'=>'mp.weixin.qq.com'
             ));
-            $data['url'] = C('site_url').U("Wap/Jump/jumpto",array('appurl'=>rawurlencode($appurl),'openid'=>$this->data['FromUserName']));
+            //$data['url'] = C('site_url').U("Wap/Jump/jumpto",array('appurl'=>rawurlencode($appurl),'openid'=>$this->data['FromUserName']));
+            $data['url'] = $appurl;
         }
         return array(
             array(
@@ -1239,13 +1240,14 @@ class WeixinAction extends Action
                         
                             
                         //构建应用页面url
-                        $appurl = C('site_url') . U('Wap/Coupon/index', array(
+                        $url = $appurl = C('site_url') . U('Wap/Coupon/index', array(
                             'token' => $this->token,
                             'id' => $id,
-                            'wxref'=>'mp.weixin.qq.com'
+                            'wxref'=>'mp.weixin.qq.com',
+                            'wecha_id'=>$this->data['FromUserName']
                             ));
                                 //appurl从Jump模块跳转，用于将openid写入cookie，避免用户转发时带入个人id
-                        $url = C('site_url').U("Wap/Jump/jumpto",array("appurl"=>rawurlencode($appurl),"openid"=>$this->data['FromUserName']));
+                        //$url = C('site_url').U("Wap/Jump/jumpto",array("appurl"=>rawurlencode($appurl),"openid"=>$this->data['FromUserName']));
 
                         $return[]=array(
                             $title,
