@@ -9,7 +9,7 @@ class SelfformAction extends BaseAction{
 		parent::__construct();
 		$this->token		= $this->_get('token');
 		$this->assign('token',$this->token);
-		$this->wecha_id	= I('request.wecha_id',cookie('wecha_id'));
+		$this->wecha_id	= I('get.wecha_id');
 		if (!$this->wecha_id){
 			$this->redirect("Home/Adma/index?token=".$this->token);
 		}
@@ -64,8 +64,7 @@ class SelfformAction extends BaseAction{
 			$this->redirect(U('Selfform/index',array('token'=>$this->token,'wecha_id'=>$this->wecha_id,'id'=>$thisForm['id'],'success'=>1)));
 		}else {
 			//判断是否提交过信息了
-			//$submitInfo=$this->selfform_value_model->where(array('wecha_id'=>$this->wecha_id,'formid'=>$thisForm['id']))->find();
-			$submitInfo = "";
+			$submitInfo=$this->selfform_value_model->where(array('wecha_id'=>$this->wecha_id,'formid'=>$thisForm['id']))->find();
 			if ($submitInfo){
 				$info=unserialize($submitInfo['values']);
 				if ($info){
