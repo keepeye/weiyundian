@@ -16,7 +16,6 @@ class TongjiAction extends TongjiBaseAction{
 		$this->_title = I('title');//文档标题
 		$this->_cookieid = ACTION_NAME."-".$this->_type."-".$this->_pid;
 		$this->_token = I('token');//商户token
-		exit('fs');
 		//检测请求是否合法或是否已经统计过当前用户
 		if(!$this->check(ACTION_NAME)){
 			eixt('1');
