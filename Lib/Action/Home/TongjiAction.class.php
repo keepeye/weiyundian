@@ -48,6 +48,7 @@ class TongjiAction extends TongjiBaseAction{
 	function share(){
 		M('tongji')->shares = $this->_record['shares']+1;
 		M('tongji')->save();//###########################################
+		cookie($this->_cookieid,1,86400);
 		exit('0');
 	}
 
