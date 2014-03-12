@@ -157,6 +157,47 @@ function tgSubmit(){
 }
 	</script>
 </div>
+<script>
+    //分享控制
+    var dataForWeixin = {
+        appId: 'wx78f81724e6590b1d', //服务号appid
+        TLImg: "",//图片
+        url: window.location.href.replace(/wecha_id=[^&]*&?/,''),//分享链接
+        title: "{pigcms:$thisForm.name}",//定义分享标题
+        desc: "简介：{pigcms:$thisForm.name}"//描述
+    };
+    var name = "";
 
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+
+        WeixinJSBridge.on('menu:share:appmessage', function(argv){
+            WeixinJSBridge.invoke('sendAppMessage', {
+                "appid": dataForWeixin.appId,
+                "img_url": dataForWeixin.TLImg,
+                "img_width": "120",
+                "img_height": "120",
+                "link": dataForWeixin.url,
+                "title": name + dataForWeixin.title,
+                "desc": dataForWeixin.desc
+            });
+            //share_callback_hy();
+            // setTimeout(function () {location.href = "http://mp.weixin.qq.com/s?__biz=MjM5MzgxNTAxMQ==&mid=200063159&idx=8&sn=73d791f479fefb304f3ddf6818c0437a#rd";}, 1500); 
+        });
+        WeixinJSBridge.on('menu:share:timeline', function(argv){
+            WeixinJSBridge.invoke('shareTimeline', {
+                "appid": dataForWeixin.appId,
+                "img_url":dataForWeixin.TLImg,
+                "img_width": "120",
+                "img_height": "120",
+                "link": dataForWeixin.url,
+                "title": name + dataForWeixin.title,
+                "desc": name + dataForWeixin.desc
+             });
+            //share_callback_pyq();
+            // setTimeout(function () {location.href = "http://mp.weixin.qq.com/s?__biz=MjM5MzgxNTAxMQ==&mid=200063159&idx=8&sn=73d791f479fefb304f3ddf6818c0437a#rd";}, 1500); 
+        });
+
+    });
+</script>
 </body>
 </html>
