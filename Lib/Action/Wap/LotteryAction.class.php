@@ -21,14 +21,13 @@ class LotteryAction extends BaseAction{
 			//浏览次数+1
 			M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->setInc('click',1);
 		}
-		$Lottery 	= M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->find();
+		$Lottery 	= M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1))->find();
 		
 		//检测抽奖时间和抽奖次数，是否将抽奖次数归零
 		if($Lottery['interval'] > 0 && (time()-$record['time']) > $Lottery['interval']){
 			$redata->data(array('usenums'=>'0'))->where($where)->save();//距离上次抽奖时间已超过时间限制，次数归零
 			$record['usenums'] = 0;//次数归零，下面用于判断
 		}
-		dump($Lottery);
 		//基本赋值
 		$data['token'] 		= $token;
 		$data['wecha_id']	= $record['wecha_id'];		
@@ -59,7 +58,7 @@ class LotteryAction extends BaseAction{
 		$data['hitangle'] = $Lottery['hitangle'];
 		$data['lostangle'] = $Lottery['lostangle'];
 		//1.活动已关闭
-		if (empty($Lottery)) {
+		if ($Lottery['status']!="1") {
 			 $data['end'] = 1;
 			 $data['endinfo'] = "活动已结束";
 			 $this->assign('Dazpan',$data);
