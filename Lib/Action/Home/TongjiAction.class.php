@@ -17,9 +17,7 @@ class TongjiAction extends TongjiBaseAction{
 		$this->_cookieid = ACTION_NAME."-".$this->_type."-".$this->_pid;
 		$this->_token = I('token');//商户token
 		//检测请求是否合法或是否已经统计过当前用户
-		if(!$this->check(ACTION_NAME)){
-			exit('21');
-		}
+		$this->check(ACTION_NAME);
 		$this->_now['time'] = $nowtime = time();//当前时间戳
 		$this->_now['year'] = date("Y",$nowtime);//当前年份数字
 		$this->_now['month'] = date("n",$nowtime);//当前月份数字
@@ -56,20 +54,20 @@ class TongjiAction extends TongjiBaseAction{
 	private function check(){
 		//检测type和pid字段是否空值
 		if(empty($this->_type) || empty($this->_pid) || !$this->_token){
-			return false;
+			exit('57');
 		}
 		//检测type是否已定义
 		if(!in_array($this->_type,$this->_types)){
-			return false;
+			exit('61');
 		}
 		//检测cookie，判断是否已经记录过该用户
 		
 		if(null != cookie($this->_cookieid)){
-			return false;
+			exit('66');
 		}
 		//判断token是否存在  ###########################################
 		if(!M('wxuser')->field('id')->where(array("token"=>$this->_token))->find()){
-			return false;
+			exit('70');
 		}
 		return true;
 	}
