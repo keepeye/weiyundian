@@ -79,232 +79,493 @@ class WeixinAction extends Action
                     );
 
         }
-        $open      = M('Token_open')->where(array(
-                    'token' => $this->_get('token')
-                    ))->find();
-        $this->fun = $open['queryname'];
-        $key       = $data['Content'];
-
-        //1.检测模块匹配
-        //2.检测图文匹配
-        //3.检测小工具匹配
-        //4.聊天
         
-	    //$Pin       = new GetPin();
-	    //$datafun   = explode(',', $open['queryname']);//获取用户开启的功能
-	    //$tags      = $this->get_tags($key);//对用户发送的内容进行分词
-	    //$back      = explode(',', $tags);//将分词结果转换为数组
-		//遍历分词结果tags,匹配小功能
-	  //   foreach ($back as $keydata => $data)
-	  //   {
-		 //    $string = $Pin->Pinyin($data);//将单词转换为拼音
-			// //如果拼音等于用户开启的某个功能拼音
-		 //    if (in_array($string, $datafun))
-		 //    {
-			//     //$check = $this->user('connectnum');//检测连接数
-			//     // if ($string == 'fujin') {//如果单词是附近
-			// 	   //  $this->recordLastRequest($key);
-			//     // }
-			//     $this->requestdata('textnum');
-			//     unset($back[$keydata]);//将这个词从分词数组中删除
-			//     //eval('$return= $this->' . $string . '($back);');//调用对应功能的方法，得到返回结果
-			//     $return = $this->$string($back);
-			//     //直接返回小功能结果
-			//     if (is_array($return)){
-			// 		return $return;
-			// 	}else{
-			// 		return array(
-			// 				$return,
-			// 				'text'
-			// 				);
-			// 	}
-		 //    }
-	  //   }
-		/*
-		if ($this->data['Location_X']) {
-			$this->recordLastRequest($this->data['Location_Y'] . ',' . $this->data['Location_X'], 'location');
-			return $this->map($this->data['Location_X'], $this->data['Location_Y']);
-		}
-		if (!(strpos($key, '开车去') === FALSE) || !(strpos($key, '坐公交') === FALSE) || !(strpos($key, '步行去') === FALSE)) {
-			$this->recordLastRequest($key);
-			$user_request_model = M('User_request');
-			$loctionInfo        = $user_request_model->where(array(
-						'token' => $this->_get('token'),
-						'msgtype' => 'location',
-						'uid' => $this->data['FromUserName']
-						))->find();
-			if ($loctionInfo && intval($loctionInfo['time'] > (time() - 60))) {
-				$latLng = explode(',', $loctionInfo['keyword']);
-				return $this->map($latLng[1], $latLng[0]);
-			}
-			return array(
-					'请发送您所在的位置',
-					'text'
-					);
-		}
-		*/
+        $key       = $data['Content'];//用户发送的内容字符串
+
         
-		//关键词回复
-		switch ($key) {
-			case '首页':
-			case '主页':
-			case '官网':
-			case 'home':
-				$this->requestdata('imgnum');//记录访问
-				return $this->home();
-				break;
-			// case '地图':
-			// case 'map':
-			// 	return $this->companyMap();
-			// case '最近的':
-			// 	$this->recordLastRequest($key);
-			// 	$user_request_model = M('User_request');
-			// 	$loctionInfo        = $user_request_model->where(array(
-			// 				'token' => $this->_get('token'),
-			// 				'msgtype' => 'location',
-			// 				'uid' => $this->data['FromUserName']
-			// 				))->find();
-			// 	if ($loctionInfo && intval($loctionInfo['time'] > (time() - 60))) {
-			// 		$latLng = explode(',', $loctionInfo['keyword']);
-			// 		return $this->map($latLng[1], $latLng[0]);
-			// 	}
-			// 	return array(
-			// 			'请发送您所在的位置',
-			// 			'text'
-			// 			);
-			// 	break;
-			case '系统帮助':
-				$this->requestdata('textnum');//记录访问
-				return $this->help();
-				break;
-			case '会员卡':
-			case '会员':
-				$this->requestdata('imgnum');//记录访问
-				return $this->member();
-				break;
-			case '相册':
-				$this->requestdata('imgnum');//记录访问
-				return $this->xiangce();
-				break;
-            case '户型':
-            	$this->requestdata('imgnum');//记录访问
-                $house = M('House')->where(array('token' => $this->token))->find();
-                return array(
-                	array(
-                		array(
-                			$house['title'],
-                			$house['info'],
-                			$house['room_url'],
-                			C('site_url') . '/index.php?g=Wap&m=House&a=room&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
-                			)
-                		),
-                	'news'
-                	);
-
-				break;
-			case '房友印象':
-				$this->requestdata('imgnum');//记录访问
-                $house = M('House')->where(array(
-									'token' => $this->token
-									))->find();
-				return array(
-						array(
-							array(
-								'房友印象',
-								'房友印象，专家点评',
-								$house['picurl'],
-								C('site_url') . '/index.php?g=Wap&m=House&a=review&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
-								)
-							),
-						'news'
-						);
-
-				break;
-            case '房产':
-            	$this->requestdata('imgnum');//记录访问
-                $house = M('House')->where(array(
-									'token' => $this->token
-									))->find();
-				return array(
-						array(
-							array(
-								$house['title'],
-								$house['info'],
-								$house['picurl'],
-								C('site_url') . '/index.php?g=Wap&m=House&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
-								)
-							),
-						'news'
-						);
-
-				break;
-
-
-			case '商城':
-				$this->requestdata('imgnum');//记录访问
-				$pro = M('reply_info')->where(array(
-							'infotype' => 'Shop',
-							'token' => $this->token
-							))->find();
-				return array(
-						array(
-							array(
-								$pro['title'],
-								strip_tags(htmlspecialchars_decode($pro['info'])),
-								$pro['picurl'],
-								C('site_url') . '/index.php?g=Wap&m=Product&a=cats&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
-								)
-							),
-						'news'
-						);
-				break;
-			case '旅游':
-			case '旅游线路':
-				$this->requestdata('imgnum');//记录访问
-				$pro = M('reply_info')->where(array(
-							'infotype' => 'Travel',
-							'token' => $this->token
-							))->find();
-				return array(
-						array(
-							array(
-								$pro['title'],
-								strip_tags(htmlspecialchars_decode($pro['info'])),
-								$pro['picurl'],
-								C('site_url') . '/index.php?g=Wap&m=Travel&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
-								)
-							),
-						'news'
-						);
-				break;
-			case '4s服务':
-			case '汽车服务':
-			case '4s店':
-				$this->requestdata('imgnum');//记录访问
-				$pro = M('reply_info')->where(array(
-							'infotype' => 'Car',
-							'token' => $this->token
-							))->find();
-				return array(
-						array(
-							array(
-								$pro['title'],
-								strip_tags(htmlspecialchars_decode($pro['info'])),
-								$pro['picurl'],
-								C('site_url') . '/index.php?g=Wap&m=Car&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
-								)
-							),
-						'news'
-						);
-				break;
-
-			default:
-
-				return $this->keyword($key);
-				break;
-		}
+        if(!$return = $this->moduleReply($key)){//1.检测模块匹配
+            if(!$return = $this->keywordReply($key)){//2.检测图文匹配
+                if(!$return = $this->queryReply($key)){//3.检测小工具匹配
+                    $return = $this->otherReply($key);//4.其他匹配：用户配置无匹配回复、聊天机器人等
+                }
+            }
+        }
+        return $return;
 		
     }
+
+    //自动回复的模块级匹配
+    function moduleReply($key){
+        //关键词回复
+        switch ($key) {
+            case '首页':
+            case '主页':
+            case '官网':
+            case 'home':
+                $this->requestdata('imgnum');//记录访问
+                return $this->home();
+                break;
+            case '系统帮助':
+                $this->requestdata('textnum');//记录访问
+                return $this->help();
+                break;
+            case '会员卡':
+            case '会员':
+                $this->requestdata('imgnum');//记录访问
+                return $this->member();
+                break;
+            case '相册':
+                $this->requestdata('imgnum');//记录访问
+                return $this->xiangce();
+                break;
+            case '户型':
+                $this->requestdata('imgnum');//记录访问
+                $house = M('House')->where(array('token' => $this->token))->find();
+                return array(
+                    array(
+                        array(
+                            $house['title'],
+                            $house['info'],
+                            $house['room_url'],
+                            C('site_url') . '/index.php?g=Wap&m=House&a=room&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
+                            )
+                        ),
+                    'news'
+                    );
+
+                break;
+            case '房友印象':
+                $this->requestdata('imgnum');//记录访问
+                $house = M('House')->where(array(
+                                    'token' => $this->token
+                                    ))->find();
+                return array(
+                        array(
+                            array(
+                                '房友印象',
+                                '房友印象，专家点评',
+                                $house['picurl'],
+                                C('site_url') . '/index.php?g=Wap&m=House&a=review&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
+                                )
+                            ),
+                        'news'
+                        );
+
+                break;
+            case '房产':
+                $this->requestdata('imgnum');//记录访问
+                $house = M('House')->where(array(
+                                    'token' => $this->token
+                                    ))->find();
+                return array(
+                        array(
+                            array(
+                                $house['title'],
+                                $house['info'],
+                                $house['picurl'],
+                                C('site_url') . '/index.php?g=Wap&m=House&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
+                                )
+                            ),
+                        'news'
+                        );
+
+                break;
+
+
+            case '商城':
+                $this->requestdata('imgnum');//记录访问
+                $pro = M('reply_info')->where(array(
+                            'infotype' => 'Shop',
+                            'token' => $this->token
+                            ))->find();
+                return array(
+                        array(
+                            array(
+                                $pro['title'],
+                                strip_tags(htmlspecialchars_decode($pro['info'])),
+                                $pro['picurl'],
+                                C('site_url') . '/index.php?g=Wap&m=Product&a=cats&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
+                                )
+                            ),
+                        'news'
+                        );
+                break;
+            case '旅游':
+            case '旅游线路':
+                $this->requestdata('imgnum');//记录访问
+                $pro = M('reply_info')->where(array(
+                            'infotype' => 'Travel',
+                            'token' => $this->token
+                            ))->find();
+                return array(
+                        array(
+                            array(
+                                $pro['title'],
+                                strip_tags(htmlspecialchars_decode($pro['info'])),
+                                $pro['picurl'],
+                                C('site_url') . '/index.php?g=Wap&m=Travel&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
+                                )
+                            ),
+                        'news'
+                        );
+                break;
+            case '4s服务':
+            case '汽车服务':
+            case '4s店':
+                $this->requestdata('imgnum');//记录访问
+                $pro = M('reply_info')->where(array(
+                            'infotype' => 'Car',
+                            'token' => $this->token
+                            ))->find();
+                return array(
+                        array(
+                            array(
+                                $pro['title'],
+                                strip_tags(htmlspecialchars_decode($pro['info'])),
+                                $pro['picurl'],
+                                C('site_url') . '/index.php?g=Wap&m=Car&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
+                                )
+                            ),
+                        'news'
+                        );
+                break;
+
+            default:
+
+                //return $this->keyword($key);
+                break;
+        }
+    }
+    //从关键词表匹配
+    function keywordReply($key){
+        
+        //Log::write($key,Log::INFO);
+        $where['token'] = $this->token;
+        $where['keyword'] = $key;
+        $list = M('keyword')->field("pid,module")->where($where)->limit(9)->select();//读取关键词列表,读取9个
+        //file_put_contents("./sql.txt",M()->getLastSql());
+        //Log::write($this->token,Log::INFO);
+        $dataL = array();
+        $pids = array();
+        foreach($list as $v){
+            $dataL[$v['module']][] = $v; 
+            $pids[$v['module']][] = $v['pid'];
+        }
+        
+        
+        
+        $return = array();
+        foreach($dataL as $module=>$data){
+        //列表页读取
+            switch ($module) 
+            {
+                //遇到text直接return
+                case 'Text':
+                    $this->requestdata('textnum');
+                    $info = M('Text')->order('id desc')->find($pids['Text'][0]);
+                    return array(
+                            htmlspecialchars_decode($info['text']),
+                            'text'
+                            );
+                    break;
+                //遇到音乐也直接返回
+                case 'Voiceresponse':
+                        $this->requestdata('videonum');
+                        $infos = M($data['module'])->where(array('id' => array("in",$pids['Voiceresponse'])))->order('id desc')->select();
+                        foreach($infos as $info){
+                            $return[]=array(
+                                    $info['title'],
+                                    $info['keyword'],
+                                    $info['musicurl'],
+                                    $info['hqmusicurl']
+                                );
+                        }
+
+                        return array(
+                                $return,
+                                'music'
+                            );
+                        break;
+                case 'Img':
+                    $this->requestdata('imgnum');
+                    $img_db   = M('Img');
+                    //$back     = $img_db->field('id,text,pic,url,title')->limit(9)->order('id desc')->where($where)->select();
+                    $back     = $img_db->field('id,text,pic,url,title')->order('id desc')->where(array("token"=>$this->token,'id'=>array('in',$pids[$module])))->select();
+                    $ids = array();//记录实际文档id
+
+                    foreach ($back as $keya => $infot) {
+                        $ids[]=$infot['id'];
+                        //如果外链不为空
+                        if (!empty($infot['url'])) {
+                            if (strpos($infot['url'], 'http') === 0) {
+                                $url = $infot['url'];
+                            }
+                        } else {
+
+                            $url = rtrim(C('site_url'), '/') . U('Wap/Index/content', array(
+                                        'token' => $this->token,
+                                        'id' => $infot['id'],
+                                        'wxref'=>'mp.weixin.qq.com'
+                                        ));
+                            //Log::write($url,Log::INFO);
+                        }
+                        $return[] = array(
+                                $infot['title'],
+                                $infot['text'],
+                                $infot['pic'],
+                                $url
+                                );
+                    }
+                    //对命中的图文点击次数+1
+                    if (!empty($ids)) {
+                        $img_db->where(array("id"=>array('in',$ids)))->setInc('click');
+                    }
+                    break;
+                case 'Host':
+                            $this->requestdata('other');
+                            // $host = M('Host')->where(array(
+                            //          'id' => $data['pid']
+                            //          ))->find();
+                            $hosts = M('Host')->where(array(
+                                        'id' => array("in",$pids['Host']),
+                                        'token'=>$this->token
+                                        ))->select();
+                            foreach($hosts as $item){
+                                $return[] = array(
+                                            $item['title'],
+                                            $item['info'],
+                                            $item['ppicurl'],
+                                            C('site_url') . '/index.php?g=Wap&m=Host&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'] . '&hid=' . $item['id'].'&wxref=mp.weixin.qq.com'
+                                        );
+                            }
+                            
+                            break;
+                case 'House':
+                            $this->requestdata('other');
+                            $houses = M('House')->where(array(
+                                        'id' => array("in",$pids['House']),
+                                        ))->select();
+                            foreach($houses as $house){
+                                $return[] = array(
+                                            $house['title'],
+                                            $house['info'],
+                                            $house['picurl'],
+                                            C('site_url') . '/index.php?g=Wap&m=House&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
+                                        );
+                            }
+                            
+                            break;
+
+                case 'Product':
+                            $this->requestdata('other');
+                            $pros = M('Product')->where(array(
+                                        'id' => array("in",$pids['Product']),
+                                        ))->select();
+                            foreach($pros as $pro){
+                                $return[] = array(
+                                            $pro['name'],
+                                            strip_tags(htmlspecialchars_decode($pro['intro'])),
+                                            $pro['logourl'],
+                                            C('site_url') . '/index.php?g=Wap&m=Product&a=product&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'] . '&id=' . $pro['id'].'&wxref=mp.weixin.qq.com'
+                                        );
+                            }
+
+                            break;
+                case 'Selfform':
+                            $this->requestdata('other');
+                            $pros = M('Selfform')->where(array(
+                                        'id' => array("in",$pids['Selfform']),
+                                        ))->select();
+                            foreach($pros as $pro){
+                                $return[] = array(
+                                            $pro['name'],
+                                            strip_tags(htmlspecialchars_decode($pro['intro'])),
+                                            $pro['logourl'],
+                                            //C('site_url').U("Wap/Jump/jumpto",array("appurl"=>rawurlencode(C('site_url') . '/index.php?g=Wap&m=Selfform&a=index&token=' . $this->token. '&id=' . $pro['id'].'&wxref=mp.weixin.qq.com'),"openid"=>$this->data['FromUserName']))
+                                            C('site_url') . '/index.php?g=Wap&m=Selfform&a=index&token=' . $this->token. '&id=' . $pro['id'].'&wxref=mp.weixin.qq.com&wecha_id='.$this->data['FromUserName']
+                                        );
+                            }
+                            //Log::write($data['pid'],Log::INFO);
+                            
+                            break;
+                //优惠券
+                case 'Coupon':
+                    $this->requestdata('other');
+                    $infos = M('Coupon')->where(array('id'=>array('in',$pids['Coupon'])))->select();
+                    foreach($infos as $info){
+                        $id   = $info['id'];
+
+                        $picurl = $info['pic'];
+                        $title  = $info['title'];
+                        $id     = $info['id'];
+                        $info   = $info['info'];
+                        
+                            
+                        //构建应用页面url
+                        $url = $appurl = C('site_url') . U('Wap/Coupon/index', array(
+                            'token' => $this->token,
+                            'id' => $id,
+                            'wxref'=>'mp.weixin.qq.com',
+                            'wecha_id'=>$this->data['FromUserName']
+                            ));
+                                //appurl从Jump模块跳转，用于将openid写入cookie，避免用户转发时带入个人id
+                        //$url = C('site_url').U("Wap/Jump/jumpto",array("appurl"=>rawurlencode($appurl),"openid"=>$this->data['FromUserName']));
+
+                        $return[]=array(
+                            $title,
+                            $info,
+                            $picurl,
+                            $url
+                            );
+                        
+                    }
+                    break;
+                case 'Lottery':
+                            $this->requestdata('other');
+                            //$info = M('Lottery')->find($data['pid']);
+                            $infos = M('Lottery')->where(array('id' => array("in",$pids['Lottery'])))->select();
+                            foreach($infos as $info):
+                                // if ($info == false || $info['status'] == 3) {
+                                //  return array(
+                                //          '活动可能已经结束或者被删除了',
+                                //          'text'
+                                //          );
+                                // }
+                                switch ($info['type']) {
+                                    case 1:
+                                        $model = 'Lottery';
+                                        break;
+                                    case 2:
+                                        $model = 'Guajiang';
+                                        break;
+                                    case 3:
+                                        $model = 'Coupon';
+                                }
+                                $id   = $info['id'];
+                                $type = $info['type'];
+                                if ($info['status'] == 1) {
+                                    $picurl = $info['starpicurl'];
+                                    $title  = $info['title'];
+                                    $id     = $info['id'];
+                                    $info   = $info['info'];
+                                } else {
+                                    $picurl = $info['endpicurl'];
+                                    $title  = $info['endtite'];
+                                    $info   = $info['endinfo'];
+                                }
+                                //构建应用页面url
+                                $url = $appurl = C('site_url') . U('Wap/' . $model . '/index', array(
+                                            'token' => $this->token,
+                                            'type' => $type,
+                                            'id' => $id,
+                                            'wxref'=>'mp.weixin.qq.com',
+                                            'wecha_id'=>$this->data['FromUserName']
+                                            ));
+                                //appurl从Jump模块跳转，用于将openid写入cookie，避免用户转发时带入个人id
+                                //$url = C('site_url').U("Wap/Jump/jumpto",array("appurl"=>rawurlencode($appurl),"openid"=>$this->data['FromUserName']));
+                                
+                                $return[]=array(
+                                            $title,
+                                            $info,
+                                            $picurl,
+                                            $url
+                                        );
+                            endforeach;
+                            
+                
+                default:
+                    break;
+
+            }
+             
+            
+        }
+
+        //遍历结束如果return数组不为空，则返回图文回复
+        if(!empty($return)){
+            return array(
+                    $return,
+                    'news'
+                );
+        }else{
+            return null;
+            //判断是否有与关键词匹配的分类，有则返回分类列表的链接
+                // $classify = M('Classify')->field('url,id,type,name,info,img')->where(array('token'=>$this->token,'name'=>$key))->find();
+                // if(!empty($classify)){
+                //  $href = WeParseUrl($classify['url'],$classify['type'],array('token'=>$this->token,'wecha_id'=>$this->data['FromUserName'],'classid'=>$classify['id'],'wxref'=>'mp.weixin.qq.com'));
+                //  return array(
+                //      array(
+                //          array(
+                //              $classify['name'],//自动回复信息，分类名
+                //              $classify['info'],//描述信息
+                //              $classify['img'],//图片链接
+                //              C('site_url') . $href,//网页链接
+                //              )
+                //          ),
+                //      'news'
+                //  );
+                // }
+        }
+    }
+
+    //小功能匹配
+    function queryReply($key){
+        $open      = M('Token_open')->where(array(
+                    'token' => $this->token
+                    ))->find();
+        $this->fun = $open['queryname'];//用户开启的小功能
+        $Pin       = new GetPin();
+        $datafun   = explode(',', $open['queryname']);//获取用户开启的功能
+        $tags      = $this->get_tags($key);//对用户发送的内容进行分词
+        $back      = explode(',', $tags);//将分词结果转换为数组
+        //遍历分词结果tags,匹配小功能
+        foreach ($back as $keydata => $data)
+        {
+            $string = $Pin->Pinyin($data);//将单词转换为拼音
+            //如果拼音等于用户开启的某个功能拼音
+            if (in_array($string, $datafun))
+            {
+                
+                $this->requestdata('textnum');
+                unset($back[$keydata]);//将这个词从分词数组中删除
+                $return = $this->$string($back);
+                //直接返回小功能结果
+                if(is_array($return)){
+                    return $return;
+                }else{
+                    return array(
+                         $return,
+                         'text'
+                         );
+                }
+            }
+        }
+        return null;
+    }
+
+    //其他类型匹配，包括用户配置的无匹配回复以及是否调用聊天机器人
+    function otherReply($key){
+        if (false === strpos($this->fun, 'liaotian')) {//这里应该用false严格判断，因为如果liaotian出现在字符串开头返回的将是0。
+            $other = M('Other')->where(array(
+                        'token' => $this->token
+                        ))->find();
+            if ($other == false) {
+                return $this->chat($key);
+                // return array(
+                //         '回复 帮助，可了解所有功能',
+                //         'text'
+                //         );
+            } else {
+                return array(
+                            $other['info'],
+                            'text'
+                            );
+                
+            }
+        }
+    }
+
+    //相册模块回复内容
     function xiangce()
     {
         $photo           = M('Photo')->where(array(
@@ -924,10 +1185,10 @@ class WeixinAction extends Action
     }
     public function help()
     {
-        return array(
-                "您可以尝试发送[首页]查看微官网，如果底部有菜单，可以点击菜单体验不同的功能。",
-                "text"
-            );
+        // return array(
+        //         "您可以尝试发送[首页]查看微官网，如果底部有菜单，可以点击菜单体验不同的功能。",
+        //         "text"
+        //     );
 	    $open = M('Token_open')->where(array(
 					'token' => $this->_get('token')
 				    ))->find();
@@ -1074,297 +1335,5 @@ class WeixinAction extends Action
         return implode(',', $tags);
     }
 
-    //非模块级关键词匹配
-    function keyword($key){
-    	
-		//Log::write($key,Log::INFO);
-		$where['token'] = $this->token;
-		$where['keyword'] = $key;
-		$list = M('keyword')->field("pid,module")->where($where)->limit(9)->select();//读取关键词列表,读取9个
-		//file_put_contents("./sql.txt",M()->getLastSql());
-		//Log::write($this->token,Log::INFO);
-		$dataL = array();
-		$pids = array();
-		foreach($list as $v){
-			$dataL[$v['module']][] = $v; 
-			$pids[$v['module']][] = $v['pid'];
-		}
-		
-		
-		
-		$return = array();
-		foreach($dataL as $module=>$data){
-		//列表页读取
-			switch ($module) 
-			{
-				//遇到text直接return
-				case 'Text':
-					$this->requestdata('textnum');
-					$info = M('Text')->order('id desc')->find($pids['Text'][0]);
-					return array(
-							htmlspecialchars_decode($info['text']),
-							'text'
-							);
-					break;
-				//遇到音乐也直接返回
-				case 'Voiceresponse':
-						$this->requestdata('videonum');
-						$infos = M($data['module'])->where(array('id' => array("in",$pids['Voiceresponse'])))->order('id desc')->select();
-						foreach($infos as $info){
-							$return[]=array(
-									$info['title'],
-									$info['keyword'],
-									$info['musicurl'],
-									$info['hqmusicurl']
-								);
-						}
-
-						return array(
-								$return,
-								'music'
-							);
-						break;
-				case 'Img':
-					$this->requestdata('imgnum');
-					$img_db   = M('Img');
-					//$back     = $img_db->field('id,text,pic,url,title')->limit(9)->order('id desc')->where($where)->select();
-					$back     = $img_db->field('id,text,pic,url,title')->order('id desc')->where(array("token"=>$this->token,'id'=>array('in',$pids[$module])))->select();
-					$ids = array();//记录实际文档id
-
-					foreach ($back as $keya => $infot) {
-						$ids[]=$infot['id'];
-						//如果外链不为空
-						if (!empty($infot['url'])) {
-							if (strpos($infot['url'], 'http') === 0) {
-								$url = $infot['url'];
-							}
-						} else {
-
-							$url = rtrim(C('site_url'), '/') . U('Wap/Index/content', array(
-										'token' => $this->token,
-										'id' => $infot['id'],
-										'wxref'=>'mp.weixin.qq.com'
-										));
-							//Log::write($url,Log::INFO);
-						}
-						$return[] = array(
-								$infot['title'],
-								$infot['text'],
-								$infot['pic'],
-								$url
-								);
-					}
-					//对命中的图文点击次数+1
-					if (!empty($ids)) {
-						$img_db->where(array("id"=>array('in',$ids)))->setInc('click');
-					}
-					break;
-				case 'Host':
-							$this->requestdata('other');
-							// $host = M('Host')->where(array(
-							// 			'id' => $data['pid']
-							// 			))->find();
-							$hosts = M('Host')->where(array(
-										'id' => array("in",$pids['Host']),
-										'token'=>$this->token
-										))->select();
-							foreach($hosts as $item){
-								$return[] = array(
-											$item['title'],
-											$item['info'],
-											$item['ppicurl'],
-											C('site_url') . '/index.php?g=Wap&m=Host&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'] . '&hid=' . $item['id'].'&wxref=mp.weixin.qq.com'
-										);
-							}
-							
-							break;
-                case 'House':
-							$this->requestdata('other');
-							$houses = M('House')->where(array(
-										'id' => array("in",$pids['House']),
-										))->select();
-							foreach($houses as $house){
-								$return[] = array(
-											$house['title'],
-											$house['info'],
-											$house['picurl'],
-											C('site_url') . '/index.php?g=Wap&m=House&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
-										);
-							}
-							
-							break;
-
-				case 'Product':
-							$this->requestdata('other');
-							$pros = M('Product')->where(array(
-										'id' => array("in",$pids['Product']),
-										))->select();
-							foreach($pros as $pro){
-								$return[] = array(
-											$pro['name'],
-											strip_tags(htmlspecialchars_decode($pro['intro'])),
-											$pro['logourl'],
-											C('site_url') . '/index.php?g=Wap&m=Product&a=product&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'] . '&id=' . $pro['id'].'&wxref=mp.weixin.qq.com'
-										);
-							}
-
-							break;
-				case 'Selfform':
-							$this->requestdata('other');
-							$pros = M('Selfform')->where(array(
-										'id' => array("in",$pids['Selfform']),
-										))->select();
-                            foreach($pros as $pro){
-                            	$return[] = array(
-											$pro['name'],
-											strip_tags(htmlspecialchars_decode($pro['intro'])),
-											$pro['logourl'],
-                                            //C('site_url').U("Wap/Jump/jumpto",array("appurl"=>rawurlencode(C('site_url') . '/index.php?g=Wap&m=Selfform&a=index&token=' . $this->token. '&id=' . $pro['id'].'&wxref=mp.weixin.qq.com'),"openid"=>$this->data['FromUserName']))
-											C('site_url') . '/index.php?g=Wap&m=Selfform&a=index&token=' . $this->token. '&id=' . $pro['id'].'&wxref=mp.weixin.qq.com&wecha_id='.$this->data['FromUserName']
-										);
-                            }
-		                    //Log::write($data['pid'],Log::INFO);
-							
-							break;
-                //优惠券
-                case 'Coupon':
-                    $this->requestdata('other');
-                    $infos = M('Coupon')->where(array('id'=>array('in',$pids['Coupon'])))->select();
-                    foreach($infos as $info){
-                        $id   = $info['id'];
-
-                        $picurl = $info['pic'];
-                        $title  = $info['title'];
-                        $id     = $info['id'];
-                        $info   = $info['info'];
-                        
-                            
-                        //构建应用页面url
-                        $url = $appurl = C('site_url') . U('Wap/Coupon/index', array(
-                            'token' => $this->token,
-                            'id' => $id,
-                            'wxref'=>'mp.weixin.qq.com',
-                            'wecha_id'=>$this->data['FromUserName']
-                            ));
-                                //appurl从Jump模块跳转，用于将openid写入cookie，避免用户转发时带入个人id
-                        //$url = C('site_url').U("Wap/Jump/jumpto",array("appurl"=>rawurlencode($appurl),"openid"=>$this->data['FromUserName']));
-
-                        $return[]=array(
-                            $title,
-                            $info,
-                            $picurl,
-                            $url
-                            );
-                        
-                    }
-                    break;
-				case 'Lottery':
-							$this->requestdata('other');
-							//$info = M('Lottery')->find($data['pid']);
-							$infos = M('Lottery')->where(array('id' => array("in",$pids['Lottery'])))->select();
-							foreach($infos as $info):
-								// if ($info == false || $info['status'] == 3) {
-								// 	return array(
-								// 			'活动可能已经结束或者被删除了',
-								// 			'text'
-								// 			);
-								// }
-								switch ($info['type']) {
-									case 1:
-										$model = 'Lottery';
-										break;
-									case 2:
-										$model = 'Guajiang';
-										break;
-									case 3:
-										$model = 'Coupon';
-								}
-								$id   = $info['id'];
-								$type = $info['type'];
-								if ($info['status'] == 1) {
-									$picurl = $info['starpicurl'];
-									$title  = $info['title'];
-									$id     = $info['id'];
-									$info   = $info['info'];
-								} else {
-									$picurl = $info['endpicurl'];
-									$title  = $info['endtite'];
-									$info   = $info['endinfo'];
-								}
-                                //构建应用页面url
-                                $url = $appurl = C('site_url') . U('Wap/' . $model . '/index', array(
-                                            'token' => $this->token,
-                                            'type' => $type,
-                                            'id' => $id,
-                                            'wxref'=>'mp.weixin.qq.com',
-                                            'wecha_id'=>$this->data['FromUserName']
-                                            ));
-                                //appurl从Jump模块跳转，用于将openid写入cookie，避免用户转发时带入个人id
-                                //$url = C('site_url').U("Wap/Jump/jumpto",array("appurl"=>rawurlencode($appurl),"openid"=>$this->data['FromUserName']));
-								
-								$return[]=array(
-											$title,
-											$info,
-											$picurl,
-											$url
-										);
-							endforeach;
-							
-				
-				default:
-					break;
-
-			}
-			 
-			
-		}
-
-		//遍历结束如果return数组不为空，则返回图文回复
-		if(!empty($return)){
-			return array(
-					$return,
-					'news'
-				);
-		}else{
-			//判断是否有与关键词匹配的分类，有则返回分类列表的链接
-				// $classify = M('Classify')->field('url,id,type,name,info,img')->where(array('token'=>$this->token,'name'=>$key))->find();
-				// if(!empty($classify)){
-				// 	$href = WeParseUrl($classify['url'],$classify['type'],array('token'=>$this->token,'wecha_id'=>$this->data['FromUserName'],'classid'=>$classify['id'],'wxref'=>'mp.weixin.qq.com'));
-				// 	return array(
-				// 		array(
-				// 			array(
-				// 				$classify['name'],//自动回复信息，分类名
-				// 				$classify['info'],//描述信息
-				// 				$classify['img'],//图片链接
-				// 				C('site_url') . $href,//网页链接
-				// 				)
-				// 			),
-				// 		'news'
-				// 	);
-				// }
-            //小功能匹配
-            
-				if (false === strpos($this->fun, 'liaotian')) {//这里应该用false严格判断，因为如果liaotian出现在字符串开头返回的将是0。
-					$other = M('Other')->where(array(
-								'token' => $this->token
-								))->find();
-					if ($other == false) {
-						return array(
-								'回复 帮助，可了解所有功能',
-								'text'
-								);
-					} else {
-						return array(
-									$other['info'],
-									'text'
-									);
-						
-					}
-				}
-				return array(
-						$this->chat($key),
-						'text'
-						);
-		}
-	}
+    
 }
