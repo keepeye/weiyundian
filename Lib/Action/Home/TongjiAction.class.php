@@ -8,6 +8,7 @@ class TongjiAction extends TongjiBaseAction{
 	private $_record;
 	private $_now;
 	function _initialize(){
+		exit('fff');
 		parent::_initialize();
 		$this->_type = I('type');//类别
 		$this->_pid = I('pid');//文档主键
