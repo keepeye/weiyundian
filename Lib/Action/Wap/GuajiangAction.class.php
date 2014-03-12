@@ -2,7 +2,6 @@
 class GuajiangAction extends BaseAction{
 	public function index(){
 		$agent = $_SERVER['HTTP_USER_AGENT'];
-
 		$token	  =  $this->_get('token');
 		$wecha_id = I('get.wecha_id',I('post.wecha_id'));
 		if (!$wecha_id){
