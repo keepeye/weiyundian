@@ -125,7 +125,7 @@ var name = "我的测试结果已经出来了。";
 		WeixinJSBridge.call('hideToolbar');
 		WeixinJSBridge.on('menu:share:appmessage', function(argv){
             WeixinJSBridge.invoke('sendAppMessage', {
-                "appid": dataForWeixin.appId,
+                //"appid": dataForWeixin.appId,
                     "img_url": dataForWeixin.TLImg,
                     "img_width": "120",
                     "img_height": "120",
@@ -138,7 +138,7 @@ var name = "我的测试结果已经出来了。";
         });
         WeixinJSBridge.on('menu:share:timeline', function(argv){
             WeixinJSBridge.invoke('shareTimeline', {
-                "appid": dataForWeixin.appId,
+                //"appid": dataForWeixin.appId,
                 "img_url":dataForWeixin.TLImg,
                 "img_width": "120",
                 "img_height": "120",
