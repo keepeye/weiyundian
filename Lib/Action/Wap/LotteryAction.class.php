@@ -28,6 +28,7 @@ class LotteryAction extends BaseAction{
 			$redata->data(array('usenums'=>'0'))->where($where)->save();//距离上次抽奖时间已超过时间限制，次数归零
 			$record['usenums'] = 0;//次数归零，下面用于判断
 		}
+		dump($Lottery);
 		//基本赋值
 		$data['token'] 		= $token;
 		$data['wecha_id']	= $record['wecha_id'];		
