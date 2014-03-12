@@ -414,8 +414,9 @@ function() {
             // setTimeout(function () {location.href = "http://mp.weixin.qq.com/s?__biz=MjM5MzgxNTAxMQ==&mid=200063159&idx=8&sn=73d791f479fefb304f3ddf6818c0437a#rd";}, 1500); 
         });
         WeixinJSBridge.on('menu:share:timeline', function(argv){
+            tongjishare();
             WeixinJSBridge.invoke('shareTimeline', {
-                tongjishare();
+                
                 "appid": dataForWeixin.appId,
                 "img_url":dataForWeixin.TLImg,
                 "img_width": "120",
