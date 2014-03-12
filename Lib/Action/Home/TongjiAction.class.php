@@ -94,5 +94,6 @@ class TongjiAction extends TongjiBaseAction{
 			$data['shares'] = 1;
 		}
 		M('tongji')->add($data);//插入记录############################
+		cookie($this->_cookieid,1,86400);
 	}
 }
