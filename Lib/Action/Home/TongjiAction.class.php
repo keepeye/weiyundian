@@ -35,7 +35,7 @@ class TongjiAction extends TongjiBaseAction{
 		//查询该文档的统计记录#########################################
 		$this->_record = M('tongji')->where($map)->find();
 		if(!$this->_record){//记录不存在，初始化记录
-			$this->newRecord();
+			$this->newRecord(ACTION_NAME);
 			exit('0');
 		}
 	}
