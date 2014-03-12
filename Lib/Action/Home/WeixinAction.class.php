@@ -1290,14 +1290,15 @@ class WeixinAction extends Action
 									$info   = $info['endinfo'];
 								}
                                 //构建应用页面url
-                                $appurl = C('site_url') . U('Wap/' . $model . '/index', array(
+                                $url = $appurl = C('site_url') . U('Wap/' . $model . '/index', array(
                                             'token' => $this->token,
                                             'type' => $type,
                                             'id' => $id,
-                                            'wxref'=>'mp.weixin.qq.com'
+                                            'wxref'=>'mp.weixin.qq.com',
+                                            'wecha_id'=>$this->data['FromUserName']
                                             ));
                                 //appurl从Jump模块跳转，用于将openid写入cookie，避免用户转发时带入个人id
-                                $url = C('site_url').U("Wap/Jump/jumpto",array("appurl"=>rawurlencode($appurl),"openid"=>$this->data['FromUserName']));
+                                //$url = C('site_url').U("Wap/Jump/jumpto",array("appurl"=>rawurlencode($appurl),"openid"=>$this->data['FromUserName']));
 								
 								$return[]=array(
 											$title,
