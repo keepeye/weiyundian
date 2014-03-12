@@ -4,9 +4,10 @@ class GuajiangAction extends BaseAction{
 		$agent = $_SERVER['HTTP_USER_AGENT'];
 
 		$token	  =  $this->_get('token');
-		$wecha_id = I('request.wecha_id',cookie('wecha_id'));
+		$wecha_id = I('get.wecha_id',I('post.wecha_id'));
 		if (!$wecha_id){
-			$this->error("请通过微信进入");
+			//$this->error("请通过微信进入");
+			$this->redirect("Home/Adma/index?token=".$token);
 		}
 		$id 	  = $this->_get('id');
 		$redata	  = M('Lottery_record');
