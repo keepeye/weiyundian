@@ -5,7 +5,7 @@ class LotteryAction extends BaseAction{
 		
 		$agent = $_SERVER['HTTP_USER_AGENT']; 
 		$token		= $this->_get('token');
-		echo $token;
+
 		$wecha_id	= I('request.wecha_id');
 		if($wecha_id == ""){
 			$this->redirect("Home/Adma/index?token=".$token);
@@ -93,6 +93,7 @@ class LotteryAction extends BaseAction{
 		$data['lostangle'] = $Lottery['lostangle'];
 		$this->assign('Dazpan',$data);
 		//var_dump($data);exit();
+		dump($data);
 		$this->display();
 	}
 	
