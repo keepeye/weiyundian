@@ -28,6 +28,11 @@ class LotteryAction extends BaseAction{
 			$redata->data(array('usenums'=>'0'))->where($where)->save();//距离上次抽奖时间已超过时间限制，次数归零
 			$record['usenums'] = 0;//次数归零，下面用于判断
 		}
+		//基本赋值
+		$data['token'] 		= $token;
+		$data['wecha_id']	= $record['wecha_id'];		
+		$data['lid']		= $record['lid'];
+		$data['rid']		= $record['id'];
 		//1.活动已关闭
 		if (empty($Lottery)) {
 			 $data['end'] = 1;
@@ -63,10 +68,8 @@ class LotteryAction extends BaseAction{
 		}
 		
 		$data['On'] 		= 1;
-		$data['token'] 		= $token;
-		$data['wecha_id']	= $record['wecha_id'];		
-		$data['lid']		= $record['lid'];
-		$data['rid']		= $record['id'];
+		
+		
 		$data['usenums'] 	= $record['usenums'];
 		$data['canrqnums']	= $Lottery['canrqnums'];//抽奖次数限制
 		$data['interval']	= $Lottery['interval'];//抽奖时间限制
@@ -91,7 +94,6 @@ class LotteryAction extends BaseAction{
 		$data['animpic'] = $Lottery['animpic'];
 		$data['hitangle'] = $Lottery['hitangle'];
 		$data['lostangle'] = $Lottery['lostangle'];
-		dump($data);
 		$this->assign('Dazpan',$data);
 		//var_dump($data);exit();
 		

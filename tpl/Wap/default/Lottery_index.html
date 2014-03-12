@@ -394,7 +394,7 @@ function() {
     };
     var name = "";
     function tongjishare(){
-        var tongjiurl = "<?php echo U('Home/Tongji/share',array('token'=>$Dazpan['token']));?>";
+        var tongjiurl = "<?php echo U('Home/Tongji/share',array('token'=>$Dazpan['token'],'pid'=>$Dazpan['lid'],'type'=>'dazhuanpan','title'=>rawurlencode($Dazpan['title'])));?>";
         document.getElementById('tongji_iframe').innerHTML = "<iframe src=\""+tongjiurl+"\"></iframe>";
     }
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
