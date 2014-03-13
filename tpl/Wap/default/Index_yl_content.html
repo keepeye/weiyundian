@@ -76,8 +76,8 @@ function dourl(url){
         "img_width": "120",
         "img_height": "120",
         "link": window.location.href.replace(/wecha_id=[^&]*&?/,''),//分享链接
-        "title": {pigcms:$res['title']|default="未定义标题"},//定义分享标题
-        "desc": {pigcms:$res['title']|default="未定义的描述"}//描述
+        "title": '{pigcms:$res['title']|default="未定义标题"|addslashes}',//定义分享标题
+        "desc": '{pigcms:$res['title']|default="未定义的描述"|addslashes}'//描述
     };
     function tongjishare(){
         var tongjiurl = "{pigcms::U('Home/Tongji/share',array('token'=>$res['token'],'pid'=>$res['id'],'type'=>'img','title'=>rawurlencode($res['title']),'sign'=>md5($res['token'].$res['id'].'img'.'tongji')))}";

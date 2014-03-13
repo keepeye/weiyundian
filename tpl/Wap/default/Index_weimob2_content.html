@@ -58,9 +58,38 @@
 	
 </div>        			
 	{pigcms::W('Plugmenu')}	
-	<script>
-	document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-WeixinJSBridge.call('hideToolbar');
-});
-	</script>
-</body></html>
+<script>
+    //分享控制
+    var WxOptions = {
+        "appid": 'wx78f81724e6590b1d', //服务号appid
+        "img_url": "{pigcms:$res.pic}",//图片
+        "img_width": "120",
+        "img_height": "120",
+        "link": window.location.href.replace(/wecha_id=[^&]*&?/,''),//分享链接
+        "title": '{pigcms:$res['title']|default="未定义标题"|addslashes}',//定义分享标题
+        "desc": '{pigcms:$res['title']|default="未定义的描述"|addslashes}'//描述
+    };
+    function tongjishare(){
+        var tongjiurl = "{pigcms::U('Home/Tongji/share',array('token'=>$res['token'],'pid'=>$res['id'],'type'=>'img','title'=>rawurlencode($res['title']),'sign'=>md5($res['token'].$res['id'].'img'.'tongji')))}";
+        document.getElementById('tongji_iframe').innerHTML = "<iframe src=\""+tongjiurl+"\"></iframe>";
+    }
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideToolbar');
+        WeixinJSBridge.on('menu:share:appmessage', function(argv){
+            tongjishare();
+            WeixinJSBridge.invoke('sendAppMessage', WxOptions);
+            //share_callback_hy();
+            // setTimeout(function () {location.href = "http://mp.weixin.qq.com/s?__biz=MjM5MzgxNTAxMQ==&mid=200063159&idx=8&sn=73d791f479fefb304f3ddf6818c0437a#rd";}, 1500); 
+        });
+        WeixinJSBridge.on('menu:share:timeline', function(argv){
+            tongjishare();
+            WeixinJSBridge.invoke('shareTimeline',WxOptions);
+            //share_callback_pyq();
+            // setTimeout(function () {location.href = "http://mp.weixin.qq.com/s?__biz=MjM5MzgxNTAxMQ==&mid=200063159&idx=8&sn=73d791f479fefb304f3ddf6818c0437a#rd";}, 1500); 
+        });
+
+    });
+</script>
+<div id="tongji_iframe" style="width:1px;height:1px;position:fixed;left:-1000px;">
+</body>
+</html>
