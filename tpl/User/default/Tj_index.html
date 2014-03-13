@@ -5,7 +5,7 @@
 	
 	<div class="tab">
 		<ul>
-		<li class="current tabli" id="tab0"><a href="/index.php?g=User&amp;m=Travel&amp;a=index&amp;token=xici2013">线路管理</a></li>
+		<li class="<?php if(ACTION_NAME == 'index'): ?>current<?php endif;?> tabli" id="tab0"><a href="{pigcms::U('index')}">整体概况</a></li>
 		<li class="tabli" id="tab2"><a href="/index.php?g=User&amp;m=Travel&amp;a=applyList&amp;token=xici2013">所有报名</a></li>
 		<li class="tabli" id="tab3"><a href="/index.php?g=User&amp;m=Travel&amp;a=settings&amp;token=xici2013">设置</a></li>
 		</ul>
