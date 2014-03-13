@@ -1,0 +1,64 @@
+<include file="Public:head"/>  
+<script src="__PUBLIC__/highcharts/highcharts.js"></script>
+<link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css">
+<div class="content">
+	
+	<div class="tab">
+		<ul>
+		<li class="tabli" id="tab0"><a href="{pigcms::U('index')}">整体概况</a></li>
+		<li class="tabli" id="tab2"><a href="#">访问统计</a></li>
+		<li class="current tabli" id="tab3"><a href="#">转发统计</a></li>
+		</ul>
+	</div>
+	<div class="msgWrap">
+		<div id="hcharts">
+			
+		</div>
+	</div>
+	<div class="cLine">
+		<div class="pageNavigator right">
+			<div class="pages">{pigcms:$page}</div>
+		</div>
+		<div class="clr"></div>
+	</div>
+</div>
+<div class="clr"></div>
+<script>
+	$(function () {
+		$('#container').highcharts({
+			chart: {
+				plotBackgroundColor: null,
+				plotBorderWidth: null,
+				plotShadow: false
+			},
+			title: {
+				text: 'Browser market shares at a specific website, 2010'
+			},
+			tooltip: {
+				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+			},
+			plotOptions: {
+				pie: {
+					allowPointSelect: true,
+					cursor: 'pointer',
+					dataLabels: {
+						enabled: true,
+						color: '#000000',
+						connectorColor: '#000000',
+						format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+					}
+				}
+			},
+			series: [{
+				type: 'pie',
+				name: 'Browser share',
+				data: [
+				<?php foreach($today_list as $v): ?>
+				['<?php echo addslashes($v['title']);?>',<?php echo $v['shares'];?>],
+				<?php endforeach;?>
+				]
+			}]
+		});
+	});
+</script>
+<include file="Public:footer"/>

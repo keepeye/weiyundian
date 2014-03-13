@@ -19,4 +19,20 @@ class TjAction extends UserAction{
 		 $this->assign("data",$data);
 		 $this->display();
 	}
+
+	//访问统计
+	function clicks(){
+
+	}
+
+	//转发统计
+	function shares(){
+		//今日分享最多的十条图文
+		$today_list = $this->_model->where(array("token"=>$this->_token,"day"=>date("j",time())))->order("shares desc")->limit("0,10")->select();
+		//本月分享最多的十条图文
+		$month_list = $this->_model->where(array("token"=>$this->_token,"month"=>date("n",time())))->order("shares desc")->limit("0,10")->select();
+		$this->assign("today_list",$today_list);
+		$this->assign("month_list",$month_list);
+		$this->display();
+	}
 }
