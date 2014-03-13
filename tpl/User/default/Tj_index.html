@@ -42,6 +42,7 @@
                 borderWidth: 0
             },
             series: [{
+            	data:{color:red},
                 name: '访问人数',
                 data: $.map(<?php echo json_encode($data['clicks']);?>,function(v){return parseInt(v)})
             }, {
