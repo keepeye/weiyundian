@@ -30,26 +30,7 @@
         <link rel="stylesheet" type="text/css" href="{pigcms::RES}/weimob1_content/font-awesome.css" media="all">
 
 <div class="weimob-page">
-    					<article id="shareCover" class="toshare" onclick="$(&#39;#shareCover&#39;).toggleClass(&#39;on&#39;)">
-		<table>
-			<tbody><tr>
-				<td colspan="2" style="text-align:right;">
-					<img src="{pigcms::RES}/weimob1_content/share_1.png" style="width:120px!important;">
-					<img src="{pigcms::RES}/weimob1_content/share_2.png" style="width:30px!important;">
-				</td>
-			</tr>
-			<tr>
-				<td style="width:50%;">
-					<img src="{pigcms::RES}/weimob1_content/share_4.png">
-					<div>发送给朋友</div>
-				</td>
-				<td>
-					<img src="{pigcms::RES}/weimob1_content/share_3.png">
-					<div>分享到朋友圈</div>
-				</td>
-			</tr>
-		</tbody></table>
-	</article>
+    					
 	<script>
 		window.addEventListener("DOMContentLoaded", function(){
 			var nav = document.querySelectorAll(".nav_8")[0];
@@ -76,38 +57,15 @@
             <div>
                 <span style="background-image:url({pigcms:$tpl.headerpic});"></span>
             </div>
-            <div style="width:100%;">
-                <label>{pigcms:$tpl.wxname}</label>
-                <div style="color:#ccc;">微信号:{pigcms:$tpl.weixin}</div>
-            </div>
+           
             
         </div>
                     <div><img src="{pigcms:$res.pic}" style="width:100%;"></div>
                 <article>{pigcms:$res.info|htmlspecialchars_decode}</article>
     </div>
-	<!--<section style="width:95%; margin:0px auto;">
-	<div id="mcover" onclick="document.getElementById(&#39;mcover&#39;).style.display=&#39;&#39;;" style="display:none;">
-		<img src="{pigcms::RES}/weimob1_content/guide.png">
-	</div>
-	<div class="text" id="content">
-		<div id="mess_share">
-			<div id="share_1">
-				<button class="button2" onclick="document.getElementById(&#39;mcover&#39;).style.display=&#39;block&#39;;">
-					<img src="{pigcms::RES}/weimob1_content/icon_msg.png">&nbsp;发送给朋友
-				</button>
-			</div>
-			<div id="share_2">
-				<button class="button2" onclick="document.getElementById(&#39;mcover&#39;).style.display=&#39;block&#39;;">
-					<img src="{pigcms::RES}/weimob1_content/icon_timeline.png">&nbsp;分享到朋友圈
-				</button>
-			</div>
-			<div class="clr"></div>
-		</div>
-	</div>
-</section>-->
-<div style="padding-bottom:0!important;">
-	<a href="javascript:window.scrollTo(0,0);" style="font-size:12px;margin:5px auto;display:block;color:#fff;text-align:center;line-height:35px;background:#333;margin-bottom:-10px;">返回顶部</a>
-</div></div>
+	
+
+</div>
         			
 				
 {pigcms::W('Plugmenu')}	
