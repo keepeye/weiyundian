@@ -1,7 +1,7 @@
 <?php
 class otherModel extends Model{
 	protected $_validate = array(
-			array('info','require','回复详细内容必须填写',1),
+			//array('info','require','回复详细内容必须填写',1),
 			array('id','checkid','非法操作',2,'callback',2),
 	);
 	protected $_auto = array (		
