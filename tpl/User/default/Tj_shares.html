@@ -107,7 +107,7 @@
 				type: 'pie',
 				name: '次数',
 				data: [
-				<?php foreach($month_list as $v): ?>
+				<?php foreach($month_list as $k=>$v): ?>
 					<?php if($k==0): ?>
 					{
 	                    name: '<?php echo "[".$types[$v['type']]."]".addslashes($v['title']);?>',
