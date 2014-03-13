@@ -51,10 +51,10 @@
             },
             series: [{
                 name: '访问人数',
-                data: <?php echo json_encode($data['clicks']);?>
+                data: $.map(<?php echo json_encode($data['clicks']);?>,function(v){return parseInt(v)})
             }, {
                 name: '转发次数',
-                data: [3,8]
+                data: $.map(<?php echo json_encode($data['shares']);?>,function(v){return parseInt(v)})
             },]
         });
     });
