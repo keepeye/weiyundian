@@ -61,8 +61,17 @@
 				type: 'pie',
 				name: '次数',
 				data: [
-				<?php foreach($today_list as $v): ?>
-				['<?php echo "[".$types[$v['type']]."]".addslashes($v['title']);?>',<?php echo $v['shares'];?>],
+				<?php foreach($today_list as $k=>$v): ?>
+					<?php if($k==0): ?>
+					{
+	                    name: '<?php echo "[".$types[$v['type']]."]".addslashes($v['title']);?>',
+	                    y: <?php echo $v['shares'];?>,
+	                    sliced: true,
+	                    selected: true
+	                },
+					<?php else: ?>
+					['<?php echo "[".$types[$v['type']]."]".addslashes($v['title']);?>',<?php echo $v['shares'];?>],
+					<?php endif;?>
 				<?php endforeach;?>
 				]
 			}]
@@ -99,7 +108,16 @@
 				name: '次数',
 				data: [
 				<?php foreach($month_list as $v): ?>
-				['<?php echo "[".$types[$v['type']]."]".addslashes($v['title']);?>',<?php echo $v['shares'];?>],
+					<?php if($k==0): ?>
+					{
+	                    name: '<?php echo "[".$types[$v['type']]."]".addslashes($v['title']);?>',
+	                    y: <?php echo $v['shares'];?>,
+	                    sliced: true,
+	                    selected: true
+	                },
+					<?php else: ?>
+					['<?php echo "[".$types[$v['type']]."]".addslashes($v['title']);?>',<?php echo $v['shares'];?>],
+					<?php endif;?>
 				<?php endforeach;?>
 				]
 			}]
