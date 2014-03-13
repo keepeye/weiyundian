@@ -394,7 +394,7 @@ function() {
     };
     var name = "";
     function tongjishare(){
-        var tongjiurl = "<?php echo U('Home/Tongji/share',array('token'=>$Dazpan['token'],'pid'=>$Dazpan['lid'],'type'=>'dazhuanpan','title'=>rawurlencode($Dazpan['title']),'sign'=>md5($Dazpan['token'].$Dazpan['lid'].'dazhuanpan'.'tongji')));?>";
+        var tongjiurl = "{pigcms::U('Home/Tongji/share',array('token'=>$Dazpan['token'],'pid'=>$Dazpan['lid'],'type'=>'dazhuanpan','title'=>rawurlencode($Dazpan['title']),'sign'=>md5($Dazpan['token'].$Dazpan['lid'].'dazhuanpan'.'tongji')))}";
         document.getElementById('tongji_iframe').innerHTML = "<iframe src=\""+tongjiurl+"\"></iframe>";
     }
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
