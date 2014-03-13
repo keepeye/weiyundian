@@ -11,7 +11,7 @@ class TjAction extends UserAction{
 	
 	//默认统计
 	function index(){
-		$list = $this->_model->field("concat(day,'/',month),SUM(shares) as shares,SUM(clicks) as clicks")->where(array("token"=>$this->_token))->group("year,month,day")->limit(0,10)->order("id ASC")->select();//10天内的数据
+		$list = $this->_model->field("concat(day,'/',month) as day,SUM(shares) as shares,SUM(clicks) as clicks")->where(array("token"=>$this->_token))->group("year,month,day")->limit(0,10)->order("id ASC")->select();//10天内的数据
 		$data['day'] = array_column($list,"day");
 		$data['shares'] = array_column($list,"shares");
 		$data['clicks'] = array_column($list,"clicks");
