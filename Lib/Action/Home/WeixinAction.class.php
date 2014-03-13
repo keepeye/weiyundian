@@ -1344,7 +1344,7 @@ class WeixinAction extends Action
 				// }
             //小功能匹配
             
-				if (false === strpos($this->fun, 'liaotian')) {//这里应该用false严格判断，因为如果liaotian出现在字符串开头返回的将是0。
+				if (false !== strpos($this->fun, 'liaotian')) {//这里应该用false严格判断，因为如果liaotian出现在字符串开头返回的将是0。
 					$other = M('Other')->where(array(
 								'token' => $this->token
 								))->find();
