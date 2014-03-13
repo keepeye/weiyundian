@@ -7,6 +7,7 @@ class TongjiAction extends TongjiBaseAction{
 	private $_cookieid;
 	private $_record;
 	private $_now;
+	private $_sign;
 	function _initialize(){
 
 		parent::_initialize();
@@ -16,6 +17,7 @@ class TongjiAction extends TongjiBaseAction{
 		$this->_title = I('title');//文档标题
 		$this->_cookieid = ACTION_NAME."-".$this->_type."-".$this->_pid;
 		$this->_token = I('token');//商户token
+		$this->_sign = I('sign');
 		//检测请求是否合法或是否已经统计过当前用户
 		$this->check(ACTION_NAME);
 		$this->_now['time'] = $nowtime = time();//当前时间戳
@@ -53,21 +55,25 @@ class TongjiAction extends TongjiBaseAction{
 	//检测是否已经记录过当前用户,false表示不合法或已经记录过
 	private function check(){
 		//检测type和pid字段是否空值
-		if(empty($this->_type) || empty($this->_pid) || !$this->_token){
-			exit('57');
+		if(empty($this->_type) || empty($this->_pid) || !$this->_token || !$this->_sign){
+			exit('59');
 		}
 		//检测type是否已定义
 		if(!in_array($this->_type,$this->_types)){
-			exit('61');
+			exit('63');
 		}
 		//检测cookie，判断是否已经记录过该用户
 		
 		if(null != cookie($this->_cookieid)){
-			exit('66');
+			exit('68');
+		}
+		//检测sign合法性
+		if($this->_sign != md5($this->_token.$this->_pid.$this->_type.'tongji')){
+			exit('72');
 		}
 		//判断token是否存在  ###########################################
 		if(!M('wxuser')->field('id')->where(array("token"=>$this->_token))->find()){
-			exit('70');
+			exit('76');
 		}
 		return true;
 	}
