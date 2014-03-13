@@ -13,6 +13,9 @@
 		<div id="today_charts">
 			
 		</div>
+		<div id="month_charts">
+			
+		</div>
 	</div>
 	<div class="cLine">
 		<div class="pageNavigator right">
@@ -50,9 +53,43 @@
 			},
 			series: [{
 				type: 'pie',
-				name: 'Browser share',
+				name: '次数',
 				data: [
 				<?php foreach($today_list as $v): ?>
+				['<?php echo "[".$types[$v['type']]."]".addslashes($v['title']);?>',<?php echo $v['shares'];?>],
+				<?php endforeach;?>
+				]
+			}]
+		});
+		$('#month_charts').highcharts({
+			chart: {
+				plotBackgroundColor: null,
+				plotBorderWidth: null,
+				plotShadow: false
+			},
+			title: {
+				text: '本月被分享次数最多的前十个文档'
+			},
+			tooltip: {
+				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+			},
+			plotOptions: {
+				pie: {
+					allowPointSelect: true,
+					cursor: 'pointer',
+					dataLabels: {
+						enabled: true,
+						color: '#000000',
+						connectorColor: '#000000',
+						format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+					}
+				}
+			},
+			series: [{
+				type: 'pie',
+				name: '次数',
+				data: [
+				<?php foreach($month_list as $v): ?>
 				['<?php echo "[".$types[$v['type']]."]".addslashes($v['title']);?>',<?php echo $v['shares'];?>],
 				<?php endforeach;?>
 				]
