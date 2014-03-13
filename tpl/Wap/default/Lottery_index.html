@@ -154,9 +154,9 @@ Unknown property name.-ms-filter: progid:DXImageTransform.Microsoft.gradient(Gra
     <div class="box">
         <div class="title-green">活动说明：</div>
         <div class="Detail">
-        <p>{pigcms:$Dazpan.info}</p>
+        <p>{pigcms:$Dazpan.info|htmlspecialchars_decode}</p>
         <p>活动时间:{pigcms:$Dazpan.statdate|date="Y-m-d",###}至{pigcms:$Dazpan.enddate|date="Y-m-d",###}</p>		
-        <p><strong>{pigcms:$Dazpan.txt|htmlspecialchars_decode}</strong></p>  
+        <p><strong>{pigcms:$Dazpan.txt}</strong></p>  
         </div>
     </div>
 </div>
