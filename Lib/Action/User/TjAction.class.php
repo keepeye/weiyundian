@@ -1,6 +1,6 @@
 <?php
 //访问、转发统计查看
-class TjAction extends TongjiBaseAction{
+class TjAction extends UserAction{
 	private $_token;
 	private $_model;
 	function _initialize(){
