@@ -15,8 +15,8 @@ class TjAction extends TongjiBaseAction{
 		$data['day'] = array_column($list,"day");
 		$data['shares'] = array_column($list,"shares");
 		$data['clicks'] = array_column($list,"clicks");
-		dump($data);
-		// $this->assign("data",$data);
-		// $this->display();
+		
+		 $this->assign("data",$data);
+		 $this->display();
 	}
 }
