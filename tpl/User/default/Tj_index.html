@@ -51,7 +51,10 @@
             }, {
                 name: '转发次数',
                 data: $.map(<?php echo json_encode($data['shares']);?>,function(v){return parseInt(v)})
-            },]
+            },],
+            credits:{
+            	enabled:false
+            }
         });
     });
 </script>
