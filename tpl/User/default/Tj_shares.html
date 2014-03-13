@@ -31,7 +31,7 @@
 				plotShadow: false
 			},
 			title: {
-				text: 'Browser market shares at a specific website, 2010'
+				text: '今天被分享次数最多的前十个文档'
 			},
 			tooltip: {
 				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -53,7 +53,7 @@
 				name: 'Browser share',
 				data: [
 				<?php foreach($today_list as $v): ?>
-				['<?php echo addslashes($v['title']);?>',<?php echo $v['shares'];?>],
+				['<?php echo "[".$types[$v['type']]."]".addslashes($v['title']);?>',<?php echo $v['shares'];?>],
 				<?php endforeach;?>
 				]
 			}]

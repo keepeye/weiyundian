@@ -3,10 +3,12 @@
 class TjAction extends UserAction{
 	private $_token;
 	private $_model;
+	private $_types = array("img"=>"图文","dazhuanpan"=>"大转盘","selfform"=>"报名","guaguaka"=>"刮奖");
 	function _initialize(){
 		parent::_initialize();
 		$this->_token = session('token');//获取商户token
 		$this->_model = D('tongji');
+		$this->assign("types",$this->_types);
 	}
 	
 	//默认统计
@@ -33,6 +35,7 @@ class TjAction extends UserAction{
 		$month_list = $this->_model->where(array("token"=>$this->_token,"month"=>date("n",time())))->order("shares desc")->limit("0,10")->select();
 		$this->assign("today_list",$today_list);
 		$this->assign("month_list",$month_list);
+
 		$this->display();
 	}
 }
