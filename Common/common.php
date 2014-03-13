@@ -158,3 +158,43 @@ function I($name,$default='',$filter=null) {
     }
     return $data;
 }
+
+
+if(!function_exists("array_column")){
+    /**
+     * 返回数组的列
+     * @param  array  $input     需要取出数组列的多维数组（或结果集）
+     * @param  [type] $columnKey 需要返回值的列，它可以是索引数组的列索引，或者是关联数组的列的键
+     * @param  [type] $indexKey  作为返回数组的索引/键的列，它可以是该列的整数索引，或者字符串键值。
+     * @return [type]            [description]
+     */
+    function array_column(array $input, $columnKey, $indexKey = null) {
+        $result = array();
+    
+        if (null === $indexKey) {
+            if (null === $columnKey) {
+                // trigger_error('What are you doing? Use array_values() instead!', E_USER_NOTICE);
+                $result = array_values($input);
+            }
+            else {
+                foreach ($input as $row) {
+                    $result[] = $row[$columnKey];
+                }
+            }
+        }
+        else {
+            if (null === $columnKey) {
+                foreach ($input as $row) {
+                    $result[$row[$indexKey]] = $row;
+                }
+            }
+            else {
+                foreach ($input as $row) {
+                    $result[$row[$indexKey]] = $row[$columnKey];
+                }
+            }
+        }
+    
+        return $result;
+    }
+}

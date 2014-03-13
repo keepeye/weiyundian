@@ -8,31 +8,14 @@ class TjAction extends TongjiBaseAction{
 		$this->_token = session('token');//获取商户token
 		$this->_model = D('tongji');
 	}
-	//概况，只显示总的概况
-	function index(){
-		$globalCount = $this->_model->getGlobalCount();//获取全局统计
-		$this->assign("globalCount",$globalCount);
-		$this->display();
-	}
-
-	//详细统计列出每个文档的概况
-	function details(){
-
-	}
 	
-	//文档具体统计,显示指定文档的每天统计数据
-	function detail(){
-
+	//默认统计
+	function index(){
+		$list = $this->_model->field("SUM(shares) as shares,SUM(clicks) as clicks")->where(array("token"=>$this->_token))->group("year,month,day")->limit(0,10)->select();//10天内的数据
+		$data['shares'] = array_column($list,"shares");
+		$data['clicks'] = array_column($list,"clicks");
+		dump($data);
+		// $this->assign("data",$data);
+		// $this->display();
 	}
-
-	private function _globalMonth(){
-		$map = array();
-		$this->_setField();//设置字段
-		return M('tongji')->where($map)->find();
-	}
-
-	private function _setField(){
-		M('tongji')->field("SUM('shares') as shares");
-	}
-
 }
