@@ -52,15 +52,8 @@
 	    <div class="weimob-content">
         <h3>{pigcms:$res.title}</h3>
         <!--<div class="pub_time">{pigcms:$res.createtime|date="y-m-d",###}</div>-->
-        <div class="head_logo" onclick="location.href='{pigcms::U('Index/index',array('token'=>$res['token']))}'">
-        	
-            <div>
-                <span style="background-image:url({pigcms:$tpl.headerpic});"></span>
-            </div>
-           
-            
-        </div>
-                    <div><img src="{pigcms:$res.pic}" style="width:100%;"></div>
+       
+                  <div><img src="{pigcms:$res.pic}" style="width:100%;"></div>
                 <article>{pigcms:$res.info|htmlspecialchars_decode}</article>
     </div>
 	
