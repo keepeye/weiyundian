@@ -45,7 +45,14 @@ function WeParseUrl($url,$type,$params=array()){
 	}
 	return $href;
 }
-
+//补全相对链接
+function format_url($url=""){
+    if(strpos($url,"http://") !== 0){
+        return C('site_url').'/'.ltrim($url,"/");
+    }else{
+        return $url;
+    }
+}
 /**
 *获取当前时间格式化字符串
 */
