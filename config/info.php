@@ -2,7 +2,7 @@
 return array (
   'site_name' => '微云店',
   'site_title' => '微云店,微信智能服务平台,企业微信营销首选',
-  'site_url' => 'http://weiyundian.com',
+  'site_url' => 'http://weiyundian.xici.net',
   'ischeckuser' => 'false',
   'ipc' => '京ICP备10987号',
   'site_qq' => '1097122622',
