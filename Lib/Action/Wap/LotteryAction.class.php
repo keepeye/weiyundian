@@ -281,17 +281,22 @@ class LotteryAction extends BaseAction{
 		$token 		=	$this->_post('token');
 		$wecha_id	=	$this->_post('oneid');
 		$wxsign = I('wxsign');
-		//验证唯一性
+		//验证合法性
 		if($wecha_id == "" || md5($token.$wecha_id.C('safe_key'))!=$wxsign){
 			echo '{"norun":1,"msg":"非法请求，请重新点击图文消息进入"}';
 			exit;
 		}
+
 		$id 		=	$this->_post('id');//lid
 		$rid 		= 	$this->_post('rid');//id	
 		$redata 	=	M('Lottery_record');
 		$where 		= 	array('token'=>$token,'wecha_id'=>$wecha_id,'lid'=>$id);
 		$record 	=	$redata->where($where)->find();	//用户抽奖记录
-		
+		//判断用户是否存在记录表里
+		if(!$record){
+			echo '{"norun":1,"msg":"非法提交表单，请重新进入抽奖首页"}';
+			exit;
+		}
 		// 1. 中过奖金	
 		if ($record['islottery'] == 1) {				
 			//$norun = 1;
