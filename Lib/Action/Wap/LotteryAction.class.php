@@ -23,7 +23,12 @@ class LotteryAction extends BaseAction{
 		}
 		$Lottery = M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->find();
 		//检测抽奖时间和抽奖次数，是否将抽奖次数归零
-		if($Lottery['interval'] > 0 && (time()-$record['time']) > $Lottery['interval']){
+		// if($Lottery['interval'] > 0 && (time()-$record['time']) > $Lottery['interval']){
+		// 	$redata->data(array('usenums'=>'0'))->where($where)->save();//距离上次抽奖时间已超过时间限制，次数归零
+		// 	$record['usenums'] = 0;//次数归零，下面用于判断
+		// }
+		// 按自然天计算
+		if(time()>$record['time'] && date("d",time())!=date("d",$record['time'])){
 			$redata->data(array('usenums'=>'0'))->where($where)->save();//距离上次抽奖时间已超过时间限制，次数归零
 			$record['usenums'] = 0;//次数归零，下面用于判断
 		}
