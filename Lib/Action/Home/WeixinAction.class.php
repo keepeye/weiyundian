@@ -128,7 +128,7 @@ class WeixinAction extends Action
                             $house['title'],
                             $house['info'],
                             $house['room_url'],
-                            C('site_url') . '/index.php?g=Wap&m=House&a=room&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
+                            C('site_url') . '/index.php?g=Wap&m=House&a=room&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com&wxsign='.md5($this->token.$this->data['FromUserName'].C('safe_key'))
                             )
                         ),
                     'news'
@@ -146,7 +146,7 @@ class WeixinAction extends Action
                                 '房友印象',
                                 '房友印象，专家点评',
                                 $house['picurl'],
-                                C('site_url') . '/index.php?g=Wap&m=House&a=review&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
+                                C('site_url') . '/index.php?g=Wap&m=House&a=review&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com&wxsign='.md5($this->token.$this->data['FromUserName'].C('safe_key'))
                                 )
                             ),
                         'news'
@@ -164,7 +164,7 @@ class WeixinAction extends Action
                                 $house['title'],
                                 $house['info'],
                                 $house['picurl'],
-                                C('site_url') . '/index.php?g=Wap&m=House&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
+                                C('site_url') . '/index.php?g=Wap&m=House&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com&wxsign='.md5($this->token.$this->data['FromUserName'].C('safe_key'))
                                 )
                             ),
                         'news'
@@ -185,7 +185,7 @@ class WeixinAction extends Action
                                 $pro['title'],
                                 strip_tags(htmlspecialchars_decode($pro['info'])),
                                 $pro['picurl'],
-                                C('site_url') . '/index.php?g=Wap&m=Product&a=cats&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
+                                C('site_url') . '/index.php?g=Wap&m=Product&a=cats&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com&wxsign='.md5($this->token.$this->data['FromUserName'].C('safe_key'))
                                 )
                             ),
                         'news'
@@ -204,8 +204,8 @@ class WeixinAction extends Action
                                 $pro['title'],
                                 strip_tags(htmlspecialchars_decode($pro['info'])),
                                 $pro['picurl'],
-                                C('site_url') . '/index.php?g=Wap&m=Travel&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
-                                )
+                                C('site_url') . '/index.php?g=Wap&m=Travel&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com&wxsign='
+.md5($this->token.$this->data['FromUserName'].C('safe_key'))                                )
                             ),
                         'news'
                         );
@@ -224,7 +224,7 @@ class WeixinAction extends Action
                                 $pro['title'],
                                 strip_tags(htmlspecialchars_decode($pro['info'])),
                                 $pro['picurl'],
-                                C('site_url') . '/index.php?g=Wap&m=Car&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
+                                C('site_url') . '/index.php?g=Wap&m=Car&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com&wxsign='.md5($this->token.$this->data['FromUserName'].C('safe_key'))
                                 )
                             ),
                         'news'
@@ -306,7 +306,9 @@ class WeixinAction extends Action
                             $url = rtrim(C('site_url'), '/') . U('Wap/Index/content', array(
                                         'token' => $this->token,
                                         'id' => $infot['id'],
-                                        'wxref'=>'mp.weixin.qq.com'
+                                        'wxref'=>'mp.weixin.qq.com',
+                                        'wecha_id'=>$this->data['FromUserName'],
+                                        'wxsign'=>md5($this->token.$this->data['FromUserName'].C('safe_key'))
                                         ));
                             //Log::write($url,Log::INFO);
                         }
@@ -336,7 +338,7 @@ class WeixinAction extends Action
                                             $item['title'],
                                             $item['info'],
                                             $item['ppicurl'],
-                                            C('site_url') . '/index.php?g=Wap&m=Host&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'] . '&hid=' . $item['id'].'&wxref=mp.weixin.qq.com'
+                                            C('site_url') . '/index.php?g=Wap&m=Host&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'] . '&hid=' . $item['id'].'&wxref=mp.weixin.qq.com&wxsign='.md5($this->token.$this->data['FromUserName'].C('safe_key'))
                                         );
                             }
                             
@@ -351,7 +353,7 @@ class WeixinAction extends Action
                                             $house['title'],
                                             $house['info'],
                                             $house['picurl'],
-                                            C('site_url') . '/index.php?g=Wap&m=House&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com'
+                                            C('site_url') . '/index.php?g=Wap&m=House&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com&wxsign='.md5($this->token.$this->data['FromUserName'].C('safe_key'))
                                         );
                             }
                             
@@ -367,7 +369,7 @@ class WeixinAction extends Action
                                             $pro['name'],
                                             strip_tags(htmlspecialchars_decode($pro['intro'])),
                                             $pro['logourl'],
-                                            C('site_url') . '/index.php?g=Wap&m=Product&a=product&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'] . '&id=' . $pro['id'].'&wxref=mp.weixin.qq.com'
+                                            C('site_url') . '/index.php?g=Wap&m=Product&a=product&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'] . '&id=' . $pro['id'].'&wxref=mp.weixin.qq.com&wxsign='.md5($this->token.$this->data['FromUserName'].C('safe_key'))
                                         );
                             }
 
@@ -383,7 +385,7 @@ class WeixinAction extends Action
                                             strip_tags(htmlspecialchars_decode($pro['intro'])),
                                             $pro['logourl'],
                                             //C('site_url').U("Wap/Jump/jumpto",array("appurl"=>rawurlencode(C('site_url') . '/index.php?g=Wap&m=Selfform&a=index&token=' . $this->token. '&id=' . $pro['id'].'&wxref=mp.weixin.qq.com'),"openid"=>$this->data['FromUserName']))
-                                            C('site_url') . '/index.php?g=Wap&m=Selfform&a=index&token=' . $this->token. '&id=' . $pro['id'].'&wxref=mp.weixin.qq.com&wecha_id='.$this->data['FromUserName']
+                                            C('site_url') . '/index.php?g=Wap&m=Selfform&a=index&token=' . $this->token. '&id=' . $pro['id'].'&wxref=mp.weixin.qq.com&wecha_id='.$this->data['FromUserName'].'&wxsign='.md5($this->token.$this->data['FromUserName'].C('safe_key'))
                                         );
                             }
                             //Log::write($data['pid'],Log::INFO);
@@ -407,7 +409,8 @@ class WeixinAction extends Action
                             'token' => $this->token,
                             'id' => $id,
                             'wxref'=>'mp.weixin.qq.com',
-                            'wecha_id'=>$this->data['FromUserName']
+                            'wecha_id'=>$this->data['FromUserName'],
+                            'wxsign'=>md5($this->token.$this->data['FromUserName'].C('safe_key'))
                             ));
                                 //appurl从Jump模块跳转，用于将openid写入cookie，避免用户转发时带入个人id
                         //$url = C('site_url').U("Wap/Jump/jumpto",array("appurl"=>rawurlencode($appurl),"openid"=>$this->data['FromUserName']));
@@ -460,7 +463,8 @@ class WeixinAction extends Action
                                             'type' => $type,
                                             'id' => $id,
                                             'wxref'=>'mp.weixin.qq.com',
-                                            'wecha_id'=>$this->data['FromUserName']
+                                            'wecha_id'=>$this->data['FromUserName'],
+                                            'wxsign'=>md5($this->token.$this->data['FromUserName'].C('safe_key'))
                                             ));
                                 //appurl从Jump模块跳转，用于将openid写入cookie，避免用户转发时带入个人id
                                 //$url = C('site_url').U("Wap/Jump/jumpto",array("appurl"=>rawurlencode($appurl),"openid"=>$this->data['FromUserName']));
@@ -569,7 +573,8 @@ class WeixinAction extends Action
         $data['url']     = rtrim(C('site_url'), '/') . U('Wap/Photo/index', array(
             'token' => $this->token,
             'wecha_id' => $this->data['FromUserName'],
-			'wxref'=>'mp.weixin.qq.com'
+			'wxref'=>'mp.weixin.qq.com',
+            'wxsign'=>md5($this->token.$this->data['FromUserName'].C('safe_key'))
         ));
         $data['picurl']  = $photo['picurl'] ? $photo['picurl'] : rtrim(C('site_url'), '/') . '/tpl/static/images/yj.jpg';
         return array(
@@ -637,7 +642,8 @@ class WeixinAction extends Action
             $appurl     = rtrim(C('site_url'), '/') . U('Wap/Card/get_card', array(
                 'token' => $this->token,
                 'wecha_id' => $this->data['FromUserName'],
-				'wxref'=>'mp.weixin.qq.com'
+				'wxref'=>'mp.weixin.qq.com',
+                'wxsign'=>md5($this->token.$this->data['FromUserName'].C('safe_key'))
             ));
             $data['url'] = C('site_url').U("Wap/Jump/jumpto",array('appurl'=>rawurlencode($appurl),'openid'=>$this->data['FromUserName']));
         } else {
@@ -648,7 +654,8 @@ class WeixinAction extends Action
             $appurl    = rtrim(C('site_url'), '/') . U('Wap/Card/vip', array(
                 'token' => $this->token,
                 'wecha_id' => $this->data['FromUserName'],
-				'wxref'=>'mp.weixin.qq.com'
+				'wxref'=>'mp.weixin.qq.com',
+                'wxsign'=>md5($this->token.$this->data['FromUserName'].C('safe_key'))
             ));
             //$data['url'] = C('site_url').U("Wap/Jump/jumpto",array('appurl'=>rawurlencode($appurl),'openid'=>$this->data['FromUserName']));
             $data['url'] = $appurl;
@@ -758,7 +765,7 @@ class WeixinAction extends Action
             } else {
                 $url = $home['apiurl'];
             }
-            $url.="&wecha_id=".$this->data['FromUserName'];
+            $url.="&wecha_id=".$this->data['FromUserName'].'&wxsign='.md5($this->token.$this->data['FromUserName'].C('safe_key'));
         }
         return array(
             array(

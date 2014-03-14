@@ -6,7 +6,8 @@ class LotteryAction extends BaseAction{
 		$agent = $_SERVER['HTTP_USER_AGENT']; 
 		$token		= $this->_get('token');
 
-		$wecha_id	= I('request.wecha_id');
+		$wecha_id	= I('request.wecha_id');//获取wecha_id
+		
 		if($wecha_id == ""){
 			$this->redirect("Home/Adma/index?token=".$token);
 		}

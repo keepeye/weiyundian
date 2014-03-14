@@ -21,4 +21,5 @@ return array(
 	'TMPL_L_DELIM'   		=>'{pigcms:',			//模板引擎普通标签开始标记
 	'TMPL_R_DELIM'			=>'}',				//模板引擎普通标签结束标记
 	'baidu_map_api'=>'CB39f8f69f732c5499f4dfb0ca98d07e',
+	'safe_key'=>'weiydxxxxxxx',//用于网页url上的wxsign安全加密
 );
