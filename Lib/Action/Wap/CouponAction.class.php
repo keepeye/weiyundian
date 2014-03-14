@@ -10,7 +10,7 @@ class CouponAction extends BaseAction{
 		$this->wecha_id	= I('request.wecha_id');//获取wecha_id
 		$this->wxsign = I('wxsign',I('get.wxsign'));//获取加密字符串
 		if($this->wecha_id == "" || md5($this->token.$this->wecha_id.C('safe_key'))!=$this->wxsign){
-			$this->redirect("Home/Adma/index?token=".$token);
+			$this->redirect("Home/Adma/index?token=".$this->token);
 		}
 
 		$this->assign("token",$this->token);
