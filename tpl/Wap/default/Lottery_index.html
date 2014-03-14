@@ -278,7 +278,9 @@ $(function() {
          dataType: "json",
          type    : "POST",
          data    : {
-            token  : "{pigcms:$Dazpan.token}",
+            token  : "{pigcms:$token}",
+            wecha_id:"{pigcms:$wecha_id}",
+            wxsign:"{pigcms:$wxsign}",
             oneid  : "{pigcms:$Dazpan.wecha_id}",
             id     : {pigcms:$Dazpan.lid},
             rid    : {pigcms:$Dazpan.rid} 

@@ -4,14 +4,17 @@ class LotteryAction extends BaseAction{
 	public function index(){
 		
 		$agent = $_SERVER['HTTP_USER_AGENT']; 
+		//初始化用户信息
 		$token		= $this->_get('token');
-
 		$wecha_id	= I('request.wecha_id');//获取wecha_id
 		$wxsign = I('wxsign',I('get.wxsign'));//获取加密字符串
 		if($wecha_id == "" || md5($token.$wecha_id.C('safe_key'))!=$wxsign){
 			$this->redirect("Home/Adma/index?token=".$token);
 		}
-		
+		$this->assign("token",$token);
+		$this->assign("wecha_id",$wecha_id);
+		$this->assign("wxsign",$wxsign);
+		//
 		$id 		= $this->_get('id');
 		$redata		= M('Lottery_record');
 		$where 		= array('token'=>$token,'wecha_id'=>$wecha_id,'lid'=>$id);
@@ -277,6 +280,12 @@ class LotteryAction extends BaseAction{
 		
 		$token 		=	$this->_post('token');
 		$wecha_id	=	$this->_post('oneid');
+		$wxsign = I('wxsign');
+		//验证唯一性
+		if($wecha_id == "" || md5($token.$wecha_id.C('safe_key'))!=$wxsign){
+			echo '{"norun":1,"msg":"非法请求"}';
+			exit;
+		}
 		$id 		=	$this->_post('id');//lid
 		$rid 		= 	$this->_post('rid');//id	
 		$redata 	=	M('Lottery_record');
