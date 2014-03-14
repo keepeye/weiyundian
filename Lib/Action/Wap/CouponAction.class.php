@@ -80,7 +80,7 @@ class CouponAction extends BaseAction{
 		
 		$record = $CouponRecordM->where(array("wecha_id"=>$this->wecha_id))->find();
 		if($record){
-			$this->error("你已经领取过优惠券");
+			$this->error("你已经领取过优惠券，优惠券号码为：".$record['sn']);
 		}
 
 		//生成优惠券
