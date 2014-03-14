@@ -19,7 +19,7 @@
 <div class="cLine">
 <div class="pageNavigator left"> 
 	<a href="{pigcms::U('setShop')}" title="添加商铺账号" >[添加商铺账号]</a>
-	您的商铺独立页面：<input type="text" class="px" style="width:400px" value="http://www.weiyundian.com{pigcms::U('MemberCardShopUser/index',array('token'=>$token))}"/>
+	您的商铺独立页面：<input type="text" class="px" style="width:400px" value="{pigcms::C('site_url')}/{pigcms::U('MemberCardShopUser/index',array('token'=>$token))}"/>
 </div>
 
 <div class="clr"></div>

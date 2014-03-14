@@ -8,7 +8,7 @@
 	
 	<div class="cLine">
 		<div class="pageNavigator left"> 
-			<a href="{pigcms::U('set')}" title="添加" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">添加门店</a> 您的门店子系统管理平台地址：<a href="{pigcms::U('Subshop/Public/login',array('token'=>$token))}">{pigcms::U('Subshop/Public/login@www.weiyundian.com',array('token'=>$token))}</a>
+			<a href="{pigcms::U('set')}" title="添加" class="btnGrayS vm bigbtn"><img src="{pigcms::RES}/images/product/add.png" width="16" class="vm">添加门店</a> 您的门店子系统管理平台地址：<a href="{pigcms::U('Subshop/Public/login',array('token'=>$token))}">{pigcms::C('site_url')}/{pigcms::U('Subshop/Public/login',array('token'=>$token))}</a>
 		</div>
 		<div class="clr"></div>
 	</div>
