@@ -165,11 +165,11 @@ function tgSubmit(){
         "img_width": "120",
         "img_height": "120",
         "link": window.location.href.replace(/wecha_id=[^&]*&?/,''),//分享链接
-        "title": "标题：{pigcms:$thisForm.name|addslashes|default='微报名'}",//定义分享标题
+        "title": "{pigcms:$thisForm.name|addslashes|default='微报名'}",//定义分享标题
         "desc": "{pigcms:$thisForm.name|addslashes|default='微报名'}"//描述
     };
     function tongjishare(){
-        var tongjiurl = "{pigcms::U('Home/Tongji/share',array('token'=>$_GET['token'],'pid'=>$thisForm['id'],'type'=>'selfform','title'=>rawurlencode($thisForm['name']),'sign'=>md5($_GET['token'].$thisForm['id'].'dazhuanpan'.'tongji')))}";
+        var tongjiurl = "{pigcms::U('Home/Tongji/share',array('token'=>$_GET['token'],'pid'=>$thisForm['id'],'type'=>'selfform','title'=>rawurlencode($thisForm['name']),'sign'=>md5($_GET['token'].$thisForm['id'].'selfform'.'tongji')))}";
         document.getElementById('tongji_iframe').innerHTML = "<iframe src=\""+tongjiurl+"\"></iframe>";
     }
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
