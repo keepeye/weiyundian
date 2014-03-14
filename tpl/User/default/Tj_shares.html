@@ -15,6 +15,11 @@
 		</div>
 
 		<br/>
+		<div id="yestoday_charts">
+			
+		</div>
+
+		<br/>
 		<br/>
 		<div id="month_charts">
 			
@@ -76,6 +81,54 @@
 				]
 			}]
 		});
+		//昨日
+		$('#yestoday_charts').highcharts({
+			credits:{
+            	enabled:false
+            },
+			chart: {
+				plotBackgroundColor: null,
+				plotBorderWidth: null,
+				plotShadow: false
+			},
+			title: {
+				text: '本月被分享次数最多的前十个文档'
+			},
+			tooltip: {
+				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+			},
+			plotOptions: {
+				pie: {
+					allowPointSelect: true,
+					cursor: 'pointer',
+					dataLabels: {
+						enabled: true,
+						color: '#000000',
+						connectorColor: '#000000',
+						format: '<b>{point.name}</b>:{y}次'
+					}
+				}
+			},
+			series: [{
+				type: 'pie',
+				name: '次数',
+				data: [
+				<?php foreach($yestoday_list as $k=>$v): ?>
+					<?php if($k==0): ?>
+					{
+	                    name: '<?php echo "[".$types[$v['type']]."]".addslashes($v['title']);?>',
+	                    y: <?php echo $v['shares'];?>,
+	                    sliced: true,
+	                    selected: true
+	                },
+					<?php else: ?>
+					['<?php echo "[".$types[$v['type']]."]".addslashes($v['title']);?>',<?php echo $v['shares'];?>],
+					<?php endif;?>
+				<?php endforeach;?>
+				]
+			}]
+		});
+		//月统计
 		$('#month_charts').highcharts({
 			credits:{
             	enabled:false

@@ -31,11 +31,13 @@ class TjAction extends UserAction{
 	function shares(){
 		//今日分享最多的十条图文
 		$today_list = $this->_model->where(array("token"=>$this->_token,"day"=>date("j",time())))->order("shares desc")->limit("0,10")->select();
+		//昨天分享
+		$yestoday_list = $this->_model->where(array("token"=>$this->_token,"day"=>date("j",time()-86400)))->order("shares desc")->limit("0,10")->select();
 		//本月分享最多的十条图文
 		$month_list = $this->_model->field("title,type,SUM(shares) as shares")->group('pid')->where(array("token"=>$this->_token,"month"=>date("n",time())))->order("shares desc")->limit("0,10")->select();
 		$this->assign("today_list",$today_list);
 		$this->assign("month_list",$month_list);
-
+		$this->assign("yestoday_list",$yestoday_list);
 		$this->display();
 	}
 }
