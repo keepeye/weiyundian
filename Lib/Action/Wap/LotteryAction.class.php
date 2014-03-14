@@ -5,7 +5,7 @@ class LotteryAction extends BaseAction{
 		
 		$agent = $_SERVER['HTTP_USER_AGENT']; 
 		//初始化用户信息
-		$token		= $this->_get('token');
+		$token		= I('token',I('get.token'));
 		$wecha_id	= I('request.wecha_id');//获取wecha_id
 		$wxsign = I('wxsign',I('get.wxsign'));//获取加密字符串
 		if($wecha_id == "" || md5($token.$wecha_id.C('safe_key'))!=$wxsign){
