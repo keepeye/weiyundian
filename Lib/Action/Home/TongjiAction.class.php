@@ -1,5 +1,5 @@
 <?php
-class TongjiAction extends TongjiBaseAction{
+class TongjiAction extends Action{
 	private $_token;
 	private $_type;
 	private $_pid;
@@ -8,10 +8,8 @@ class TongjiAction extends TongjiBaseAction{
 	private $_record;
 	private $_now;
 	private $_sign;
+	protected $_types = array("img","dazhuanpan","selfform","guaguaka","coupon");//定义统计分类,别忘了同时修改user/tj下的types定义
 	function _initialize(){
-
-		parent::_initialize();
-
 		$this->_type = I('type');//类别
 		$this->_pid = I('pid');//文档主键
 		$this->_title = I('title');//文档标题

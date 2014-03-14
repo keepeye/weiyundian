@@ -3,7 +3,7 @@
 class TjAction extends UserAction{
 	private $_token;
 	private $_model;
-	private $_types = array("img"=>"图文","dazhuanpan"=>"大转盘","selfform"=>"报名","guaguaka"=>"刮奖");
+	private $_types = array("img"=>"图文","dazhuanpan"=>"大转盘","selfform"=>"报名","guaguaka"=>"刮奖","coupon"=>"优惠券");
 	function _initialize(){
 		parent::_initialize();
 		$this->_token = session('token');//获取商户token
