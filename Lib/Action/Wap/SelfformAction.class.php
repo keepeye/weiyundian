@@ -1,24 +1,26 @@
 <?php
 class SelfformAction extends BaseAction{
-	public $token;
-	public $wecha_id;
-	public $selfform_model;
+	public $token;//商户token
+	public $wecha_id;//微信唯一id
+	public $selfform_model;//selfform表模型
 	public $selfform_input_model;
 	public $selfform_value_model;
 	public function __construct(){
 		parent::__construct();
-		$this->token		= $this->_get('token');
-		$this->assign('token',$this->token);
-		$this->wecha_id	= I('get.wecha_id');
+		$this->token		= $this->_get('token');//获取商户token
+		$this->wecha_id	= I('wecha_id',I('get.wecha_id'));//获取wecha_id
+		//判断wecha_id 没有的话跳转到宣传页
 		if (!$this->wecha_id){
 			$this->redirect("Home/Adma/index?token=".$this->token);
 		}
+		//初始化模型实例
+		$this->selfform_model=M('Selfform');//报名主表模型
+		$this->selfform_input_model=M('Selfform_input');//报名表单项设置模型
+		$this->selfform_value_model=M('Selfform_value');//用户提交的表单值模型
+		//将一些值传入模板
 		$this->assign('wecha_id',$this->wecha_id);
-		//
-		$this->selfform_model=M('Selfform');
-		$this->selfform_input_model=M('Selfform_input');
-		$this->selfform_value_model=M('Selfform_value');
-		$this->assign('staticFilePath',str_replace('./','/',THEME_PATH.'common/css/product'));
+		$this->assign('token',$this->token);
+		//$this->assign('staticFilePath',str_replace('./','/',THEME_PATH.'common/css/product'));
 	}
 	public function index(){
 		$formid=intval($_GET['id']);
