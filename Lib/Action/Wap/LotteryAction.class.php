@@ -7,8 +7,8 @@ class LotteryAction extends BaseAction{
 		$token		= $this->_get('token');
 
 		$wecha_id	= I('request.wecha_id');//获取wecha_id
-		
-		if($wecha_id == ""){
+		$wxsign = I('wxsign',I('get.wxsign'));//获取加密字符串
+		if($wecha_id == "" || md5($token.$wecha_id.C('safe_key'))!=$wxsign){
 			$this->redirect("Home/Adma/index?token=".$token);
 		}
 		
