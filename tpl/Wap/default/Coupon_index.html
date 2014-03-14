@@ -87,6 +87,7 @@
         var name = $.trim($("#contact_name").val());
         var phone = $.trim($("#contact_phone").val());
         var weixin = $.trim($("#contact_weixin").val());
+        var wxsign = "<?php echo $wxsign;?>";
         var token = "<?php echo $token;?>";
         var id = "{pigcms:$coupon.id}";
         var wecha_id = "{pigcms:$wecha_id}";
@@ -97,7 +98,7 @@
         $.ajax({
             url:"<?php echo U('add');?>",
             type:"post",
-            data:{"name":name,"phone":phone,"weixin":weixin,"token":token,"wecha_id":wecha_id,"id":id},
+            data:{"name":name,"phone":phone,"weixin":weixin,"token":token,"wecha_id":wecha_id,"id":id,'wxsign':wxsign},
             dataType:"json",
             error:function(){
                 alert('请求发送失败');

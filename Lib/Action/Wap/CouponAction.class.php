@@ -2,15 +2,20 @@
 class CouponAction extends BaseAction{
 	private $token;
 	private $wecha_id;
+	private $wxsign;
 	function _initialize(){
 		parent::_initialize();
-		$this->token		= I('request.token');
-		$this->wecha_id	= I('request.wecha_id',cookie('wecha_id'));
-		if($this->wecha_id == ""){
+		//基础信息
+		$this->token		= $this->_get('token');
+		$this->wecha_id	= I('request.wecha_id');//获取wecha_id
+		$this->wxsign = I('wxsign',I('get.wxsign'));//获取加密字符串
+		if($this->wecha_id == "" || md5($this->token.$this->wecha_id.C('safe_key'))!=$this->wxsign){
 			$this->redirect("Home/Adma/index?token=".$token);
 		}
+
 		$this->assign("token",$this->token);
 		$this->assign("wecha_id",$this->wecha_id);
+		$this->assign("wxsign",$this->wxsign);
 		//$this->error('该功能重构中...');
 	}
 
@@ -41,7 +46,7 @@ class CouponAction extends BaseAction{
 		$this->display();
 	}
 	
-	//中奖后填写信息
+	//提交联系人信息
 	public function add(){
 		$return = array();
 		$CouponRecordM = M('CouponRecord');
@@ -55,6 +60,15 @@ class CouponAction extends BaseAction{
 			$return = array(
 					"status"=>"0",
 					"info"=>"活动已被删除"
+				);
+			$this->ajaxReturn($return);
+		}
+
+		//优惠券已领完
+		if($coupon['given_num'] >= $coupon['num']){
+			$return = array(
+					"status"=>"0",
+					"info"=>"啊，来迟一步，优惠券已被领完，请关注下次活动"
 				);
 			$this->ajaxReturn($return);
 		}
