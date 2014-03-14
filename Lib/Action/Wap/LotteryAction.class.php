@@ -283,7 +283,7 @@ class LotteryAction extends BaseAction{
 		$wxsign = I('wxsign');
 		//验证唯一性
 		if($wecha_id == "" || md5($token.$wecha_id.C('safe_key'))!=$wxsign){
-			echo '{"norun":1,"msg":"非法请求"}';
+			echo '{"norun":1,"msg":"非法请求，请重新点击图文消息进入"}';
 			exit;
 		}
 		$id 		=	$this->_post('id');//lid
