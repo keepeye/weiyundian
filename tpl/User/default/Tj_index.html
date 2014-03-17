@@ -70,11 +70,14 @@
             credits:{
             	enabled:false
             },
-            cursor:"pointer",
-            line:{
-            	events:{
-            			click:function(e){alert('hello')}
-            		}
+            plotOptions:{
+
+	            line:{
+	            	cursor:"pointer",
+	            	events:{
+	            			click:function(e){alert('hello')}
+	            		}
+	            }
             }
         });
     });
