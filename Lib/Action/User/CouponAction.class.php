@@ -54,6 +54,14 @@ class CouponAction extends UserAction{
 
 
 	}
+
+
+	function setStatus(){
+		$status = I('status')==0?0:1;//获取状态码
+		$id = I('id',0);//活动id
+		M('Coupon')->where(array('token'=>$this->token,'id'=>$id))->data(array('status'=>$status))->save();
+		$this->success('设置完成');
+	}
 	// public function sn(){
 	// 	if(session('gid')==1){
 	// 		$this->error('vip0无法使用抽奖活动,请充值后再使用',U('User/Index/index'));
