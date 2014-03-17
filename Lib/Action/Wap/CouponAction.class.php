@@ -95,6 +95,8 @@ class CouponAction extends BaseAction{
 		$data['contact_phone'] = I("post.phone");
 		$data['contact_weixin'] = I("post.weixin");
 		if($CouponRecordM->add($data)){
+			//更新coupon表given_num
+			M('Coupon')->where(array("token"=>$this->token,"id"=>$id))->setInc("given_num");
 			$this->ajaxReturn(array("status"=>"1","sn"=>$sn));
 		}else{
 			$this->error("优惠码已被领取完了。。");
