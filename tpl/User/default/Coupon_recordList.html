@@ -1,0 +1,103 @@
+<include file="Public:head"/>
+<div class="content">
+         
+          <div class="cLineB">
+              <h4 class="left">优惠券发放记录</h4>
+              
+              <div class="clr"></div> 
+          </div>
+        
+  <div class="cLineB">
+            总数：<span class="redamount">{pigcms:$coupon.num}</span>  已发放：<span class="redamount">{pigcms:$coupon.given_num} </span> 个          
+  </div>
+  <div class="cLine" style=" padding: 8px 0">
+  <div class="searchbar">  
+                  <form method="get">
+                    <input type="hidden" name="g" value="<?php echo GROUP_NAME;?>"/>
+                    <input type="hidden" name="m" value="<?php echo MODULE_NAME;?>"/>
+                    <input type="hidden" name="a" value="<?php echo ACTION_NAME;?>"/>
+                    <input type="hidden" name="id" value="<?php echo $_GET['id'];?>"/>
+                   sn码：<input type="text"  class="txt" placeholder="输入sn码"  name="filter[sn]" value="">&nbsp;
+                   手机号：<input type="text"  class="txt"   name="filter[phone]" value="">&nbsp;
+
+                    <input type="submit" value="查找" id="msgSearchBtn" href="" class="btnGrayS" title="查找">
+                    <small>列出所有的记录，把条件清空，直接点击查找即可</small>
+                  </form>
+              </div>
+          </div>
+          <div class="msgWrap">
+         
+          
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR style="text-align: center;">
+        					<TH>sn(优惠码)</TH>
+                  <TH>微信号</TH>
+        					<TH>姓名</TH>
+        					<TH>电话</TH>
+        					<TH>使用时间</TH>
+                  <TH>领取时间</TH>
+        					<TH>操作</TH>
+                </TR>
+				
+              </THEAD>
+              <TBODY>
+				<volist name="record" id="record">
+					 <TR style="line-height:30px;height: 43px;line-height: 59px;">
+						<td>{pigcms:$record.sn}</td>
+            <td>{pigcms:$record.contact_weixin}</td>
+						<td>{pigcms:$record.contact_name}</td>
+            <td>{pigcms:$record.contact_phone}</td>
+            <td><if condition="$record['used_time'] neq 0"> {pigcms:$record.used_time|date='Y-m-d H:i:s',###}</if>
+            </td>
+						<td>{pigcms:$record.time|date='Y-m-d H:i:s',###}</td>
+						<td>
+               <if condition="$record['sendstutas'] eq 0"> 
+                 <a href="{pigcms::U('useCoupon',array('id'=>$record['id']))}">发奖</a> 
+                 <a href="javascript:drop_confirm('您确定要删除吗?删除后该用户可重新领取。', '{pigcms::U('delRecord',array('id'=>$record['id']))}');">删除</a>
+              </if>
+             
+            </td>
+					</TR>
+				</volist>
+			  </TBODY>
+            </TABLE>
+            
+           
+          </div>
+            
+ 
+          <div class="cLine">
+            <div class="pageNavigator right">
+                 <div class="pages"><?php echo $pagestr;?></div>
+              </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+
+function checkAll(form, name) {
+for(var i = 0; i < form.elements.length; i++) {
+var e = form.elements[i];
+if(e.name.match(name)) {
+e.checked = form.elements['chkall'].checked;
+}
+}
+}
+
+function changesort(tid,sortval){
+
+var image=new Image();   
+image.src='index.php?ac=app&op=sort&wxid=gh_423dwjkewad&tid='+tid+'&sort='+sortval+'&r='+Math.random(); 
+
+}
+  </script>
+  <!--底部-->
+  	</div>
+<include file="Public:footer"/>
+        

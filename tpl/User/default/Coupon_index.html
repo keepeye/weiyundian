@@ -33,7 +33,7 @@
 				<td>{pigcms:$list.num}</td>
 				<td><?php echo $list['num']-$list['given_num'];?></td>
 				<TD class="norightborder">
-					<a href="index.php?g=User&m=Coupon&a=sn&id={pigcms:$list.id}&type=3">领取记录</a> 
+					<a href="{pigcms::U('recordList',array('pid'=>$list['id']))}">发放记录</a> 
 					<a href="{pigcms::U('set',array('id'=>$list['id']))}">编辑</a>
 					<?php if($list['status']==1): ?>
 					<a href="{pigcms::U('setStatus',array('id'=>$list['id'],'status'=>'0'))}">关闭</a>
