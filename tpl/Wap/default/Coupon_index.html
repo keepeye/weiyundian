@@ -49,36 +49,39 @@
 优惠券已发完了，请关注下次活动。
 </div>
 <?php else: ?>
-<div class="Pop-upbox" id="usermsg" >
-    <div class="upbox_top">
-        <h1>用户资料(使用时核对资料)：</h1>
-        <a href=""><div class="close" style="display: none;"></div></a>
-    </div>
-    <div class="upbox_cens">
-        <div>
-            <span style="width:100px;display:inline-block;">姓 名：</span><input type="text" id="contact_name" class="sinput">
-         </div>
-        <div style="margin-top: 5px;">
-           <span style="width:100px;display:inline-block;">电 话：</span><input type="text" id="contact_phone" class="sinput">
+    <?php if(empty($record)): ?>
+    <div class="Pop-upbox" id="usermsg" >
+        <div class="upbox_top">
+            <h1>用户资料(使用时核对资料)：</h1>
+            <a href=""><div class="close" style="display: none;"></div></a>
         </div>
-        <div style="margin-top: 5px;">
-           <span style="width:100px;display:inline-block;">微信号：</span><input type="text" id="contact_weixin" class="sinput">
-        </div>
+        <div class="upbox_cens">
+            <div>
+                <span style="width:100px;display:inline-block;">姓 名：</span><input type="text" id="contact_name" class="sinput">
+             </div>
+            <div style="margin-top: 5px;">
+               <span style="width:100px;display:inline-block;">电 话：</span><input type="text" id="contact_phone" class="sinput">
+            </div>
+            <div style="margin-top: 5px;">
+               <span style="width:100px;display:inline-block;">微信号：</span><input type="text" id="contact_weixin" class="sinput">
+            </div>
 
+        </div>
+        <div class="upbox_cen">
+            <a href="javascript:lingqu()"><div class="button_1"><span>提交信息</span></div></a>
+        </div>
     </div>
-    <div class="upbox_cen">
-        <a href="javascript:lingqu()"><div class="button_1"><span>提交信息</span></div></a>
-    </div>
-</div>
-<div class="Pop-upbox" id="snmsg"  style="display: none;">
+    <?php endif;?>
+<?php endif;?>
+<div class="Pop-upbox" id="snmsg"  style="<?php if(empty($record)): ?>display:none;<?php endif;?>">
     <div class="upbox_top">
         <h1>优惠券号码(请记下)：</h1>           
     </div>
     <div class="upbox_cens">
-        <div id="sncode"></div>        
+        <div id="sncode"><?php if(!empty($record)){echo $record['sn'];if(!empty($record['used_time'])){echo "使用时间：".date("Y-m-d H:i:s",$record['used_time']);}}?></div>        
     </div>
 </div>
-<?php endif;?>
+
 
 <script type="text/javascript">
     function lingqu(){

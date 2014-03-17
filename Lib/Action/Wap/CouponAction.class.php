@@ -42,6 +42,9 @@ class CouponAction extends BaseAction{
 		if($nowtime > $coupon['end_time']){
 			$this->error("活动已结束");
 		}
+		//查询当前微信用户领取记录
+		$record = M('CouponRecord')->where(array("pid"=>$id,"wecha_id"=>$this->wecha_id))->find();
+		$this->assign("record",$record);
 		$this->assign("coupon",$coupon);
 		$this->display();
 	}
