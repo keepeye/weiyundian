@@ -53,7 +53,7 @@
 						<td>{pigcms:$record.time|date='Y-m-d H:i:s',###}</td>
 						<td>
                <if condition="$record['sendstutas'] eq 0"> 
-                 <a href="{pigcms::U('useCoupon',array('id'=>$record['id']))}">发奖</a> 
+                 <a href="{pigcms::U('useCoupon',array('id'=>$record['id']))}">使用</a> 
                  <a href="javascript:drop_confirm('您确定要删除吗?删除后该用户可重新领取。', '{pigcms::U('delRecord',array('id'=>$record['id']))}');">删除</a>
               </if>
              
