@@ -29,7 +29,7 @@
 		  <volist id="list" name="list">
 		  <TR>
 			  <TD>{pigcms:$list.title}</TD>                 
-			  <TD>{pigcms:$list.start_time|date='Y-m-d',###}<br />{pigcms:$list.end_time|date='Y-m-d',###}</TD>
+			  <TD>{pigcms:$list.start_time|date='Y-m-d',###} - {pigcms:$list.end_time|date='Y-m-d',###}</TD>
 			 <td>{pigcms:$list.num}</td>
 			  <td><?php echo $list['num']-$list['given_num'];?></td>
 			  <TD class="norightborder">
