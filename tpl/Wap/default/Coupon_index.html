@@ -78,7 +78,7 @@
         <h1>优惠券号码(请记下)：</h1>           
     </div>
     <div class="upbox_cens">
-        <div id="sncode"><?php if(!empty($record)){echo $record['sn'];if(!empty($record['used_time'])){echo "使用时间：".date("Y-m-d H:i:s",$record['used_time']);}}?></div>        
+        <div id="sncode"><?php if(!empty($record)){echo $record['sn']."<br/>";if(!empty($record['used_time'])){echo "使用时间：".date("Y-m-d H:i:s",$record['used_time']);}}?></div>        
     </div>
 </div>
 
