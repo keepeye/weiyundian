@@ -59,9 +59,9 @@ class CouponAction extends UserAction{
 	function setStatus(){
 		$status = I('status',0);//获取状态码
 		if($status != 0) $status=1;
-		dump($status);
 		$id = I('id',0);//活动id
 		M('Coupon')->where(array('token'=>$this->token,'id'=>$id))->data(array('status'=>$status))->save();
+		dump(M()->getLastSql());
 		$this->success('设置完成');
 	}
 	// public function sn(){
