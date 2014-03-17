@@ -18,9 +18,9 @@
 		  <THEAD>
 			  <TR>
 				  <TH>活动名称</TH>
-				  <TH>开始时间--结束时间</TH>
-				  <th>优惠券数量</th>
-				  <th>剩余</th>
+				  <TH>活动时间</TH>
+				  <th>优惠券总数</th>
+				  <th>剩余数量</th>
 				  <TH class="norightborder">操作</TH>
 			  </TR>
 		  </THEAD>
@@ -29,7 +29,7 @@
 		  <volist id="list" name="list">
 		  <TR>
 				<TD>{pigcms:$list.title}</TD>                 
-				<TD>{pigcms:$list.start_time|date='Y-m-d',###} -- {pigcms:$list.end_time|date='Y-m-d',###}</TD>
+				<TD>{pigcms:$list.start_time|date='Y-m-d',###} 至 {pigcms:$list.end_time|date='Y-m-d',###}</TD>
 				<td>{pigcms:$list.num}</td>
 				<td><?php echo $list['num']-$list['given_num'];?></td>
 				<TD class="norightborder">
