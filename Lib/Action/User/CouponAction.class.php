@@ -84,7 +84,7 @@ class CouponAction extends UserAction{
 	function recordList(){
 		$pid = I('pid',0,'intval');//活动id
 		//检测活动是否属于当前登录商户
-		$coupon = M('Coupon')->where(array('token'=>$token,'id'=>$pid))->find();
+		$coupon = M('Coupon')->where(array('token'=>$this->token,'id'=>$pid))->find();
 		if(!$coupon){
 			$this->error('活动不存在');
 		}
