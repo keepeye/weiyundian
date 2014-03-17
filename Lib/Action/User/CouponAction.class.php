@@ -55,13 +55,29 @@ class CouponAction extends UserAction{
 
 	}
 
-
+	//设置活动状态，开启/关闭
 	function setStatus(){
 		$status = I('status','0');//获取状态码
 		if($status != 0) $status='1';
 		$id = I('id',0);//活动id
 		M('Coupon')->where(array('token'=>$this->token,'id'=>$id))->data(array('status'=>$status))->save();
 		$this->success('设置完成');
+	}
+
+	//删除活动
+	function del(){
+		$id = I('id',0,'intval');
+		if(!$id){
+			$this->error('非法id');
+		}
+		//删除coupon记录
+		if(M('Coupon')->where(array('id'=>$id,'token'=>$this->token))->delete()){
+			//删除关键词记录
+			D('Keyword')->deleteRecord($id,$this->token,"Coupon");
+			//删除cupon_record记录
+			M('CouponRecord')->where(array("pid"=>$id))->delete();
+		}
+		$this->success('操作完成');
 	}
 	// public function sn(){
 	// 	if(session('gid')==1){

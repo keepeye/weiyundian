@@ -10,7 +10,7 @@ class KeywordModel extends Model{
 	 */
 	function setKeyword($keyword,$pid,$token,$module,$len=3){
 		//先删除相关记录
-		$this->where(array("token"=>$token,"pid"=>$pid,"module"=>$module))->delete();
+		$this->deleteRecord($pid,$token,$module);
 		//重新添加
 		if(is_string($keyword)){
 			$this->addKeyword($keyword,$pid,$token,$module);
@@ -35,5 +35,30 @@ class KeywordModel extends Model{
 			Log::write($this->getDbError());//如果插入失败，则记录到日志
 		}
 		return true;
+	}
+	/**
+	 * 删除指定的关键词记录
+	 * @param  integer $pid    文档主键id
+	 * @param  integer $token  商户token
+	 * @param  string  $module 指定的模型
+	 * @param  string  $keyword 指定的关键词
+	 * @return [type]          [description]
+	 */
+	function deleteRecord($pid=0,$token=0,$module="",$keyword=""){
+		if(!$pid || !$token){
+			return false;
+		}
+		$map = array(
+			"token"=>$token,
+			"pid"=>$pid
+			);
+		if(!empty($module)){
+			$map['module'] = $module;
+		}
+		if(!empty($keyword)){
+			$map['keyword'] = $keyword;
+		}
+
+		$this->where($map)->delete();
 	}
 }
