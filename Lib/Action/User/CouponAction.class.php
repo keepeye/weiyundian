@@ -122,7 +122,7 @@ class CouponAction extends UserAction{
 	}
 
 	//删除指定优惠券记录
-}	function delRecord(){
+	function delRecord(){
 		$id = I('id',0,'intval');//coupon_record主键
 		$record = M('CouponRecord')->where(array('id'=>$id))->find();//获取记录信息
 		if(!$record){
@@ -138,6 +138,4 @@ class CouponAction extends UserAction{
 		M('CouponRecord')->where(array('id'=>$id))->delete();
 		$this->success("操作完成");
 	}
-
-
-?>
+}	
