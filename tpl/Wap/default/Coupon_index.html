@@ -69,7 +69,7 @@
 <?php endif;?>
 <div class="Pop-upbox" id="snmsg"  style="<?php if(empty($record)): ?>display:none;<?php endif;?>">
     <div class="upbox_top">
-        <h1>优惠券号码(请记下)：</h1>           
+        <h1>您的优惠券号码：</h1>           
     </div>
     <div class="upbox_cens">
         <div id="sncode"><?php if(!empty($record)){echo $record['sn']."<br/>";if(!empty($record['used_time'])){echo "使用时间：".date("Y-m-d H:i:s",$record['used_time']);}}?></div>        
