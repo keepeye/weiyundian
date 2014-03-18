@@ -80,7 +80,7 @@ class SelfformAction extends UserAction{
 					$keyword_model=M('Keyword');
 					$keyword_model->where(array('token'=>$this->token,'pid'=>$id,'module'=>'Selfform'))->save(array('keyword'=>$_POST['keyword']));
 				}else{
-					$this->error('操作失败'.$this->selfform_model->getDbError());
+					$this->error('操作失败');
 				}
 			}else{
 				$this->error($this->selfform_model->getError());
@@ -202,7 +202,7 @@ class SelfformAction extends UserAction{
             }
 			if($this->selfform_input_model->create()){
 			$rt=$this->selfform_input_model->where($where)->save($_POST);
-				if($rt){
+				if(false !== $rt){
 					$this->success('修改成功',U('Selfform/inputs',array('token'=>$this->token,'id'=>$thisForm['id'])));
 				}else{
 					$this->error('操作失败');
