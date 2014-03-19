@@ -76,7 +76,7 @@
 						<a href="{pigcms::U('Index/login')}">登录</a>&nbsp;&nbsp;|&nbsp;&nbsp;
 						<a href="{pigcms::U('Index/login')}">注册</a>
 						<else/>
-						你好,&nbsp;<a href="/#" hidefocus="true"  ><span style="color:#C5A684"><?php if(session('sub_username')){echo session('sub_username');}else{echo session('uname');}?></span></a>（uid:{pigcms:$Think.session.uid}）
+						你好,&nbsp;<a href="/#" hidefocus="true"  ><span style="color:#C5A684"><?php if(session('sub_username')){echo session('uname').':'.session('sub_username');}else{echo session('uname');}?></span></a>（uid:{pigcms:$Think.session.uid}）
 						<a href="{pigcms::U('System/Admin/logout')}">退出</a>
 					</if>	
 				</div>
