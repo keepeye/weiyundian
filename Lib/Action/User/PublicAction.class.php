@@ -47,7 +47,7 @@ class PublicAction extends Action{
 			session("sub_username",$SubUser['username']);
 			session("sub_uid",$SubUser['id']);
 			//跳转到微信首页
-			$this->redirect("User/Tongji/index",array("id"=>$WxUser['id'],"token"=>$token));//http://weiyundian.xici.net/index.php?g=User&m=Tongji&a=index&id=49&token=xici2013
+			$this->redirect("User/Tongji/index",array("id"=>$Wxuser['id'],"token"=>$token));//http://weiyundian.xici.net/index.php?g=User&m=Tongji&a=index&id=49&token=xici2013
  		}
 	}
 }
