@@ -28,9 +28,8 @@ class UserAction extends BaseAction{
 			//判断是否子账号，并进行权限判定，主意排除Tongji模块，避免无法访问首页
 			if(session('is_wxsub') && !(GROUP_NAME=="User" && MODULE_NAME=="Tongji")){
 				$sub_access = M('wxuser_sub_access')->where(array("uid"=>session('sub_uid')))->find();//读取权限信息
-				$rules = unserialize($sub_access);//反序列化权限数组并做小写转换
+				$rules = unserialize($sub_access['access']);//反序列化权限数组并做小写转换
 				if(GROUP_NAME != "User" || !isset($rules[MODULE_NAME])){
-					dump($rules);
 					$this->error("你没有权限查看该功能");
 				}
 				//检查当前操作是否被禁止
