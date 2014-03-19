@@ -17,7 +17,7 @@
 	<fieldset class="access_box">
 		<div class="access_module"><input type="checkbox" name="access[]" value="Lottery" <?php if(isset($access['Lottery'])): ?>checked<?php endif;?>/>大转盘</div>
 		<div style="access_action">
-			禁止的操作：
+			禁止：
 			<span><input type="checkbox" name="deny[Lottery][]" value="add" <?php if(in_array('add',$access['Lottery'])): ?>checked<?php endif;?>/>创建活动</span> 
 			<span><input type="checkbox" name="deny[Lottery][]" value="edit" <?php if(in_array('edit',$access['Lottery'])): ?>checked<?php endif;?>/>修改活动</span> 
 			<span><input type="checkbox" name="deny[Lottery][]" value="del" <?php if(in_array('del',$access['Lottery'])): ?>checked<?php endif;?>/> 删除活动</span>
@@ -32,7 +32,7 @@
 	<fieldset class="access_box">
 		<div class="access_module"><input type="checkbox" name="access[]" value="Guajiang" <?php if(isset($access['Guajiang'])): ?>checked<?php endif;?>/>刮刮卡</div>
 		<div style="access_action">
-			禁止的操作：
+			禁止：
 			<span><input type="checkbox" name="deny[Guajiang][]" value="add" <?php if(in_array('add',$access['Guajiang'])): ?>checked<?php endif;?>/>创建活动</span> 
 			<span><input type="checkbox" name="deny[Guajiang][]" value="edit" <?php if(in_array('edit',$access['Guajiang'])): ?>checked<?php endif;?>/>设置活动</span> 
 			<span><input type="checkbox" name="deny[Guajiang][]" value="del" <?php if(in_array('del',$access['Guajiang'])): ?>checked<?php endif;?>/> 删除活动</span>
@@ -47,7 +47,7 @@
 	<fieldset class="access_box">
 		<div class="access_module"><input type="checkbox" name="access[]" value="Coupon" <?php if(isset($access['Coupon'])): ?>checked<?php endif;?>/>优惠券</div>
 		<div style="access_action">
-			禁止的操作：
+			禁止：
 			<span><input type="checkbox" name="deny[Coupon][]" value="set" <?php if(in_array('set',$access['Coupon'])): ?>checked<?php endif;?>/>创建/修改活动</span> 
 			<span><input type="checkbox" name="deny[Coupon][]" value="del" <?php if(in_array('del',$access['Coupon'])): ?>checked<?php endif;?>/> 删除活动</span>
 			<span><input type="checkbox" name="deny[Coupon][]" value="setStatus" <?php if(in_array('setStatus',$access['Coupon'])): ?>checked<?php endif;?>/> 开关活动</span>
@@ -60,7 +60,7 @@
 	<fieldset class="access_box">
 		<div class="access_module"><input type="checkbox" name="access[]" value="Selfform" <?php if(isset($access['Selfform'])): ?>checked<?php endif;?>/>微报名</div>
 		<div style="access_action">
-			禁止的操作：
+			禁止：
 			<span><input type="checkbox" name="deny[Selfform][]" value="add" <?php if(in_array('add',$access['Selfform'])): ?>checked<?php endif;?>/>添加报名</span> 
 			<span><input type="checkbox" name="deny[Selfform][]" value="set" <?php if(in_array('set',$access['Selfform'])): ?>checked<?php endif;?>/>修改报名</span> 
 			<span><input type="checkbox" name="deny[Selfform][]" value="del" <?php if(in_array('del',$access['Selfform'])): ?>checked<?php endif;?>/> 删除报名</span>
