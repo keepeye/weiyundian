@@ -7,4 +7,13 @@ class WxuserSubAction extends UserAction{
 		$this->assign("list",$list);
 		$this->display();
 	}
+	//添加用户
+	function addUser(){
+		if(!IS_POST){
+			$this->display();
+		}else{
+			
+		}
+	}
+
 }
