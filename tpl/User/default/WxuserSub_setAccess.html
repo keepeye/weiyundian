@@ -1,0 +1,56 @@
+<include file="Public:head"/>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+<form class="form" method="post" action=""  target="_top" enctype="multipart/form-data" >
+<input type="hidden" name="id" value="{pigcms:$info.id}"/>
+<div class="content">
+<!--活动开始-->
+<div class="cLineB">
+  <h4>权限设置</h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a></div>  
+<div class="msgWrap bgfc">
+ <fieldset>
+	<legend>
+		<span class="vipimgbig vip-iconbig0"></span> VIP0可以使用的功能
+	</legend>
+	<ul class="changeapp">
+	<li>
+		  <label> 
+			<input type="checkbox" checked="checked" onchange="changeapp(this,'xici2013','2')" value="2"> 糗事		  </label>
+		  <div>查询例子:<br> 糗事　直接发送糗事</div>
+		</li><li>
+		  <label> 
+			<input type="checkbox" checked="checked" onchange="changeapp(this,'xici2013','3')" value="3"> 计算器		  </label>
+		  <div>查询例子:<br> 计算器使用方法　例：计算50-50　，计算100*100</div>
+		</li><li>
+		  <label> 
+			<input type="checkbox" checked="checked" onchange="changeapp(this,'xici2013','7')" value="7"> 笑话		  </label>
+		  <div>查询例子:<br> 笑话　直接发送笑话</div>
+		</li><li>
+		  <label> 
+			<input type="checkbox" checked="checked" onchange="changeapp(this,'xici2013','9')" value="9"> 陪聊		  </label>
+		  <div>查询例子:<br> 聊天　直接输入聊天关键词即可</div>
+		</li><li>
+		  <label> 
+			<input type="checkbox" checked="checked" onchange="changeapp(this,'xici2013','10')" value="10"> 聊天		  </label>
+		  <div>查询例子:<br> 聊天　直接输入聊天关键词即可</div>
+		</li><li>
+		  <label> 
+			<input type="checkbox" checked="checked" onchange="changeapp(this,'xici2013','16')" value="16"> 手机归属地查询		  </label>
+		  <div>查询例子:<br> 手机归属地查询(吉凶 运势) 手机＋手机号码　例：手机13917778912</div>
+		</li><li>
+		  <label> 
+			<input type="checkbox" checked="checked" onchange="changeapp(this,'xici2013','24')" value="24"> 姓名算命		  </label>
+		  <div>查询例子:<br> 姓名算命 算命＋关键词　例：算命李白</div>
+		</li><li>
+		  <label> 
+			<input type="checkbox" checked="checked" onchange="changeapp(this,'xici2013','30')" value="30"> DIY宣传页		  </label>
+		  <div>查询例子:<br> DIY宣传页,用于创建二维码宣传页权限开启</div>
+		</li><li>
+		  <label> 
+			<input type="checkbox" checked="checked" onchange="changeapp(this,'xici2013','34')" value="34"> 歌词查询		  </label>
+		  <div>查询例子:<br> 歌词查询 回复歌词＋歌名即可查询一首歌曲的歌词,例：歌词醉清风</div>
+		</li>	</ul>   
+   </fieldset>
+ </div> 
+</div>
+</form>
+<include file="Public:footer"/> 

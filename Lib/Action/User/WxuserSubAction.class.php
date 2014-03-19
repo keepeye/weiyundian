@@ -68,5 +68,18 @@ class WxuserSubAction extends UserAction{
 			}
 		}
 	}
+	//设置权限
+	function setAccess(){
+		if(!IS_POST){
+			$this->display();
+		}else{
+
+		}
+	}
+	
+	//删除用户
+	function del(){
+
+	}
 
 }
