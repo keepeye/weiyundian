@@ -94,7 +94,7 @@ class WxuserSubAction extends UserAction{
 				$rule[$v]=(array)$deny[$v];
 			}
 			if(empty($rule)){
-				$this->error("请指定权限再保存");
+				$this->error("请指定权限");
 			}
 			M('WxuserSubAccess')->where(array("uid"=>$uid))->delete();//删除旧规则
 			$data = array(
@@ -112,7 +112,16 @@ class WxuserSubAction extends UserAction{
 
 	//删除用户
 	function del(){
-
+		$uid = I('id',0,'intval');
+		$user = M('WxuserSub')->where(array("id"=>$uid,"token"=>$this->token))->find();
+		if(empty($user)){
+			$this->error("用户不存在或已被删除");
+		}
+		//删除用户信息
+		M('WxuserSub')->where(array("token"=>$this->token,"id"=>$uid))->delete();
+		//删除权限记录
+		M('WxuserSubAccess')->where(array("uid"=>$uid))->delete();
+		$this->success("操作成功");
 	}
 
 }
