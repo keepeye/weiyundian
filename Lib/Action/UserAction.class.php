@@ -4,7 +4,10 @@ class UserAction extends BaseAction{
 	protected $token;//微信token
 	protected function _initialize(){
 		parent::_initialize();
-		
+		//判断用户是否登录
+		if(session('uid')==false){
+			$this->redirect('Home/Index/login');
+		}
 		$userinfo=M('User_group')->where(array('id'=>session('gid')))->find();
 		$this->assign('userinfo',$userinfo);
 		$users=M('Users')->where(array('id'=>$_SESSION['uid']))->find();
@@ -30,19 +33,20 @@ class UserAction extends BaseAction{
 				$sub_access = M('wxuser_sub_access')->where(array("uid"=>session('sub_uid')))->find();//读取权限信息
 				$rules = unserialize($sub_access['access']);//反序列化权限数组并做小写转换
 				if(GROUP_NAME != "User" || !isset($rules[MODULE_NAME])){
-					$this->error("你没有权限查看该功能");
+					$this->assign("error","你没有权限查看该功能");
+					$this->display("Public/deny");
+					exit;
 				}
 				//检查当前操作是否被禁止
 				$denyrules = $rules[MODULE_NAME];
 				if(in_array(strtolower(ACTION_NAME),array_map("strtolower",$denyrules))){
-					$this->error("你没有权限进行此项操作");
+					$this->assign("error","你没有该操作权限");
+					$this->display("Public/deny");
+					exit;
 				}
 			}
 		}
-		//判断用户是否登录
-		if(session('uid')==false){
-			$this->redirect('Home/Index/login');
-		}
+		
 
 		//所属行业
 		$this->trade = $users['trade'];
