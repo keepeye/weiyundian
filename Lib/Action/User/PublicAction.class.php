@@ -24,7 +24,7 @@ class PublicAction extends Action{
 			//读取wxuser信息
 			$WxUser = M('WxUser')->field('id')->where(array("token"=>$token))->find();
 			if(!$WxUser){
-				$this->error("token不存在");
+				$this->error("token不存在".M('WxUser')->getDbError());
 			}
 			//读取user信息
 			$user = M('Users')->where(array("id"=>$WxUser['uid']))->find();
