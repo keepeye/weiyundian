@@ -88,8 +88,11 @@ class WxuserSubAction extends UserAction{
 		}else{
 			$access = $_POST['access'];
 			$deny = $_POST['deny'];
-			dump($access);
-			dump($deny);
+			$rule=array();
+			foreach($access as $v){
+				$rule[$v]=(array)$deny[$v];
+			}
+			dump($rule);
 		}
 	}
 
