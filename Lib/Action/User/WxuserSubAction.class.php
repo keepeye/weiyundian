@@ -12,7 +12,27 @@ class WxuserSubAction extends UserAction{
 		if(!IS_POST){
 			$this->display();
 		}else{
-			
+			$username = I('username','','trim');
+			$passwd = I('passwd');
+			if(empty($username) || empty($passwd)){
+				$this->error("用户名或密码不能为空");
+			}
+			if(!preg_match('/^[a-z0-9_]{1,30}$/is',$username)){
+				$this->error("用户名不合法");
+			}
+			$passwd = md5($passwd);//密码加密
+			$data=array(
+				"token"=>$this->token,
+				"username"=>$username,
+				"passwd"=>$passwd
+				);
+			$re = M('WxuserSub')->add($data);
+			if($re!==false){
+				$this->success("添加成功",U('index'));
+			}else{
+				$this->error("添加失败");
+			}
+
 		}
 	}
 

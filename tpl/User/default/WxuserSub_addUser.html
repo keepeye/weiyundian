@@ -1,7 +1,6 @@
 <include file="Public:head"/>
 <script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
 <form class="form" method="post" action=""  target="_top" enctype="multipart/form-data" >
-<input type="hidden" name="id" value="{pigcms:$coupon.id}"/>
 <div class="content">
 <!--活动开始-->
 <div class="cLineB">
@@ -11,14 +10,14 @@
 <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"><tbody>
 <tr>
   <th valign="top"><span class="red">*</span>用户名：</th>
-  <td><input type="input" class="px"  value="{pigcms:$coupon.keyword}" name="keyword" style="width:400px" placeholder="英文数字下划线，长度30以内"><br>
+  <td><input type="input" class="px"  name="username" style="width:400px" placeholder="英文数字下划线，长度30以内"><br>
   </td>
   
 </tr>
 <tr>
   <th valign="top"><span class="red">*</span>密码：</th>
   <td>
-    <input type="input" class="px" value="{pigcms:$coupon.title}"  name="title" style="width:400px">
+    <input type="input" class="px" name="passwd" style="width:400px">
   	<br />
   </td>
   </tr>
