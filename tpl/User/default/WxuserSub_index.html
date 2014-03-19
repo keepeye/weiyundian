@@ -32,7 +32,7 @@
 						<TD class="norightborder">
 							<a href="{pigcms::U('setAccess',array('id'=>$list['id']))}">设置权限</a> 
 							<a href="{pigcms::U('editUser',array('id'=>$list['id']))}">修改密码</a>
-							<a href="#" onclick="if(confirm('确定要删除该账号[<?php echo $list['username'];?>]吗？')){window.location.href='{pigcms::U('del',array('id'=>$list['id']))}'}">删除</a>
+							<a href="#" onclick="if(confirm('确定要删除子账号[<?php echo $list['username'];?>]吗？')){window.location.href='{pigcms::U('del',array('id'=>$list['id']))}'}">删除</a>
 						</TD>
 					</TR>
 				</volist>
