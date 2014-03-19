@@ -27,7 +27,7 @@ class PublicAction extends Action{
 				$this->error("token不存在");
 			}
 			//读取user信息
-			$user = M('Users')->where(array("id"=>$WxUser['uid']))->find();
+			$user = M('Users')->where(array("id"=>$Wxuser['uid']))->find();
 			if(!$user){
 				$this->error("商户账号不存在");
 			}
