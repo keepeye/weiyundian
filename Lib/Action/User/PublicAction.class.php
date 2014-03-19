@@ -29,7 +29,7 @@ class PublicAction extends Action{
 			//读取user信息
 			$user = M('Users')->where(array("id"=>$Wxuser['uid']))->find();
 			if(!$user){
-				$this->error("商户账号不存在".M('Users')->getLastSql());
+				$this->error("商户账号不存在");
 			}
 
 			//开始写入session
