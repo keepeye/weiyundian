@@ -12,28 +12,24 @@
 <div class="cLineB">
   <h4>权限设置</h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a></div>  
 <div class="msgWrap">
+<form method="post">
+<input type="hidden" name="uid" value="{pigcms:$user.id}">
 	<fieldset class="access_box">
-		<div class="access_module"><input type="checkbox" name="access[]" value="Lottery"/>大转盘</div>
+		<div class="access_module"><input type="checkbox" name="access[]" value="Lottery" <?php if(isset($access['Lottery'])): ?>checked<?php endif;?>/>大转盘</div>
 		<div style="access_action">
-			禁止的操作：<span><input type="checkbox" name="deny[Lottery][]" value="edit"/>设置</span> 
-			<span><input type="checkbox" name="deny[Lottery][]" value="setinc"/> 开启</span>
-			<span><input type="checkbox" name="deny[Lottery][]" value="setdes"/> 关闭</span>
-			<span><input type="checkbox" name="deny[Lottery][]" value="sn"/> 查看中奖记录</span>
-			<span><input type="checkbox" name="deny[Lottery][]" value="sendprize"/> 发奖</span>
-			<span><input type="checkbox" name="deny[Lottery][]" value="delRecord"/> 删除中奖记录</span>
+			禁止的操作：<span><input type="checkbox" name="deny[Lottery][]" value="edit" <?php if(in_array('edit',$access['Lottery'])): ?>checked<?php endif;?>/>设置活动</span> 
+			<span><input type="checkbox" name="deny[Lottery][]" value="del" <?php if(in_array('del',$access['Lottery'])): ?>checked<?php endif;?>/> 删除活动</span>
+			<span><input type="checkbox" name="deny[Lottery][]" value="setinc" <?php if(in_array('setinc',$access['Lottery'])): ?>checked<?php endif;?>/> 开启活动</span>
+			<span><input type="checkbox" name="deny[Lottery][]" value="setdes" <?php if(in_array('setdes',$access['Lottery'])): ?>checked<?php endif;?>/> 关闭活动</span>
+			<span><input type="checkbox" name="deny[Lottery][]" value="sn" <?php if(in_array('sn',$access['Lottery'])): ?>checked<?php endif;?>/> 查看中奖记录</span>
+			<span><input type="checkbox" name="deny[Lottery][]" value="sendprize" <?php if(in_array('sendprize',$access['Lottery'])): ?>checked<?php endif;?>/> 发奖</span>
+			<span><input type="checkbox" name="deny[Lottery][]" value="delRecord" <?php if(in_array('delRecord',$access['Lottery'])): ?>checked<?php endif;?>/> 删除中奖记录</span>
 		</div>
 	</fieldset>
 
-	<fieldset class="access_box">
-		<div class="access_module"><input type="checkbox"/>大转盘模块</div>
-		<div style="access_action">
-			禁止的操作：<span><input type="checkbox"/> 删除</span> 
-			<span><input type="checkbox"/> 删除</span>
-			<span><input type="checkbox"/> 删除</span> 
-			<span><input type="checkbox"/> 删除</span> 
-		</div>
-	</fieldset>
+
 	<div><input type="submit" name="button" class="btnGreen" value="保存" /></div>
+</form>
  </div> 
 </div>
 </form>

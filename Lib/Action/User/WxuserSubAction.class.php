@@ -71,12 +71,28 @@ class WxuserSubAction extends UserAction{
 	//设置权限
 	function setAccess(){
 		if(!IS_POST){
+			$uid = I('id',0,'intval');
+			if(!$uid){
+				$this->error("请指定子账号");
+			}
+			$user = M('WxuserSub')->where(array("id"=>$uid,"token"=>$this->token))->find();
+			if(!$user){
+				$this->error("子账号不存在");
+			}
+			$this->assign("user",$user);
+			//读取权限设置
+			$user_access = M('WxuserSubAccess')->field("access")->where(array("uid"=>$uid))->find();
+			$access = unserialize($user_access['access']);//反序列化
+			$this->assign("access",$access);
 			$this->display();
 		}else{
-
+			$access = I('access');
+			$deny = I('deny');
+			dump($access);
+			dump($deny);
 		}
 	}
-	
+
 	//删除用户
 	function del(){
 
