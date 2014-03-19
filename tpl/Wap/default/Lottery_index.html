@@ -326,7 +326,7 @@ $(function() {
             } else {
 
                     prize = null;
-					usenums=backdata.usenums;
+					usenums=backdata.usenums || 0;
                     start()
             }
             running = false;
@@ -334,15 +334,12 @@ $(function() {
          },
          error      : function(){
                 prize = null;
-				usenums=backdata.usenums;
+				usenums=backdata.usenums || 0;
                 start();
                 running = false;
                 count++;
          },
-         complete   : function(XMLHttpRequest, textStatus){
-            //console.log('当请求完成之后调用这个函数，无论成功或失败.  请求类型:'+textStatus);  
-         },
-         timeout    : 3000       
+         timeout    : 1       
         
        })//ajax
     }) //#inner click function;
