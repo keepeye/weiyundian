@@ -62,11 +62,11 @@
 		<div style="access_action">
 			禁止的操作：
 			<span><input type="checkbox" name="deny[Selfform][]" value="add" <?php if(in_array('add',$access['Selfform'])): ?>checked<?php endif;?>/>添加报名</span> 
-			<span><input type="checkbox" name="deny[Selfform][]" value="del" <?php if(in_array('del',$access['Selfform'])): ?>checked<?php endif;?>/> 删除活动</span>
-			<span><input type="checkbox" name="deny[Selfform][]" value="setStatus" <?php if(in_array('setStatus',$access['Selfform'])): ?>checked<?php endif;?>/> 开关活动</span>
-			<span><input type="checkbox" name="deny[Selfform][]" value="recordList" <?php if(in_array('recordList',$access['Selfform'])): ?>checked<?php endif;?>/> 查看记录</span>
-			<span><input type="checkbox" name="deny[Selfform][]" value="useCoupon" <?php if(in_array('useCoupon',$access['Selfform'])): ?>checked<?php endif;?>/> 使用优惠券</span>
-			<span><input type="checkbox" name="deny[Selfform][]" value="delRecord" <?php if(in_array('delRecord',$access['Selfform'])): ?>checked<?php endif;?>/> 删除记录</span>
+			<span><input type="checkbox" name="deny[Selfform][]" value="set" <?php if(in_array('set',$access['Selfform'])): ?>checked<?php endif;?>/>修改报名</span> 
+			<span><input type="checkbox" name="deny[Selfform][]" value="del" <?php if(in_array('del',$access['Selfform'])): ?>checked<?php endif;?>/> 删除报名</span>
+			<span><input type="checkbox" name="deny[Selfform][]" value="inputs" <?php if(in_array('inputs',$access['Selfform'])): ?>checked<?php endif;?>/> 表单设置</span>
+			<span><input type="checkbox" name="deny[Selfform][]" value="infos" <?php if(in_array('infos',$access['Selfform'])): ?>checked<?php endif;?>/> 查看报名记录</span>
+			<span><input type="checkbox" name="deny[Selfform][]" value="infoDelete" <?php if(in_array('infoDelete',$access['Selfform'])): ?>checked<?php endif;?>/> 删除记录</span>
 		</div>
 	</fieldset>
 
