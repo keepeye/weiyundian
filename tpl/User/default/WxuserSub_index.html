@@ -28,7 +28,7 @@
 				<volist id="list" name="list">
 					<TR>
 						<TD>{pigcms:$list.username}</TD> 
-						<TD></TD>
+						<TD><a href="{pigcms::U('Public/subLogin',array('token'=>$token))}">右键复制链接</a></TD>
 						<TD class="norightborder">
 							<a href="{pigcms::U('setAccess',array('id'=>$list['id']))}">设置权限</a> 
 							<a href="{pigcms::U('editUser',array('id'=>$list['id']))}">修改密码</a>
