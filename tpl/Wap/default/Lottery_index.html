@@ -333,12 +333,13 @@ $(function() {
             count++;
          },
          error      : function(){
-                alert('超时');
-                prize = null;
-				usenums=backdata.usenums || 0;
-                start();
-                running = false;
-                count++;
+    //             prize = null;
+				// usenums= 0;
+    //             start();
+    //             running = false;
+    //             count++;
+                 clearInterval(timer);
+                 alert('网络错误，请重试');
          },
          timeout    : 1
         
