@@ -1,51 +1,63 @@
 <include file="Public:head"/> 
 <link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
-        <div class="content">
-<div class="cLineB">
-<h4>报名列表({pigcms:$thisForm.name})</h4>
-<div class="clr"></div>
-</div>
+<div class="content">
+	<div class="cLineB">
+		<h4>报名列表({pigcms:$thisForm.name})</h4>
+		<div class="clr"></div>
+	</div>
+	<div class="cLine" style=" padding: 8px 0">
+		<div class="searchbar">  
+			<form method="get">
+				<input type="hidden" name="g" value="<?php echo GROUP_NAME;?>"/>
+				<input type="hidden" name="m" value="<?php echo MODULE_NAME;?>"/>
+				<input type="hidden" name="a" value="<?php echo ACTION_NAME;?>"/>
+				<input type="hidden" name="id" value="<?php echo $_GET['id'];?>"/>
+				关键词：<input type="text"  class="txt" placeholder="输入关键词"  name="searchkey" value="">&nbsp;
+				<input type="submit" value="查找" id="msgSearchBtn" href="" class="btnGrayS" title="查找">
+				<small>列出所有的记录，把条件清空，直接点击查找即可</small>
+			</form>
+		</div>
+	</div>
+	<div class="cLine">
+		<div class="clr"></div>
+	</div>
+	<div class="msgWrap">
+		<form method="post" action="" id="info">
+			<input name="delall" type="hidden" value="">
+			<input name="wxid" type="hidden" value="">
+			<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+				<thead>
+					<tr>
+						<th width="40">ID</th>
+						<th width="120">时间</th>
+						<volist name="fields" id="item">
+							<th>{pigcms:$item.displayname}</th>
+						</volist>
+						<th width="30" class="norightborder">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr></tr>
+					<volist name="list" id="item"> 
+						<tr>
+							<td>{pigcms:$item.id}</td>
+							<td>{pigcms:$item.time}</td>
+							<volist name="item.vallist" id="citem">
+								<td>{pigcms:$citem}</td>
+							</volist>
+							<td class="norightborder"><a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Selfform/infoDelete',array('id'=>$item['id'],'token'=>$token))}');">删除</a></td>
+						</tr>
+					</volist>
+				</tbody>
+			</table>
+		</form>
 
-<div class="cLine">
-<div class="clr"></div>
-</div>
-<div class="msgWrap">
-<form method="post" action="" id="info">
-<input name="delall" type="hidden" value="">
-<input name="wxid" type="hidden" value="">
-<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
-<thead>
-<tr>
-<th width="40">ID</th>
-<th width="120">时间</th>
-<volist name="fields" id="item">
-<th>{pigcms:$item.displayname}</th>
-</volist>
-<th width="30" class="norightborder">操作</th>
-</tr>
-</thead>
-<tbody>
-<tr></tr>
-<volist name="list" id="item"> 
-<tr>
-<td>{pigcms:$item.id}</td>
-<td>{pigcms:$item.time}</td>
-<volist name="item.vallist" id="citem">
-<td>{pigcms:$citem}</td>
-</volist>
-<td class="norightborder"><a href="javascript:drop_confirm('您确定要删除吗?', '{pigcms::U('Selfform/infoDelete',array('id'=>$item['id'],'token'=>$token))}');">删除</a></td>
-</tr>
-</volist>
-</tbody>
-</table>
-</form>
-
-</div>
-<div class="cLine">
-<div class="pageNavigator right">
-<div class="pages">{pigcms:$page}</div>
-</div>
-<div class="clr"></div>
-</div>
+	</div>
+	<div class="cLine">
+		<div class="pageNavigator right">
+			<div class="pages">{pigcms:$page}</div>
+		</div>
+		<div class="clr"></div>
+	</div>
 </div>
 <include file="Public:footer"/>

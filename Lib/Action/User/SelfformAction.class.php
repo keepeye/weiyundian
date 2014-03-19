@@ -265,21 +265,13 @@ class SelfformAction extends UserAction{
 		$this->assign('fields',$fields);
 		//提交的信息
 		$infoWhere=array('formid'=>$thisForm['id']);
-		if(IS_POST){
-			$key = $this->_post('searchkey');
-			if(empty($key)){
-				$this->error("关键词不能为空");
-			}
-
+		$key = I('searchkey');
+		if(!empty($key)){
 			$infoWhere['values'] = array('like',"%$key%");
-			$count      = $this->selfform_value_model->where($infoWhere)->count();
-			$Page       = new Page($count,20);
-			$show       = $Page->show();
-		}else {
-			$count      = $this->selfform_value_model->where($infoWhere)->count();
-			$Page       = new Page($count,20);
-			$show       = $Page->show();
 		}
+		$count      = $this->selfform_value_model->where($infoWhere)->count();
+		$Page       = new Page($count,20);
+		$show       = $Page->show();
 		$list=$this->selfform_value_model->where($infoWhere)->order('time DESC')->limit($Page->firstRow.','.$Page->listRows)->select();
 		if ($list){
 			foreach ($list as $k=>$l){
