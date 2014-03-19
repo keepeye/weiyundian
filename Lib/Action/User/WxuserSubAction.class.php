@@ -30,7 +30,7 @@ class WxuserSubAction extends UserAction{
 			if($re!==false){
 				$this->success("添加成功",U('index'));
 			}else{
-				$this->error("添加失败");
+				$this->error("添加失败，请检查用户名是否已存在");
 			}
 
 		}
