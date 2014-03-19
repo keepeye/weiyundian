@@ -22,14 +22,14 @@ class PublicAction extends Action{
 				$this->error("用户名或密码错误");
 			}
 			//读取wxuser信息
-			$WxUser = M('Wxuser')->field('id')->where(array("token"=>$token))->find();
-			if(!$WxUser){
+			$Wxuser = M('Wxuser')->field('id')->where(array("token"=>$token))->find();
+			if(!$Wxuser){
 				$this->error("token不存在");
 			}
 			//读取user信息
 			$user = M('Users')->where(array("id"=>$Wxuser['uid']))->find();
 			if(!$user){
-				$this->error("商户账号不存在");
+				$this->error("商户账号不存在".M('Users')->getDbError());
 			}
 
 			//开始写入session
