@@ -326,7 +326,7 @@ $(function() {
             } else {
 
                     prize = null;
-					usenums=backdata.usenums || 0;
+					usenums=backdata.usenums;
                     start()
             }
             running = false;
@@ -339,7 +339,7 @@ $(function() {
     //             running = false;
     //             count++;
                  clearInterval(timer);
-                 alert('网络错误，请重试');
+                 alert('网络超时，请重试');
          },
          timeout    : 3000
         
