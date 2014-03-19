@@ -34,14 +34,14 @@ class UserAction extends BaseAction{
 				$rules = unserialize($sub_access['access']);//反序列化权限数组并做小写转换
 				if(GROUP_NAME != "User" || !isset($rules[MODULE_NAME])){
 					$this->assign("error","你没有权限查看该功能");
-					$this->display("Public/deny");
+					$this->display("Public_deny");
 					exit;
 				}
 				//检查当前操作是否被禁止
 				$denyrules = $rules[MODULE_NAME];
 				if(in_array(strtolower(ACTION_NAME),array_map("strtolower",$denyrules))){
 					$this->assign("error","你没有该操作权限");
-					$this->display("Public/deny");
+					$this->display("Public_deny");
 					exit;
 				}
 			}
