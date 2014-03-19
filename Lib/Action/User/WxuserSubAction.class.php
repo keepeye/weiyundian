@@ -86,8 +86,8 @@ class WxuserSubAction extends UserAction{
 			$this->assign("access",$access);
 			$this->display();
 		}else{
-			$access = I('access');
-			$deny = I('deny');
+			$access = $_POST['access'];
+			$deny = $_POST['deny'];
 			dump($access);
 			dump($deny);
 		}
