@@ -1,8 +1,10 @@
 <?php
 class UserAction extends BaseAction{
 	protected $trade;
+	protected $token;
 	protected function _initialize(){
 		parent::_initialize();
+		$this->token = session('token');
 		$userinfo=M('User_group')->where(array('id'=>session('gid')))->find();
 		$users=M('Users')->where(array('id'=>$_SESSION['uid']))->find();
 		$this->assign('thisUser',$users);
@@ -16,10 +18,10 @@ class UserAction extends BaseAction{
 				$this->error('您的帐号已经到期，请充值后再使用');
 			}
 		}
-		$wecha=M('Wxuser')->field('wxname,wxid,headerpic,weixin')->where(array('token'=>session('token'),'uid'=>session('uid')))->find();
+		$wecha=M('Wxuser')->field('wxname,wxid,headerpic,weixin')->where(array('token'=>$this->token,'uid'=>session('uid')))->find();
 		$this->assign('wecha',$wecha);
-		$this->assign('token',session('token'));
-		//
+		$this->assign('token',$this->token);
+		
 		$this->assign('userinfo',$userinfo);
 		if(session('uid')==false){
 			$this->redirect('Home/Index/login');
