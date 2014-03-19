@@ -35,7 +35,7 @@ class PublicAction extends Action{
 			//开始写入session
 			session('uid',$user['id']);
 			session('gid',$user['gid']);
-			session('uname',$user['username']);
+			session('uname',$SubUser['username']);
 			$group=M('user_group')->find($user['gid']);//查询用户组信息
 			session('diynum',$user['diynum']);
 			session('connectnum',$user['connectnum']);
