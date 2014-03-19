@@ -62,7 +62,7 @@ class SelfformAction extends BaseAction{
 			$row['formid']=$thisForm['id'];
 			$row['wecha_id']=$this->wecha_id;
 			$row['time']=time();
-			$this->selfform_value_model->add($row);
+			$id = $this->selfform_value_model->add($row);
 			$this->redirect(U('Selfform/index',array('token'=>$this->token,'wecha_id'=>$this->wecha_id,'id'=>$thisForm['id'],'success'=>1)));
 		}else {
 			$submitted=0;
