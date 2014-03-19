@@ -333,15 +333,15 @@ $(function() {
             count++;
          },
          error      : function(){
-                prize = null;
+                //prize = null;
 				//usenums= 0;
-                start();
+                //start();
                 //running = false;
                 //count++;
-                 //clearInterval(timer);
+                 clearInterval(timer);
                  alert('网络超时，请重试');
          },
-         timeout    : 1
+         timeout    : 3000
         
        })//ajax
     }) //#inner click function;
