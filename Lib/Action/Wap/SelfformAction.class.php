@@ -10,9 +10,9 @@ class SelfformAction extends BaseAction{
 		$this->token		= $this->_get('token');//获取商户token
 		$this->wecha_id	= I('wecha_id',I('get.wecha_id'));//获取wecha_id
 		//判断wecha_id 没有的话跳转到宣传页
-		if (!$this->wecha_id){
-			$this->redirect("Home/Adma/index?token=".$this->token);
-		}
+		// if (!$this->wecha_id){
+		// 	$this->redirect("Home/Adma/index?token=".$this->token);
+		// }
 		//初始化模型实例
 		$this->selfform_model=M('Selfform');//报名主表模型
 		$this->selfform_input_model=M('Selfform_input');//报名表单项设置模型
@@ -65,6 +65,8 @@ class SelfformAction extends BaseAction{
 			$this->selfform_value_model->add($row);
 			$this->redirect(U('Selfform/index',array('token'=>$this->token,'wecha_id'=>$this->wecha_id,'id'=>$thisForm['id'],'success'=>1)));
 		}else {
+			$submitted=0;
+			/*不判断wecha_id了，人人都可以报名
 			//判断是否提交过信息了
 			$submitInfo=$this->selfform_value_model->where(array('wecha_id'=>$this->wecha_id,'formid'=>$thisForm['id']))->find();
 			if ($submitInfo){
@@ -80,9 +82,8 @@ class SelfformAction extends BaseAction{
 				$imgSrc=generateQRfromGoogle(C('site_url').'/index.php?g=Wap&m=Selfform&a=submitInfo&token='.$this->token.'&wecha_id='.$this->wecha_id.'&id='.$thisForm['id']);
 				
 				$this->assign('imgSrc',$imgSrc);
-			}else{
-				$submitted=0;
 			}
+			*/
 			$this->assign('company',$company);
 			$this->assign('submitted',$submitted);
 			$this->assign('list',$list);
