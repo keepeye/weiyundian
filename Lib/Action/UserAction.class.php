@@ -41,7 +41,7 @@ class UserAction extends BaseAction{
 				$denyrules = $rules[MODULE_NAME];
 				if(in_array(strtolower(ACTION_NAME),array_map("strtolower",$denyrules))){
 					$this->assign("error","你没有该操作权限");
-					$this->display();
+					$this->display("Public:deny");
 					exit;
 				}
 			}
