@@ -1,9 +1,9 @@
 <?php
 class CouponAction extends UserAction{
-	private $token;
+	
 	function _initialize(){
 		parent::_initialize();
-		$this->token = session('token');//保存token信息
+		
 		
 	}
 	//优惠券活动列表
