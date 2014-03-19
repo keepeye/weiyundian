@@ -93,6 +93,9 @@ class WxuserSubAction extends UserAction{
 			foreach($access as $v){
 				$rule[$v]=(array)$deny[$v];
 			}
+			if(empty($rule)){
+				$this->error("请指定权限再保存");
+			}
 			M('WxuserSubAccess')->where(array("uid"=>$uid))->delete();//删除旧规则
 			$data = array(
 				"uid"=>$uid,
