@@ -1,97 +1,56 @@
 <include file="Public:head"/>  
-        <div class="content">
-          <div class="cLineB">
-              <h4 class="left">子账号列表</h4>
-              <div class="clr"></div>
-          </div>
-          <div class="cLine">
-           <p>你可以给子账号指定后台权限，通过特定的入口登陆。</p>
-            <div class="pageNavigator left">
-  				<a href='{pigcms::U('Coupon/set',array('token'=>$token))}'  class='btnGrayS vm bigbtn'>创建子账号</a> 
-            </div>
-          
-            <div class="clr"></div>
-          </div>
-          <div class="msgWrap">
-          
-          
-	  <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
-		  <THEAD>
-			  <TR>
-				  <TH>活动名称</TH>
-				  <TH>活动时间</TH>
-				  <th>优惠券总数</th>
-				  <th>剩余数量</th>
-				  <TH class="norightborder">操作</TH>
-			  </TR>
-		  </THEAD>
-		  <TBODY>
-		  <TR></TR>
-		  <volist id="list" name="list">
-		  <TR>
-				<TD>{pigcms:$list.title}</TD>                 
-				<TD>{pigcms:$list.start_time|date='Y-m-d',###} 至 {pigcms:$list.end_time|date='Y-m-d',###}</TD>
-				<td>{pigcms:$list.num}</td>
-				<td><?php echo $list['num']-$list['given_num'];?></td>
-				<TD class="norightborder">
-					<a href="{pigcms::U('recordList',array('pid'=>$list['id']))}">发放记录</a> 
-					<a href="{pigcms::U('set',array('id'=>$list['id']))}">编辑</a>
-					<?php if($list['status']==1): ?>
-					<a href="{pigcms::U('setStatus',array('id'=>$list['id'],'status'=>'0'))}">关闭</a>
-					<?php else: ?>
-					<a href="{pigcms::U('setStatus',array('id'=>$list['id'],'status'=>'1'))}">开启</a>
-					<?php endif;?>
-
-				  	<a href="{pigcms::U('del',array('id'=>$list['id']))}">删除</a>
-				 </TD>
-		  </TR>
-		  </volist>
-		  </TBODY>
-	  </TABLE>
-  
-  <script>
-function checkvotethis() {
-	var aa=document.getElementsByName('del_id[]');
-	var mnum = aa.length;
-	j=0;
-	for(i=0;i<mnum;i++){
-		if(aa[i].checked){
-			j++;
-		}
-	}
-	if(j>0) {
-		document.getElementById('info').submit();
-	} else {
-		alert('未选中任何文章或回复！')
-	}
-}
-
-  </script>
-	  </div>
-
-
-	  <div class="cLine">
-  <div class="pageNavigator right">
-	  <div class="pages"></div>
-  </div>
-  <div class="clr"></div>
-	  </div>
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left">子账号列表</h4>
+		<div class="clr"></div>
+	</div>
+	<div class="cLine">
+		<p>你可以给子账号指定后台权限，通过特定的入口登陆。</p>
+		<div class="pageNavigator left">
+			<a href='{pigcms::U('Coupon/set',array('token'=>$token))}'  class='btnGrayS vm bigbtn'>创建子账号</a> 
+		</div>
+		
+		<div class="clr"></div>
+	</div>
+	<div class="msgWrap">
+		
+		
+		<TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+			<THEAD>
+				<TR>
+					<TH>账号名</TH>
+					<TH>登陆入口</TH>
+					<TH class="norightborder">操作</TH>
+				</TR>
+			</THEAD>
+			<TBODY>
+				<TR></TR>
+				<volist id="list" name="list">
+					<TR>
+						<TD>{pigcms:$list.username}</TD> 
+						<TD></TD>
+						<TD class="norightborder">
+							<a href="{pigcms::U('recordList',array('pid'=>$list['id']))}">设置权限</a> 
+							<a href="{pigcms::U('set',array('id'=>$list['id']))}">修改密码</a>
+							<a href="{pigcms::U('del',array('id'=>$list['id']))}">删除</a>
+						</TD>
+					</TR>
+				</volist>
+			</TBODY>
+		</TABLE>
+		
+		
 	</div>
 
-	<div class="clr"></div>
-      </div>
-    </div>
-  </div>
-  <script>
 
-function checkAll(form, name) {
-	for(var i = 0; i < form.elements.length; i++) {
-		var e = form.elements[i];
-		if(e.name.match(name)) {
-			e.checked = form.elements['chkall'].checked;
-		}
-	}
-}</script>
-  <!--底部-->
-	</div>
+	
+</div>
+
+<div class="clr"></div>
+</div>
+</div>
+</div>
+
+<!--底部-->
+</div>
 <include file="Public:footer"/>
