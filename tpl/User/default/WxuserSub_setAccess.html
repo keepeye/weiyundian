@@ -13,12 +13,14 @@
   <h4>权限设置</h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a></div>  
 <div class="msgWrap">
 	<fieldset class="access_box">
-		<div class="access_module"><input type="checkbox"/>大转盘模块</div>
+		<div class="access_module"><input type="checkbox" name="access[]" value="Lottery"/>大转盘</div>
 		<div style="access_action">
-			禁止的操作：<span><input type="checkbox"/> 删除</span> 
-			<span><input type="checkbox"/> 删除</span>
-			<span><input type="checkbox"/> 删除</span> 
-			<span><input type="checkbox"/> 删除</span> 
+			禁止的操作：<span><input type="checkbox" name="deny[Lottery][]" value="edit"/>设置</span> 
+			<span><input type="checkbox" name="deny[Lottery][]" value="setinc"/> 开启</span>
+			<span><input type="checkbox" name="deny[Lottery][]" value="setdes"/> 关闭</span>
+			<span><input type="checkbox" name="deny[Lottery][]" value="sn"/> 查看中奖记录</span>
+			<span><input type="checkbox" name="deny[Lottery][]" value="sendprize"/> 发奖</span>
+			<span><input type="checkbox" name="deny[Lottery][]" value="delRecord"/> 删除中奖记录</span>
 		</div>
 	</fieldset>
 
