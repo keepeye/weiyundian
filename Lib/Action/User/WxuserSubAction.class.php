@@ -20,6 +20,11 @@ class WxuserSubAction extends UserAction{
 			if(!preg_match('/^[a-z0-9_]{1,30}$/is',$username)){
 				$this->error("用户名不合法");
 			}
+
+			//检查用户是否已经存在
+			if(M('WxuserSub')->where(array("token"=>$this->token,"username"=>$username))->find()){
+				$this->error("用户名已存在，请更换用户名");
+			}
 			$passwd = md5($passwd);//密码加密
 			$data=array(
 				"token"=>$this->token,
@@ -30,7 +35,7 @@ class WxuserSubAction extends UserAction{
 			if($re!==false){
 				$this->success("添加成功",U('index'));
 			}else{
-				$this->error("添加失败，请检查用户名是否已存在");
+				$this->error("添加失败");
 			}
 
 		}
