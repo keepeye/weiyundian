@@ -333,13 +333,14 @@ $(function() {
             count++;
          },
          error      : function(){
+                alert('超时');
                 prize = null;
 				usenums=backdata.usenums || 0;
                 start();
                 running = false;
                 count++;
          },
-         timeout    : 3000      
+         timeout    : 1
         
        })//ajax
     }) //#inner click function;
