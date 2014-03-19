@@ -22,7 +22,7 @@ class PublicAction extends Action{
 				$this->error("用户名或密码错误");
 			}
 			//读取wxuser信息
-			$Wxuser = M('Wxuser')->field('id')->where(array("token"=>$token))->find();
+			$Wxuser = M('Wxuser')->field('id,uid')->where(array("token"=>$token))->find();
 			if(!$Wxuser){
 				$this->error("token不存在");
 			}
