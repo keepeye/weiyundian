@@ -13,7 +13,7 @@ class WxuserSubAction extends UserAction{
 			$this->display();
 		}else{
 			$username = I('username','','trim');
-			$passwd = I('passwd');
+			$passwd = I('passwd','','trim');
 			if(empty($username) || empty($passwd)){
 				$this->error("用户名或密码不能为空");
 			}
@@ -38,6 +38,34 @@ class WxuserSubAction extends UserAction{
 				$this->error("添加失败");
 			}
 
+		}
+	}
+
+	//修改用户
+	function editUser(){
+		$id = I('id',0,'intval');
+		$info = M('WxuserSub')->where(array("id"=>$id,"token"=>$this->token))->find();
+		if(!$info){
+			$this->error("非法请求");
+		}
+		if(!IS_POST){
+			$this->assign("info",$info);
+			$this->display();
+		}else{
+			$passwd = I('passwd','','trim');
+			if(empty($passwd)){
+				$this->error("密码不能为空");
+			}
+			$data=array(
+				"id"=>$id,
+				"token"=>$this->token,
+				"passwd"=>md5($passwd)
+				);
+			if(false !== M('WxuserSub')->save($data)){
+				$this->success("设置成功");
+			}else{
+				$this->error("设置失败,数据库错误");
+			}
 		}
 	}
 
