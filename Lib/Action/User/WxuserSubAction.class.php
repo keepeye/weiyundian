@@ -70,15 +70,16 @@ class WxuserSubAction extends UserAction{
 	}
 	//设置权限
 	function setAccess(){
+		$uid = I('id',0,'intval');
+		if(!$uid){
+			$this->error("请指定子账号");
+		}
+		$user = M('WxuserSub')->where(array("id"=>$uid,"token"=>$this->token))->find();
+		if(!$user){
+			$this->error("子账号不存在");
+		}
 		if(!IS_POST){
-			$uid = I('id',0,'intval');
-			if(!$uid){
-				$this->error("请指定子账号");
-			}
-			$user = M('WxuserSub')->where(array("id"=>$uid,"token"=>$this->token))->find();
-			if(!$user){
-				$this->error("子账号不存在");
-			}
+			
 			$this->assign("user",$user);
 			//读取权限设置
 			$user_access = M('WxuserSubAccess')->field("access")->where(array("uid"=>$uid))->find();
@@ -92,7 +93,17 @@ class WxuserSubAction extends UserAction{
 			foreach($access as $v){
 				$rule[$v]=(array)$deny[$v];
 			}
-			dump($rule);
+			M('WxuserSubAccess')->where(array("uid"=>$uid))->delete();//删除旧规则
+			$data = array(
+				"uid"=>$uid,
+				"access"=>serialize($rule)//规则序列化
+				);
+			if(false !== M('WxuserSubAccess')->add($data)){
+				$this->success("设置成功");
+			}else{
+				$this->error("设置失败，请重试");
+			}
+			
 		}
 	}
 
