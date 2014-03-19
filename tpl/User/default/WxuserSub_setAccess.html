@@ -61,7 +61,7 @@
 		<div class="access_module"><input type="checkbox" name="access[]" value="Selfform" <?php if(isset($access['Selfform'])): ?>checked<?php endif;?>/>微报名</div>
 		<div style="access_action">
 			禁止的操作：
-			<span><input type="checkbox" name="deny[Selfform][]" value="add" <?php if(in_array('add',$access['Selfform'])): ?>checked<?php endif;?>/>添加表单</span> 
+			<span><input type="checkbox" name="deny[Selfform][]" value="add" <?php if(in_array('add',$access['Selfform'])): ?>checked<?php endif;?>/>添加报名</span> 
 			<span><input type="checkbox" name="deny[Selfform][]" value="del" <?php if(in_array('del',$access['Selfform'])): ?>checked<?php endif;?>/> 删除活动</span>
 			<span><input type="checkbox" name="deny[Selfform][]" value="setStatus" <?php if(in_array('setStatus',$access['Selfform'])): ?>checked<?php endif;?>/> 开关活动</span>
 			<span><input type="checkbox" name="deny[Selfform][]" value="recordList" <?php if(in_array('recordList',$access['Selfform'])): ?>checked<?php endif;?>/> 查看记录</span>

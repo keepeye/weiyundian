@@ -34,10 +34,7 @@ img{max-width: 100%}
 <div class="text">
 <php>echo htmlspecialchars_decode($thisForm['content'])</php>
 </div>
-<ul class="round">
-
-<li><a href="{pigcms::U('Selfform/index',array('token'=>$token,'id'=>$thisForm['id'],'wecha_id'=>$wecha_id))}#theform"><span style="color:#666">去报名</span></a></li>
-</ul>
+<p align=center><a href="{pigcms::U('Selfform/index',array('token'=>$token,'id'=>$thisForm['id'],'wecha_id'=>$wecha_id))}#theform"><span style="color:red">去报名</span></a></p>
 </div>
 
 </body>
