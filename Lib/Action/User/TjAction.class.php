@@ -97,6 +97,7 @@ class TjAction extends UserAction{
 
 		$list = M('Tongji')->field("title,type,SUM(clicks) as clicks,SUM('shares') as shares")->where($map)->group("pid")->select();
 		$this->assign("list",$list);
+		dump($list);
 		$this->display();
 	}
 }
