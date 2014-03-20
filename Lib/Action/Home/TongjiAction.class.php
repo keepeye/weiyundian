@@ -9,7 +9,7 @@ class TongjiAction extends Action{
 	private $_now;
 	private $_sign;
 	protected $_types;//定义统计分类,别忘了同时修改user/tj下的types定义
-	function _initialize(){
+	private function _init(){
 		$this->_types = array_keys(D('Tongji')->types);
 		$this->_type = I('type');//类别
 		$this->_pid = I('pid');//文档主键
@@ -40,11 +40,16 @@ class TongjiAction extends Action{
 	}
 	//更新访问统计
 	function click(){
+		$this->_init();
+		M('tongji')->shares = $this->_record['clicks']+1;
+		M('tongji')->save();//###########################################
+		cookie($this->_cookieid,1,86400);
 		exit('0');
 	}
 
 	//更新转发统计
 	function share(){
+		$this->_init();
 		M('tongji')->shares = $this->_record['shares']+1;
 		M('tongji')->save();//###########################################
 		cookie($this->_cookieid,1,86400);

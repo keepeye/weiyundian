@@ -157,6 +157,7 @@ function tgSubmit(){
 }
 	</script>
 </div>
+<div id="tongji_iframe" style="width:1px;height:1px;position:fixed;left:-1000px;"></div>
 <script>
     //分享控制
     var WxOptions = {
@@ -168,6 +169,11 @@ function tgSubmit(){
         "title": "{pigcms:$thisForm.name|addslashes|default='微报名'}",//定义分享标题
         "desc": "{pigcms:$thisForm.name|addslashes|default='微报名'}"//描述
     };
+    //立即统计浏览次数
+    (function(){
+        var tongjiurl = "{pigcms::U('Home/Tongji/click',array('token'=>$_GET['token'],'pid'=>$thisForm['id'],'type'=>'selfform','title'=>rawurlencode($thisForm['name']),'sign'=>md5($_GET['token'].$thisForm['id'].'selfform'.'tongji')))}";
+        document.getElementById('tongji_iframe').innerHTML = "<iframe src=\""+tongjiurl+"\"></iframe>";
+    })()
     function tongjishare(){
         var tongjiurl = "{pigcms::U('Home/Tongji/share',array('token'=>$_GET['token'],'pid'=>$thisForm['id'],'type'=>'selfform','title'=>rawurlencode($thisForm['name']),'sign'=>md5($_GET['token'].$thisForm['id'].'selfform'.'tongji')))}";
         document.getElementById('tongji_iframe').innerHTML = "<iframe src=\""+tongjiurl+"\"></iframe>";
@@ -189,6 +195,6 @@ function tgSubmit(){
 
     });
 </script>
-<div id="tongji_iframe" style="width:1px;height:1px;position:fixed;left:-1000px;"></div>
+
 </body>
 </html>

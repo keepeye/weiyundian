@@ -19,7 +19,7 @@ class GuajiangAction extends BaseAction{
 		}
 		$Lottery =	M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>2))->find();
 		$data = array();
-
+		$this->assign("token",$token);
 		if ($Lottery['enddate'] < time()) {
 			 $data['usenums'] = 3;
 			 $data['endinfo'] = $Lottery['endinfo'];
