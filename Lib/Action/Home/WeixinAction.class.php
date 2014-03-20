@@ -37,6 +37,7 @@ class WeixinAction extends Action
 	    if ('CLICK' == $data['Event'])
 	    {
 		    $data['Content'] = $data['EventKey'];
+            D('TongjiEvent')->tongji($this->token,"CLICK",$data['EventKey']);//统计自定义菜单行为
 	    }
 		//用户关注时事件推送
 	    if ('subscribe' == $data['Event']) 
