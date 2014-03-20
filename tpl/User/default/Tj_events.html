@@ -27,7 +27,25 @@
 		<div class="clr"></div>
 	</div>
 	<div class="msgWrap">
-		<?php dump($list);?>
+		<TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+			<THEAD>
+				<TR style="text-align: center;">
+					<th>事件类型</th>
+					<th>关键词</th>
+					<th>触发次数</th>
+				</TR>
+				
+			</THEAD>
+			<TBODY>
+				<volist name="list" id="vo">
+					<TR style="line-height:30px;height: 43px;line-height: 59px;">
+						<td><?php echo $event_types[$vo['event']];?></td>
+						<td>{pigcms:$vo['event_key']}</td>
+						<td>{pigcms:$vo['times']}</td>
+					</TR>
+				</volist>
+			</TBODY>
+		</TABLE>
 	</div>
 	
 </div>
