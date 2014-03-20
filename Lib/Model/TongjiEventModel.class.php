@@ -22,7 +22,7 @@ class TongjiEventModel extends Model{
 		if($event_key != ""){
 			$data['event_key'] = $event_key;
 		}
-		$record = $this->where(array($data))->find();//查询当天该事件统计记录
+		$record = $this->where($data)->find();//查询当天该事件统计记录
 		if($record){
 			//如果记录已经存在，则执行update操作
 			$this->times = $this->times+1;//次数+1
