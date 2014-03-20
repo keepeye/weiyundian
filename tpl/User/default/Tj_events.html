@@ -1,5 +1,5 @@
 <include file="Public:head"/>  
-<script src="__PUBLIC__/highcharts/highcharts.js"></script>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
 <link rel="stylesheet" type="text/css" href="./tpl/User/default/common/css/cymain.css">
 <div class="content">
 	
@@ -17,8 +17,8 @@
 				<input type="hidden" name="m" value="<?php echo MODULE_NAME;?>"/>
 				<input type="hidden" name="a" value="<?php echo ACTION_NAME;?>"/>
 				
-				起始时间：<input type="text"  class="txt" placeholder="输入sn码"  name="filter[sn]" value="">
-				终止时间：<input type="text"  class="txt"   name="filter[phone]" value="">&nbsp;
+				起始时间：<input type="text"  class="txt"  name="start_date" value="" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+				终止时间：<input type="text"  class="txt"   name="end_date" value="" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>&nbsp;
 
 				<input type="submit" value="查询" id="msgSearchBtn" href="" class="btnGrayS" title="查找">
 				
