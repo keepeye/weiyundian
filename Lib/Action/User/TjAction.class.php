@@ -77,7 +77,7 @@ class TjAction extends UserAction{
 		$type = I('type','','trim');//类型
 
 		$map = array(
-			"token"=>$token
+			"token"=>$this->_token
 			);
 		if($type!=""){
 			$map['type'] = $type;
@@ -97,7 +97,6 @@ class TjAction extends UserAction{
 
 		$list = M('Tongji')->field("title,type,SUM(clicks) as clicks,SUM('shares') as shares")->where($map)->group("pid")->select();
 		$this->assign("list",$list);
-		dump(M('Tongji')->getLastSql());
 		$this->display();
 	}
 }
