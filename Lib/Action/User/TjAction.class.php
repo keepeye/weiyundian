@@ -3,11 +3,12 @@
 class TjAction extends UserAction{
 	private $_token;
 	private $_model;
-	private $_types = array("img"=>"图文","dazhuanpan"=>"大转盘","selfform"=>"报名","guaguaka"=>"刮奖","coupon"=>"优惠券");
+	private $_types;
 	function _initialize(){
 		parent::_initialize();
 		$this->_token = $this->token;//获取商户token
-		$this->_model = D('tongji');
+		$this->_model = D('Tongji');
+		$this->_types = $this->_model->types;
 		$this->assign("types",$this->_types);
 	}
 	
@@ -67,5 +68,33 @@ class TjAction extends UserAction{
 		$event_types = D('TongjiEvent')->getEventTypes();
 		$this->assign("event_types",$event_types);
 		$this->display();
+	}
+
+	//图文详细统计
+	function imgs(){
+		$start_date = I('start_date','','trim');//开始日期
+		$end_date = I('end_date','','trim');//结束日期
+		$type = I('type','','trim');//类型
+
+		$map = array(
+			"token"=>$token
+			);
+		if($type!=""){
+			$map['type'] = $type;
+		}
+		
+		if($start_date != ""){
+			$stime = strtotime($start_date);//开始时间
+		}else{
+			$stime = 0;
+		}
+		if($end_date != ""){
+			$etime = strtotime($end_date)+86400;//结束时间
+		}else{
+			$etime = strtotime(date("Y-m-d",time()))+86400;//获取明天0点的时间戳
+		}
+		$map['lasttime'] = array("between",array($stime,$etime));//确定时间区间
+
+		$list = M('Tongji')->field("title,type,SUM(clicks) as clicks,SUM('shares') as shares")->where($map)->group("pid")->select();
 	}
 }
