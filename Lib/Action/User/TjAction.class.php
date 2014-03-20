@@ -6,7 +6,7 @@ class TjAction extends UserAction{
 	private $_types = array("img"=>"图文","dazhuanpan"=>"大转盘","selfform"=>"报名","guaguaka"=>"刮奖","coupon"=>"优惠券");
 	function _initialize(){
 		parent::_initialize();
-		$this->_token = session('token');//获取商户token
+		$this->_token = $this->token;//获取商户token
 		$this->_model = D('tongji');
 		$this->assign("types",$this->_types);
 	}
@@ -53,6 +53,19 @@ class TjAction extends UserAction{
 		//获取指定日期的转发统计
 		$sharelist = $this->_model->where(array("token"=>$this->_token,"year"=>$year,"month"=>$month,"day"=>$day))->select();
 		$this->assign("sharelist",$sharelist);
+		$this->display();
+	}
+
+	//事件统计
+	function events(){
+		$event = I('event','','trim');//获取事件类型
+		$event_key = I('event_key','','trim');//指定关键词
+		$start_date = I('start_date','','trim');//开始日期
+		$end_date = I('end_date','','trim');//结束日期
+		$tj_list = D('TongjiEvent')->getTongji($this->_token,$event,$event_key,$start_date,$end_date);//获取统计结果列表
+		$this->assign("list",$tj_list);
+		$event_types = D('TongjiEvent')->getEventTypes();
+		$this->assign("event_types",$event_types);
 		$this->display();
 	}
 }

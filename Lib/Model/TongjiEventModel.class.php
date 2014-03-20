@@ -36,4 +36,35 @@ class TongjiEventModel extends Model{
 		}
 		return true;
 	}
+
+	function getTongji($token,$event="",$event_key="",$start_date="",$end_date=""){
+		$map = array(
+			"token"=>$token
+			);
+		if($event!=""){
+			$map['event'] = $event;
+		}
+		if($event_key != ""){
+			$map['event_key']=$event_key;
+		}
+		if($start_date != ""){
+			$stime = strtotime($start_date);//开始时间
+		}else{
+			$stime = 0;
+		}
+		if($end_date != ""){
+			$etime = strtotime($end_date)+86400;//结束时间
+		}else{
+			$etime = strtotime(date("Y-m-d",time()))+86400;//获取明天0点的时间戳
+		}
+		$map['lasttime'] = array("between",array($stime,$etime));//确定时间区间
+
+		return $this->field("event,event_key,SUM(times) as times")->where($map)->group("event,event_key")->select();//查询并求和times
+
+	}
+
+	//返回eventtype数组
+	function getEventTypes(){
+		return $this->_eventType;
+	}
 }
