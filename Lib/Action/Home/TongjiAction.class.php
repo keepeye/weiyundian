@@ -69,7 +69,7 @@ class TongjiAction extends Action{
 		//检测cookie，判断是否已经记录过该用户
 		
 		if(null != cookie($this->_cookieid)){
-			exit('68');
+			exit('68'.$this->_cookieid);
 		}
 		//检测sign合法性
 		if($this->_sign != md5($this->_token.$this->_pid.$this->_type.'tongji')){
