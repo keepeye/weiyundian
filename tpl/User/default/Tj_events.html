@@ -17,9 +17,9 @@
 				<input type="hidden" name="m" value="<?php echo MODULE_NAME;?>"/>
 				<input type="hidden" name="a" value="<?php echo ACTION_NAME;?>"/>
 				
-				起始时间：<input type="text"  class="txt"  name="start_date" value="" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
-				终止时间：<input type="text"  class="txt"   name="end_date" value="" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>&nbsp;
-				关键词：<input type="text" class="txt" name="event_key" />
+				起始时间：<input type="text"  class="txt"  name="start_date" value="{pigcms:$Think.get.start_date}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+				终止时间：<input type="text"  class="txt"   name="end_date" value="{pigcms:$Think.get.end_date}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>&nbsp;
+				关键词：<input type="text" class="txt" name="event_key" value="{pigcms:$Think.get.event_key}" />
 				<input type="submit" value="查询" id="msgSearchBtn" href="" class="btnGrayS" title="查找">
 				<input type="reset" value="重置" id="msgSearchBtn" href="" class="btnGrayS" >
 			</form>
