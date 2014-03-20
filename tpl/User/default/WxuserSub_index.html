@@ -6,6 +6,7 @@
 	</div>
 	<div class="cLine">
 		<p>你可以给子账号指定后台权限，通过特定的入口登陆。</p>
+		<p>子账号登录页面：<a href="{pigcms::U('Public/subLogin',array('token'=>$token))}">右键复制链接</a></p>
 		<div class="pageNavigator left">
 		<a href='{pigcms::U('addUser')}'  class='btnGrayS vm bigbtn'>创建子账号</a> 
 		</div>
@@ -19,7 +20,6 @@
 			<THEAD>
 				<TR>
 					<TH>账号名</TH>
-					<TH>登陆入口</TH>
 					<TH class="norightborder">操作</TH>
 				</TR>
 			</THEAD>
@@ -28,7 +28,6 @@
 				<volist id="list" name="list">
 					<TR>
 						<TD>{pigcms:$list.username}</TD> 
-						<TD><a href="{pigcms::U('Public/subLogin',array('token'=>$token))}">右键复制链接</a></TD>
 						<TD class="norightborder">
 							<a href="{pigcms::U('setAccess',array('id'=>$list['id']))}">设置权限</a> 
 							<a href="{pigcms::U('editUser',array('id'=>$list['id']))}">修改密码</a>
