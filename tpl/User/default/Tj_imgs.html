@@ -17,7 +17,13 @@
 				<input type="hidden" name="g" value="<?php echo GROUP_NAME;?>"/>
 				<input type="hidden" name="m" value="<?php echo MODULE_NAME;?>"/>
 				<input type="hidden" name="a" value="<?php echo ACTION_NAME;?>"/>
-				
+				图文类型：
+				<select name="type">
+					<option>--所有--</option>
+					<?php foreach($types as $k=>$v): ?>
+						<option value="{pigcms:$k}">{pigcms:$v}</option>
+					<?php endforeach;?>
+				</select>
 				起始时间：<input type="text"  class="txt"  name="start_date" value="{pigcms:$Think.get.start_date}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
 				终止时间：<input type="text"  class="txt"   name="end_date" value="{pigcms:$Think.get.end_date}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>&nbsp;
 				
