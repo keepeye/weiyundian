@@ -8,8 +8,9 @@ class TongjiAction extends Action{
 	private $_record;
 	private $_now;
 	private $_sign;
-	protected $_types = array("img","dazhuanpan","selfform","guaguaka","coupon");//定义统计分类,别忘了同时修改user/tj下的types定义
+	protected $_types;//定义统计分类,别忘了同时修改user/tj下的types定义
 	function _initialize(){
+		$this->_types = array_keys(D('Tongji')->types);
 		$this->_type = I('type');//类别
 		$this->_pid = I('pid');//文档主键
 		$this->_title = I('title');//文档标题
