@@ -41,7 +41,7 @@ class TongjiAction extends Action{
 	//更新访问统计
 	function click(){
 		$this->_init();
-		M('tongji')->shares = $this->_record['clicks']+1;
+		M('tongji')->clicks = $this->_record['clicks']+1;
 		M('tongji')->save();//###########################################
 		cookie($this->_cookieid,1,86400);
 		exit('0');
