@@ -67,7 +67,7 @@ function dourl(url){
 </div>
 
 {pigcms::W('Plugmenu')}	
-
+<div id="tongji_iframe" style="width:1px;height:1px;position:fixed;left:-1000px;"></div>
 <script>
     //分享控制
     var WxOptions = {
@@ -79,6 +79,11 @@ function dourl(url){
         "title": '{pigcms:$res['title']|default="未定义标题"|addslashes}',//定义分享标题
         "desc": '{pigcms:$res['title']|default="未定义的描述"|addslashes}'//描述
     };
+    //立即统计访问人数
+    (function(){
+        var tongjiurl = "{pigcms::U('Home/Tongji/click',array('token'=>$res['token'],'pid'=>$res['id'],'type'=>'img','title'=>rawurlencode($res['title']),'sign'=>md5($res['token'].$res['id'].'img'.'tongji')))}";
+        document.getElementById('tongji_iframe').innerHTML = "<iframe src=\""+tongjiurl+"\"></iframe>";
+    })()
     function tongjishare(){
         var tongjiurl = "{pigcms::U('Home/Tongji/share',array('token'=>$res['token'],'pid'=>$res['id'],'type'=>'img','title'=>rawurlencode($res['title']),'sign'=>md5($res['token'].$res['id'].'img'.'tongji')))}";
         document.getElementById('tongji_iframe').innerHTML = "<iframe src=\""+tongjiurl+"\"></iframe>";
@@ -100,6 +105,5 @@ function dourl(url){
 
     });
 </script>
-<div id="tongji_iframe" style="width:1px;height:1px;position:fixed;left:-1000px;"></div>
 </body>
 </html>

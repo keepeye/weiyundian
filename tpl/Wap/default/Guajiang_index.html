@@ -420,8 +420,8 @@ $("#save-btn").bind("click",
         "img_width": "120",
         "img_height": "120",
         "link": window.location.href.replace(/wecha_id=[^&]*&?/,''),//分享链接
-        "title": "{pigcms:$Guajiang.title|rawurlencode}",//定义分享标题
-        "desc": "简介：{pigcms:$Guajiang.title|rawurlencode}"//描述
+        "title": "{pigcms:$Guajiang.title|addslashes}",//定义分享标题
+        "desc": "简介：{pigcms:$Guajiang.title|addslashes}"//描述
     };
     
     //click统计立即执行
