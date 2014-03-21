@@ -26,7 +26,8 @@ class DiaoyanAction extends BaseAction {
 				$this->wecha_id = $wecha_id;
 				//session('wecha_id',$wecha_id);//==========================
 			}else{
-				$this->error("非法访问[02]");//这里应该跳转到授权页面
+				//$this->error("非法访问[02]");//这里应该跳转到授权页面
+				redirect(U("Wap/Oauth/getCode",array("token"=>$this->token)));
 			}
 		}
 	}
