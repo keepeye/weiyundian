@@ -105,7 +105,7 @@ class DiaoyanAction extends UserAction {
 			if($title == ""){
 				$this->error("题目标题不能为空");
 			}
-
+			$tiku_id = $id;
 			//更新题库表
 			if($isNew){
 				$data = array(
@@ -121,16 +121,18 @@ class DiaoyanAction extends UserAction {
 					"type"=>$type
 					);
 				$re = M('DiaoyanTiku')->where(array("id"=>$id,"token"=>$this->_token))->data($data)->save();
+				$tiku_id = $re;//将题库id设置为新插入的值
 			}
 			if($re === false){
 				$this->error("设置题库信息失败");
 			}
+
 			//插入新选项
 			foreach($newoptions as $v){
 				if($v==""){
 					continue;
 				}
-				M('DiaoyanTikuOption')->data(array("tiku_id"=>$re,"diaoyan_id"=>$diaoyan_id,"token"=>$this->_token,"value"=>$v))->add();
+				M('DiaoyanTikuOption')->data(array("tiku_id"=>$tiku_id,"diaoyan_id"=>$diaoyan_id,"token"=>$this->_token,"value"=>$v))->add();
 			}
 			//更新旧选项
 			if(!empty($oldoptions) && !$isNew){
