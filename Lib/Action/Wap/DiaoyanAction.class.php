@@ -46,6 +46,11 @@ class DiaoyanAction extends BaseAction {
 	//答题开始
 	function questions(){
 		$diaoyan_id = I('diaoyan_id');
+		$diaoyan = M('Diaoyan')->where(array("token"=>$this->token,"id"=>$diaoyan_id))->find();//查询活动信息
+		if(!$diaoyan){
+			exit("页面不存在404");
+		}
+		$this->assign("diaoyan",$diaoyan);
 		//检测用户是否已经参加过本次调研
 		if(M('DiaoyanRecord')->where(array("diaoyan_id"=>$diaoyan_id,"wecha_id"=>$this->wecha_id))->find()){
 			$this->assign("done","1");
