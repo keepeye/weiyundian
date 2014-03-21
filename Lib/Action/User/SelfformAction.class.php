@@ -65,6 +65,7 @@ class SelfformAction extends UserAction{
 		}
 	}
 	public function set(){
+		dump($_POST);exit;
         $id = intval($this->_get('id')); 
 		$checkdata = $this->selfform_model->where(array('id'=>$id))->find();
 		if(empty($checkdata)||$checkdata['token']!=$this->token){
