@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
-<title>具体内容</title>
+<title>调研活动标题</title>
 <link type="text/css" rel="stylesheet" href="__PUBLIC__/wap/diaoyan/examine.css">
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
@@ -29,6 +29,7 @@
 <body style="background-color: #ffb100;">
 <div class="wrapper">
 	<img class="bg" src="__PUBLIC__/wap/diaoyan/bg.jpg">
+	<div style="height: 25px;"></div>
 	<div class="content-w1">
 		<div class="content-w2">
 			<div class="content">
@@ -43,20 +44,5 @@
 		<a href="http://yyuc.com/" target="_blank" class="page-url-link"></a>
 	</p>
 </div>
-<script type="text/javascript">
-function gotonext(){
-	var res = [];
-	$('.option[sel="sel"]').each(function(){
-		res[res.length] = $(this).attr('data-value');
-	});
-	if(res.length==0){
-		tusi('请选择答案');
-		return;
-	}else{
-		location.href = 'wdyans-2-'+res.join('@')+'.html';
-	//	alert('wdyans-2-'+res.join('@')+'.html')
-	}
-}
-</script>
 </body>
 </html>
