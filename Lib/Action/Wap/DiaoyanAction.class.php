@@ -60,11 +60,15 @@ class DiaoyanAction extends BaseAction {
 			$option_list[$v['tiku_id']][]=$v;
 		}
 		unset($v);
+		$this->assign("diaoyan_id",$diaoyan_id);
 		$this->assign("tiku_list",$tiku_list);
 		$this->assign("option_list",$option_list);
 		$this->display();
 	}
+	//提交结果
+	function submit(){
 
+	}
 	//检测合法性
 	private function _checkWxsign($wecha_id,$wxsign){
 		return true;//=========================

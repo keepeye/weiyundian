@@ -88,6 +88,7 @@
 <script type="text/javascript">
 	$(function(){
 		$("#submit_btn").click(function(){
+			//检测是否有未选题目
 			var options_div = $("div.options");
 			options_div.each(function(){
 				var sel = $(this).find("div.option[sel='sel']");
@@ -95,6 +96,17 @@
 					alert("请填写完所有题目");
 					return false;
 				}
+			})
+			var option_ids=new Array;
+			$("div.option[sel='sel']").each(function(){
+				option_ids.push($(this).attr("data-value"));
+			})
+			alert(option_ids);
+			return;
+			//将结果提交到后端
+			$.ajax({
+				url:"{pigcms::U('submit',array('token'=>$token,'wecha_id'=>$wecha_id))}",
+				data:{"diaoyan_id":"{pigcms:$diaoyan_id}","option_ids":option_ids}
 			})
 		})
 	})
