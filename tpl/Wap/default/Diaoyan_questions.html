@@ -88,21 +88,27 @@
 <script type="text/javascript">
 	$(function(){
 		$("#submit_btn").click(function(){
+			var checked =true;
 			//检测是否有未选题目
 			var options_div = $("div.options");
 			options_div.each(function(){
 				var sel = $(this).find("div.option[sel='sel']");
 				if(sel.length <= 0){
 					alert("请填写完所有题目");
+					checked = false;
 					return false;
 				}
 			})
+			if(!checked){
+				return;
+			}
+
 			var option_ids=new Array;
 			$("div.option[sel='sel']").each(function(){
 				option_ids.push($(this).attr("data-value"));
 			})
-			alert(option_ids);
-			return;
+			alert(option_ids)
+
 			//将结果提交到后端
 			$.ajax({
 				url:"{pigcms::U('submit',array('token'=>$token,'wecha_id'=>$wecha_id))}",
