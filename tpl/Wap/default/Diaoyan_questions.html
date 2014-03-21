@@ -95,6 +95,15 @@
 		</div>
 	<?php endif;?>
 </div>
+<div id="after_success">
+	<div class="content-w1">
+		<div class="content-w2">
+			<div class="content">
+				<div class="desc-cont">投票完成</div>
+			</div>
+		</div>
+	</div>
+</div>
 <script type="text/javascript">
 	$(function(){
 		$("#submit_btn").click(function(){
@@ -138,7 +147,8 @@
 				timeout:3000,
 				success:function(data){
 					if(data.status == "1"){
-						$("div.wrapper").html(data.info);
+						$("#after_vote .desc-cont").html(data.info)
+						$("div.wrapper").html($("#after_vote").html());
 					}else{
 						alert(data.info)
 					}
