@@ -166,7 +166,7 @@ class DiaoyanAction extends UserAction {
 		}
 		M('Diaoyan')->delete($id);
 		//删除题库信息
-		$tiku_ids = M('DiaoyanTiku')->where(array("token"=>$this->_token,"diaoyan_id"=>$id))->getField("id");
+		$tiku_ids = M('DiaoyanTiku')->where(array("token"=>$this->_token,"diaoyan_id"=>$id))->getField("id",true);
 		M('DiaoyanTiku')->where(array("token"=>$this->_token,"diaoyan_id"=>$id))->delete();
 		//删除选项
 		dump($tiku_ids);
