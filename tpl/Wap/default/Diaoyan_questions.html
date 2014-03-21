@@ -90,8 +90,8 @@
 		$("#submit_btn").click(function(){
 			var options_div = $("div.options");
 			options_div.each(function(){
-				$sel = $(this).find("option[sel='sel']");
-				if($sel.length <= 0){
+				var sel = $(this).find("div.option[sel='sel']");
+				if(sel.length <= 0){
 					alert("请填写完所有题目");
 					return false;
 				}
