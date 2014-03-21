@@ -147,8 +147,8 @@
 				timeout:3000,
 				success:function(data){
 					if(data.status == "1"){
-						$("#after_vote .desc-cont").html(data.info)
-						$("div.wrapper").html($("#after_vote").html());
+						$("#after_success .desc-cont").html(data.info)
+						$("div.wrapper").html($("#after_success").html());
 					}else{
 						alert(data.info)
 					}
