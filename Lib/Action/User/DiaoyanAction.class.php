@@ -42,7 +42,7 @@ class DiaoyanAction extends UserAction {
 						//更新关键词
 						D('Keyword')->setKeyword(I("post.keyword"),$pid,$this->_token,"Diaoyan",1);
 					}
-					$this->success("保存成功");
+					$this->success("保存成功",U('index'));
 				}else{
 					$this->error("保存数据失败:".M('Diaoyan')->getLastSql());
 				}
