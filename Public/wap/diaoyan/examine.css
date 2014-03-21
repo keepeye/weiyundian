@@ -43,8 +43,8 @@ background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #d2cfd
 .question .option .text {position: relative;line-height: 40px;overflow: hidden;}
 .question .option .otext {margin-left: 45px;overflow: hidden;max-width: 260px;height: 40px;}
 .submit {width: 80px;margin: 20px 20px 0px 0px;float: right;position: relative;}
-#submit img {position: absolute;top: 0px;left: 0px;width: 100%;}
-#submit span {position: relative;color: #FFF;font-size: 18px;line-height: 40px;}
+.submit img {position: absolute;top: 0px;left: 0px;width: 100%;}
+.submit span {position: relative;color: #FFF;font-size: 18px;line-height: 40px;}
 
 /*建议*/
 .bg-suggest {width: 270px;margin: 20px auto 0px;}
