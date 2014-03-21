@@ -88,7 +88,13 @@
 <script type="text/javascript">
 	$(function(){
 		$("#submit_btn").click(function(){
-			alert('aaa');
+			var options_div = $("div.options");
+			options_div.each(function(){
+				$sel = $(this).find("option[sel='sel']");
+				if($sel.length <= 0){
+					alert("请填写完所有题目");
+				}
+			})
 		})
 	})
 </script>
