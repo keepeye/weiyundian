@@ -24,7 +24,7 @@ class DiaoyanAction extends BaseAction {
 			$wxsign = I('wxsign','');
 			if($this->_checkWxsign($wecha_id,$wxsign)){
 				$this->wecha_id = $wecha_id;
-				//session('wecha_id',$wecha_id);//==========================
+				session('wecha_id',$wecha_id);//==========================
 			}else{
 				$this->error("非法访问[02]");//这里应该跳转到授权页面
 			}
@@ -112,7 +112,7 @@ class DiaoyanAction extends BaseAction {
 	}
 	//检测合法性
 	private function _checkWxsign($wecha_id,$wxsign){
-		return true;//=========================
-		//return !empty($wecha_id) && !empty($wxsign) && (md5($this->token.$wecha_id.C('safe_key')) == $wxsign);
+		//return true;//=========================
+		return !empty($wecha_id) && !empty($wxsign) && (md5($this->token.$wecha_id.C('safe_key')) == $wxsign);
 	}
 }
