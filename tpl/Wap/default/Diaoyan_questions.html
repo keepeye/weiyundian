@@ -11,7 +11,8 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-				$('.option.multi').click(function(){
+		//多选事件
+		$('.option.multi').click(function(){
 			if($(this).attr('sel')=='sel'){
 				$(this).find('img').eq(0).show();
 				$(this).find('img').eq(1).hide();
@@ -21,6 +22,18 @@
 				$(this).find('img').eq(1).show();
 				$(this).attr('sel','sel');
 			}			
+		});
+		//单选事件
+		$('.option.single').click(function(){
+			var others = $(this).siblings();//获取同辈其他元素
+			others.each(function(){
+				$(this).find('img').eq(0).show();
+				$(this).find('img').eq(1).hide();
+				$(this).attr('sel','0');
+			})
+			$(this).find('img').eq(0).hide();
+			$(this).find('img').eq(1).show();
+			$(this).attr('sel','sel');			
 		});		
 				
 	});
@@ -51,7 +64,7 @@
 				
 		<div class="options">
 			<?php foreach($option_list[$tiku['id']] as $option): ?>
-			<div class="option" data-value="{pigcms:$option.id}">
+			<div class="option single" data-value="{pigcms:$option.id}">
 				<img id="img1" class="oimg" src="__PUBLIC__/wap/diaoyan/option_bg.png">
 				<img id="img11" class="oimg-sel" src="__PUBLIC__/wap/diaoyan/option_sel_bg.png">
 				<div class="text">
