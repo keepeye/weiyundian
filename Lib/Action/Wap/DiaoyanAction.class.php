@@ -78,7 +78,7 @@ class DiaoyanAction extends BaseAction {
 				$tiku_ids[] = $v['id'];
 			}
 			unset($v);
-			dump($tiku_ids);
+			
 			//开始写入记录
 			foreach ($results as $result) {
 				if(!in_array($result['tiku_id'],$tiku_ids)){
