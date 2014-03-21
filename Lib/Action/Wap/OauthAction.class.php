@@ -5,7 +5,7 @@
 class OauthAction extends Action{
 	//第一步，获取用户code
 	function getCode(){
-		exit("1");
+
 		$token = I('token');//商户token
 		$referer = $_SERVER['HTTP_REFERER'];//来路页面
 		cookie("auth_referer",$referer,300);//用cookie临时存储来路url
