@@ -7,8 +7,8 @@ class OauthAction extends Action{
 	function getCode(){
 
 		$token = I('token');//商户token
-		$referer = $_SERVER['HTTP_REFERER'];//来路页面
-		exit($_SERVER['HTTP_REFERER']);
+		$referer = I('referer');//来路
+		dump($referer);exit;
 		cookie("auth_referer",$referer,300);//用cookie临时存储来路url
 
 		$appsec = M('DiymenSet')->where(array("token"=>$token))->find();
