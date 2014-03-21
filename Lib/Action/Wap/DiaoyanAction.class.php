@@ -44,7 +44,8 @@ class DiaoyanAction extends BaseAction {
 
 	//答题开始
 	function questions(){
-
+		
+		$this->display();
 	}
 
 	//检测合法性
