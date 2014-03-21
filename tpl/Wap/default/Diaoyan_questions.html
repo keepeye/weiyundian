@@ -89,29 +89,37 @@
 	$(function(){
 		$("#submit_btn").click(function(){
 			var checked =true;
+			var results = new Array;
 			//检测是否有未选题目
 			var options_div = $("div.options");
 			options_div.each(function(){
+				var tiku_id = $(this).attr("data-value");
+				if(!tiku_id){
+					return true;
+				}
+				var re=new Array;
 				var sel = $(this).find("div.option[sel='sel']");
-				if(sel.length <= 0){
+				sel.each(function(){
+					re.push($(this).attr("data-value"))
+				})
+				if(re.length <= 0){
 					alert("请填写完所有题目");
 					checked = false;
 					return false;
 				}
-			})
-			if(!checked){
+				
+				results.push({"tiku_id":tiku_id,"option_ids":re});
+
+			});
+			if(!checked || results.length<=0){
 				return;
 			}
 
-			var option_ids=new Array;
-			$("div.option[sel='sel']").each(function(){
-				option_ids.push($(this).attr("data-value"));
-			})
 
 			//将结果提交到后端
 			$.ajax({
-				url:"{pigcms::U('submit',array('token'=>$token,'wecha_id'=>$wecha_id))}",
-				data:{"diaoyan_id":"{pigcms:$diaoyan_id}","option_ids":option_ids},
+				url:"{pigcms::U('submit')}",
+				data:{"token":"{pigcms:$token}","wecha_id":"{pigcms:$wecha_id}","diaoyan_id":"{pigcms:$diaoyan_id}","results":results},
 				type:"post",
 				dataType:"json",
 				error:function(){
