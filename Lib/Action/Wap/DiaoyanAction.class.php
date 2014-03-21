@@ -2,32 +2,30 @@
 class DiaoyanAction extends BaseAction {
 	public $token;
 	public $wecha_id;
-	public $wxsign;
 	function _initialize(){
 		parent::_initialize();
 		$this->token = I('token',I('get.token',''),'');//获取token
+		if(!$this->token){
+			$this->error("非法访问[01]");
+		}
 		$this->_initSession();
 
 		$this->assign("token",$this->token);
-		$this->assign("wxsign",$this->wxsign);
 		$this->assign("wecha_id",$this->wecha_id);
 	}
 
 	//初始化用户会话信息
 	private function _initSession(){
 		$this->wecha_id = session('wecha_id');
-		$this->wxsign = session('wxsign');
-		//没有session或非法，则从url参数中获取wecha_id和wxsign
-		if(!$this->wecha_id || !$this->wxsign || !$this->_checkWxsign($this->wecha_id,$this->wxsign)){
+		//没有session则从url参数中获取wecha_id和wxsign并验证
+		if(!$this->wecha_id){
 			$wecha_id = I('wecha_id','');
 			$wxsign = I('wxsign','');
 			if($this->_checkWxsign($wecha_id,$wxsign)){
 				$this->wecha_id = $wecha_id;
-				$this->wxsign = $wxsign;
 				//session('wecha_id',$wecha_id);//==========================
-				//session('wxsign',$wxsign);//===================
 			}else{
-				$this->error("非法访问");
+				$this->error("非法访问[02]");
 			}
 		}
 	}
@@ -51,6 +49,6 @@ class DiaoyanAction extends BaseAction {
 	//检测合法性
 	private function _checkWxsign($wecha_id,$wxsign){
 		return true;//=========================
-		return !empty($wecha_id) && (md5($this->token.$wecha_id.C('safe_key')) == $wxsign);
+		//return !empty($wecha_id) && !empty($wxsign) && (md5($this->token.$wecha_id.C('safe_key')) == $wxsign);
 	}
 }
