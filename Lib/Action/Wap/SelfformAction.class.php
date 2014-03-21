@@ -25,6 +25,10 @@ class SelfformAction extends BaseAction{
 	public function index(){
 		$formid=intval($_GET['id']);
 		$thisForm=$this->selfform_model->where(array('id'=>$formid))->find();
+		//判断截止时间
+		if(time()>$thisForm['endtime']){
+			$this->error("活动已经截止咯");
+		}
 		$thisForm['successtip']=$thisForm['successtip']==''?'提交成功':$thisForm['successtip'];
 		$this->assign('thisForm',$thisForm);
 		$where=array('formid'=>$formid);
