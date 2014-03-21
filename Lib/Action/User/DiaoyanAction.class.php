@@ -171,6 +171,9 @@ class DiaoyanAction extends UserAction {
 		M('DiaoyanTikuOption')->where(array("tiku_id"=>array("in",$tiku_ids)))->delete();
 		//删除回答记录
 		M('DiaoyanRecord')->where(array("tiku_id"=>array("in",$tiku_ids)))->delete();
+		//删除关键词
+		D('Keyword')->deleteRecord($id,$this->_token,"Diaoyan");
 		$this->success("操作完成");
+
 	}
 }
