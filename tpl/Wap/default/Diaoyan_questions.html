@@ -42,9 +42,9 @@
 <body style="background-color: #ffb100;">
 <div class="wrapper">
 	<img class="bg" src="__PUBLIC__/wap/diaoyan/bg.jpg">
-	<?php foreach($tiku_list as $tiku): ?>
+	<?php $i="1";foreach($tiku_list as $tiku): ?>
 	<div class="question" style="overflow:hidden;">
-		<div class="title" style="text-align:left">{pigcms:$tiku.title}</div>
+		<div class="title" style="text-align:left">{pigcms:$i}.{pigcms:$tiku.title}</div>
 		<if condition="$tiku.type eq '1'">
 		<div class="tip1">注：本题可以选择多个答案！</div>
 				
@@ -76,7 +76,7 @@
 		</if>
 		
 	</div>
-	<?php endforeach;?>
+	<?php endforeach;$i++?>
 	
 	
 	<div id="submit" onclick="gotonext()">
