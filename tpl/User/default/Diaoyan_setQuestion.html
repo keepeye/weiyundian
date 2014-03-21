@@ -1,0 +1,39 @@
+<include file="Public:head"/>
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
+<form class="form" method="post" action=""  target="_top" enctype="multipart/form-data" >
+<input type="hidden" name="id" value="{pigcms:$diaoyan.id}"/>
+<div class="content">
+<!--活动开始-->
+<div class="cLineB">
+  <h4>题目设置</h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a></div>  
+<div class="msgWrap bgfc">
+ 
+<table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"><tbody>
+
+<tr>
+  <th valign="top"><span class="red">*</span>题目名：</th>
+  <td><input type="input" class="px" value="{pigcms:$tiku.title}"  name="title" style="width:400px">
+  	<br>
+  	问题标题，不要超过30个汉字
+  	</td>
+  </tr>
+
+
+<tr>
+	<th><span class="red">*</span>题型：</th>
+	<td>
+		<input type="option" name="type" value="0">单选 
+    <input type="option" name="type" value="1">多选 
+	</td>
+</tr>
+
+<tr>
+<th>&nbsp;</th>
+<td><input type="submit" name="button" class="btnGreen" value="保存" />　<a href="" class="btnGray vm">取消</a></td>
+</tr>
+</tbody>
+</table>
+ </div> 
+</div>
+</form>
+<include file="Public:footer"/> 
