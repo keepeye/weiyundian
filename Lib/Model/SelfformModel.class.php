@@ -15,6 +15,7 @@ class SelfformModel extends Model{
 		$date=$_POST['enddate'];
 		
 		$time = strtotime($date);
+		exit($time);
 		return $time;
 	}
 }
