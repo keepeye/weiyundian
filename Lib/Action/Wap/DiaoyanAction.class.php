@@ -45,24 +45,31 @@ class DiaoyanAction extends BaseAction {
 	//答题开始
 	function questions(){
 		$diaoyan_id = I('diaoyan_id');
-		if(!$diaoyan_id){
-			$this->error("非法请求[03]");
+		//检测用户是否已经参加过本次调研
+		if(M('DiaoyanRecord')->where(array("diaoyan_id"=>$diaoyan_id,"wecha_id"=>$this->wecha_id))->find()){
+			$this->assign("done","1");
+		}else{
+			if(!$diaoyan_id){
+				$this->error("非法请求[03]");
+			}
+			$tiku_list = M('DiaoyanTiku')->where(array("token"=>$this->token,"diaoyan_id"=>$diaoyan_id))->limit(0,10)->select();//获取题库列表
+			$tiku_ids = array();
+			foreach($tiku_list as $v){
+				$tiku_ids[] = $v['id'];
+			}
+			unset($v);
+			$options = M('DiaoyanTikuOption')->where(array("tiku_id"=>array("in",$tiku_ids)))->select();//读取选项表
+			$option_list = array();
+			foreach($options as $v){
+				$option_list[$v['tiku_id']][]=$v;
+			}
+			unset($v);
+			$this->assign("diaoyan_id",$diaoyan_id);
+			$this->assign("tiku_list",$tiku_list);
+			$this->assign("option_list",$option_list);
 		}
-		$tiku_list = M('DiaoyanTiku')->where(array("token"=>$this->token,"diaoyan_id"=>$diaoyan_id))->limit(0,10)->select();//获取题库列表
-		$tiku_ids = array();
-		foreach($tiku_list as $v){
-			$tiku_ids[] = $v['id'];
-		}
-		unset($v);
-		$options = M('DiaoyanTikuOption')->where(array("tiku_id"=>array("in",$tiku_ids)))->select();//读取选项表
-		$option_list = array();
-		foreach($options as $v){
-			$option_list[$v['tiku_id']][]=$v;
-		}
-		unset($v);
-		$this->assign("diaoyan_id",$diaoyan_id);
-		$this->assign("tiku_list",$tiku_list);
-		$this->assign("option_list",$option_list);
+		//
+		
 		$this->display();
 	}
 	//提交结果
@@ -78,7 +85,7 @@ class DiaoyanAction extends BaseAction {
 				$tiku_ids[] = $v['id'];
 			}
 			unset($v);
-			
+
 			//开始写入记录
 			foreach ($results as $result) {
 				if(!in_array($result['tiku_id'],$tiku_ids)){

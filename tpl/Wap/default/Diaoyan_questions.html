@@ -42,42 +42,54 @@
 <body style="background-color: #ffb100;">
 <div class="wrapper">
 	<img class="bg" src="__PUBLIC__/wap/diaoyan/bg.jpg">
-	<?php $i="1";foreach($tiku_list as $tiku): ?>
-	<div class="question" style="overflow:hidden;">
-		<div class="title" style="text-align:left">{pigcms:$i}.{pigcms:$tiku.title}</div>
-		<if condition="$tiku.type eq '1'">
-		<div class="tip1">注：本题可以选择多个答案！</div>
-				
-		<div class="options" data-value="{pigcms:$tiku.id}">
-			<?php foreach($option_list[$tiku['id']] as $option): ?>
-			<div class="option multi" data-value="{pigcms:$option.id}">
-				<img id="img1" class="oimg" src="__PUBLIC__/wap/diaoyan/option_bg.png">
-				<img id="img11" class="oimg-sel" src="__PUBLIC__/wap/diaoyan/option_sel_bg.png">
-				<div class="text">
-					<div class="otext">{pigcms:$option.value}</div>
+	<?php if(isset($done)): ?>
+		<div class="content-w1">
+			<div class="content-w2">
+				<div class="content">
+					<div class="title">你已经参加过了哦</div>
+					<img class="connect" src="__PUBLIC__/wap/diaoyan/connect.png">
+					<div class="desc-cont">你可以转发给你的朋友们`(*∩_∩*)′</div>
+					
 				</div>
 			</div>
-			<?php endforeach;?>
 		</div>
-		<else/>
-		<div class="tip1">注：本题单选！</div>
-				
-		<div class="options" data-value="{pigcms:$tiku.id}">
-			<?php foreach($option_list[$tiku['id']] as $option): ?>
-			<div class="option single" data-value="{pigcms:$option.id}">
-				<img id="img1" class="oimg" src="__PUBLIC__/wap/diaoyan/option_bg.png">
-				<img id="img11" class="oimg-sel" src="__PUBLIC__/wap/diaoyan/option_sel_bg.png">
-				<div class="text">
-					<div class="otext">{pigcms:$option.value}</div>
+	<?php else: ?>
+		<?php $i="1";foreach($tiku_list as $tiku): ?>
+		<div class="question" style="overflow:hidden;">
+			<div class="title" style="text-align:left">{pigcms:$i}.{pigcms:$tiku.title}</div>
+			<if condition="$tiku.type eq '1'">
+			<div class="tip1">注：本题可以选择多个答案！</div>
+					
+			<div class="options" data-value="{pigcms:$tiku.id}">
+				<?php foreach($option_list[$tiku['id']] as $option): ?>
+				<div class="option multi" data-value="{pigcms:$option.id}">
+					<img id="img1" class="oimg" src="__PUBLIC__/wap/diaoyan/option_bg.png">
+					<img id="img11" class="oimg-sel" src="__PUBLIC__/wap/diaoyan/option_sel_bg.png">
+					<div class="text">
+						<div class="otext">{pigcms:$option.value}</div>
+					</div>
 				</div>
+				<?php endforeach;?>
 			</div>
-			<?php endforeach;?>
+			<else/>
+			<div class="tip1">注：本题单选！</div>
+					
+			<div class="options" data-value="{pigcms:$tiku.id}">
+				<?php foreach($option_list[$tiku['id']] as $option): ?>
+				<div class="option single" data-value="{pigcms:$option.id}">
+					<img id="img1" class="oimg" src="__PUBLIC__/wap/diaoyan/option_bg.png">
+					<img id="img11" class="oimg-sel" src="__PUBLIC__/wap/diaoyan/option_sel_bg.png">
+					<div class="text">
+						<div class="otext">{pigcms:$option.value}</div>
+					</div>
+				</div>
+				<?php endforeach;?>
+			</div>
+			</if>
+			
 		</div>
-		</if>
-		
-	</div>
-	<?php $i++;endforeach;?>
-	
+		<?php $i++;endforeach;?>
+	<?php endif;?>
 	
 	<div id="submit_btn" class="submit">
 		<img src="__PUBLIC__/wap/diaoyan/next_btn.png">
