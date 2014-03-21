@@ -94,9 +94,6 @@
 			<span>提交</span>
 		</div>
 	<?php endif;?>
-	
-	
- 	
 </div>
 <script type="text/javascript">
 	$(function(){
@@ -141,7 +138,7 @@
 				timeout:3000,
 				success:function(data){
 					if(data.status == "1"){
-						alert("ok")
+						$("div.wrapper").html(data.info);
 					}else{
 						alert(data.info)
 					}
