@@ -19,7 +19,7 @@ class OauthAction extends Action{
 		$redirect_uri = C('site_url').'/'.U("Wap/Oauth/auth");//回调页面
 
 		$redirect_uri = rawurlencode($redirect_uri);//urlencode处理
-		$url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appsec['appid']}&redirect_uri={$redirect_uri}&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+		$url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appsec['appid']}&redirect_uri={$redirect_uri}&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
 		redirect($url);
 	}
 
@@ -35,11 +35,11 @@ class OauthAction extends Action{
 		$data =  curl_exec($ch);
 		curl_close($ch);
 		$data = json_decode($data,true);
-		
+		dump($data);
 		session("wecha_id",$data['openid'],$data['expires_in']);//写入用户session
 		$referer = cookie("referer");
 		$this->clearCookie();
-		redirect($referer);
+		//redirect($referer);
 	}
 
 	//清空临时cookie
