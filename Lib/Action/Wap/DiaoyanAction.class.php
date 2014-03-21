@@ -18,14 +18,14 @@ class DiaoyanAction extends BaseAction {
 
 	//初始化用户会话信息
 	private function _initSession(){
-		$this->wecha_id = session('wecha_id');
+		$this->wecha_id = cookie('wecha_id');//改用cookie
 		//没有session则从url参数中获取wecha_id和wxsign并验证
 		if(!$this->wecha_id){
 			$wecha_id = I('wecha_id','');
 			$wxsign = I('wxsign','');
 			if($this->_checkWxsign($wecha_id,$wxsign)){
 				$this->wecha_id = $wecha_id;
-				session('wecha_id',$wecha_id);//==========================
+				cookie('wecha_id',$wecha_id,7200);//==========================
 			}else{
 				//$this->error("非法访问[02]");//这里应该跳转到授权页面
 				redirect(U("Wap/Oauth/getCode",array("token"=>$this->token,"referer"=>rawurlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']))));

@@ -35,9 +35,9 @@ class OauthAction extends Action{
 		$data =  curl_exec($ch);
 		curl_close($ch);
 		$data = json_decode($data,true);
-		session("wecha_id",$data['openid'],$data['expires_in']);//写入用户session
 		$referer = cookie("referer");
 		$this->clearCookie();
+		cookie("wecha_id",$data['openid'],$data['expires_in']);//用cookie保存用户会话信息
 		redirect($referer);
 	}
 
