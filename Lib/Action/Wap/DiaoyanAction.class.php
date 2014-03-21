@@ -76,6 +76,9 @@ class DiaoyanAction extends BaseAction {
 	function submit(){
 		if(IS_POST){
 			$diaoyan_id = I('diaoyan_id','0','intval');
+			if(M('DiaoyanRecord')->where(array("diaoyan_id"=>$diaoyan_id,"wecha_id"=>$this->wecha_id))->find()){
+				$this->error("已参加过");
+			}
 			$results = $_POST['results'];//结果数组
 			
 			//取题库信息
