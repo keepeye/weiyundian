@@ -38,7 +38,7 @@ class OauthAction extends Action{
 		session("wecha_id",$data['openid'],$data['expires_in']);//写入用户session
 		$referer = cookie("referer");
 		$this->clearCookie();
-		//redirect($referer);
+		redirect($referer);
 	}
 
 	//清空临时cookie
