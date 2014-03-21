@@ -11,7 +11,7 @@ class OauthAction extends Action{
 		cookie("auth_referer",$referer,300);//用cookie临时存储来路url
 
 		$appsec = M('DiymenSet')->where(array("token"=>$token))->find();
-		$redirect_uri = U("Wap/Oauth/auth");//回调页面
+		$redirect_uri = C('site_url').'/'.U("Wap/Oauth/auth");//回调页面
 
 		$redirect_uri = rawurlencode($redirect_uri);//urlencode处理
 		$url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$appsec['appid']}&redirect_uri={$redirect_uri}&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
