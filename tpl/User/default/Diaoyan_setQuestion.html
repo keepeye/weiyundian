@@ -22,8 +22,16 @@
 <tr>
 	<th><span class="red">*</span>题型：</th>
 	<td>
-		<input type="radio" name="type" value="0">单选 
+    <?php if(!isset($tiku['type'])): ?>
+		<input type="radio" name="type" value="0" checked>单选 
     <input type="radio" name="type" value="1">多选 
+    <?php elseif($tiku['type'] == "1"): ?>
+    <input type="radio" name="type" value="0" >单选 
+    <input type="radio" name="type" value="1" checked>多选 
+    <?php else: ?>
+    <input type="radio" name="type" value="0" checked>单选 
+    <input type="radio" name="type" value="1" >多选 
+    <?php endif;?>
 	</td>
 </tr>
 
