@@ -85,6 +85,7 @@ class DiaoyanAction extends UserAction {
 		if(!IS_POST){
 			$this->assign("options",$options);
 			$this->assign("tiku",$tiku);
+			$this->assign("diaoyan_id",$diaoyan_id);
 			$this->display();//显示视图
 		}else{
 			$title = I('title');
