@@ -13,13 +13,8 @@ class SelfformModel extends Model{
 	}
 	function getTime(){
 		$date=$_POST['enddate'];
-		if ($date){
-		$dates=explode('-',$date);
-		$time=mktime(23,59,59,$dates[1],$dates[2],$dates[0]);
-		}else {
-			$time=0;
-		}
-
+		
+		$time = strtotime($date);
 		return $time;
 	}
 }
