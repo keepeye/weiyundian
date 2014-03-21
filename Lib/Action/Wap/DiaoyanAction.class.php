@@ -67,7 +67,9 @@ class DiaoyanAction extends BaseAction {
 	}
 	//提交结果
 	function submit(){
-
+		if(IS_POST){
+			dump($_POST);
+		}
 	}
 	//检测合法性
 	private function _checkWxsign($wecha_id,$wxsign){
