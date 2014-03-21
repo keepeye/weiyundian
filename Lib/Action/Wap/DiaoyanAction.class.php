@@ -112,7 +112,7 @@ class DiaoyanAction extends BaseAction {
 					M('DiaoyanRecord')->add($data);
 				}
 			}
-			$dazhuanpan = U('/Wap/Lottery/index',array('id'=>47,'token'=>$this->token,'wecha_id'=>$this->wecha_id,"wxsign"=>md5($this->token.$this->wecha_id.C('safe_key'))));
+			$dazhuanpan = U('Wap/Lottery/index',array('id'=>47,'token'=>$this->token,'wecha_id'=>$this->wecha_id,"wxsign"=>md5($this->token.$this->wecha_id.C('safe_key'))));
 			$this->success("恭喜你获得一次大转盘抽奖机会，点击链接进入：<a href='$dazhuanpan'>大转盘活动开始啦</a>");
 		}else{
 			$this->error("非法提交[04]");
