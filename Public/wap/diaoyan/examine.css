@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 *{margin:0;padding:0;}
 body {font-family: Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif;background-color: #ffb100;}
@@ -42,7 +42,7 @@ background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #d2cfd
 .question .option .oimg-sel {display: none;}
 .question .option .text {position: relative;line-height: 40px;overflow: hidden;}
 .question .option .otext {margin-left: 45px;overflow: hidden;max-width: 260px;height: 40px;}
-#submit {width: 80px;margin: 20px 20px 0px 0px;float: right;position: relative;}
+.submit_btn {width: 80px;margin: 20px 20px 0px 0px;float: right;position: relative;}
 #submit img {position: absolute;top: 0px;left: 0px;width: 100%;}
 #submit span {position: relative;color: #FFF;font-size: 18px;line-height: 40px;}
 
