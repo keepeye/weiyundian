@@ -70,7 +70,7 @@ class DiaoyanAction extends BaseAction {
 		if(IS_POST){
 			$diaoyan_id = I('diaoyan_id','0','intval');
 			$results = $_POST['results'];//结果数组
-			dump($results);exit;
+			
 			//取题库信息
 			$tiku_list = M('DiaoyanTiku')->where(array("token"=>$this->token,"diaoyan_id"=>$diaoyan_id))->limit(0,10)->select();//获取题库列表
 			$tiku_ids = array();
