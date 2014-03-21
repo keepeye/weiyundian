@@ -92,9 +92,7 @@ class DiaoyanAction extends BaseAction {
 						"option_id"=>$option_id
 						);
 					M('DiaoyanRecord')->add($data);
-					unset($data,$option_id);//清空数据
 				}
-				unset($result);
 			}
 			$this->success("ok");
 		}else{
