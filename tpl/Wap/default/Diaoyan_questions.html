@@ -107,12 +107,20 @@
 			$("div.option[sel='sel']").each(function(){
 				option_ids.push($(this).attr("data-value"));
 			})
-			alert(option_ids)
 
 			//将结果提交到后端
 			$.ajax({
 				url:"{pigcms::U('submit',array('token'=>$token,'wecha_id'=>$wecha_id))}",
-				data:{"diaoyan_id":"{pigcms:$diaoyan_id}","option_ids":option_ids}
+				data:{"diaoyan_id":"{pigcms:$diaoyan_id}","option_ids":option_ids},
+				type:"post",
+				dataType:"json",
+				error:function(){
+					alert("网络错误，请重试");
+				},
+				timeout:3000,
+				success:function(data){
+
+				}
 			})
 		})
 	})
