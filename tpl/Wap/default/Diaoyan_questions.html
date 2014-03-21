@@ -87,16 +87,16 @@
 </div>
 <script type="text/javascript">
 	$(function(){
-		// $("#submit_btn").click(function(){
-		// 	var options_div = $("div.options");
-		// 	options_div.each(function(){
-		// 		var sel = $(this).find("div.option[sel='sel']");
-		// 		if(sel.length <= 0){
-		// 			alert("请填写完所有题目");
-		// 			return false;
-		// 		}
-		// 	})
-		// })
+		$("#submit_btn").click(function(){
+			var options_div = $("div.options");
+			options_div.each(function(){
+				var sel = $(this).find("div.option[sel='sel']");
+				if(sel.length <= 0){
+					alert("请填写完所有题目");
+					return false;
+				}
+			})
+		})
 	})
 </script>
 </body>
