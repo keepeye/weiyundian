@@ -4,7 +4,7 @@ class DiaoyanAction extends BaseAction {
 	public $wecha_id;
 	function _initialize(){
 		parent::_initialize();
-		cookie("wecha_id",null);//=============
+		//cookie("wecha_id",null);//=============
 		$this->token = I('token',I('get.token',''),'');//获取token
 		if(!$this->token){
 			$this->error("非法访问[01]");
