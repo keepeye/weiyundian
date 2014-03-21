@@ -127,7 +127,11 @@
 				},
 				timeout:3000,
 				success:function(data){
-
+					if(data.status == "1"){
+						alert("ok")
+					}else{
+						alert(data.info)
+					}
 				}
 			})
 		})
