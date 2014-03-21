@@ -29,6 +29,34 @@
 <body style="background-color: #ffb100;">
 <div class="wrapper">
 	<img class="bg" src="__PUBLIC__/wap/diaoyan/bg.jpg">
+	<?php foreach($tiku_list as $tiku): ?>
+	<div class="question" style="overflow:hidden;">
+		<div class="title" style="text-align:left">{pigcms:$tiku.title}</div>
+		<if condition="$tiku.type eq '1'">
+		<div class="tip1">注：本题可以选择多个答案！</div>
+		</if>		
+		<div class="options">
+				<div class="option" data-value="1">
+				<img id="img1" class="oimg" src="__PUBLIC__/wap/diaoyan/option_bg.png">
+				<img id="img11" class="oimg-sel" src="__PUBLIC__/wap/diaoyan/option_sel_bg.png">
+				<div class="text">
+					<div class="otext">asdf</div>
+				</div>
+			</div>
+						<div class="option" data-value="2">
+				<img id="img2" class="oimg" src="__PUBLIC__/wap/diaoyan/option_bg.png">
+				<img id="img21" class="oimg-sel" src="__PUBLIC__/wap/diaoyan/option_sel_bg.png">
+				<div class="text">
+					<div class="otext">dfsaf</div>
+				</div>
+			</div>
+											
+
+		</div>
+		
+	</div>
+	<?php endforeach;?>
+	
 	<div class="question" style="overflow:hidden;">
 		<div class="title" style="text-align:left">sfsaf</div>
 				<div class="tip1">注：本题可以选择多个答案！</div>
@@ -53,58 +81,10 @@
 		</div>
 		
 	</div>
-	<div class="question" style="overflow:hidden;">
-		<div class="title" style="text-align:left">sfsaf</div>
-				<div class="tip1">注：本题可以选择多个答案！</div>
-				
-		<div class="options">
-				<div class="option" data-value="1">
-				<img id="img1" class="oimg" src="__PUBLIC__/wap/diaoyan/option_bg.png">
-				<img id="img11" class="oimg-sel" src="__PUBLIC__/wap/diaoyan/option_sel_bg.png">
-				<div class="text">
-					<div class="otext">asdf</div>
-				</div>
-			</div>
-						<div class="option" data-value="2">
-				<img id="img2" class="oimg" src="__PUBLIC__/wap/diaoyan/option_bg.png">
-				<img id="img21" class="oimg-sel" src="__PUBLIC__/wap/diaoyan/option_sel_bg.png">
-				<div class="text">
-					<div class="otext">dfsaf</div>
-				</div>
-			</div>
-											
-
-		</div>
-		
-	</div>
-	<div class="question" style="overflow:hidden;">
-		<div class="title" style="text-align:left">sfsaf</div>
-				<div class="tip1">注：本题可以选择多个答案！</div>
-				
-		<div class="options">
-				<div class="option" data-value="1">
-				<img id="img1" class="oimg" src="__PUBLIC__/wap/diaoyan/option_bg.png">
-				<img id="img11" class="oimg-sel" src="__PUBLIC__/wap/diaoyan/option_sel_bg.png">
-				<div class="text">
-					<div class="otext">asdf</div>
-				</div>
-			</div>
-						<div class="option" data-value="2">
-				<img id="img2" class="oimg" src="__PUBLIC__/wap/diaoyan/option_bg.png">
-				<img id="img21" class="oimg-sel" src="__PUBLIC__/wap/diaoyan/option_sel_bg.png">
-				<div class="text">
-					<div class="otext">dfsaf</div>
-				</div>
-			</div>
-											
-
-		</div>
-		<div id="submit" onclick="gotonext()">
+	<div id="submit" onclick="gotonext()">
 			<img src="__PUBLIC__/wap/diaoyan/next_btn.png">
 			<span>提交</span>
 		</div>
-	</div>
-	
  	
 </div>
 <script type="text/javascript">
