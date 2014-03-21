@@ -125,6 +125,13 @@ class DiaoyanAction extends UserAction {
 			if($re === false){
 				$this->error("设置题库信息失败");
 			}
+			//插入新选项
+			foreach($newoptions as $v){
+				if($v==""){
+					continue;
+				}
+				M('DiaoyanTikuOption')->data(array("tiku_id"=>$re,"diaoyan_id"=>$diaoyan_id,"token"=>$this->_token,"value"=>$v))->add();
+			}
 			//更新旧选项
 			if(!empty($oldoptions) && !$isNew){
 				foreach($oldoptions as $k=>$v){
@@ -135,13 +142,7 @@ class DiaoyanAction extends UserAction {
 				}
 			}
 			unset($k,$v);
-			//插入新选项
-			foreach($newoptions as $v){
-				if($v==""){
-					continue;
-				}
-				M('DiaoyanTikuOption')->data(array("tiku_id"=>$id,"diaoyan_id"=>$diaoyan_id,"token"=>$this->_token,"value"=>$v))->add();
-			}
+			
 
 			$this->success("操作完成",U('questionList',array('id'=>$diaoyan_id)));
 		}
