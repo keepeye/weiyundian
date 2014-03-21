@@ -53,7 +53,21 @@ class DiaoyanAction extends UserAction {
 	}
 	//题库
 	function questionList(){
-
+		$pid = I('id',0,'intval');//活动id
+		//检测活动是否属于当前登录商户
+		$diaoyan = M('Diaoyan')->where(array('token'=>$this->_token,'id'=>$pid))->find();
+		if(!$diaoyan){
+			$this->error('活动不存在');
+		}
+		$this->assign('diaoyan',$diaoyan);
+		//读取记录列表
+		$map = array(
+			'diaoyan_id'=>$pid
+			);
+		
+		$list=M('DiaoyanTiku')->where($map)->select();//题库列表
+		$this->assign("list",$list);
+		$this->display();
 	}
 	//设置题目
 	function setQuestion(){
