@@ -8,7 +8,7 @@ class OauthAction extends Action{
 
 		$token = I('token');//商户token
 		$referer = I('referer','','htmlspecialchars_decode');//来路
-		dump($referer);exit;
+		
 		cookie("auth_referer",$referer,300);//用cookie临时存储来路url
 
 		$appsec = M('DiymenSet')->where(array("token"=>$token))->find();
