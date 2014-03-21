@@ -7,7 +7,7 @@ class OauthAction extends Action{
 	function getCode(){
 
 		$token = I('token');//商户token
-		$referer = I('referer');//来路
+		$referer = I('referer','','htmlspecialchars_decode');//来路
 		dump($referer);exit;
 		cookie("auth_referer",$referer,300);//用cookie临时存储来路url
 
