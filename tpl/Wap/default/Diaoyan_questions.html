@@ -93,7 +93,7 @@
 				$sel = $(this).find("option[sel='sel']");
 				if($sel.length <= 0){
 					alert("请填写完所有题目");
-					break;
+					return false;
 				}
 			})
 		})
