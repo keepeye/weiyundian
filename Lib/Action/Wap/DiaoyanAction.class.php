@@ -68,7 +68,21 @@ class DiaoyanAction extends BaseAction {
 	//提交结果
 	function submit(){
 		if(IS_POST){
-			dump($_POST);
+			$diaoyan_id = I('diaoyan_id','0','intval');
+			$option_ids = $_POST['option_ids'];
+			//取题库信息
+			$tiku_list = M('DiaoyanTiku')->where(array("token"=>$this->token,"diaoyan_id"=>$diaoyan_id))->limit(0,10)->select();//获取题库列表
+			$tiku_ids = array();
+			foreach($tiku_list as $v){
+				$tiku_ids[] = $v['id'];
+			}
+			unset($v);
+			$options = M('DiaoyanTikuOption')->where(array("tiku_id"=>array("in",$tiku_ids)))->select();//读取选项表
+			$option_list = array();
+			foreach($options as $v){
+				$option_list[$v['tiku_id']][]=$v;
+			}
+			unset($v);
 		}
 	}
 	//检测合法性

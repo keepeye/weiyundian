@@ -48,7 +48,7 @@
 		<if condition="$tiku.type eq '1'">
 		<div class="tip1">注：本题可以选择多个答案！</div>
 				
-		<div class="options">
+		<div class="options" data-value="{pigcms:$tiku.id}">
 			<?php foreach($option_list[$tiku['id']] as $option): ?>
 			<div class="option multi" data-value="{pigcms:$option.id}">
 				<img id="img1" class="oimg" src="__PUBLIC__/wap/diaoyan/option_bg.png">
