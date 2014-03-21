@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>具体内容</title>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/wap/diaoyan/examine.css">
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+				$('.option').click(function(){
+			if($(this).attr('sel')=='sel'){
+				$(this).find('img').eq(0).show();
+				$(this).find('img').eq(1).hide();
+				$(this).attr('sel','0');
+			}else{
+				$(this).find('img').eq(0).hide();
+				$(this).find('img').eq(1).show();
+				$(this).attr('sel','sel');
+			}			
+		});		
+				
+	});
+</script>
+</head>
+<body style="background-color: #ffb100;">
+<div class="wrapper">
+	<img class="bg" src="__PUBLIC__/wap/diaoyan/bg.jpg">
+	<div class="question" style="overflow:hidden;">
+		<div class="title">sfsaf</div>
+				<div class="tip1">注：本题可以选择多个答案！</div>
+				
+		<div class="options">
+				<div class="option" data-value="1">
+				<img id="img1" class="oimg" src="__PUBLIC__/wap/diaoyan/option_bg.png">
+				<img id="img11" class="oimg-sel" src="__PUBLIC__/wap/diaoyan/option_sel_bg.png">
+				<div class="text">
+					<div class="otext">asdf</div>
+				</div>
+			</div>
+						<div class="option" data-value="2">
+				<img id="img2" class="oimg" src="__PUBLIC__/wap/diaoyan/option_bg.png">
+				<img id="img21" class="oimg-sel" src="__PUBLIC__/wap/diaoyan/option_sel_bg.png">
+				<div class="text">
+					<div class="otext">dfsaf</div>
+				</div>
+			</div>
+											
+
+		</div>
+		<div id="submit" onclick="gotonext()">
+			<img src="__PUBLIC__/wap/diaoyan/next_btn.png">
+			<span>下一步</span>
+		</div>
+	</div>
+ 	<p class="page-url">
+		<a href="http://yyuc.com/" target="_blank" class="page-url-link"></a>
+	</p>
+</div>
+<script type="text/javascript">
+function gotonext(){
+	var res = [];
+	$('.option[sel="sel"]').each(function(){
+		res[res.length] = $(this).attr('data-value');
+	});
+	if(res.length==0){
+		tusi('请选择答案');
+		return;
+	}else{
+		location.href = 'wdyans-2-'+res.join('@')+'.html';
+	//	alert('wdyans-2-'+res.join('@')+'.html')
+	}
+}
+</script>
+</body>
+</html>
