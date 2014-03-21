@@ -151,4 +151,24 @@ class DiaoyanAction extends UserAction {
 	function recordList(){
 
 	}
+
+
+	//删除活动
+	function delDiaoyan(){
+		$id = I('id','0','intval');
+		if(!$id){
+			$this->error("删除失败[01]");
+		}
+		$diaoyan = M('Diaoyan')->where(array("token"=>$this->_token))->find();
+		if(!$diaoyan){
+			$this->error("删除失败，活动不存在[02]");
+		}
+		M('Diaoyan')->delete($id);
+		//删除题库信息
+		$tiku_ids = M('DiaoyanTiku')->where(array("token"=>$this->_token,"diaoyan_id"=>$id))->getField("id");
+		M('DiaoyanTiku')->where(array("token"=>$this->_token,"diaoyan_id"=>$id))->delete();
+		//删除选项
+		M('DiaoyanTikuOption')->where(array("tiku_id"=>array("in",$tiku_ids)))->delete();
+		$this->success("操作完成");
+	}
 }
