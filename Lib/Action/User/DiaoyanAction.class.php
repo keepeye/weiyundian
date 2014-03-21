@@ -67,6 +67,7 @@ class DiaoyanAction extends UserAction {
 		
 		$list=M('DiaoyanTiku')->where($map)->select();//题库列表
 		$this->assign("list",$list);
+		$this->assign("diaoyan",$diaoyan);
 		$this->display();
 	}
 	//设置题目
