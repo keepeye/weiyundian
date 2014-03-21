@@ -115,13 +115,14 @@ class DiaoyanAction extends UserAction {
 					"type"=>$type
 					);
 				$re = M('DiaoyanTiku')->data($data)->add();
+				$tiku_id = $re;//将题库id设置为新插入的值
 			}else{
 				$data = array(
 					"title"=>$title,
 					"type"=>$type
 					);
 				$re = M('DiaoyanTiku')->where(array("id"=>$id,"token"=>$this->_token))->data($data)->save();
-				$tiku_id = $re;//将题库id设置为新插入的值
+				
 			}
 			if($re === false){
 				$this->error("设置题库信息失败");
