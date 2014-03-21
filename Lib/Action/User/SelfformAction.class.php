@@ -56,6 +56,7 @@ class SelfformAction extends UserAction{
 	}
 	public function add(){ 
 		if(IS_POST){
+			$_POST['endtime'] = strtotime($_POST['enddate']);
 			$this->all_insert('Selfform','/index?token='.$this->token);
 		}else{
 			$set=array();
@@ -65,13 +66,14 @@ class SelfformAction extends UserAction{
 		}
 	}
 	public function set(){
-		dump($_POST);exit;
+
         $id = intval($this->_get('id')); 
 		$checkdata = $this->selfform_model->where(array('id'=>$id))->find();
 		if(empty($checkdata)||$checkdata['token']!=$this->token){
             $this->error("没有相应记录.您现在可以添加.",U('Selfform/add'));
         }
 		if(IS_POST){ 
+			$_POST['endtime'] = strtotime($_POST['enddate']);
             $where=array('id'=>$this->_post('id'),'token'=>$this->token);
 			$check=$this->selfform_model->where($where)->find();
 			if($check==false)$this->error('非法操作');
