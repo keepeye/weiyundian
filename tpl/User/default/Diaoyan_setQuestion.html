@@ -34,27 +34,21 @@
     <?php endif;?>
 	</td>
 </tr>
+<?php if(!empty($options)): ?>
+  <?php foreach($options as $k=>$option): ?>
+    <tr>
+      <th><span class="red">*</span>选项{pigcms:$k}：</th>
+      <td><input type="text" name="oldoptions[{pigcms:$option['id']}]" class="px" value="{pigcms:$option['value']}"></td>
+    </tr>
+  <?php endforeach;?>
+<?php endif;?>
+<?php for($i=$k;$i<10;$i++): ?>
+<tr>
+  <th>选项{pigcms:$i}：</th>
+  <td><input type="text" name="newoptions[]" class="px"></td>
+</tr>
+<?php endfor;?>
 
-<tr>
-  <th><span class="red">*</span>选项1：</th>
-  <td><input type="text" name="options[]" class="px"> 至少设置两个选项</td>
-</tr>
-<tr>
-  <th><span class="red">*</span>选项2：</th>
-  <td><input type="text" name="options[]" class="px"></td>
-</tr>
-<tr>
-  <th>选项3：</th>
-  <td><input type="text" name="options[]" class="px"></td>
-</tr>
-<tr>
-  <th>选项4：</th>
-  <td><input type="text" name="options[]" class="px"></td>
-</tr>
-<tr>
-  <th>选项5：</th>
-  <td><input type="text" name="options[]" class="px"></td>
-</tr>
 <tr>
 <th>&nbsp;</th>
 <td><input type="submit" name="button" class="btnGreen" value="保存" />　<a href="" class="btnGray vm">取消</a></td>
