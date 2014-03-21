@@ -87,25 +87,61 @@ class DiaoyanAction extends UserAction {
 			$this->assign("tiku",$tiku);
 			$this->display();//显示视图
 		}else{
-			
-			$_POST['token'] = $this->_token;//将token添加到表单数据中，避免丢失
-			$_POST['id'] = $id;//同上
-			$_POST['end_time'] = strtotime($_POST['end_time']);
-			if(M('Diaoyan')->create()){
-				$re = $isNew?M('Diaoyan')->add():M('Diaoyan')->save();
-				if($re !== false){
-					$pid = $isNew?$re:$id;//获取主键
-					if($pid > 0){
-						//更新关键词
-						D('Keyword')->setKeyword(I("post.keyword"),$pid,$this->_token,"Diaoyan",1);
-					}
-					$this->success("保存成功");
-				}else{
-					$this->error("保存数据失败:".M('Diaoyan')->getLastSql());
-				}
-			}else{
-				$this->error(M('Diaoyan')->getError());
+			$title = I('title');
+			$type = I('type','0','intval')=="1"?"1":"0";
+			$oldoptions = $_POST['oldoptions'];//旧选项
+			$newoptions = $_POST['newoptions'];//新选项
+			//进行一系列检测，时间关系就不使用模型自动验证了
+			if((count($oldoptions) + count($newoptions))>10){
+				$this->error("最多设置10个选项");
 			}
+
+			if((count($oldoptions) + count($newoptions))<2){
+				$this->error("至少设置两个选项");
+			}
+
+			if($title == ""){
+				$this->error("题目标题不能为空");
+			}
+
+			//更新题库表
+			if($isNew){
+				$data = array(
+					"diaoyan_id"=>$diaoyan_id,
+					"token"=>$this->_token,
+					"title"=>$title,
+					"type"=>$type
+					);
+				$re = M('DiaoyanTiku')->data($data)->add();
+			}else{
+				$data = array(
+					"title"=>$title,
+					"type"=>$type
+					);
+				$re = M('DiaoyanTiku')->where(array("id"=>$id,"token"=>$this->_token))->data($data)->save();
+			}
+			if($re === false){
+				$this->error("设置题库信息失败");
+			}
+			//更新旧选项
+			if(!empty($oldoptions) && !$isNew){
+				foreach($oldoptions as $k=>$v){
+					if($v==""){
+						continue;
+					}
+					M('DiaoyanTikuOption')->where(array("tiku_id"=>$id,"id"=>$k))->data(array("value"=>$v))->save();
+				}
+			}
+			unset($k,$v);
+			//插入新选项
+			foreach($newoptions as $v){
+				if($v==""){
+					continue;
+				}
+				M('DiaoyanTikuOption')->data(array("tiku_id"=>$id,"diaoyan_id"=>$diaoyan_id,"token"=>$this->_token,"value"=>$v))->add();
+			}
+
+			$this->success("操作完成",U('questionList'));
 		}
 	}
 
