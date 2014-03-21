@@ -392,6 +392,38 @@ class WeixinAction extends Action
                             //Log::write($data['pid'],Log::INFO);
                             
                             break;
+                case 'Diaoyan':
+                    $this->requestdata('other');
+                    $infos = M('Diaoyan')->where(array('id'=>array('in',$pids['Diaoyan'])))->select();
+                    foreach($infos as $info){
+                        $id   = $info['id'];
+
+                        $picurl = $info['pic'];
+                        $title  = $info['title'];
+                        
+                        $info   = substr($info['desc'],0,200)."...";
+                        
+                            
+                        //构建应用页面url
+                        $url = $appurl = C('site_url') . U('Wap/Diaoyan/index', array(
+                            'token' => $this->token,
+                            'id' => $id,
+                            'wxref'=>'mp.weixin.qq.com',
+                            'wecha_id'=>$this->data['FromUserName'],
+                            'wxsign'=>md5($this->token.$this->data['FromUserName'].C('safe_key'))
+                            ));
+                                //appurl从Jump模块跳转，用于将openid写入cookie，避免用户转发时带入个人id
+                        //$url = C('site_url').U("Wap/Jump/jumpto",array("appurl"=>rawurlencode($appurl),"openid"=>$this->data['FromUserName']));
+
+                        $return[]=array(
+                            $title,
+                            $info,
+                            $picurl,
+                            $url
+                            );
+                        
+                    }
+                    break;
                 //优惠券
                 case 'Coupon':
                     $this->requestdata('other');
