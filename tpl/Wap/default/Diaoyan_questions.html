@@ -79,26 +79,18 @@
 	<?php $i++;endforeach;?>
 	
 	
-	<div id="submit" onclick="gotonext()">
+	<div id="submit_btn">
 		<img src="__PUBLIC__/wap/diaoyan/next_btn.png">
 		<span>提交</span>
 	</div>
  	
 </div>
 <script type="text/javascript">
-function gotonext(){
-	var res = [];
-	$('.option[sel="sel"]').each(function(){
-		res[res.length] = $(this).attr('data-value');
-	});
-	if(res.length==0){
-		tusi('请选择答案');
-		return;
-	}else{
-		location.href = 'wdyans-2-'+res.join('@')+'.html';
-	//	alert('wdyans-2-'+res.join('@')+'.html')
-	}
-}
+	$(function(){
+		$("#submit_btn").click(function(){
+			alert('aaa');
+		})
+	})
 </script>
 </body>
 </html>
