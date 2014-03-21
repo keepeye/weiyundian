@@ -1,12 +1,12 @@
 <include file="Public:head"/>  
         <div class="content">
           <div class="cLineB">
-              <h4 class="left">优惠券活动列表</h4>
+              <h4 class="left">调研活动列表</h4>
               <div class="clr"></div>
           </div>
           <div class="cLine">
             <div class="pageNavigator left">
-  <a href='{pigcms::U('Coupon/set',array('token'=>$token))}' title='新增优惠券' class='btnGrayS vm bigbtn'><img src="{pigcms::RES}/images/img/activity-scratch-card.png" class="vm" />新增优惠券活动</a>
+  <a href='{pigcms::U('Diaoyan/setDiaoyan')}'  class='btnGrayS vm bigbtn'><img src="{pigcms::RES}/images/img/activity-scratch-card.png" class="vm" />新增调研</a>
             </div>
           
             <div class="clr"></div>
@@ -18,9 +18,7 @@
 		  <THEAD>
 			  <TR>
 				  <TH>活动名称</TH>
-				  <TH>活动时间</TH>
-				  <th>优惠券总数</th>
-				  <th>剩余数量</th>
+				  <TH>结束时间</TH>
 				  <TH class="norightborder">操作</TH>
 			  </TR>
 		  </THEAD>
@@ -29,68 +27,30 @@
 		  <volist id="list" name="list">
 		  <TR>
 				<TD>{pigcms:$list.title}</TD>                 
-				<TD>{pigcms:$list.start_time|date='Y-m-d',###} 至 {pigcms:$list.end_time|date='Y-m-d',###}</TD>
-				<td>{pigcms:$list.num}</td>
-				<td><?php echo $list['num']-$list['given_num'];?></td>
+				<TD>{pigcms:$list.end_time|date='Y-m-d',###}</TD>
 				<TD class="norightborder">
-					<a href="{pigcms::U('recordList',array('pid'=>$list['id']))}">发放记录</a> 
-					<a href="{pigcms::U('set',array('id'=>$list['id']))}">编辑</a>
-					<?php if($list['status']==1): ?>
-					<a href="{pigcms::U('setStatus',array('id'=>$list['id'],'status'=>'0'))}">关闭</a>
-					<?php else: ?>
-					<a href="{pigcms::U('setStatus',array('id'=>$list['id'],'status'=>'1'))}">开启</a>
-					<?php endif;?>
-
-				  	<a href="{pigcms::U('del',array('id'=>$list['id']))}">删除</a>
+					<a href="{pigcms::U('setDiaoyan',array('id'=>$list['id']))}">修改</a> 
+					<a href="{pigcms::U('delDiaoyan',array('id'=>$list['id']))}">删除</a>
+					<a href="{pigcms::U('questionList',array('id'=>$list['id']))}">题库设置</a>
+				  	<a href="{pigcms::U('recordList',array('id'=>$list['id']))}">数据统计</a>
 				 </TD>
 		  </TR>
 		  </volist>
 		  </TBODY>
 	  </TABLE>
   
-  <script>
-function checkvotethis() {
-	var aa=document.getElementsByName('del_id[]');
-	var mnum = aa.length;
-	j=0;
-	for(i=0;i<mnum;i++){
-		if(aa[i].checked){
-			j++;
-		}
-	}
-	if(j>0) {
-		document.getElementById('info').submit();
-	} else {
-		alert('未选中任何文章或回复！')
-	}
-}
-
-  </script>
+  
 	  </div>
 
 
-	  <div class="cLine">
-  <div class="pageNavigator right">
-	  <div class="pages"></div>
-  </div>
-  <div class="clr"></div>
-	  </div>
+	  
 	</div>
 
 	<div class="clr"></div>
       </div>
     </div>
   </div>
-  <script>
-
-function checkAll(form, name) {
-	for(var i = 0; i < form.elements.length; i++) {
-		var e = form.elements[i];
-		if(e.name.match(name)) {
-			e.checked = form.elements['chkall'].checked;
-		}
-	}
-}</script>
+  
   <!--底部-->
 	</div>
 <include file="Public:footer"/>
