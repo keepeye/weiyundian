@@ -141,7 +141,6 @@ class DiaoyanAction extends UserAction {
 					continue;
 				}
 				M('DiaoyanTikuOption')->data(array("tiku_id"=>$id,"diaoyan_id"=>$diaoyan_id,"token"=>$this->_token,"value"=>$v))->add();
-				echo M('DiaoyanTikuOption')->getLastSql();
 			}
 
 			$this->success("操作完成",U('questionList',array('id'=>$diaoyan_id)));
