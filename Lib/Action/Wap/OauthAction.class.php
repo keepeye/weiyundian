@@ -21,6 +21,6 @@ class OauthAction extends Action{
 	//第一步的回调地址，从这里使用code获取access，进而登录用户信息
 	function auth(){
 		$code = I('code');
-		dump($code);
+		dump(cookie("auth_referer"));
 	}
 }
