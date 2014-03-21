@@ -142,7 +142,7 @@ class DiaoyanAction extends UserAction {
 				M('DiaoyanTikuOption')->data(array("tiku_id"=>$id,"diaoyan_id"=>$diaoyan_id,"token"=>$this->_token,"value"=>$v))->add();
 			}
 
-			$this->success("操作完成",U('questionList'));
+			$this->success("操作完成",U('questionList',array('id'=>$diaoyan_id)));
 		}
 	}
 
