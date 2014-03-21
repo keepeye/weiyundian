@@ -34,10 +34,10 @@ class OauthAction extends Action{
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
 		$data =  curl_exec($ch);
 		curl_close($ch);
-		$data = json_decode($data);
-		dump($data);
-		// echo $data['openid'];
-		// echo $data['expires_in'];
+		$data = json_decode($data,true);
+		
+		echo $data['openid'];
+		echo $data['expires_in'];
 		$this->clearCookie();
 	}
 
