@@ -24,7 +24,7 @@ class DiaoyanAction extends BaseAction {
 			$wxsign = I('wxsign','');
 			if($this->_checkWxsign($wecha_id,$wxsign)){
 				$this->wecha_id = $wecha_id;
-				session('wecha_id',$wecha_id);//==========================
+				//session('wecha_id',$wecha_id);//==========================
 			}else{
 				$this->error("非法访问[02]");//这里应该跳转到授权页面
 			}
