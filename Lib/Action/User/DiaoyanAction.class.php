@@ -72,9 +72,10 @@ class DiaoyanAction extends UserAction {
 	//设置题目
 	function setQuestion(){
 		$id = I('id','0','intval');
+		$diaoyan_id = I('diaoyan_id','0','intval');
 		$isNew = $id > 0?false:true;//判断是否添加操作
 		if(!$isNew){
-			$tiku = M('DiaoyanTiku')->where(array('id'=>$id,'token'=>$this->_token))->find();//更新模式下检查活动是否存在
+			$tiku = M('DiaoyanTiku')->where(array('id'=>$id,'diaoyan_id'=>$diaoyan_id,'token'=>$this->_token))->find();//更新模式下检查活动是否存在
 			if(!$tiku){
 				$this->error("题目不存在");
 			}
@@ -82,7 +83,8 @@ class DiaoyanAction extends UserAction {
 		}
 		//判断是否提交表单
 		if(!IS_POST){
-			$this->assign("diaoyan",$diaoyan);
+			$this->assign("options",$options);
+			$this->assign("tiku",$tiku);
 			$this->display();//显示视图
 		}else{
 			
