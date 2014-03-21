@@ -6,25 +6,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
-<title>调研活动标题</title>
+<title>{pigcms:$diaoyan.title}</title>
 <link type="text/css" rel="stylesheet" href="__PUBLIC__/wap/diaoyan/examine.css">
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js"></script>
-<script type="text/javascript">
-	$(function(){
-				$('.option').click(function(){
-			if($(this).attr('sel')=='sel'){
-				$(this).find('img').eq(0).show();
-				$(this).find('img').eq(1).hide();
-				$(this).attr('sel','0');
-			}else{
-				$(this).find('img').eq(0).hide();
-				$(this).find('img').eq(1).show();
-				$(this).attr('sel','sel');
-			}			
-		});		
-				
-	});
-</script>
 </head>
 <body style="background-color: #ffb100;">
 <div class="wrapper">
@@ -33,16 +17,14 @@
 	<div class="content-w1">
 		<div class="content-w2">
 			<div class="content">
-				<div class="title">微调研活动开始啦【所有设置为演示版，请修改】</div>
+				<div class="title">{pigcms:$diaoyan.title}</div>
 				<img class="connect" src="__PUBLIC__/wap/diaoyan/connect.png">
-				<div class="desc-cont">微调研活动开始啦！</div>
-				<a class="next-btn" href="wdystart-2.html" style="text-decoration:none;">马上开始</a>
+				<div class="desc-cont">{pigcms:$diaoyan.desc}</div>
+				<a class="next-btn" href="{pigcms::U('questions',array('wecha_id'=>$wecha_id,'wxsign'=>$wxsign,'token'=>$token,'wxref'=>'mp.weixin.qq.com'))}" style="text-decoration:none;">马上开始</a>
 			</div>
 		</div>
 	</div>
- 	<p class="page-url">
-		<a href="http://yyuc.com/" target="_blank" class="page-url-link"></a>
-	</p>
+ 	
 </div>
 </body>
 </html>
