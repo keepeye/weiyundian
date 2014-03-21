@@ -160,7 +160,7 @@ class DiaoyanAction extends UserAction {
 		if(!$id){
 			$this->error("删除失败[01]");
 		}
-		$diaoyan = M('Diaoyan')->where(array("token"=>$this->_token))->find();
+		$diaoyan = M('Diaoyan')->where(array("token"=>$this->_token,"id"=>$id))->find();
 		if(!$diaoyan){
 			$this->error("删除失败，活动不存在[02]");
 		}
@@ -169,7 +169,6 @@ class DiaoyanAction extends UserAction {
 		$tiku_ids = M('DiaoyanTiku')->where(array("token"=>$this->_token,"diaoyan_id"=>$id))->getField("id",true);
 		M('DiaoyanTiku')->where(array("token"=>$this->_token,"diaoyan_id"=>$id))->delete();
 		//删除选项
-		dump($tiku_ids);
 		M('DiaoyanTikuOption')->where(array("tiku_id"=>array("in",$tiku_ids)))->delete();
 		//删除回答记录
 		M('DiaoyanRecord')->where(array("tiku_id"=>array("in",$tiku_ids)))->delete();
@@ -177,5 +176,17 @@ class DiaoyanAction extends UserAction {
 		D('Keyword')->deleteRecord($id,$this->_token,"Diaoyan");
 		$this->success("操作完成");
 
+	}
+	//删除题库
+	function delQuestion(){
+		$id = I('id','0','intval');
+		if(!$id){
+			$this->error("删除失败[01]");
+		}
+		M('DiaoyanTiku')->where(array("token"=>$this->_token,"id"=>$id))->delete();//删除题库
+		M('DiaoyanTikuOption')->where(array("tiku_id"=>$id))->delete();//删除选项
+		//删除回答记录
+		M('DiaoyanRecord')->where(array("tiku_id"=>$id))->delete();
+		$this->success("操作玩完成");
 	}
 }
