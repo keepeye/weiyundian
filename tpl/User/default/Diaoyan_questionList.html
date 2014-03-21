@@ -29,7 +29,7 @@
 				<TD>{pigcms:$list.title}</TD>                 
 				<TD><if condition="$list.type eq 1">多选<else/>单选</if></TD>
 				<TD class="norightborder">
-					<a href="{pigcms::U('setQuestion',array('id'=>$list['id'],array('diaoyan_id'=>$diaoyan['id'])))}">修改</a> 
+					<a href="{pigcms::U('setQuestion',array('id'=>$list['id'],'diaoyan_id'=>$diaoyan['id']))}">修改</a> 
 					<a href="{pigcms::U('delQuestion',array('id'=>$list['id']))}">删除</a>
 				 </TD>
 		  </TR>
