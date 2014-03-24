@@ -47,7 +47,7 @@ class DiaoyanAction extends UserAction {
 			$this->display();//显示视图
 		}else{
 			
-			$_POST['token'] = $this->_token;//将token添加到表单数据中，避免丢失
+			$_POST['token'] = $this->_token;//将token添加到表单数据中，避免丢失 
 			$_POST['id'] = $id;//同上
 			$_POST['end_time'] = strtotime($_POST['end_time']);
 			if(M('Diaoyan')->create()){
