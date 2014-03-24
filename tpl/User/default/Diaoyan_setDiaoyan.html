@@ -76,7 +76,7 @@ $(function(){
     $("#activity_module").change(function(){
       var module_name = $(this).val();//模块名
       if(module_name == ""){
-        $("#activity_module_id").html("");
+        $("#activity_module_id").html("").val("");
       }
       $.ajax({
         url:"{pigcms::U('getActivity')}",
@@ -87,7 +87,7 @@ $(function(){
         },
         success:function(res){
           if(res.status == "1"){
-            $("#activity_module_id").html("").val(0);
+            $("#activity_module_id").html("");
             $.each(res.data,function(i,v){
               $("#activity_module_id").append("<option value='"+v.id+"'>"+v.title+"</option>");
             })
