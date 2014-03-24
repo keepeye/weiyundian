@@ -177,7 +177,8 @@ class SelfformAction extends UserAction{
 		$options=array(
 		array('value'=>'','text'=>'选择常用输入限制'),
 		array('value'=>'/^[A-Za-z]+$/','text'=>'英文大小写字符'),
-		array('value'=>'/^[\x{4e00}-\x{9fa5}]+$/u','text'=>'纯中文'),
+		//array('value'=>'/^[\x{4e00}-\x{9fa5}]+$/u','text'=>'纯中文'),
+		array('value'=>'/^[\u4e00-\u9fa5]+$/','text'=>'纯中文'),
 		array('value'=>'/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/','text'=>'邮箱'),
 		array('value'=>'/^[1-9]\d*|0$/','text'=>'0或正整数'),
 		array('value'=>'/^[0-9]{1,30}$/','text'=>'正整数'),
