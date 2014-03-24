@@ -36,6 +36,13 @@ class DiaoyanAction extends BaseAction {
 	//活动入口
 	function index(){
 		$id = I('id','0','intval');//获取活动id
+		$fromuser = I('fromuser','');//获取推广用户
+		if(!empty($fromuser)){
+			$fromuid = encrypt($fromuser,"D",C('safe_key'));//解密字符串
+			//给fromuid的用户增加一次抽奖机会
+		}
+		//生成当前用户的fromuser
+		$this->assign("fromuser",rawurlencode(encrypt($this->wecha_id,"E",C('safe_key'))));
 		$diaoyan = M('Diaoyan')->where(array("token"=>$this->token,"id"=>$id))->find();//查询活动信息
 		if(!$diaoyan){
 			exit("页面不存在404");
