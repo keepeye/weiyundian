@@ -147,7 +147,7 @@ function tgSubmit(){
 	</if>
 	<if condition="$item['regex'] neq ''">
 	var patrn = {pigcms:$item['regex']};
-	if (!patrn.exec($.trim({pigcms:$item['fieldname']}))) {
+	if (!patrn.test($.trim({pigcms:$item['fieldname']}))) {
 		showTip('{pigcms:$item['errortip']}')
 		return false;
 	}
