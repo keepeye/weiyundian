@@ -76,7 +76,8 @@ $(function(){
     $("#activity_module").change(function(){
       var module_name = $(this).val();//模块名
       if(module_name == ""){
-        $("#activity_module_id").html("").val("");
+        $("#activity_module_id").val("0");
+        $("#activity_module_id").html("");
       }
       $.ajax({
         url:"{pigcms::U('getActivity')}",
