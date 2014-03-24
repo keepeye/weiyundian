@@ -39,7 +39,7 @@ class DiaoyanAction extends BaseAction {
 		$fromuser = I('fromuser','');//获取推广用户
 		if(!empty($fromuser)){
 			$fromuid = encrypt($fromuser,"D",C('safe_key'));//解密字符串
-			echo $fromuid;
+			
 			//给fromuid的用户增加一次抽奖机会
 		}
 		//生成当前用户的fromuser
