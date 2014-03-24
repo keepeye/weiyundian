@@ -50,7 +50,7 @@
 <tr>
 <th valign="top"><span class="red">*</span>完成后活动：</th>
 <td>
-  <select name="activity_module">
+  <select name="activity_module" id="activity_module">
     <option value="">--无活动--</option>
     <option value="dazhuanpan">大转盘</option>
   </select>
@@ -68,4 +68,11 @@
  </div> 
 </div>
 </form>
+<script type="text/javascript">
+$(function(){
+    $("#activity_module").change(function(){
+      alert($(this).val())
+    })
+})
+</script>
 <include file="Public:footer"/> 
