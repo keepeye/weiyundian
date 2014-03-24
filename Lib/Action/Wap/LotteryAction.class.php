@@ -71,7 +71,10 @@ class LotteryAction extends BaseAction{
 			$redata->data(array('usenums'=>$Lottery['canrqnums']))->where($where)->save();//距离上次抽奖时间已超过时间限制，抽奖计数自动补满或重置，每日抽奖次数不积累
 			$record['usenums'] = $Lottery['canrqnums'];//次数重置，用于接下来的流程
 		}
-		$data = array_merge($data,$record);//合并数据
+		$data['wecha_id']	= $record['wecha_id'];		
+		$data['lid']		= $record['lid'];
+		$data['rid']		= $record['id'];
+		$data['usenums'] 	= $record['usenums'];
 		// 1. 中过奖金	
 		if ($record['islottery'] == 1) {				
 			$data['end'] = 5;
