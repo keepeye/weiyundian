@@ -17,10 +17,56 @@ class LotteryAction extends BaseAction{
 		//
 		$id 		= I('request.id');//活动id
 		$Lottery = M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->find();//查询活动信息
-
-		//检测活动状态
-		$data['token'] = $token;
-		$data = array_merge($data,$Lottery);//模板数据
+		
+		$redata		= M('Lottery_record');
+		$where 		= array('token'=>$token,'wecha_id'=>$wecha_id,'lid'=>$id);
+		$record 	= $redata->where($where)->find();		
+		if($record == Null){
+			$redata->add($where);
+			$record = $redata->where($where)->find();
+			//浏览次数+1
+			M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->setInc('click',1);
+		}
+		
+		//检测抽奖时间和抽奖次数，是否将抽奖次数归零
+		// if($Lottery['interval'] > 0 && (time()-$record['time']) > $Lottery['interval']){
+		// 	$redata->data(array('usenums'=>'0'))->where($where)->save();//距离上次抽奖时间已超过时间限制，次数归零
+		// 	$record['usenums'] = 0;//次数归零，下面用于判断
+		// }
+		// 按自然天计算
+		if(time()>$record['time'] && date("d",time())!=date("d",$record['time'])){
+			$redata->data(array('usenums'=>'0'))->where($where)->save();//距离上次抽奖时间已超过时间限制，次数归零
+			$record['usenums'] = 0;//次数归零，下面用于判断
+		}
+		//基本赋值
+		$data['token'] 		= $token;
+		$data['wecha_id']	= $record['wecha_id'];		
+		$data['lid']		= $record['lid'];
+		$data['rid']		= $record['id'];
+		$data['usenums'] 	= $record['usenums'];
+		$data['canrqnums']	= $Lottery['canrqnums'];//抽奖次数限制
+		$data['interval']	= $Lottery['interval'];//抽奖时间限制
+		$data['fist'] 		= $Lottery['fist'];
+		$data['second'] 	= $Lottery['second'];
+		$data['third'] 		= $Lottery['third'];
+		$data['four'] 		= $Lottery['four'];
+		$data['five'] 		= $Lottery['five'];
+		$data['six'] 		= $Lottery['six'];
+		$data['fistnums'] 	= $Lottery['fistnums'];
+		$data['secondnums'] = $Lottery['secondnums'];
+		$data['thirdnums'] 	= $Lottery['thirdnums'];	
+		$data['fournums'] 	= $Lottery['fournums'];
+		$data['fivenums'] 	= $Lottery['fivenums'];
+		$data['sixnums'] 	= $Lottery['sixnums'];
+		$data['info']		= $Lottery['info'];
+		$data['txt']		= $Lottery['txt'];
+		$data['sttxt']		= $Lottery['sttxt'];		
+		$data['title']		= $Lottery['title'];
+		$data['statdate']	= $Lottery['statdate'];
+		$data['enddate']	= $Lottery['enddate'];		
+		$data['animpic'] = $Lottery['animpic'];
+		$data['hitangle'] = $Lottery['hitangle'];
+		$data['lostangle'] = $Lottery['lostangle'];
 		//1.活动已关闭
 		if (empty($Lottery)) {
 			 $data['end'] = 1;
@@ -29,7 +75,6 @@ class LotteryAction extends BaseAction{
 			 $this->display();
 			 exit();
 		}
-
 		//活动尚未开始
 		if($Lottery['statdate'] > time()){
 			$data['end'] = 1;
@@ -47,31 +92,6 @@ class LotteryAction extends BaseAction{
 			 $this->display();
 			 exit();
 		}
-		//获取用户抽奖记录
-		$redata		= M('Lottery_record');
-		$where 		= array('token'=>$token,'wecha_id'=>$wecha_id,'lid'=>$id);//构建查询条件
-		$record 	= $redata->where($where)->find();//查询记录
-		//初始化记录
-		if(empty($record)){
-			$data1 = $where;
-			$data1['usenums'] = $Lottery['canrqnums'];//从用户端计数，先将抽奖次数一次性赋予用户。
-			$redata->add($data1);
-			unset($data1);
-			$record = $redata->where($where)->find();//用户抽奖记录
-			//浏览次数+1
-			//M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->setInc('click',1);
-		}
-		//检测抽奖时间和抽奖次数，是否将抽奖次数归零
-		// if($Lottery['interval'] > 0 && (time()-$record['time']) > $Lottery['interval']){
-		// 	$redata->data(array('usenums'=>'0'))->where($where)->save();//距离上次抽奖时间已超过时间限制，次数归零
-		// 	$record['usenums'] = 0;//次数归零，下面用于判断
-		// }
-		// 按自然天计算
-		if($Lottery['interval'] > 0 && time()>$record['time'] && date("d",time())!=date("d",$record['time'])){
-			$redata->data(array('usenums'=>$Lottery['canrqnums']))->where($where)->save();//距离上次抽奖时间已超过时间限制，抽奖计数自动补满或重置，每日抽奖次数不积累
-			$record['usenums'] = $Lottery['canrqnums'];//次数重置，用于接下来的流程
-		}
-		$data = array_merge($data,$record);//合并数据
 		// 1. 中过奖金	
 		if ($record['islottery'] == 1) {				
 			$data['end'] = 5;
@@ -260,8 +280,8 @@ class LotteryAction extends BaseAction{
 	
 	public function getajax(){	
 		
-		$token 		=	I('token');
-		$wecha_id	=	I('oneid');
+		$token 		=	$this->_post('token');
+		$wecha_id	=	$this->_post('oneid');
 		$wxsign = I('wxsign');
 		//验证合法性
 		if($wecha_id == "" || md5($token.$wecha_id.C('safe_key'))!=$wxsign){
@@ -269,8 +289,8 @@ class LotteryAction extends BaseAction{
 			exit;
 		}
 
-		$id 		=	I('id');//lid
-		$rid 		= 	I('rid');//id	
+		$id 		=	$this->_post('id');//lid
+		$rid 		= 	$this->_post('rid');//id	
 		$redata 	=	M('Lottery_record');
 		$where 		= 	array('token'=>$token,'wecha_id'=>$wecha_id,'lid'=>$id);
 		$record 	=	$redata->where($where)->find();	//用户抽奖记录
@@ -293,9 +313,9 @@ class LotteryAction extends BaseAction{
 		
 		
 		// 2. 抽奖次数是否达到			
-		//$Lottery 	= M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->find();
+		$Lottery 	= M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->find();
 		
-		if ($record['usenums'] <= 0 ) {
+		if ($record['usenums'] >= $Lottery['canrqnums'] ) {
 			$norun 	 =  2;
 			$usenums =  $record['usenums'];	
 			$canrqnums=	$Lottery['canrqnums'];
@@ -314,11 +334,10 @@ class LotteryAction extends BaseAction{
 			if($record['time'] == 0){
 				M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->setInc('joinnum',1);//参与人数+1
 			}
-			$newusenums = max($record['usenums']-1,0);
-			//每次请求先减少 使用次数 usenums 
+			//每次请求先增加 使用次数 usenums 
 			$newdata = array(
 				'time'=>time(),
-				'usenums'=>$newusenums
+				'usenums'=>array('exp','`usenums`+1')
 			);
 			$map = array('id'=>$rid,'wecha_id'=>$wecha_id,'lid'=>$id);
 			
@@ -335,7 +354,7 @@ class LotteryAction extends BaseAction{
 				$ajaxData = array(
 						"success"=>1,
 						"prizetype"=>$prizetype,
-						"usenums"=>$newusenums
+						"usenums"=>$record['usenums']+1
 					);
 				
 			}else{
@@ -343,7 +362,7 @@ class LotteryAction extends BaseAction{
 				$ajaxData = array(
 						"success"=>"0",
 						"prizetype"=>"",
-						"usenums"=>$newusenums
+						"usenums"=>$record['usenums']+1
 					);
 			}
 			M('Lottery_record')->where($map)->data($newdata)->save();//更新抽奖记录、若中奖则写入sn号码		
