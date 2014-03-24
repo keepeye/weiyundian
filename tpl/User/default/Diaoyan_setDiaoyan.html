@@ -43,15 +43,19 @@
 活动说明，1000字以内. </td>
 </tr>
 <tr>
-<th valign="top"><span class="red">*</span>用户提交后的提示信息：</th>
+<th valign="top"><span class="red">*</span>完成提示：</th>
 <td><textarea class="px"  name="success_info" style="width: 400px; height: 125px;">{pigcms:$diaoyan.success_info}</textarea>
 活动说明，1000字以内. </td>
 </tr>
 <tr>
-<th valign="top"><span class="red">*</span>提交后活动：</th>
+<th valign="top"><span class="red">*</span>完成后活动：</th>
 <td>
   <select name="activity_module">
+    <option value="">--无活动--</option>
     <option value="dazhuanpan">大转盘</option>
+  </select>
+  <select name="activity_module_id">
+    <option value="0">------</option>
   </select>
 </td>
 </tr>
