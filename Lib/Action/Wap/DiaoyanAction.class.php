@@ -83,6 +83,13 @@ class DiaoyanAction extends BaseAction {
 	function submit(){
 		if(IS_POST){
 			$diaoyan_id = I('diaoyan_id','0','intval');
+			//查询活动信息
+			$diaoyan = M('Diaoyan')->where(array("token"=>$this->token,"id"=>$diaoyan_id))->find();//查询活动信息
+			if(!$diaoyan){
+				exit("页面不存在404");
+			}
+			$this->assign("diaoyan",$diaoyan);
+			//查询参与记录
 			if(M('DiaoyanRecord')->where(array("diaoyan_id"=>$diaoyan_id,"wecha_id"=>$this->wecha_id))->find()){
 				$this->error("已参加过");
 			}
@@ -112,8 +119,10 @@ class DiaoyanAction extends BaseAction {
 					M('DiaoyanRecord')->add($data);
 				}
 			}
+			//提交表单后生成活动链接
 			$dazhuanpan = U('Wap/Lottery/index',array('id'=>47,'token'=>$this->token,'wecha_id'=>$this->wecha_id,"wxsign"=>md5($this->token.$this->wecha_id.C('safe_key'))));
-			$this->success("恭喜你获得一次大转盘抽奖机会，点击链接进入：<a href='$dazhuanpan'>大转盘活动开始啦</a>");
+			//返回提交信息
+			$this->success($diaoyan['success_info']);
 		}else{
 			$this->error("非法提交[04]");
 		}
