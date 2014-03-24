@@ -263,13 +263,13 @@ $(function() {
     $("#inner").click(function() {
 
         if (running) return;
-        if (count >= {pigcms:$Dazpan.canrqnums}) {
-            alert("Oh~No~您已经抽了{pigcms:$Dazpan.canrqnums} 次奖,不能再抽了,下次再来吧!");
+        if (count >= {pigcms:$Dazpan.usenums|default='0'}) {
+            alert("Oh~No~您的抽奖机会用完了,不能再抽了,下次再来吧!");
             return
         }
 
         if (prize != null) {
-            alert("亲，你不能再参加本次活动了喔！下次再来吧^_^");
+            alert("亲，你已经中奖了，不能再参加本次活动了喔！下次再来吧^_^");
             return
         }
 
