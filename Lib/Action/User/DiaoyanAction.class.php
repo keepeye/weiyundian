@@ -17,15 +17,15 @@ class DiaoyanAction extends UserAction {
 	//获取活动列表
 	function getActivity(){
 		$module_name = I('module_name','');//模块名
-		$module_ids = array();//初始化活动主表id
+		$data = array();//初始化活动主表id
 		switch($module_name){
 			case "dazhuanpan":
-				$module_ids=M('Lottery')->where(array("type"=>1,"token"=>$this->_token))->getField("id",true);
+				$data=M('Lottery')->field("id,title")->where(array("type"=>1,"token"=>$this->_token))->select();
 				break;
 			default:
 		}
-		if(!empty($module_ids)){
-			$this->ajaxReturn(array("status"=>1,"data"=>array("module_name"=>$module_name,"module_ids"=>$module_ids),"info"=>"ok"));
+		if(!empty($data)){
+			$this->ajaxReturn(array("status"=>1,"data"=>$data,"info"=>"ok"));
 		}else{
 			$this->ajaxReturn(array("status"=>0,"data"=>"","info"=>"nothing"));
 		}

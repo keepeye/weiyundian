@@ -54,7 +54,7 @@
     <option value="">--无活动--</option>
     <option value="dazhuanpan">大转盘</option>
   </select>
-  <select name="activity_module_id">
+  <select name="activity_module_id" id="activity_module_id">
     <option value="0">------</option>
   </select>
 </td>
@@ -80,7 +80,11 @@ $(function(){
           alert("ajax请求失败，请重试");
         },
         success:function(res){
-          alert(res.data)
+          if(res.status == "1"){
+            $.each(res.data,function(i,v){
+              $("#activity_module_id").append("<option value='"+v.id+"'>"+v.title+"</option>");
+            })
+          }
         }
       })
     })
