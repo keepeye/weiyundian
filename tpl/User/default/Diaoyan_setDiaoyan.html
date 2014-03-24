@@ -71,7 +71,18 @@
 <script type="text/javascript">
 $(function(){
     $("#activity_module").change(function(){
-      alert($(this).val())
+      var module_name = $(this).val();//模块名
+      $.ajax({
+        url:"{pigcms::U('getActivity')}",
+        data:{module_name:module_name},
+        dataType:"json",
+        error:function(){
+          alert("ajax请求失败，请重试");
+        },
+        success:function(res){
+          alert(res.data)
+        }
+      })
     })
 })
 </script>
