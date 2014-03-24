@@ -87,7 +87,7 @@ $(function(){
         },
         success:function(res){
           if(res.status == "1"){
-            $("#activity_module_id").html("").val("");
+            $("#activity_module_id").html("").val(0);
             $.each(res.data,function(i,v){
               $("#activity_module_id").append("<option value='"+v.id+"'>"+v.title+"</option>");
             })
