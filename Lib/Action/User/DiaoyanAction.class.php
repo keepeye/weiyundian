@@ -180,6 +180,12 @@ class DiaoyanAction extends UserAction {
 		}
 		//读取题库列表
 		$tiku_list = M('DiaoyanTiku')->where(array("diaoyan_id"=>$diaoyan_id,"token"=>$this->_token))->select();
+		//读取选项表
+		$option_list_re = M('DiaoyanTikuOption')->field("id,tiku_id,value")->where(array("diaoyan_id"=>$diaoyan_id,"token"=>$this->_token))->select();
+		$option_list = array();
+		foreach($option_list_re as $v){
+			$option_list[$v['tiku_id']][]=$v;
+		}
 		//按tiku_id计算总投票次数
 		$tiku_cc_re = M('DiaoyanRecord')->field("tiku_id,COUNT(id) as cc")->where(array("diaoyan_id"=>$diaoyan_id))->group("tiku_id")->select();
 		$tiku_cc = array();
