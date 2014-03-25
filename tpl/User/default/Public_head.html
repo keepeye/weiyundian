@@ -207,17 +207,12 @@
 								</div>
 							</ul>
 
-							<ul>
-								<div class="nav-header">微调研</div>
-
-								<div class="toggle">
-									<li   <if condition="MODULE_NAME eq 'Diaoyan'">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Diaoyan/index')}">微问卷</a></li>
-								</div>
-							</ul>
+							
 
 							<ul>
 								<div class="nav-header">微推广</div>
 								<div class="toggle">
+									<li   <if condition="MODULE_NAME eq 'Diaoyan'">class="selected"<else/>class="subCatalogList"</if> > <a href="{pigcms::U('Diaoyan/index')}">微调研</a></li>
 									<li   <if condition="MODULE_NAME eq 'Lottery'">class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Lottery/index',array('token'=>$token))}">幸运大转盘</a></li>
 									<li   <if condition="MODULE_NAME eq 'Coupon'">class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Coupon/index',array('token'=>$token))}">优惠券</a></li>
 									<li   <if condition="MODULE_NAME eq 'Guajiang'">class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Guajiang/index',array('token'=>$token))}">刮刮卡</a></li>
