@@ -14,7 +14,7 @@
 			<?php foreach($option_list[$tiku['id']] as $option): ?>
 			<tr>
 				<td>{pigcms:$option.value}</td>
-				<td><?php echo $option_cc[$option['id']];?></td>
+				<td>{pigcms:$option_cc[$option['id']]|defualt=0}</td>
 			</tr>
 			<?php endforeach;?>
 		</table>
