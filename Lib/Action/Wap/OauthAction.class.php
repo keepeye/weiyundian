@@ -15,7 +15,7 @@ class OauthAction extends Action{
 
 		cookie("appid",$appsec['appid'],300);
 		cookie("secret",$appsec['appsecret'],300);
-
+		cookie("token",$token,300);
 		$redirect_uri = C('site_url').'/'.U("Wap/Oauth/auth");//回调页面
 
 		$redirect_uri = rawurlencode($redirect_uri);//urlencode处理
@@ -36,7 +36,19 @@ class OauthAction extends Action{
 		curl_close($ch);
 		$data = json_decode($data,true);
 		$referer = cookie("referer");
+		$token = cookie('token');
 		$this->clearCookie();
+		if(isset($data['errmsg']) || !$data['openid']){
+			exit("授权失败");
+		}
+		//初始化微信用户资料
+		if(!empty($token)){
+			$wecha_user = M('WechaUser')->where(array("token"=>$token,"wecha_id"=>$data['openid']))->find();
+			if(!$wecha_user){
+				M('WechaUser')->add(array("token"=>$token,"wecha_id"=>$data['openid']));
+			}
+		}
+		
 		cookie("wecha_id",$data['openid'],$data['expires_in']);//用cookie保存用户会话信息
 		redirect($referer);
 	}
@@ -46,5 +58,6 @@ class OauthAction extends Action{
 		cookie('referer',null);
 		cookie('appid',null);
 		cookie('secret',null);
+		cookie('token',null);
 	}
 }
