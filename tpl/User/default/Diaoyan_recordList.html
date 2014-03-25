@@ -8,9 +8,11 @@
 	<div class="msgWrap">
 	<?php foreach($tiku_list as $tiku): ?>
 		<table class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+			<thead>
 			<tr>
 				<th colspan="2">{pigcms:$tiku.title}  总数：<?php echo $tiku_cc[$tiku['id']];?></th>
 			</tr>
+			</thead>
 			<?php foreach($option_list[$tiku['id']] as $option): ?>
 			<tr>
 				<td>{pigcms:$option.value}</td>
