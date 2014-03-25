@@ -6,15 +6,20 @@
 	</div>
 
 	<div class="msgWrap">
-
-
-
-
-
+	<?php foreach($tiku_list as $tiku): ?>
+		<table>
+			<tr>
+				<th colspan="2">{pigcms:$tiku.title}  总数：<?php echo $tiku_cc[$tiku['id']];?></th>
+			</tr>
+			<?php foreach($option_list[$tiku['id']] as $option): ?>
+			<tr>
+				<td>{pigcms:$option.value}</td>
+				<td><?php echo $option_cc[$option['id']];?></td>
+			</tr>
+			<?php endforeach;?>
+		</table>
+	<?php endforeach;?>
 	</div>
-
-
-
 </div>
 
 <div class="clr"></div>
