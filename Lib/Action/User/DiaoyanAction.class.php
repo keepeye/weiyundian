@@ -178,14 +178,17 @@ class DiaoyanAction extends UserAction {
 		if(!$diaoyan){
 			$this->error("活动不存在");
 		}
+		$this->assign("diaoyan",$diaoyan);
 		//读取题库列表
 		$tiku_list = M('DiaoyanTiku')->where(array("diaoyan_id"=>$diaoyan_id,"token"=>$this->_token))->select();
+		$this->assign("tiku_list",$tiku_list);
 		//读取选项表
 		$option_list_re = M('DiaoyanTikuOption')->field("id,tiku_id,value")->where(array("diaoyan_id"=>$diaoyan_id,"token"=>$this->_token))->select();
 		$option_list = array();
 		foreach($option_list_re as $v){
 			$option_list[$v['tiku_id']][]=$v;
 		}
+		$this->assign("option_list",$option_list);
 		//按tiku_id计算总投票次数
 		$tiku_cc_re = M('DiaoyanRecord')->field("tiku_id,COUNT(id) as cc")->where(array("diaoyan_id"=>$diaoyan_id))->group("tiku_id")->select();
 		$tiku_cc = array();
@@ -193,6 +196,7 @@ class DiaoyanAction extends UserAction {
 			$tiku_cc[$v['tiku_id']]=$v['cc'];
 		}
 		unset($v,$tiku_cc_re);
+		$this->assign("tiku_cc",$tiku_cc);
 		//按option_id统计次数
 		$option_cc_re = M('DiaoyanRecord')->field("option_id,COUNT(id) as cc")->where(array("diaoyan_id"=>$diaoyan_id))->group("option_id")->select();
 		$option_cc = array();
@@ -200,7 +204,8 @@ class DiaoyanAction extends UserAction {
 			$option_cc[$v['option_id']]=$v['cc'];
 		}
 		unset($v,$option_cc_re);
-		dump($option_cc);
+		$this->assign("option_cc",$option_cc);
+		$this->display();
 	}
 
 
