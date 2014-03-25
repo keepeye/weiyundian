@@ -208,6 +208,10 @@
 	<td><input class="radio" type="radio" name="displayjpnums" value="1"  <if condition="$vo['displayjpnums'] eq 1" >checked</if> >显示  <input class="radio" type="radio" name="displayjpnums" value="0"  <if condition="$vo['displayjpnums'] eq 0" >checked</if>>不显</td> 
 </TR> 
 <TR>
+  <th valign="top">推广奖励：</th>
+  <td><input class="radio" type="radio" name="spread" value="1"  <if condition="$vo['spread'] eq 1" >checked</if> >开启  <input class="radio" type="radio" name="spread" value="0"  <if condition="$vo['spread'] eq 0" >checked</if>>关闭  用户转发后，别人点进来会给该用户增加一次额外的抽奖机会。</td> 
+</TR> 
+<TR>
 <th>&nbsp;</th>
 <td><button type="submit" class="btnGreen" >保存</button>　<a href=""  class="btnGray vm">取消</a>　<span class="red">请确认功能管理已开启大转盘功能</span></td>
 </TBODY>
