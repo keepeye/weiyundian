@@ -77,18 +77,19 @@ uploadJson  : "/index.php?m=Image&a=upload",
 		<input type="input" class="px" id="enddate" value="<if condition="$vo['enddate'] neq ''">{pigcms:$vo.enddate|date="Y-m-d H:i:s",###}</if>" name="enddate"  onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"  /> 
 	</td>
 </TR>
-<TR>
-<th valign="top">活动说明：</th>
-<td width=400><textarea  class="px" id="info" name="info"  style="width:400px; height:125px" ><if condition="$vo['info'] eq ''">亲，请点击进入大转盘抽奖活动页面，祝您好运哦！<else/>{pigcms:$vo.info}</if></textarea>
-    <br />换行请输入&lt;br&gt;
- </td>
-</TR>
+
 <TR>
 <th><span class="red">*</span>重复抽奖回复：</th>
 <td><input type="input" class="px" id="aginfo" value="<if condition="$vo['aginfo'] eq ''">亲，继续努力哦！<else/>{pigcms:$vo.aginfo}</if>" name="aginfo" style="width:400px" />
     <br />备注：如果设置只允许抽一次奖的，请写：你已经玩过了，下次再来。
     <br />如果设置可多次抽奖，请写：亲，继续努力哦！
 </td>
+</TR>
+<TR>
+<th valign="top">活动说明：</th>
+<td><textarea  class="px" id="info" name="info"  style="width:400px; height:125px" ><if condition="$vo['info'] eq ''">亲，请点击进入大转盘抽奖活动页面，祝您好运哦！<else/>{pigcms:$vo.info}</if></textarea>
+    <br />换行请输入&lt;br&gt;
+ </td>
 </TR>
 </TBODY>
 </TABLE>
