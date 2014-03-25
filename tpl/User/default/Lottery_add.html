@@ -33,7 +33,7 @@ uploadJson  : "/index.php?m=Image&a=upload",
 <tr>
 <th valign="top"><span class="red">*</span>活动开始图片：</th>
 <TD>
-    <img class="upload_image" src="{pigcms:$vo.starpicurl}" style="display: none;max-width:100%;" /><br /><br />
+    <img class="upload_image" src="{pigcms:$vo.starpicurl}" style="display: none;max-width:300px;" /><br /><br />
     <input type="hidden" class="upload_image_filed" id="keyword" value="{pigcms:$vo.starpicurl}" name="starpicurl" data-thumb="720,400"/>
     <input type="button" class="btnGrayS upload_image_button" value="添加图片" data-ishas="false" />  
           
@@ -42,18 +42,16 @@ uploadJson  : "/index.php?m=Image&a=upload",
   </TD>
 </tr>
 <tr>
-<th>转盘设置</th>
-<td>
-<img class="upload_image" src="<empty name='vo.animpic'>__ROOT__/tpl/Wap/default/common/css/guajiang/images/activity-lottery-5.png<else/>{pigcms:$vo.animpic}</empty>" style="display: none;max-width:300px;" /><br /><br />
-          <input type="hidden" class="upload_image_filed"  value="<empty name='vo.animpic'>__ROOT__/tpl/Wap/default/common/css/guajiang/images/activity-lottery-5.png<else/>{pigcms:$vo.animpic}</empty>" name="animpic" data-thumb="480,480"/>
-          <input type="button" class="btnGrayS upload_image_button" value="添加图片" data-ishas="false" />
-      图片尺寸480*480 左右
-      <br/><br/>
-      中奖角度：<input type="input" name="hitangle" class="px" id="title" value="6, 66, 126,186,246,306"  style="width:200px" /><br/><br/>
-      空门角度：<input type="input" name='lostangle' class="px" id="title" value="36, 96, 156, 216, 276,336" style="width:200px" />
-      <br/>
-      转盘设置正在开发中
-</td>
+  <th>转盘设置</th>
+  <td>
+    <img class="upload_image" src="<empty name='vo.animpic'>__ROOT__/tpl/Wap/default/common/css/guajiang/images/activity-lottery-5.png<else/>{pigcms:$vo.animpic}</empty>" style="display: none;max-width:300px;" /><br /><br />
+    <input type="hidden" class="upload_image_filed"  value="<empty name='vo.animpic'>__ROOT__/tpl/Wap/default/common/css/guajiang/images/activity-lottery-5.png<else/>{pigcms:$vo.animpic}</empty>" name="animpic" data-thumb="480,480"/>
+    <input type="button" class="btnGrayS upload_image_button" value="添加图片" data-ishas="false" />
+    图片尺寸480*480 左右
+    <br/><br/>
+    中奖角度：<input type="input" name="hitangle" class="px" id="title" value="6, 66, 126,186,246,306"  style="width:200px" /><br/><br/>
+    空门角度：<input type="input" name='lostangle' class="px" id="title" value="36, 96, 156, 216, 276,336" style="width:200px" />
+  </td>
 </tr>
 <TR>
   <th valign="top"><span class="red">*</span>活动名称：</th>
