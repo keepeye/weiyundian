@@ -489,7 +489,8 @@ class WeixinAction extends Action
                                     $picurl = $info['starpicurl'];
                                     $title  = $info['title'];
                                     $id     = $info['id'];
-                                    $info   = $info['info'];
+                                    //$info   = $info['info'];
+                                    $info   = $info['desc'];
                                 } else {
                                     $picurl = $info['endpicurl'];
                                     $title  = $info['endtite'];
