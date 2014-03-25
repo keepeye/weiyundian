@@ -33,9 +33,6 @@ class LotteryAction extends BaseAction{
 		$this->assign("token",$token);
 		$this->assign("wecha_id",$wecha_id);
 		$this->assign("wxsign",$wxsign);
-		
-		
-		
 
 		//检测活动状态
 		$data['token'] = $token;

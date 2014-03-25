@@ -42,6 +42,11 @@ class WeixinAction extends Action
 		//用户关注时事件推送
 	    if ('subscribe' == $data['Event']) 
 	    {
+            //用户入库
+            if(!M('WechaUser')->where(array("token"=>$this->token,"wecha_id"=>$data['FromUserName']))->find()){
+                M('WechaUser')->add(array("token"=>$this->token,"wecha_id"=>$data['FromUserName']));
+            }
+            
 		    $this->requestdata('follownum');
 		    $data = M('Areply')->field('home,keyword,content,status')->where(array(
 					    'token' => $this->token
