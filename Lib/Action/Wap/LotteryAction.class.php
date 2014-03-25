@@ -365,7 +365,7 @@ class LotteryAction extends BaseAction{
 			$data['sn'] = $sn = uniqid();//生成sn码
 			$data['phone'] 		= $this->_post('tel');
 			$data['wecha_name'] = $this->_post('wxname');
-
+			$data['idnumber'] = I("post.idnumber");
 			$where = array('lid'=>$lid,'wecha_id'=>$wechaid);
 			//检测奖项是否真实存在
 			$record = M('Lottery_record')->where($where)->find();
