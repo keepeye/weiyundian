@@ -7,10 +7,26 @@ class LotteryAction extends BaseAction{
 	public function index(){
 		
 		$agent = $_SERVER['HTTP_USER_AGENT']; 
+
 		//初始化用户信息
 		$this->token = $token		= I('token',I('get.token'));
 		$this->wecha_id = $wecha_id	= I('request.wecha_id');//获取wecha_id
 		$this->wxsign = $wxsign = I('wxsign',I('get.wxsign'));//获取加密字符串
+		$Lottery = M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->find();//为了处理推广信息，提前查询
+		//推广处理
+		$fromuser = I('fromuser','');//获取推广用户
+		if(!empty($fromuser) && !cookie("lottery_fromuid_".$Lottery['id']) && $Lottery['spread'] == "1"){
+			$fromuid = encrypt($fromuser,"D",C('safe_key'));//解密字符串
+			if($fromuid){
+				M('Lottery_record')->where(array("lid"=>$Lottery['id'],"token"=>$this->token,"wecha_id"=>$fromuid))->setInc("usenums");
+				cookie("lottery_fromuid_".$Lottery['id'],'1');
+			}
+			//给fromuid的用户增加一次抽奖机会
+		}
+		//生成当前用户的fromuser
+		$this->assign("fromuser",rawurlencode(encrypt($this->wecha_id,"E",C('safe_key'))));
+		
+		//检测当前访问的合法性
 		if($wecha_id == "" || md5($token.$wecha_id.C('safe_key'))!=$wxsign){
 			$this->redirect("Home/Adma/index?token=".$token);
 		}
@@ -19,7 +35,7 @@ class LotteryAction extends BaseAction{
 		$this->assign("wxsign",$wxsign);
 		//
 		$id 		= I('request.id');//活动id
-		$Lottery = M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->find();//查询活动信息
+		
 
 		//检测活动状态
 		$data['token'] = $token;
@@ -93,18 +109,7 @@ class LotteryAction extends BaseAction{
 		$data['On'] 		= 1;
 		$this->assign('Dazpan',$data);
 		//var_dump($data);exit();
-		//推广处理
-		$fromuser = I('fromuser','');//获取推广用户
-		if(!empty($fromuser) && !cookie("lottery_fromuid_".$Lottery['id']) && $Lottery['spread'] == "1"){
-			$fromuid = encrypt($fromuser,"D",C('safe_key'));//解密字符串
-			if($fromuid){
-				M('Lottery_record')->where(array("lid"=>$Lottery['id'],"token"=>$this->token,"wecha_id"=>$fromuid))->setInc("usenums");
-				cookie("lottery_fromuid_".$Lottery['id'],'1');
-			}
-			//给fromuid的用户增加一次抽奖机会
-		}
-		//生成当前用户的fromuser
-		$this->assign("fromuser",rawurlencode(encrypt($this->wecha_id,"E",C('safe_key'))));
+		
 		$this->display();
 	}
 	
