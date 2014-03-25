@@ -194,7 +194,7 @@ class DiaoyanAction extends UserAction {
 			$option_cc[$v['option_id']]=$v['cc'];
 		}
 		unset($v,$option_cc_re);
-		dump($tiku_cc);
+		dump($option_cc);
 	}
 
 
