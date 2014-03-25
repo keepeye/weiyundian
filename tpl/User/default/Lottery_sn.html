@@ -31,23 +31,21 @@
             <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
               <THEAD>
                 <TR style="text-align: center;">
-					<TH class="select">序号</TH>
+					
 					<TH>SN码(中奖号)</TH>
 					<TH>奖项</TH>
 					<TH>是否已发奖品</TH>
 					<TH>奖品发送时间</TH>
-					 
-					<TH>中奖者手机号</TH>
-					<TH>中奖者微信码</TH>
-					<TH  >中奖时间</TH>
-					<TH  >操作</TH>
+					<TH>中奖者信息</TH>
+					<TH>中奖时间</TH>
+					<TH>操作</TH>
                 </TR>
 				
               </THEAD>
               <TBODY>
 				<volist name="record" id="record">
 					 <TR style="line-height:30px;height: 43px;line-height: 59px;">
-						<td class="select">{pigcms:$i}</td>
+						
 						<td>{pigcms:$record.sn}</td>
 						<td>{pigcms:$record.prize}</td>
 						 <td>
@@ -55,8 +53,7 @@
             </td>
             <td><if condition="$record['sendtime'] eq 0"> <else/>{pigcms:$record.sendtime|date='Y-m-d H:i:s',###}</if>
             </td>
-						<td>{pigcms:$record.phone}</td>
-						<td>{pigcms:$record.wecha_name}</td>
+						<td>tel:{pigcms:$record.phone}<br/>{pigcms:$record.wecha_name}<br/>{pigcms:$record.idnumber}</td>
 						<td>{pigcms:$record.time|date='Y-m-d H:i:s',###}</td>
 						<td>
                <if condition="$record['sendstutas'] eq 0"> 
