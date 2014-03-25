@@ -169,7 +169,32 @@ class DiaoyanAction extends UserAction {
 
 	//报名记录
 	function recordList(){
-
+		$diaoyan_id = I('id',0,'intval');//获取活动id
+		if(!$diaoyan_id){
+			$this->error("非法id");
+		}
+		//读取调研信息
+		$diaoyan = M('Diaoyan')->where(array("token"=>$this->_token,"id"=>$diaoyan_id))->find();
+		if(!$diaoyan){
+			$this->error("活动不存在");
+		}
+		//读取题库列表
+		$tiku_list = M('DiaoyanTiku')->where(array("diaoyan_id"=>$diaoyan_id,"token"=>$this->_token))->select();
+		//按tiku_id计算总投票次数
+		$tiku_cc_re = M('DiaoyanRecord')->field("tiku_id,COUNT(id) as cc")->where(array("diaoyan_id"=>$diaoyan_id))->group("tiku_id")->select();
+		$tiku_cc = array();
+		foreach($tiku_cc_re as $v){
+			$tiku_cc[$v['tiku_id']]=$v['cc'];
+		}
+		unset($v,$tiku_cc_re);
+		//按option_id统计次数
+		$option_cc_re = M('DiaoyanRecord')->field("option_id,COUNT(id) as cc")->where(array("diaoyan_id"=>$diaoyan_id))->group("option_id")->select();
+		$option_cc = array();
+		foreach($option_cc_re as $v){
+			$option_cc[$v['option_id']]=$v['cc'];
+		}
+		unset($v,$option_cc_re);
+		dump($tiku_cc);
 	}
 
 
