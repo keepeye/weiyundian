@@ -7,7 +7,7 @@ class LotteryAction extends BaseAction{
 	public function index(){
 		
 		$agent = $_SERVER['HTTP_USER_AGENT']; 
-
+		$id = I('request.id');//活动id
 		//初始化用户信息
 		$this->token = $token		= I('token',I('get.token'));
 		$this->wecha_id = $wecha_id	= I('request.wecha_id');//获取wecha_id
@@ -25,7 +25,7 @@ class LotteryAction extends BaseAction{
 		}
 		//生成当前用户的fromuser
 		$this->assign("fromuser",rawurlencode(encrypt($this->wecha_id,"E",C('safe_key'))));
-		
+
 		//检测当前访问的合法性
 		if($wecha_id == "" || md5($token.$wecha_id.C('safe_key'))!=$wxsign){
 			$this->redirect("Home/Adma/index?token=".$token);
@@ -33,8 +33,8 @@ class LotteryAction extends BaseAction{
 		$this->assign("token",$token);
 		$this->assign("wecha_id",$wecha_id);
 		$this->assign("wxsign",$wxsign);
-		//
-		$id 		= I('request.id');//活动id
+		
+		
 		
 
 		//检测活动状态
