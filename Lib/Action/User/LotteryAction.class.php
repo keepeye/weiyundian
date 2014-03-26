@@ -217,7 +217,7 @@ class LotteryAction extends UserAction{
 			"lid"=>$id
 		);
 		$list = M("LotteryRecord")->field("wecha_id,sn,prize,time,sendtime,phone,wecha_name,idnumber")->where($map)->select();
-		$i=1;
+		$i=2;
 		foreach($list as $item){
 			$item['time'] = date("Y-m-d H:i:s",$item['time']);
 			$item['sendtime'] = date("Y-m-d H:i:s",$item['sendtime']);
