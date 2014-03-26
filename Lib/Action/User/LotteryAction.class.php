@@ -189,7 +189,9 @@ class LotteryAction extends UserAction{
 
 	//导出中奖记录到excel文件
 	function exportExcel(){
-		
+		import("@.ORG.phpexcel.Classes.PHPExcel",'',".php");
+		$objPHPExcel = new PHPExcel();
+		dump($objPHPExcel);
 	}
 }
 
