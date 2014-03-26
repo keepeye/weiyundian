@@ -47,14 +47,14 @@
     </tr>
   <?php endforeach;?>
 <?php endif;?>
-<div id="new_options">
+<span id="new_options">
 <?php for($i=$k>0?$k+2:1;$i<=2;$i++): ?>
 <tr>
   <th>选项{pigcms:$i}：</th>
   <td><input type="text" name="newoptions[]" class="px"></td>
 </tr>
 <?php endfor;?>
-</div>
+</span>
 <tr>
   <th></th>
   <td><a href="javascript:" onclick="add_new_option()">添加新选项+</a></td>
