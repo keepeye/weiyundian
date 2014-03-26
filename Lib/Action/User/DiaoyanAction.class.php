@@ -110,8 +110,8 @@ class DiaoyanAction extends UserAction {
 			$oldoptions = array_filter($_POST['oldoptions']);//旧选项
 			$newoptions = array_filter($_POST['newoptions']);//新选项
 			//进行一系列检测，时间关系就不使用模型自动验证了
-			if((count($oldoptions) + count($newoptions))>10){
-				$this->error("最多设置10个选项");
+			if((count($oldoptions) + count($newoptions))>100){
+				$this->error("最多设置100个选项");
 			}
 
 			if((count($oldoptions) + count($newoptions))<2){
