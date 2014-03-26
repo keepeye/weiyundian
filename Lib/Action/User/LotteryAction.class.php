@@ -222,14 +222,14 @@ class LotteryAction extends UserAction{
 			$item['time'] = $item['time']>0?date("Y-m-d H:i:s",$item['time']):"0";
 			$item['sendtime'] = $item['sendtime']>0?date("Y-m-d H:i:s",$item['sendtime']):"0";
 			$objPHPExcel->setActiveSheetIndex(0)
-		            ->setCellValue('A'.$i, $item['wecha_id'])
-		            ->setCellValue('B'.$i, $item['sn'])
-		            ->setCellValue('C'.$i, $item['prize'])
-		            ->setCellValue('D'.$i, $item['time'])
-		            ->setCellValue('E'.$i, $item['sendtime'])
-		            ->setCellValue('F'.$i, $item['phone'])
-		            ->setCellValue('G'.$i, $item['wecha_name'])
-		            ->setCellValue('H'.$i, $item['idnumber']);
+		            ->setCellValueExplicit('A'.$i, $item['wecha_id'],PHPExcel_Cell_DataType::TYPE_STRING)
+		            ->setCellValueExplicit('B'.$i, $item['sn'],PHPExcel_Cell_DataType::TYPE_STRING)
+		            ->setCellValueExplicit('C'.$i, $item['prize'],PHPExcel_Cell_DataType::TYPE_STRING)
+		            ->setCellValueExplicit('D'.$i, $item['time'],PHPExcel_Cell_DataType::TYPE_STRING)
+		            ->setCellValueExplicit('E'.$i, $item['sendtime'],PHPExcel_Cell_DataType::TYPE_STRING)
+		            ->setCellValueExplicit('F'.$i, $item['phone'],PHPExcel_Cell_DataType::TYPE_STRING)
+		            ->setCellValueExplicit('G'.$i, $item['wecha_name'],PHPExcel_Cell_DataType::TYPE_STRING)
+		            ->setCellValueExplicit('H'.$i, $item['idnumber'],PHPExcel_Cell_DataType::TYPE_STRING);
 		    $i++;
 		}
 		//设置sheet标题
