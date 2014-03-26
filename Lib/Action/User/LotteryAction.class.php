@@ -187,11 +187,70 @@ class LotteryAction extends UserAction{
 		}
 	}
 
-	//导出中奖记录到excel文件
+	//导出中奖记录到excel下载
 	function exportExcel(){
+		$id = I('id','0','intval');//活动id
+		if(!$id){
+			exit('非法id');
+		}
+		//查询活动基本信息
+		$lottery = M('Lottery')->where(array("id"=>$id,"token"=>$this->token))->find();
+		if(!$lottery){
+			exit('活动不存在');
+		}
 		import("@.ORG.phpexcel.Classes.PHPExcel",'',".php");
 		$objPHPExcel = new PHPExcel();
-		dump($objPHPExcel);
+		// 设置列名
+		$objPHPExcel->setActiveSheetIndex(0)
+		            ->setCellValue('A1', '用户唯一id')
+		            ->setCellValue('B1', '中奖sn号')
+		            ->setCellValue('C1', '奖项')
+		            ->setCellValue('D1', '中奖时间')
+		            ->setCellValue('E1', '领奖时间')
+		            ->setCellValue('F1', '手机号')
+		            ->setCellValue('G1', '微信号')
+		            ->setCellValue('H1', '身份证');
+		//读取数据
+		$map = array(
+			"token"=>$this->token,
+			"islottery"=>1,
+			"lid"=>$id
+		);
+		$list = M("LotteryRecord")->field("wecha_id,sn,prize,time,sendtime,phone,wecha_name,idnumber")->where($map)->select();
+		foreach($list as $item){
+			$item['time'] = date("Y-m-d H:i:s",$item['time']);
+			$item['sendtime'] = date("Y-m-d H:i:s",$item['sendtime']);
+			$objPHPExcel->setActiveSheetIndex(0)
+		            ->setCellValue('A1', $item['wecha_id'])
+		            ->setCellValue('B1', $item['sn'])
+		            ->setCellValue('C1', $item['prize'])
+		            ->setCellValue('D1', $item['time'])
+		            ->setCellValue('E1', $item['sendtime'])
+		            ->setCellValue('F1', $item['phone'])
+		            ->setCellValue('G1', $item['wecha_name'])
+		            ->setCellValue('H1', $item['idnumber']);
+		}
+		//设置sheet标题
+		$objPHPExcel->getActiveSheet()->setTitle('中奖记录');
+		$objPHPExcel->setActiveSheetIndex(0);
+
+		// Redirect output to a client’s web browser (Excel5)
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="'.$lottery['title'].'中奖统计"');
+		header('Cache-Control: max-age=0');
+		// If you're serving to IE 9, then the following may be needed
+		header('Cache-Control: max-age=1');
+
+		// If you're serving to IE over SSL, then the following may be needed
+		header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+		header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+		header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+		header ('Pragma: public'); // HTTP/1.0
+
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+		$objWriter->save('php://output');
+		exit;
+
 	}
 }
 
