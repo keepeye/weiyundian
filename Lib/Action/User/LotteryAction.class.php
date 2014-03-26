@@ -217,18 +217,20 @@ class LotteryAction extends UserAction{
 			"lid"=>$id
 		);
 		$list = M("LotteryRecord")->field("wecha_id,sn,prize,time,sendtime,phone,wecha_name,idnumber")->where($map)->select();
+		$i=1;
 		foreach($list as $item){
 			$item['time'] = date("Y-m-d H:i:s",$item['time']);
 			$item['sendtime'] = date("Y-m-d H:i:s",$item['sendtime']);
 			$objPHPExcel->setActiveSheetIndex(0)
-		            ->setCellValue('A1', $item['wecha_id'])
-		            ->setCellValue('B1', $item['sn'])
-		            ->setCellValue('C1', $item['prize'])
-		            ->setCellValue('D1', $item['time'])
-		            ->setCellValue('E1', $item['sendtime'])
-		            ->setCellValue('F1', $item['phone'])
-		            ->setCellValue('G1', $item['wecha_name'])
-		            ->setCellValue('H1', $item['idnumber']);
+		            ->setCellValue('A'.$i, $item['wecha_id'])
+		            ->setCellValue('B'.$i, $item['sn'])
+		            ->setCellValue('C'.$i, $item['prize'])
+		            ->setCellValue('D'.$i, $item['time'])
+		            ->setCellValue('E'.$i, $item['sendtime'])
+		            ->setCellValue('F'.$i, $item['phone'])
+		            ->setCellValue('G'.$i, $item['wecha_name'])
+		            ->setCellValue('H'.$i, $item['idnumber']);
+		    $i++;
 		}
 		//设置sheet标题
 		$objPHPExcel->getActiveSheet()->setTitle('中奖记录');
