@@ -47,13 +47,16 @@
     </tr>
   <?php endforeach;?>
 <?php endif;?>
-<?php for($i=$k>0?$k+2:1;$i<=10;$i++): ?>
+<?php for($i=$k>0?$k+2:1;$i<=2;$i++): ?>
 <tr>
   <th>选项{pigcms:$i}：</th>
   <td><input type="text" name="newoptions[]" class="px"></td>
 </tr>
 <?php endfor;?>
-
+<tr>
+  <th></th>
+  <td><a href="">添加新选项+</a></td>
+</tr>
 <tr>
 <th>&nbsp;</th>
 <td><input type="submit" name="button" class="btnGreen" value="保存" />　<a href="" class="btnGray vm">取消</a></td>
