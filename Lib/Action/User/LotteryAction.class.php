@@ -186,6 +186,11 @@ class LotteryAction extends UserAction{
 			$this->error('操作失败');
 		}
 	}
+
+	//导出中奖记录到excel文件
+	function exportExcel(){
+		
+	}
 }
 
 
