@@ -219,8 +219,8 @@ class LotteryAction extends UserAction{
 		$list = M("LotteryRecord")->field("wecha_id,sn,prize,time,sendtime,phone,wecha_name,idnumber")->where($map)->select();
 		$i=2;
 		foreach($list as $item){
-			$item['time'] = date("Y-m-d H:i:s",$item['time']);
-			$item['sendtime'] = date("Y-m-d H:i:s",$item['sendtime']);
+			$item['time'] = $item['time']>0?date("Y-m-d H:i:s",$item['time']):"0";
+			$item['sendtime'] = $item['sendtime']>0?date("Y-m-d H:i:s",$item['sendtime']):"0";
 			$objPHPExcel->setActiveSheetIndex(0)
 		            ->setCellValue('A'.$i, $item['wecha_id'])
 		            ->setCellValue('B'.$i, $item['sn'])
