@@ -3,6 +3,7 @@
 <form class="form" method="post" action=""  target="_top" enctype="multipart/form-data" >
 <input type="hidden" name="id" value="{pigcms:$tiku.id}"/>
 <input type="hidden" name="diaoyan_id" value="{pigcms:$diaoyan_id}"/>
+<input type="hidden" name="del_options" id="del_options" value=""/>
 <div class="content">
 <!--活动开始-->
 <div class="cLineB">
@@ -81,7 +82,10 @@
     $("#new_options").after(html);
   }
   function del_option(id,ob){
-    alert($(ob).attr("href"))
+    var dels = $("#del_options").val().split(",");
+    dels.push(id);
+    $("#del_options").val(dels.join(","));
+    $(ob).parent().parent().remove();
   }
 </script>
 <include file="Public:footer"/> 
