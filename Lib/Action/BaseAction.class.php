@@ -21,6 +21,7 @@ class BaseAction extends Action
                     'Selfform'=>'微报名',
                 	'House'=>'微房产',
 					'Ordering'=>'订单',
+                    'Diaoyan'=>'微调研'
         );
 		return $arr;
 	}
