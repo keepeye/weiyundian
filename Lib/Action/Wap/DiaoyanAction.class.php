@@ -28,7 +28,8 @@ class DiaoyanAction extends BaseAction {
 				cookie('wecha_id',$wecha_id,7200);//==========================
 			}else{
 				//$this->error("非法访问[02]");//这里应该跳转到授权页面
-				redirect(U("Wap/Oauth/getCode",array("token"=>$this->token,"referer"=>rawurlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']))));
+				//redirect(U("Wap/Oauth/getCode",array("token"=>$this->token,"referer"=>rawurlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']))));
+				$this->redirect("Home/Adma/index?token=".$this->token);
 			}
 		}
 	}
