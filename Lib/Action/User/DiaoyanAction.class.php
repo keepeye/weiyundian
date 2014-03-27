@@ -113,7 +113,7 @@ class DiaoyanAction extends UserAction {
 			if($multi_add = I('multi_add')){
 				$multi_options = explode("\n",$multi_add);//一行一个
 				$newoptions = array_merge($newoptions,$multi_options);
-				dump($newoptions);exit;
+				dump($multi_options);exit;
 			}
 			//进行一系列检测，时间关系就不使用模型自动验证了
 			if((count($oldoptions) + count($newoptions))>100){
