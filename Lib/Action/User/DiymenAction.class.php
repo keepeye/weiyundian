@@ -227,9 +227,9 @@ class DiymenAction extends UserAction{
 			file_get_contents('https://api.weixin.qq.com/cgi-bin/menu/delete?access_token='.$json->access_token);
 
 			$url='https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$json->access_token;
-			
-			if($this->api_notice_increment($url,$data)==false){
-				$this->error('操作失败');
+			$re = $this->api_notice_increment($url,$data);
+			if($re!="ok"){
+				$this->error('操作失败:'.$re);
 			}else{
 				$this->success('操作成功');
 			}
@@ -254,10 +254,13 @@ class DiymenAction extends UserAction{
 		$tmpInfo = curl_exec($ch);
 		
 		if (curl_errno($ch)) {
-			return false;
+			return "curl请求失败";
 		}else{
-
-			return true;
+			$re=json_decode($tmpInfo);
+			if(isset($re['errmsg'])){
+				return $re['errmsg'];
+			}
+			return "ok";
 		}
 	}
 	function curlGet($url){
