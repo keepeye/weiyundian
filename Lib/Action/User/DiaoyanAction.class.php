@@ -111,6 +111,7 @@ class DiaoyanAction extends UserAction {
 			$newoptions = array_filter($_POST['newoptions']);//新选项
 			//处理批量添加
 			if($multi_add = I('multi_add')){
+				dump($multi_add);exit;
 				$multi_options = explode("\n",$multi_add);//一行一个
 				$newoptions = array_merge($newoptions,$multi_options);
 			}
