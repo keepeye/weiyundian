@@ -109,6 +109,7 @@ class DiaoyanAction extends UserAction {
 			$type = I('type','0','intval')=="1"?"1":"0";
 			$oldoptions = array_filter($_POST['oldoptions']);//旧选项
 			$newoptions = array_filter($_POST['newoptions']);//新选项
+			$deloptions = array_filter(explode(",",I("del_options")));//待删除的选项
 			//处理批量添加
 			if($multi_add = I('multi_add')){
 				$multi_options = explode("\n",$multi_add);//一行一个
@@ -164,6 +165,10 @@ class DiaoyanAction extends UserAction {
 					}
 					M('DiaoyanTikuOption')->where(array("tiku_id"=>$id,"id"=>$k))->data(array("value"=>$v))->save();
 				}
+			}
+			//删除选项
+			if(!empty($deloptions)){
+				M('DiaoyanTikuOption')->where(array("tiku_id"=>$id,"id"=>array("in",$deloptions)))->delete();
 			}
 			unset($k,$v);
 			
