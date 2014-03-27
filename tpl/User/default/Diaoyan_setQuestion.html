@@ -83,6 +83,9 @@
   }
   function del_option(id,ob){
     var dels = $("#del_options").val().split(",");
+    if(dels.length > 0 && dels[0]==""){
+      dels.shift();
+    }
     dels.push(id);
     $("#del_options").val(dels.join(","));
     $(ob).parent().parent().remove();
