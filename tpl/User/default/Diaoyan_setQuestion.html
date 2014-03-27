@@ -43,7 +43,7 @@
   <?php foreach($options as $k=>$option): ?>
     <tr>
       <th><span class="red">*</span>选项{pigcms:$k+1}：</th>
-      <td><input type="text" name="oldoptions[{pigcms:$option['id']}]" class="px" value="{pigcms:$option['value']}"> <a href="#" onclick="del_option({pigcms:$option['id']})">删除</a></td>
+      <td><input type="text" name="oldoptions[{pigcms:$option['id']}]" class="px" value="{pigcms:$option['value']}"> <a href="javascript:" onclick="del_option({pigcms:$option['id']},this)">删除</a></td>
     </tr>
   <?php endforeach;?>
 <?php endif;?>
@@ -80,8 +80,8 @@
     var html = "<tr><th>新选项</th><td><input type=\"text\" name=\"newoptions[]\" class=\"px\"></td></tr>";
     $("#new_options").after(html);
   }
-  function del_option(id){
-    alert($(this).attr("href"))
+  function del_option(id,ob){
+    alert($(ob).attr("href"))
   }
 </script>
 <include file="Public:footer"/> 
