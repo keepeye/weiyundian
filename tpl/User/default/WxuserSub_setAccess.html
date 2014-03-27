@@ -73,6 +73,15 @@
 		</div>
 	</fieldset>
 
+	<fieldset class="access_box">
+		<div class="access_module"><input type="checkbox" name="access[]" value="Diaoyan" <?php if(isset($access['Diaoyan'])): ?>checked<?php endif;?>/>微调研</div>
+		<div style="access_action">
+			禁止操作：
+			<span><input type="checkbox" name="deny[Diaoyan][]" value="setDiaoyan" <?php if(in_array('setDiaoyan',$access['Diaoyan'])): ?>checked<?php endif;?>/>添加/修改活动</span> 
+			
+			<span><input type="checkbox" name="deny[Diaoyan][]" value="delDiaoyan" <?php if(in_array('delDiaoyan',$access['Diaoyan'])): ?>checked<?php endif;?>/> 删除活动</span>
+		</div>
+	</fieldset>
 	<div><input type="submit" name="button" class="btnGreen" value="保存" /></div>
 </form>
  </div> 
