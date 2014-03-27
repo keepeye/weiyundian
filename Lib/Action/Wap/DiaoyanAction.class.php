@@ -133,7 +133,7 @@ class DiaoyanAction extends BaseAction {
 				}
 			}
 			//提交表单后生成活动链接
-			if($this->token == "xicifuwu" && $diaoyan['activity_module'] != "" && (int)$diaoyan['activity_module_id'] != ""){
+			if($diaoyan['activity_module'] != "" && (int)$diaoyan['activity_module_id'] != ""){
 				if($diaoyan['activity_module'] == "dazhuanpan"){
 					$activity_url = "<a href='".U('Wap/Lottery/index',array('id'=>$diaoyan['activity_module_id'],'token'=>$this->token,'wecha_id'=>$this->wecha_id,"wxsign"=>md5($this->token.$this->wecha_id.C('safe_key'))))."'>幸运抽奖</a>";
 				}
