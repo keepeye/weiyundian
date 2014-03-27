@@ -98,7 +98,7 @@ class LotteryAction extends BaseAction{
 		if ($record['islottery'] == 1) {				
 			$data['end'] = 5;
 			$data['sn']	 	 = $record['sn'];
-			$data['uname']	 = $record['wecha_name'];
+			$data['uname']	 = $record['myname'];
 			$data['prize']	 = $record['prize'];
 			$data['tel'] 	 = $record['phone'];	
 		}
@@ -305,7 +305,7 @@ class LotteryAction extends BaseAction{
 		if ($record['islottery'] == 1) {				
 			//$norun = 1;
 			$sn	 	 = $record['sn'];
-			$uname	 = $record['wecha_name'];
+			$uname	 = $record['myname'];
 			$prize	 = $record['prize'];
 			$tel 	 = $record['phone'];
 			$msg = "尊敬的:<font color='red'>$uname</font>,您已经中过<font color='red'> $prize</font> 了,您的领奖序列号:<font color='red'> $sn </font>请您牢记及尽快与我们联系.";
@@ -383,7 +383,7 @@ class LotteryAction extends BaseAction{
 			//$sn		= $this->_post('sncode');
 			$data['sn'] = $sn = uniqid();//生成sn码
 			$data['phone'] 		= $this->_post('tel');
-			$data['wecha_name'] = $this->_post('wxname');
+			$data['myname'] = $this->_post('myname');
 			$data['idnumber'] = I("post.idnumber");
 			$where = array('lid'=>$lid,'wecha_id'=>$wechaid);
 			//检测奖项是否真实存在
@@ -398,7 +398,7 @@ class LotteryAction extends BaseAction{
 			//记录用户联系信息,sn号码
 			$rollback = M('Lottery_record')->where($where)->save($data);
 			
-			echo'{"success":1,"msg":"恭喜！尊敬的 '.$data['wecha_name'].',请您保持手机通畅！你的领奖序号:'.$sn.'"}';
+			echo'{"success":1,"msg":"恭喜！尊敬的 '.$data['myname'].',请您保持手机通畅！你的领奖序号:'.$sn.'"}';
 			exit;
 		}
 	}
