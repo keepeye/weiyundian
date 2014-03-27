@@ -53,7 +53,7 @@
             </td>
             <td><if condition="$record['sendtime'] eq 0"> <else/>{pigcms:$record.sendtime|date='Y-m-d H:i:s',###}</if>
             </td>
-						<td>tel:{pigcms:$record.phone}<br/>{pigcms:$record.wecha_name}<br/>{pigcms:$record.idnumber}</td>
+						<td>tel:{pigcms:$record.phone}<br/>{pigcms:$record.myname}<br/>{pigcms:$record.idnumber}</td>
 						<td>{pigcms:$record.time|date='Y-m-d H:i:s',###}</td>
 						<td>
                <if condition="$record['sendstutas'] eq 0"> 

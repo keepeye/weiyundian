@@ -101,7 +101,7 @@ Unknown property name.-ms-filter: progid:DXImageTransform.Microsoft.gradient(Gra
             <p class="red" id="red">{pigcms:$Dazpan.sttxt}</p>
             <p>
             <input name=""  class="px" id="tel" value="" type="text" placeholder="请输入您的手机号">
-            <input name=""  class="px" id="wechaname" value="" type="text" placeholder="请输入您的微信号">
+            <input name=""  class="px" id="myname" value="" type="text" placeholder="请输入您的姓名">
             <input name=""  class="px" id="idnumber" value="" type="text" placeholder="请输入您的身份证号">
             <input name=""  id="wechaid" value="{pigcms:$Dazpan.wecha_id}" type="hidden">
             <input name=""  id="lid" value="{pigcms:$Dazpan.lid}" type="hidden">
@@ -351,7 +351,8 @@ $("#save-btn").bind("click",
 function() {
     var btn = $(this);
     var tel = $("#tel").val();
-    var wxname  = $("#wechaname").val();
+    // var wxname  = $("#wechaname").val();
+    var myname  = $("#myname").val();
     var wechaid = $("#wechaid").val();
     var lid     = $("#lid").val();
     var prizetype = $("#winprize").val();
@@ -361,7 +362,7 @@ function() {
         return
     }
     
-    if (wxname == '') {
+    if (myname == '') {
         alert("请输入微信号");
         return
     }
@@ -374,7 +375,7 @@ function() {
         lid: lid,
         sncode: $("#sncode").text(),
         tel: tel,
-        wxname: wxname,
+        myname: myname,
         wechaid:wechaid,
         prizetype:prizetype,
         idnumber:idnumber,

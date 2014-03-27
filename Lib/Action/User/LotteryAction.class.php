@@ -208,7 +208,7 @@ class LotteryAction extends UserAction{
 		            ->setCellValue('D1', '中奖时间')
 		            ->setCellValue('E1', '领奖时间')
 		            ->setCellValue('F1', '手机号')
-		            ->setCellValue('G1', '微信号')
+		            ->setCellValue('G1', '姓名')
 		            ->setCellValue('H1', '身份证');
 		//读取数据
 		$map = array(
@@ -216,7 +216,7 @@ class LotteryAction extends UserAction{
 			"islottery"=>1,
 			"lid"=>$id
 		);
-		$list = M("LotteryRecord")->field("wecha_id,sn,prize,time,sendtime,phone,wecha_name,idnumber")->where($map)->select();
+		$list = M("LotteryRecord")->field("wecha_id,sn,prize,time,sendtime,phone,myname,idnumber")->where($map)->select();
 		$i=2;
 		foreach($list as $item){
 			$item['time'] = $item['time']>0?date("Y-m-d H:i:s",$item['time']):"0";
@@ -228,7 +228,7 @@ class LotteryAction extends UserAction{
 		            ->setCellValueExplicit('D'.$i, $item['time'],PHPExcel_Cell_DataType::TYPE_STRING)
 		            ->setCellValueExplicit('E'.$i, $item['sendtime'],PHPExcel_Cell_DataType::TYPE_STRING)
 		            ->setCellValueExplicit('F'.$i, $item['phone'],PHPExcel_Cell_DataType::TYPE_STRING)
-		            ->setCellValueExplicit('G'.$i, $item['wecha_name'],PHPExcel_Cell_DataType::TYPE_STRING)
+		            ->setCellValueExplicit('G'.$i, $item['myname'],PHPExcel_Cell_DataType::TYPE_STRING)
 		            ->setCellValueExplicit('H'.$i, $item['idnumber'],PHPExcel_Cell_DataType::TYPE_STRING);
 		    $i++;
 		}
