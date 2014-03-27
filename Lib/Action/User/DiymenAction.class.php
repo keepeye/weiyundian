@@ -256,7 +256,7 @@ class DiymenAction extends UserAction{
 		if (curl_errno($ch)) {
 			return "curl请求失败";
 		}else{
-			$re=json_decode($tmpInfo);
+			$re=json_decode($tmpInfo,true);
 			if(isset($re['errmsg'])){
 				return $re['errmsg'];
 			}
