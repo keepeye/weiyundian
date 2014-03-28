@@ -74,8 +74,9 @@ class DiaoyanAction extends BaseAction {
 		$lastrecord = M('DiaoyanRecord')->where(array("diaoyan_id"=>$diaoyan_id,"wecha_id"=>$this->wecha_id))->find();
 		//检测用户是否已经参加过本次调研
 		if($lastrecord){
-			exit('test');
+
 			if($diaoyan['everyday'] == "1"){//如果设置为每天参加，则检测上次投票时间
+				echo "test";exit;
 				$day = date("j",time());//今日day数字
 				if($lastrecord['day']==$day && (time()-$lastrecord['time'])<=86400){
 					$this->error("今天你已经参加过，请明天再来");
