@@ -87,10 +87,10 @@ class DiaoyanAction extends BaseAction {
 			}
 			$tiku_list = M('DiaoyanTiku')->where(array("token"=>$this->token,"diaoyan_id"=>$diaoyan_id))->limit(0,10)->select();//获取题库列表
 			$tiku_ids = array();
+			dump($tiku_list);
 			foreach($tiku_list as $v){
 				$tiku_ids[] = $v['id'];
 			}
-			var_dump($tiku_list);
 			unset($v);
 			$options = M('DiaoyanTikuOption')->where(array("tiku_id"=>array("in",$tiku_ids)))->select();//读取选项表
 			$option_list = array();
