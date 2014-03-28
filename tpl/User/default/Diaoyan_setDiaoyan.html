@@ -33,10 +33,10 @@
 <tr>
   <th><span class="red">*</span>投票限制：</th>
   <td>
-    <?php if(!isset($tiku['everyday'])): ?>
+    <?php if(!isset($diaoyan['everyday'])): ?>
     <input type="radio" name="everyday" value="0" checked>一次 
     <input type="radio" name="everyday" value="1">每日 
-    <?php elseif($tiku['everyday'] == "1"): ?>
+    <?php elseif($diaoyan['everyday'] == "1"): ?>
     <input type="radio" name="everyday" value="0" >一次 
     <input type="radio" name="everyday" value="1" checked>每日 
     <?php else: ?>
