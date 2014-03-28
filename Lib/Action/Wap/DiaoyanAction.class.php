@@ -76,8 +76,8 @@ class DiaoyanAction extends BaseAction {
 		if($lastrecord){
 
 			if($diaoyan['everyday'] == "1"){//如果设置为每天参加，则检测上次投票时间
-				echo "test";exit;
 				$day = date("j",time());//今日day数字
+				echo $lastrecord;exit;
 				if($lastrecord['day']==$day && (time()-$lastrecord['time'])<=86400){
 					$this->error("今天你已经参加过，请明天再来");
 				}
