@@ -90,6 +90,7 @@ class DiaoyanAction extends BaseAction {
 			foreach($tiku_list as $v){
 				$tiku_ids[] = $v['id'];
 			}
+			var_dump($tiku_list);
 			unset($v);
 			$options = M('DiaoyanTikuOption')->where(array("tiku_id"=>array("in",$tiku_ids)))->select();//读取选项表
 			$option_list = array();
