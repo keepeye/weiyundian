@@ -34,14 +34,14 @@
   <th><span class="red">*</span>投票限制：</th>
   <td>
     <?php if(!isset($tiku['everyday'])): ?>
-    <input type="radio" name="type" value="0" checked>一次 
-    <input type="radio" name="type" value="1">每日 
+    <input type="radio" name="everyday" value="0" checked>一次 
+    <input type="radio" name="everyday" value="1">每日 
     <?php elseif($tiku['everyday'] == "1"): ?>
-    <input type="radio" name="type" value="0" >一次 
-    <input type="radio" name="type" value="1" checked>每日 
+    <input type="radio" name="everyday" value="0" >一次 
+    <input type="radio" name="everyday" value="1" checked>每日 
     <?php else: ?>
-    <input type="radio" name="type" value="0" checked>一次  
-    <input type="radio" name="type" value="1" >每日
+    <input type="radio" name="everyday" value="0" checked>一次  
+    <input type="radio" name="everyday" value="1" >每日
     <?php endif;?>
   </td>
 </tr>
