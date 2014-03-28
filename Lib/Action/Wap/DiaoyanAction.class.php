@@ -85,9 +85,10 @@ class DiaoyanAction extends BaseAction {
 			if(!$diaoyan_id){
 				$this->error("非法请求[03]");
 			}
+			echo "hehe";
 			$tiku_list = M('DiaoyanTiku')->where(array("token"=>$this->token,"diaoyan_id"=>$diaoyan_id))->limit(0,10)->select();//获取题库列表
 			$tiku_ids = array();
-			dump($tiku_list);
+
 			foreach($tiku_list as $v){
 				$tiku_ids[] = $v['id'];
 			}
