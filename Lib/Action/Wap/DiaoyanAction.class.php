@@ -71,9 +71,9 @@ class DiaoyanAction extends BaseAction {
 			exit("页面不存在404");
 		}
 		$this->assign("diaoyan",$diaoyan);
+		$lastrecord = M('DiaoyanRecord')->where(array("diaoyan_id"=>$diaoyan_id,"wecha_id"=>$this->wecha_id))->find();
 		//检测用户是否已经参加过本次调研
-		if($lastrecord = M('DiaoyanRecord')->where(array("diaoyan_id"=>$diaoyan_id,"wecha_id"=>$this->wecha_id))->find()){
-			echo "canjiaguole";
+		if($lastrecord){
 			if($diaoyan['everyday'] == "1"){//如果设置为每天参加，则检测上次投票时间
 				$day = date("j",time());//今日day数字
 				if($lastrecord['day']==$day && (time()-$lastrecord['time'])<=86400){
@@ -82,27 +82,27 @@ class DiaoyanAction extends BaseAction {
 			}else{
 				$this->error("你已参加过了，可以转发给你的朋友们一起来玩。");
 			}
-		}else{
-			if(!$diaoyan_id){
-				$this->error("非法请求[03]");
-			}
-			$tiku_list = M('DiaoyanTiku')->where(array("token"=>$this->token,"diaoyan_id"=>$diaoyan_id))->limit(0,10)->select();//获取题库列表
-			$tiku_ids = array();
-
-			foreach($tiku_list as $v){
-				$tiku_ids[] = $v['id'];
-			}
-			unset($v);
-			$options = M('DiaoyanTikuOption')->where(array("tiku_id"=>array("in",$tiku_ids)))->select();//读取选项表
-			$option_list = array();
-			foreach($options as $v){
-				$option_list[$v['tiku_id']][]=$v;
-			}
-			unset($v);
-			$this->assign("diaoyan_id",$diaoyan_id);
-			$this->assign("tiku_list",$tiku_list);
-			$this->assign("option_list",$option_list);
 		}
+		if(!$diaoyan_id){
+			$this->error("非法请求[03]");
+		}
+		$tiku_list = M('DiaoyanTiku')->where(array("token"=>$this->token,"diaoyan_id"=>$diaoyan_id))->limit(0,10)->select();//获取题库列表
+		$tiku_ids = array();
+
+		foreach($tiku_list as $v){
+			$tiku_ids[] = $v['id'];
+		}
+		unset($v);
+		$options = M('DiaoyanTikuOption')->where(array("tiku_id"=>array("in",$tiku_ids)))->select();//读取选项表
+		$option_list = array();
+		foreach($options as $v){
+			$option_list[$v['tiku_id']][]=$v;
+		}
+		unset($v);
+		$this->assign("diaoyan_id",$diaoyan_id);
+		$this->assign("tiku_list",$tiku_list);
+		$this->assign("option_list",$option_list);
+		
 		//
 		
 		$this->display();
