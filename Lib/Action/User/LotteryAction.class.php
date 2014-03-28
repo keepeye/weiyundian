@@ -203,14 +203,11 @@ class LotteryAction extends UserAction{
 		$objPHPExcel = new PHPExcel();
 		// 设置列名
 		$objPHPExcel->setActiveSheetIndex(0)
-		            ->setCellValue('A1', '用户唯一id')
-		            ->setCellValue('B1', '中奖sn号')
-		            ->setCellValue('C1', '奖项')
-		            ->setCellValue('D1', '中奖时间')
-		            ->setCellValue('E1', '领奖时间')
-		            ->setCellValue('F1', '手机号')
-		            ->setCellValue('G1', '姓名')
-		            ->setCellValue('H1', '身份证');
+		            ->setCellValue('A1', '中奖sn号')
+		            ->setCellValue('B1', '奖项')
+		            ->setCellValue('C1', '手机号')
+		            ->setCellValue('D1', '姓名')
+		            ->setCellValue('E1', '身份证');
 		//读取数据
 		$map = array(
 			"token"=>$this->token,
@@ -223,14 +220,11 @@ class LotteryAction extends UserAction{
 			$item['time'] = $item['time']>0?date("Y-m-d H:i:s",$item['time']):"0";
 			$item['sendtime'] = $item['sendtime']>0?date("Y-m-d H:i:s",$item['sendtime']):"0";
 			$objPHPExcel->setActiveSheetIndex(0)
-		            ->setCellValueExplicit('A'.$i, $item['wecha_id'],PHPExcel_Cell_DataType::TYPE_STRING)
-		            ->setCellValueExplicit('B'.$i, $item['sn'],PHPExcel_Cell_DataType::TYPE_STRING)
-		            ->setCellValueExplicit('C'.$i, $item['prize'],PHPExcel_Cell_DataType::TYPE_STRING)
-		            ->setCellValueExplicit('D'.$i, $item['time'],PHPExcel_Cell_DataType::TYPE_STRING)
-		            ->setCellValueExplicit('E'.$i, $item['sendtime'],PHPExcel_Cell_DataType::TYPE_STRING)
-		            ->setCellValueExplicit('F'.$i, $item['phone'],PHPExcel_Cell_DataType::TYPE_STRING)
-		            ->setCellValueExplicit('G'.$i, $item['myname'],PHPExcel_Cell_DataType::TYPE_STRING)
-		            ->setCellValueExplicit('H'.$i, $item['idnumber'],PHPExcel_Cell_DataType::TYPE_STRING);
+		            ->setCellValueExplicit('A'.$i, $item['sn'],PHPExcel_Cell_DataType::TYPE_STRING)
+		            ->setCellValueExplicit('B'.$i, $item['prize'],PHPExcel_Cell_DataType::TYPE_STRING)
+		            ->setCellValueExplicit('C'.$i, $item['phone'],PHPExcel_Cell_DataType::TYPE_STRING)
+		            ->setCellValueExplicit('D'.$i, $item['myname'],PHPExcel_Cell_DataType::TYPE_STRING)
+		            ->setCellValueExplicit('E'.$i, $item['idnumber'],PHPExcel_Cell_DataType::TYPE_STRING);
 		    $i++;
 		}
 		//设置sheet标题
