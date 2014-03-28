@@ -45,7 +45,7 @@ class DiaoyanAction extends BaseAction {
 
 		//检查活动是否已经结束
 		if(time()>$diaoyan['end_time']){
-			exit("活动已经结束了");
+			$this->error("活动已经结束了");
 		}
 
 		$fromuser = I('fromuser','');//获取推广用户
