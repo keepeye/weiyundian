@@ -42,6 +42,12 @@ class DiaoyanAction extends BaseAction {
 		if(!$diaoyan){
 			exit("页面不存在404");
 		}
+
+		//检查活动是否已经结束
+		if(time()>$diaoyan['end_time']){
+			exit("活动已经结束了");
+		}
+
 		$fromuser = I('fromuser','');//获取推广用户
 		if(!empty($fromuser) && !cookie("diaoyan_fromuid_".$diaoyan['id'])){
 			$fromuid = encrypt($fromuser,"D",C('safe_key'));//解密字符串
@@ -103,8 +109,16 @@ class DiaoyanAction extends BaseAction {
 			}
 			$this->assign("diaoyan",$diaoyan);
 			//查询参与记录
-			if(M('DiaoyanRecord')->where(array("diaoyan_id"=>$diaoyan_id,"wecha_id"=>$this->wecha_id))->find()){
-				$this->error("已参加过");
+			if($lastrecord = M('DiaoyanRecord')->where(array("diaoyan_id"=>$diaoyan_id,"wecha_id"=>$this->wecha_id))->find()){
+				if($diaoyan['everyday'] == "1"){//如果设置为每天参加，则检测上次投票时间
+					$day = date("j",time());//今日day数字
+					if($lastrecord['day']==$day && (time()-$lastrecord['time'])<=86400){
+						$this->error("今天你已经参加过，请明天再来");
+					}
+				}else{
+					$this->error("已参加过");
+				}
+				
 			}
 			$results = $_POST['results'];//结果数组
 			
@@ -115,7 +129,10 @@ class DiaoyanAction extends BaseAction {
 				$tiku_ids[] = $v['id'];
 			}
 			unset($v);
-
+			$nowtime = time();//当前时间戳
+			$year = date("Y",$nowtime);//当前年份数字
+			$month = date("n",$nowtime);//当前月份数字
+			$day = date('j',$nowtime);//当前一个月的第几天
 			//开始写入记录
 			foreach ($results as $result) {
 				if(!in_array($result['tiku_id'],$tiku_ids)){
@@ -127,8 +144,12 @@ class DiaoyanAction extends BaseAction {
 						"wecha_id"=>$this->wecha_id,
 						"tiku_id"=>$result['tiku_id'],
 						"diaoyan_id"=>$diaoyan_id,
-						"option_id"=>$option_id
-						);
+						"option_id"=>$option_id,
+						"year"=>$year,
+						"month"=>$month,
+						"day"=>$day,
+						"time"=>$nowtime
+					);
 					M('DiaoyanRecord')->add($data);
 				}
 			}
