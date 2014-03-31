@@ -23,7 +23,7 @@ function WeParseUrl($url,$type,$params=array()){
 	if(!isset($params['wxref'])){
 		$params['wxref'] = 'mp.weixin.qq.com';
 	}
-    if(!isset($params['wxsign']) && isset($params['token']) && isset($params['wecha_id'])){
+    if(!isset($params['wxsign'])){
         $params['wxsign'] = md5($params['token'].$params['wecha_id'].C('safe_key'));
     }
 	switch($type){
