@@ -63,7 +63,6 @@ class BaseAction extends Action
         } else {
             $id = $db->add();
             if ($id == true) {
-                echo $db->getLastSql();
                 $this->success('操作成功', U(MODULE_NAME . $back));
             } else {
                 $this->error('操作失败', U(MODULE_NAME . $back));
