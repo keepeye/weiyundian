@@ -403,5 +403,3 @@ class LotteryAction extends BaseAction{
 		}
 	}
 }
-	
-?>
