@@ -393,6 +393,10 @@ class LotteryAction extends BaseAction{
 			if(!$record || $record['islottery'] != 1){
 				$this->ajaxReturn(array('success'=>'1','msg'=>'未检测到中奖记录'));
 			}
+			//检测身份证是否重复
+			if(M('Lottery_record')->where(array('lid'=>$lid,'idnumber'=>$data['idnumber']))->count() > 0){
+				$this->ajaxReturn(array('success'=>'1','msg'=>'该身份证已经中过奖'));
+			}
 			//奖品已经派发
 			if($record['sendstutas'] != 0){
 				$this->ajaxReturn(array('success'=>'1','msg'=>'奖品已派发，请不要重复提交'));
