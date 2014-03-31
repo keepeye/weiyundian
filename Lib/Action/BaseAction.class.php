@@ -57,7 +57,7 @@ class BaseAction extends Action
     protected function insert($name = '', $back = '/index')
     {
         $name = $name ? $name : MODULE_NAME;
-        $db   = D($name);
+        $db   = M($name);
         if ($db->create() === false) {
             $this->error($db->getError());
         } else {
