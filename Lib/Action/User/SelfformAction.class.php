@@ -129,6 +129,7 @@ class SelfformAction extends UserAction{
 	}
 	public function inputAdd(){ 
 		if(IS_POST){
+			dump($_POST);
 			$this->insert('Selfform_input','/inputs?id='.$this->_post('formid'));
 		}else{
 			$formid=intval($_GET['formid']);
