@@ -349,9 +349,11 @@ class LotteryAction extends BaseAction{
 			//这里不应当先生成sn号码，应该用户提交联系人信息后生成并返回给用户
 			if ($prizetype >= 1 && $prizetype <= 6) {				 
 				//$sn 	= uniqid();
-				$prize = str_replace(array(1,2,3,4,5,6),array('一','二','三','四','五','六'),$prizetype)."等奖";
+				//$prize = str_replace(array(1,2,3,4,5,6),array('一','二','三','四','五','六'),$prizetype)."等奖";
+				$prize = str_replace(array(1,2,3,4,5,6),array('first','second','third','four','five','six'),$prizetype);//直接写奖品名称
 				//$newdata['sn'] = $sn;//写入sn号码
-				$newdata['prize'] = $prize;	//中奖等级描述
+				$lottery = M('Lottery')->field("first,second,third,four,five,six")->where(array('token'=>$token,"id"=>$record['lid']))->find();//查询活动信息的中奖设置
+				$newdata['prize'] = $lottery[$prize];//奖品名称
 				$newdata['islottery'] = 1;
 				//echo '{"success":1,"sn":"'.$sn.'","prizetype":"'.$prizetype.'","usenums":"'.($record['usenums']+1).'"}';
 				$ajaxData = array(

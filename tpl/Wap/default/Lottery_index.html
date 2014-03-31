@@ -214,20 +214,26 @@ $(function() {
                     //$("#sncode").text(sncode);
                     var type = "";
                     if (prize == 1) {
-                        type = "一等奖"
+                        //type = "一等奖"
+                        type="{pigcms:$Dazpan.first}";
                     } else if (prize == 2) {
-                        type = "二等奖"
+                        //type = "二等奖"
+                        type="{pigcms:$Dazpan.second}";
                     } else if (prize == 3) {
-                        type = "三等奖"
+                        //type = "三等奖"
+                        type="{pigcms:$Dazpan.third}";
                     }
                     else if (prize == 4) {
-                        type = "四等奖"
+                        //type = "四等奖"
+                        type="{pigcms:$Dazpan.four}";
                     }
                     else if (prize == 5) {
-                        type = "五等奖"
+                        //type = "五等奖"
+                        type="{pigcms:$Dazpan.five}";
                     }
                     else if (prize == 6) {
-                        type = "六等奖"
+                        //type = "六等奖"
+                        type="{pigcms:$Dazpan.six}";
                     }
                     //中奖了，修改微信标题
                     WxOptions.title = "我在{pigcms:$Dazpan.title}中了"+type+",你也来试试手气吧~";
