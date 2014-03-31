@@ -350,9 +350,9 @@ class LotteryAction extends BaseAction{
 			if ($prizetype >= 1 && $prizetype <= 6) {				 
 				//$sn 	= uniqid();
 				//$prize = str_replace(array(1,2,3,4,5,6),array('一','二','三','四','五','六'),$prizetype)."等奖";
-				$prize = str_replace(array(1,2,3,4,5,6),array('first','second','third','four','five','six'),$prizetype);//直接写奖品名称
+				$prize = str_replace(array(1,2,3,4,5,6),array('fist','second','third','four','five','six'),$prizetype);//直接写奖品名称
 				//$newdata['sn'] = $sn;//写入sn号码
-				$lottery = M('Lottery')->field("first,second,third,four,five,six")->where(array('token'=>$token,"id"=>$record['lid']))->find();//查询活动信息的中奖设置
+				$lottery = M('Lottery')->field("fist,second,third,four,five,six")->where(array('token'=>$token,"id"=>$record['lid']))->find();//查询活动信息的中奖设置
 				$newdata['prize'] = $lottery[$prize];//奖品名称
 				$newdata['islottery'] = 1;
 				//echo '{"success":1,"sn":"'.$sn.'","prizetype":"'.$prizetype.'","usenums":"'.($record['usenums']+1).'"}';
