@@ -56,7 +56,6 @@ class IndexAction extends BaseAction{
 		$this->assign('tpl',$this->tpl);
 		$this->assign('copyright',$this->copyright);
 		$this->assign('home',$home);
-		echo $this->wecha_id;
 		$this->display($this->tpl['tpltypename']?$this->tpl['tpltypename']:'muban1_index');
 	}
 	
