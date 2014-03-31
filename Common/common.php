@@ -46,6 +46,7 @@ function WeParseUrl($url,$type,$params=array()){
 			$href = U('Wap/Index/lists',$params);
 			break;
 	}
+    return "111";
 	return $href;
 }
 //补全相对链接
