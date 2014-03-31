@@ -27,7 +27,8 @@ class IndexAction extends BaseAction{
 		$gid=D('Users')->field('gid')->find($tpl['uid']);
 		$copy=D('user_group')->field('iscopyright')->find($gid['gid']);	//查询用户所属组
 		$this->copyright=$copy['iscopyright'];
-		$this->wecha_id=$this->_get('wecha_id','intval');
+		$this->wecha_id=$this->_get('wecha_id');
+		$this->assign('wecha_id',$this->wecha_id);
 		$this->info=$info;
 		$this->tpl=$tpl;
 		$company_db=M('company');
@@ -44,19 +45,14 @@ class IndexAction extends BaseAction{
 		$this->display($this->tpl['tpltypename']?$this->tpl['tpltypename']:'muban1_index');
 	}
 	
-	public function index(){
-		$token=$this->_get('token');
-		$wecha_id=$this->_get('wecha_id');
-		session("token",$token);
-		session("wecha_id",$wecha_id);
-		$where['token']=$token;
+	public function index(){		
+		$where['token']=$this->token;
 	    $flash=M('Flash')->where($where)->select();
-        $home=M('Home')->where(array('token'=>$token))->find();
+        $home=M('Home')->where(array('token'=>$this->token))->find();
 		$count=count($flash);
 		$this->assign('flash',$flash);
 		$this->assign('info',$this->info);
 		$this->assign('num',$count);
-		$this->assign('wecha_id',$wecha_id);
 		$this->assign('tpl',$this->tpl);
 		$this->assign('copyright',$this->copyright);
 		$this->assign('home',$home);
