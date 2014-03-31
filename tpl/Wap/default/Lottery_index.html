@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
-<meta name="description" content="">
+<meta name="description" content="{pigcms:$Dazpan.desc}" />
 <script src="{pigcms::RES}/css/guajiang/js/jquery.js" type="text/javascript"></script> 
 <script src="{pigcms::RES}/css/guajiang/js/alert.js?version=1.0.1" type="text/javascript"></script>
 <title>{pigcms:$Dazpan.title}</title>
@@ -402,7 +402,7 @@ function() {
         "img_height": "120",
         "link": window.location.href.replace(/wecha_id=[^&]*&?/,'fromuser={pigcms:$fromuser}&'),//分享链接
         "title": "{pigcms:$Dazpan.title|addslashes}",//定义分享标题
-        "desc": "{pigcms:$Dazpan.title|addslashes}"//描述
+        "desc": "{pigcms:$Dazpan.desc|addslashes}"//描述
     };
     //click统计立即执行
     (function(){
