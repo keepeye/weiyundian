@@ -198,6 +198,7 @@ class SelfformAction extends UserAction{
             $this->error("没有相应记录.您现在可以添加.",U('Selfform/inputAdd'));
         }
 		if(IS_POST){
+			dump(MAGIC_QUOTES_GPC);
             $where=array('id'=>$this->_post('id'));
             $thisInput=$this->selfform_input_model->where($where)->find();
             $thisForm=$this->selfform_model->where(array('id'=>$thisInput['formid']))->find();

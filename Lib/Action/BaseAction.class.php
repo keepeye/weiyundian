@@ -61,7 +61,6 @@ class BaseAction extends Action
         if ($db->create() === false) {
             $this->error($db->getError());
         } else {
-            dump(MAGIC_QUOTES_GPC);
             $id = $db->add();
             if ($id == true) {
                 $this->success('操作成功', U(MODULE_NAME . $back));
