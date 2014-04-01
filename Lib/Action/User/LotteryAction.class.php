@@ -113,8 +113,8 @@ class LotteryAction extends UserAction{
 			$where=array('id'=>$_POST['id'],'token'=>$_POST['token']);
 			$check=$data->where($where)->find();
 			if($check==false)$this->error('非法操作');
+			echo $_POST['spread_limit'];
 			if($data->create()){
-				echo $data->spread_limit;
 				if(false !== $data->where($where)->save($_POST)){
 					$data1['pid']=$_POST['id'];
 					$data1['module']='Lottery';
