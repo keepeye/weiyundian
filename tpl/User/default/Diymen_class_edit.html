@@ -87,7 +87,8 @@
                 <select id="types">
                     <option value="0">请选择类型</option>
 					  <option value="input">输入网址</option>
-					  <option value="location">我的位置(地图)</option>
+					  <option value="location">地图导航</option>
+					  <option value="lbs">用户LBS</option>
 					  <option value="photos">3G相册</option>
 					  <option value="tel">电话拨号</option>
                 </select>
@@ -111,6 +112,11 @@
 							  }else if(type=="location"){
 								
 								var apiurl = "http://api.map.baidu.com/marker?location={pigcms:$company.latitude},{pigcms:$company.longitude}&title={pigcms:$company.name|rawurlencode}&content={pigcms:$company.name|rawurlencode}&output=html";
+								$("#item_list").html('<input type="input" class="px" placeholder="" value="'+apiurl+'" style="width: 300px;" readonly/>');
+								$("input[name=url]").val(apiurl);
+							  }else if(type=="lbs"){
+								
+								var apiurl = "http://map.baidu.com/mobile";
 								$("#item_list").html('<input type="input" class="px" placeholder="" value="'+apiurl+'" style="width: 300px;" readonly/>');
 								$("input[name=url]").val(apiurl);
 							  }else{
