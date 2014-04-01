@@ -2,6 +2,9 @@
 class IndexAction extends UserAction{
 	//公众帐号列表
 	public function index(){
+		if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==false){
+			echo "in weixin";
+		}
 		$where['uid']=session('uid');
 		$group=D('User_group')->select();
 		foreach($group as $key=>$val){
