@@ -15,7 +15,7 @@ class LotteryAction extends BaseAction{
 		$Lottery = M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->find();//为了处理推广信息，提前查询
 		//推广处理
 		$fromuser = I('fromuser','');//获取推广用户
-		if(!empty($fromuser) && !cookie("lottery_fromuid_".$Lottery['id']) && $Lottery['spread'] == "1"){
+		if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==false && !empty($fromuser) && !cookie("lottery_fromuid_".$Lottery['id']) && $Lottery['spread'] == "1"){
 			$fromuid = encrypt($fromuser,"D",C('safe_key'));//解密字符串
 			if($fromuid){
 				M('Lottery_record')->where(array("lid"=>$Lottery['id'],"token"=>$this->token,"wecha_id"=>$fromuid))->setInc("usenums");

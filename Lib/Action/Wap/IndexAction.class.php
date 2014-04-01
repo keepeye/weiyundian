@@ -46,10 +46,6 @@ class IndexAction extends BaseAction{
 	}
 	
 	public function index(){		
-		dump($_SERVER);
-		if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==false){
-			echo "in weixin";
-		}
 		$where['token']=$this->token;
 	    $flash=M('Flash')->where($where)->select();
         $home=M('Home')->where(array('token'=>$this->token))->find();
