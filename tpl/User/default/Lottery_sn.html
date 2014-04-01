@@ -34,7 +34,7 @@
 					
 					<TH>SN码(中奖号)</TH>
 					<TH>奖项</TH>
-					<TH>是否已发奖品</TH>
+					<TH>累计次数</TH>
 					<TH>奖品发送时间</TH>
 					<TH>中奖者信息</TH>
 					<TH>中奖时间</TH>
@@ -48,8 +48,8 @@
 						
 						<td>{pigcms:$record.sn}</td>
 						<td>{pigcms:$record.prize}</td>
-						 <td>
-              <if condition="$record['sendstutas'] eq 0">否<else/>是</if>
+						<td>
+              {pigcms:$record.counts}
             </td>
             <td><if condition="$record['sendtime'] eq 0"> <else/>{pigcms:$record.sendtime|date='Y-m-d H:i:s',###}</if>
             </td>
