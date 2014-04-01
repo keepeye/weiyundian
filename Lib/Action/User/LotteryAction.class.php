@@ -115,7 +115,7 @@ class LotteryAction extends UserAction{
 			if($check==false)$this->error('非法操作');
 			if($data->create()){
 				if(false !== $data->where($where)->save($_POST)){
-					echo $data->getLastSql();
+					dump($_POST);
 					$data1['pid']=$_POST['id'];
 					$data1['module']='Lottery';
 					$data1['token']=session('token');
