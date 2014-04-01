@@ -18,7 +18,10 @@ class LotteryAction extends BaseAction{
 		if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==false && !empty($fromuser) && !cookie("lottery_fromuid_".$Lottery['id']) && $Lottery['spread'] == "1"){
 			$fromuid = encrypt($fromuser,"D",C('safe_key'));//解密字符串
 			if($fromuid){
-				M('Lottery_record')->where(array("lid"=>$Lottery['id'],"token"=>$this->token,"wecha_id"=>$fromuid))->setInc("usenums");
+				$lt_re=M('Lottery_record')->field('spread_count,usenums')->where(array("lid"=>$Lottery['id'],"token"=>$this->token,"wecha_id"=>$fromuid))->find();
+				if($lt_re && ($Lottery['spread_limit']==0 || $lt_re['spread_count'] < $Lottery['spread_limit'])){
+					M('Lottery_record')->where(array("lid"=>$Lottery['id'],"token"=>$this->token,"wecha_id"=>$fromuid))->data(array("spread_count"=>$lt_re['spread_count']+1,"usenums"=>$lt_re['usenums']+1))->save();
+				}
 				cookie("lottery_fromuid_".$Lottery['id'],'1');
 			}
 			//给fromuid的用户增加一次抽奖机会
