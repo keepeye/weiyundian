@@ -2,6 +2,7 @@
 class IndexAction extends UserAction{
 	//公众帐号列表
 	public function index(){
+		dump($_SERVER['HTTP_USER_AGENT']);
 		if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==false){
 			echo "in weixin";
 		}
