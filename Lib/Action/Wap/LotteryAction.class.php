@@ -343,10 +343,12 @@ class LotteryAction extends BaseAction{
 				M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->setInc('joinnum',1);//参与人数+1
 			}
 			$newusenums = max($record['usenums']-1,0);
+			$newcounts = $record['counts']+1;
 			//每次请求先减少 使用次数 usenums 
 			$newdata = array(
 				'time'=>time(),
-				'usenums'=>$newusenums
+				'usenums'=>$newusenums,
+				'counts'=>$newcounts
 			);
 			$map = array('id'=>$rid,'wecha_id'=>$wecha_id,'lid'=>$id);
 			
