@@ -33,10 +33,11 @@
                   <td><input type="text" name="token" value="<?php echo uniqid();?>" class="px" tabindex="1" size="40">此处的token系统自动生成，也可以自己设置，用于和微信官方平台对接。</td>
                 </tr>
                 <tr>
-                    <th><span class="red">*</span>OAuth2.0网页授权接口：</th>
+                    <th><span class="red">*</span>OAuth2.0授权：</th>
                     <td>
                         <input type="radio" name="has_oauth" value="1">有 
-                        <input type="radio" name="has_oauth" value="0">无
+                        <input type="radio" name="has_oauth" value="0">无 
+                        <span>通过微信认证的服务号选有，订阅号或未认证的服务号别选。</span>
                     </td>
                 </tr>
                 <tr>
