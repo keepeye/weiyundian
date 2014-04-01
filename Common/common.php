@@ -106,7 +106,7 @@ function member_upviplevel($token,$wecha_id){
  * @param mixed $filter 参数过滤方法
  * @return mixed
  */
-function I($name,$default='',$filter=null) {
+function I($name,$default='',$filter="") {
     if(strpos($name,'.')) { // 指定参数来源
         list($method,$name) =   explode('.',$name,2);
     }else{ // 默认为自动判断
@@ -169,7 +169,16 @@ function I($name,$default='',$filter=null) {
     return $data;
 }
 
-
+// 过滤表单中的表达式
+function filter_exp(&$value){
+    if (in_array(strtolower($value),array('exp','or'))){
+        $value .= ' ';
+    }
+}
+// 不区分大小写的in_array实现
+function in_array_case($value,$array){
+    return in_array(strtolower($value),array_map('strtolower',$array));
+}
 if(!function_exists("array_column")){
     /**
      * 返回数组的列

@@ -9,9 +9,9 @@ class LotteryAction extends BaseAction{
 		$agent = $_SERVER['HTTP_USER_AGENT']; 
 		$id = I('request.id');//活动id
 		//初始化用户信息
-		$this->token = $token		= I('token',I('get.token'));
+		$this->token = $token		= I('request.token');
 		$this->wecha_id = $wecha_id	= I('request.wecha_id');//获取wecha_id
-		$this->wxsign = $wxsign = I('wxsign',I('get.wxsign'));//获取加密字符串
+		$this->wxsign = $wxsign = I('request.wxsign');//获取加密字符串
 		$Lottery = M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->find();//为了处理推广信息，提前查询
 		//推广处理
 		$fromuser = I('fromuser','');//获取推广用户
