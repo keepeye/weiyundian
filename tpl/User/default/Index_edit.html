@@ -39,7 +39,13 @@
                         <span>{pigcms:$info.token}</span>
                     </td>
                 </tr>
-
+                <tr>
+                    <th><span class="red">*</span>OAuth2.0网页授权接口：</th>
+                    <td>
+                        <input type="radio" name="has_oauth" value="1" <eq name="info['has_oauth']" value="1">checked</eq> />有 
+                        <input type="radio" name="has_oauth" value="0" <eq name="info['has_oauth']" value="0">checked</eq>/>无
+                    </td>
+                </tr>
                 <tr>
                   <th><span class="red">*</span>地区：</th>
                   <td>
