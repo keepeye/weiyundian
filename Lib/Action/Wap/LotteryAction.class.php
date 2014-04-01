@@ -321,11 +321,8 @@ class LotteryAction extends BaseAction{
 			echo '{"norun":1,"msg":"'.$msg.'"}';
 			exit;		
 		}
-		
-		
 		// 2. 抽奖次数是否达到			
 		//$Lottery 	= M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->find();
-		
 		if ($record['usenums'] <= 0 ) {
 			$norun 	 =  2;
 			$usenums =  $record['usenums'];	
