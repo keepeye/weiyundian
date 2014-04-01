@@ -89,7 +89,10 @@ class WeixinAction extends Action
         
         $key       = $data['Content'];//用户发送的内容字符串
 
-        
+        //获取用户信息
+        if($key == "get:openid"){
+            return array($this->data['FromUserName'],'text');
+        }
         if(!$return = $this->moduleReply($key)){//1.检测模块匹配
             if(!$return = $this->keywordReply($key)){//2.检测图文匹配
                 if(!$return = $this->queryReply($key)){//3.检测小工具匹配
