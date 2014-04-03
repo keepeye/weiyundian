@@ -134,6 +134,9 @@ class WxuserSubAction extends UserAction{
 		if(!IS_POST){
 			//读取子账户列表
 			$list = M('WxuserSub')->where(array("token"=>$this->token))->select();
+			//读取授权的subuid
+			$access_uids = M('WxuserSubAccessRow')->where(array("token"=>$this->token,"module"=>$module,"article_id"=>$article_id))->getField("sub_uid",true);
+			$this->assign("access_uids",$access_uids);
 			$this->assign("module",$module);
 			$this->assign("article_id",$article_id);
 			$this->assign("list",$list);
@@ -157,6 +160,7 @@ class WxuserSubAction extends UserAction{
 					}
 				}
 			}
+			$this->success("授权成功");
 		}
 	}
 
