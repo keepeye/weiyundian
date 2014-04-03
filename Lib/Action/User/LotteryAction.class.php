@@ -19,7 +19,6 @@ class LotteryAction extends UserAction{
 		$this->assign('count',M('Lottery')->where(array('token'=>session('token'),'type'=>1))->count());
 		$this->assign('list',$list);
 		$this->display();
-	
 	}
 	public function sn(){
 		if(session('gid')==1){
