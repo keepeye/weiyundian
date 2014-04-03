@@ -146,7 +146,7 @@ class WxuserSubAction extends UserAction{
 				$this->error("模块名或文档id不能为空");
 			}
 			$subuids = I('subuids');
-			$osubuids = M('WxuserSub')->where(array("token"=>$this->token,"id"=>array("in",$subuids)))->getFields("id",true);
+			$osubuids = M('WxuserSub')->where(array("token"=>$this->token,"id"=>array("in",$subuids)))->getField("id",true);
 			if(!empty($osubuids)){
 				foreach($osubuids as $subuid){
 					$data = array(
