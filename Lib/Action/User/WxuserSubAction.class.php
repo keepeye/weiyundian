@@ -121,7 +121,26 @@ class WxuserSubAction extends UserAction{
 		M('WxuserSub')->where(array("token"=>$this->token,"id"=>$uid))->delete();
 		//删除权限记录
 		M('WxuserSubAccess')->where(array("uid"=>$uid))->delete();
+		//删除行级授权记录
+		M('WxuserSubAccessRow')->where(array("sub_uid"=>$uid,"token"=>$this->token))->delete();
 		$this->success("操作成功");
+	}
+
+	//行级授权
+	function rowAccess(){
+		$token = $this->token;//商户token
+		$module = I('module');//模块名
+		$article_id = I('article_id');//文档主键
+		if(!IS_POST){
+			//读取子账户列表
+			$list = M('WxuserSub')->where(array("token"=>$this->token))->select();
+			$this->assign("module",$module);
+			$this->assign("article_id",$article_id);
+			$this->assign("list",$list);
+			$this->display();
+		}else{
+
+		}
 	}
 
 }
