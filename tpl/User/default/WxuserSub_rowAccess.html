@@ -9,15 +9,17 @@
 		<div class="clr"></div>
 	</div>
 	<div class="msgWrap">
-
+	<form action="" method="post">
+		
+	
 		<p>选择要授权的子账号：</p>
 		<ul>
 			<volist name='list' id='vo'>
 			<li><input type='checkbox' name='subuids[]' value='{pigcms:$vo.id}'/> {pigcms:$vo.username}</li>
 			</volist>
 		</ul>
-
-
+		<input type="submit" class="btnGreen" value="提交"/>
+	</form>
 	</div>
 
 
