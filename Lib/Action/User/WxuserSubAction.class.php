@@ -130,7 +130,7 @@ class WxuserSubAction extends UserAction{
 	function rowAccess(){
 		$token = $this->token;//商户token
 		$module = I('module');//模块名
-		$article_id = I('article_id');//文档主键
+		$article_id = I('article_id','intval');//文档主键
 		if(!IS_POST){
 			//读取子账户列表
 			$list = M('WxuserSub')->where(array("token"=>$this->token))->select();
@@ -139,7 +139,24 @@ class WxuserSubAction extends UserAction{
 			$this->assign("list",$list);
 			$this->display();
 		}else{
-			dump(I('subuids'));
+			if(empty($module) || !$article_id){
+				$this->error("模块名或文档id不能为空");
+			}
+			$subuids = I('subuids');
+			$osubuids = M('WxuserSub')->where(array("token"=>$this->token,"id"=>array("in",$subuids)))->getFields("id",true);
+			if(!empty($osubuids)){
+				foreach($osubuids as $subuid){
+					$data = array(
+						"token"=>$this->token,
+						"sub_uid"=>$subuid,
+						"module"=>$module,
+						"article_id"=>$article_id
+					);
+					if(M('WxuserSubAccessRow')->where($data)->count() <= 0){
+						M('WxuserSubAccessRow')->add($data);
+					}
+				}
+			}
 		}
 	}
 
