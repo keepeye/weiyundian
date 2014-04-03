@@ -148,6 +148,8 @@ class WxuserSubAction extends UserAction{
 			$subuids = I('subuids');
 			$osubuids = M('WxuserSub')->where(array("token"=>$this->token,"id"=>array("in",$subuids)))->getField("id",true);
 			if(!empty($osubuids)){
+				//删除旧权限
+				M('WxuserSubAccessRow')->where(array("token"=>$this->token,"module"=>$module,"article_id"=>$article_id))->delete();
 				foreach($osubuids as $subuid){
 					$data = array(
 						"token"=>$this->token,
@@ -155,9 +157,7 @@ class WxuserSubAction extends UserAction{
 						"module"=>$module,
 						"article_id"=>$article_id
 					);
-					if(M('WxuserSubAccessRow')->where($data)->count() <= 0){
-						M('WxuserSubAccessRow')->add($data);
-					}
+					M('WxuserSubAccessRow')->add($data);
 				}
 			}
 			$this->success("授权成功");
