@@ -139,7 +139,7 @@ class WxuserSubAction extends UserAction{
 			$this->assign("list",$list);
 			$this->display();
 		}else{
-
+			dump(I('subuids'));
 		}
 	}
 
