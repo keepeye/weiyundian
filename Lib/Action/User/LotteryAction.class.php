@@ -8,7 +8,13 @@ class LotteryAction extends UserAction{
 		$group=M('User_group')->where(array('id'=>$user['gid']))->find();
 		$this->assign('group',$group);
 		$this->assign('activitynum',$user['activitynum']);
-		$list=M('Lottery')->where(array('token'=>session('token'),'type'=>1))->select();
+		$where = array('token'=>session('token'),'type'=>1);
+		//子账户显示列表
+		if(($sub_uid = session('sub_uid'))!=""){
+			$article_ids = M('WxuserSubAccessRow')->where(array("token"=>$this->token,"sub_uid"=>$sub_uid,"module"=>"lottery"))->getField("article_id",true);
+			$where['id']=array("in",$article_ids);
+		}
+		$list=M('Lottery')->where($where)->select();
 		//echo M('Lottery')->getLastSql();
 		$this->assign('count',M('Lottery')->where(array('token'=>session('token'),'type'=>1))->count());
 		$this->assign('list',$list);
