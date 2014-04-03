@@ -10,8 +10,12 @@
 	</div>
 	<div class="msgWrap">
 
-
-		
+		<p>选择要授权的子账号：</p>
+		<ul>
+			<volist name='list' id='vo'>
+			<li><input type='checkbox' name='subuids[]' value='{pigcms:$vo.id}'/> {pigcms:$vo.username}</li>
+			</volist>
+		</ul>
 
 
 	</div>
