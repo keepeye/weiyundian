@@ -102,5 +102,4 @@ class baiduMapClient
 		return $result;
     }
 }
-?>
 

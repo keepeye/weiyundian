@@ -65,7 +65,11 @@
 				   <if condition="$list['status'] gt 0">结束<else/>开启</if> 
 				   </a>&nbsp;
 				  
-				   <a href="index.php?g=User&m=Lottery&a=del&id={pigcms:$list.id}">删除</a></TD>
+				   <a href="index.php?g=User&m=Lottery&a=del&id={pigcms:$list.id}">删除</a>
+            <?php if(session('sub_uid')==""): ?>
+              <a href="#">授权</a>
+            <?php endif;?>
+           </TD>
                 </TR>
 				</volist>
                          
