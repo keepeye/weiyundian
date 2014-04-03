@@ -187,7 +187,14 @@ class LotteryAction extends UserAction{
 			$this->error('操作失败');
 		}
 	}
+	//授权
+	public function shouquan(){
+		if(!IS_POST){
+			$this->display();
+		}else{
 
+		}
+	}
 	//导出中奖记录到excel下载
 	function exportExcel(){
 		$id = I('id','0','intval');//活动id
