@@ -190,7 +190,8 @@ class LotteryAction extends UserAction{
 	//授权
 	public function shouquan(){
 		if(!IS_POST){
-			$this->display();
+			echo "ok";
+			//$this->display();
 		}else{
 
 		}
