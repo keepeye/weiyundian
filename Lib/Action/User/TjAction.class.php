@@ -14,7 +14,8 @@ class TjAction extends UserAction{
 	
 	//默认统计
 	function index(){
-		$end_time = I('end_date',date("Y-m-d",time()),'strtotime')+86400;//截止时间戳
+		$end_date = I('end_date','','trim');
+		$end_time = $end_date?strtotime($end_date):strtotime(date("Y-m-d",time()))+86400;
 		echo $end_time;
 		$start_date = I('start_date','','trim');
 		$start_time = $start_date?strtotime($start_date):($end_time-86400*30);
