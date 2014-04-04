@@ -18,7 +18,7 @@ class TjAction extends UserAction{
 		$end_time = $end_date?strtotime($end_date):(strtotime(date("Y-m-d",time()))+86400);
 		
 		$start_date = I('start_date','','trim');
-		$start_time = $start_date?strtotime($start_date):($end_time-86400*30);
+		$start_time = $start_date?strtotime($start_date):($end_time-86400*10);
 		$list = $this->_model->field("concat(year,'/',month,'/',day) as day,SUM(shares) as shares,SUM(clicks) as clicks")->where(array("token"=>$this->_token,"lasttime"=>array("between",array($start_time,$end_time))))->group("year,month,day")->order("id ASC")->select();
 		$data['day'] = array_column($list,"day");
 		$data['shares'] = array_column($list,"shares");
