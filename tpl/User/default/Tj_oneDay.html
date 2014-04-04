@@ -54,7 +54,7 @@
 						connectorColor: '#000000',
 						//format: '<b>{point.name}</b>: {y}次'
 						formatter:function(){
-							var name = this.point.name.substring(0,20);
+							var name = this.point.name.substring(0,15)+'...';
 							var y = this.y;
 							return '<b>'+name+'</b>: '+y+'次';
 						}
