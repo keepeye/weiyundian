@@ -117,7 +117,7 @@ class GuajiangAction extends BaseAction{
 				//先更新抽奖记录
 				M('Lottery_record')->where(array('id'=>$record['id']))->data(array(
 					"usenums"=>$record['usenums']-1,
-					"counts"=>$record['usenums']+1,
+					"counts"=>$record['counts']+1,
 					"time"=>time()
 				))->save();
 				
