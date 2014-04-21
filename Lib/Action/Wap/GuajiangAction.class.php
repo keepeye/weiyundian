@@ -215,7 +215,8 @@ class GuajiangAction extends BaseAction{
 			} //end if;
 		} // end first if;
 
-		$data['usecout'] 	= intval($record['usenums']);
+		$data['usenums'] 	= intval($record['usenums']);
+		$data['counts']  = (int)$record['counts'];
 		$data['canrqnums']	= $Lottery['canrqnums'];
 		$data['fist'] 		= $Lottery['fist'];
 		$data['second'] 	= $Lottery['second'];
