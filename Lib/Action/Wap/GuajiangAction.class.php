@@ -11,7 +11,9 @@ class GuajiangAction extends BaseAction{
 		$this->wecha_id = $wecha_id	= I('request.wecha_id');//获取wecha_id
 		$this->wxsign = $wxsign = I('request.wxsign');//获取加密字符串
 		$Lottery = M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>2,'status'=>1))->find();//为了处理推广信息，提前查询
-		dump($Lottery);
+		if(!$Lottery){
+			$this->error("活动不存在或尚未开始");
+		}
 		//推广处理
 		$fromuser = I('fromuser','');//获取推广用户
 		if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==false && !empty($fromuser) && !cookie("guajiang_fromuid_".$Lottery['id']) && $Lottery['spread'] == "1"){
