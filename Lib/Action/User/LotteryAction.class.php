@@ -275,7 +275,12 @@ class LotteryAction extends UserAction{
 			foreach($openids as $k=>$v){
 				$openids[$k] = trim($v);
 			}
-			dump($openids);
+			$re = M('LotteryRecord')->where(array('lid'=>$id,'islottery'=>'0','wecha_id'=>array('in',$openids)))->setInc("usenums",10);
+			if($re !== false){
+				$this->success("ok");
+			}else{
+				$this->error($re->getDbError());
+			}
 		}
 	}
 }
