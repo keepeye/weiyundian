@@ -272,6 +272,9 @@ class LotteryAction extends UserAction{
 			}
 			$openids = I('post.openids');
 			$openids = explode("\n",$openids);
+			foreach($openids as $k=>$v){
+				$openids[$k] = trim($v);
+			}
 			dump($openids);
 		}
 	}
