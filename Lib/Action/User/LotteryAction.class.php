@@ -44,6 +44,7 @@ class LotteryAction extends UserAction{
 		$this->assign('pagestr',$pagestr);
 		//分页结束
 		$datacount=$data['fistnums']+$data['secondnums']+$data['thirdnums']+$data['fournums']+$data['fivenums']+$data['sixnums'];//奖品总数
+		$this->assign("data",$data);
 		$this->assign('datacount',$datacount);
 		$this->assign('recordcount',$recordcount);
 		$this->assign('record',$record);
