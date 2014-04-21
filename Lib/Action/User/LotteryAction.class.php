@@ -269,6 +269,9 @@ class LotteryAction extends UserAction{
 			if(!$lottery){
 				exit('活动不存在');
 			}
+			$openids = I('post.openids');
+			$openids = explode("\n",$openids);
+			dump($openids);
 		}
 	}
 }
