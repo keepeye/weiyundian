@@ -123,8 +123,8 @@ loading.prototype = {
 
 </script>
 <script   src="{pigcms::RES}/css/guajiang/js/jquery.js" type="text/javascript"></script>
-<script   src="{pigcms::RES}/css/guajiang/js/wScratchPad.js" type="text/javascript"></script>
 
+<script src="http://wscratchpad.websanova.com/wScratchPad.min.js"></script>
 <if condition="$Guajiang['islottery'] eq '1'">
 <div class="main">
 		<div class="content" style="margin-top:-5px">
@@ -350,9 +350,8 @@ $(function(){
 		width : 150,
 		height : 40,
 		color : "#a9a9a7",
-		debug : true,
 		scratchMove : function(e, percent){
-			alert(percent)
+			alert(e)
 			if(percent > 30){
                 this.clear();
                 
