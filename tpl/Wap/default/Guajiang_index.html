@@ -408,7 +408,8 @@ $("#save-btn").bind("click",
 			wechaid : wechaid,
 			lid 	: lid,
 			prize 	: winprize,
-			action 	: "add"
+			action 	: "add",
+			idnumber:idnumber
 		};
 		$.post('index.php?g=Wap&m=Guajiang&a=add', submitData,
 			function(data) {
