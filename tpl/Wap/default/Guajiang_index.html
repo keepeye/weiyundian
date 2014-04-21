@@ -124,7 +124,7 @@ loading.prototype = {
 </script>
 <script   src="{pigcms::RES}/css/guajiang/js/jquery.js" type="text/javascript"></script>
 
-<script src="http://wscratchpad.websanova.com/wScratchPad.min.js"></script>
+<script src="{pigcms::RES}/css/guajiang/js/wScratchPad2.0.3.min.js"></script>
 <if condition="$Guajiang['islottery'] eq '1'">
 <div class="main">
 		<div class="content" style="margin-top:-5px">
@@ -437,10 +437,10 @@ $("#save-btn").bind("click",
     //分享控制
     var WxOptions = {
         //"appid": 'wx78f81724e6590b1d', //服务号appid
-        "img_url": "",//图片
+        "img_url": "{pigcms::C('site_url')}/<empty name="Guajiang.animpic">{pigcms::RES}/css/guajiang/images/activity-lottery-5.png<else/>{pigcms:$Dazpan.animpic}</empty>",//图片
         "img_width": "120",
         "img_height": "120",
-        "link": window.location.href.replace(/wecha_id=[^&]*&?/,''),//分享链接
+        "link": window.location.href.replace(/wecha_id=[^&]*&?/,'fromuser={pigcms:$fromuser}&'),//分享链接
         "title": "{pigcms:$Guajiang.title|addslashes}",//定义分享标题
         "desc": "简介：{pigcms:$Guajiang.title|addslashes}"//描述
     };
