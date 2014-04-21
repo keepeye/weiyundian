@@ -149,8 +149,10 @@ class GuajiangAction extends UserAction{
 		$check=$data->where($where)->find();
 		if($check==false)$this->error('非法操作');
 		$back=$data->where($wehre)->delete();
+
 		if($back==true){
 			M('Keyword')->where(array('pid'=>$id,'token'=>session('token'),'module'=>'Lottery'))->delete();
+			M('LotteryRecord')->where(array("lid"=>$id))->delete();
 			$this->success('删除成功');
 		}else{
 			$this->error('操作失败');

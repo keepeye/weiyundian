@@ -155,6 +155,7 @@ class LotteryAction extends UserAction{
 		$back=$data->where($wehre)->delete();
 		if($back==true){
 			M('Keyword')->where(array('pid'=>$id,'token'=>session('token'),'module'=>'Lottery'))->delete();//删除关键词关联数据
+			M('LotteryRecord')->where(array("lid"=>$id))->delete();
 			$this->success('删除成功');
 		}else{
 			$this->error('操作失败');
