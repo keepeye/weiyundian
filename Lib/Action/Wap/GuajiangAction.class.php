@@ -81,6 +81,7 @@ class GuajiangAction extends BaseAction{
 		if(empty($record)){
 			$data1 = $where;
 			$data1['usenums'] = $Lottery['canrqnums'];//从用户端计数，先将抽奖次数一次性赋予用户。
+			$data1['time'] = time();
 			$redata->add($data1);
 			unset($data1);
 			$record = $redata->where($where)->find();//用户抽奖记录
@@ -92,7 +93,7 @@ class GuajiangAction extends BaseAction{
 		// 	$redata->data(array('usenums'=>'0'))->where($where)->save();//距离上次抽奖时间已超过时间限制，次数归零
 		// 	$record['usenums'] = 0;//次数归零，下面用于判断
 		// }
-		echo $record['usenums'];
+		
 		// 按自然天计算
 		if($Lottery['interval'] > 0 && time()>$record['time'] && date("d",time())!=date("d",$record['time'])){
 			$redata->data(array('usenums'=>$Lottery['canrqnums']))->where($where)->save();//距离上次抽奖时间已超过时间限制，抽奖计数自动补满或重置，每日抽奖次数不积累
@@ -113,9 +114,13 @@ class GuajiangAction extends BaseAction{
 				$data['usenums'] = 0;
 				$data['winprize']	= '抽奖次数已用完';
 			}else{
-
-				M('Lottery_record')->where(array('id'=>$record['id']))->setDec('usenums',1);//抽奖机会-1
-				M('Lottery_record')->where(array('id'=>$record['id']))->setInc('counts',1);//抽奖次数+1
+				//先更新抽奖记录
+				M('Lottery_record')->where(array('id'=>$record['id']))->data(array(
+					"usenums"=>$record['usenums']-1,
+					"counts"=>$record['usenums']+1,
+					"time"=>time()
+				))->save();
+				
 
 				//$record = M('Lottery_record')->where(array('id'=>$record['id']))->find();//
 				$firstNum=intval($Lottery['fistnums']);
