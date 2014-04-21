@@ -27,14 +27,6 @@ uploadJson  : "/index.php?m=Image&a=upload",
 	<input type="input" class="px" id="keyword" value="<if condition="$vo['keyword'] eq ''">刮刮卡<else/>{pigcms:$vo.keyword}</if>" name="keyword" style="width:400px" ><br />
   	<span class="red">只能写一个关键词</span>，用户输入此关键词将会触发此活动。
   </TD>
-  <TD rowspan="7" valign="top">
-	  <div style="margin-left:20px">
-          <strong>活动开始图片：</strong><br />
-          <img class="upload_image" src="{pigcms:$vo.starpicurl}" style="display: none;max-width:100%;" /><br /><br />
-          <input type="hidden" class="upload_image_filed" id="keyword" value="{pigcms:$vo.starpicurl}" name="starpicurl" data-thumb="720,400"/>
-          <input type="button" class="btnGrayS upload_image_button" value="添加图片" data-ishas="false" />建议图片尺寸720*400 左右
-	  </div>
-  </TD>
 </TR>
 <TR>
   <th valign="top"><span class="red">*</span>活动名称：</th>
@@ -85,11 +77,21 @@ uploadJson  : "/index.php?m=Image&a=upload",
 </TR>
 
 <TR>
-    <th valign="top">活动说明：</th>
-    <td><textarea  class="px" id="info" name="info"  style="width:400px; height:125px" ><if condition="$vo['info'] eq ''">亲，请点击进入大转盘抽奖活动页面，祝您好运哦！<else/>{pigcms:$vo.info}</if></textarea>
-      <br />换行请输入&lt;br&gt;
-    </td>
-  </TR>
+  <th valign="top">活动说明：</th>
+  <td><textarea  class="px" id="info" name="info"  style="width:400px; height:125px" ><if condition="$vo['info'] eq ''">亲，请点击进入大转盘抽奖活动页面，祝您好运哦！<else/>{pigcms:$vo.info}</if></textarea>
+    <br />换行请输入&lt;br&gt;
+  </td>
+</TR>
+<tr>
+  <TD rowspan="7" valign="top">
+    <div style="margin-left:20px">
+          <strong>活动开始图片：</strong><br />
+          <img class="upload_image" src="{pigcms:$vo.starpicurl}" style="display: none;max-width:100%;" /><br /><br />
+          <input type="hidden" class="upload_image_filed" id="keyword" value="{pigcms:$vo.starpicurl}" name="starpicurl" data-thumb="720,400"/>
+          <input type="button" class="btnGrayS upload_image_button" value="添加图片" data-ishas="false" />建议图片尺寸720*400 左右
+    </div>
+  </TD>
+</tr>
 </TBODY>
 </TABLE>
   </div> 
