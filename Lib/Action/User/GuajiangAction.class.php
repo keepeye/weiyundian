@@ -15,6 +15,7 @@ class GuajiangAction extends UserAction{
 		$this->display();	
 	}
 	public function sn(){
+		$this->redirect("Lottery/sn",array('id'=>I('id')));
 		if(session('gid')==1){
 			$this->error('vip0无法使用抽奖活动,请充值后再使用',U('User/Index/index'));
 		}
