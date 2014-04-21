@@ -346,31 +346,41 @@ var zjl = "{pigcms:$Guajiang.zjl}";
 var num = 0;
 var goon = true;
 $(function(){
-	$("#scratchpad").wScratchPad({
-		width : 150,
-		height : 40,
-		bg: '#a9a9a7',  // Background (image path or hex color).
-  		fg: '#a9a9a7',  // Foreground (image path or hex color).
-		scratchMove : function(e, percent){
-			//$("#prize").html("hello");
-			if(percent > 30){
-                this.clear();
+	// $("#scratchpad").wScratchPad({
+	// 	width : 150,
+	// 	height : 40,
+	// 	bg: '#a9a9a7',  // Background (image path or hex color).
+ //  		fg: '#a9a9a7',  // Foreground (image path or hex color).
+	// 	scratchMove : function(e, percent){
+	// 		//$("#prize").html("hello");
+	// 		if(percent > 30){
+ //                this.clear();
                 
-				if(zjl==0&&goon){ //不中奖[谢谢参与]
-					goon = false;
-					document.getElementById('txt').innerHTML="{pigcms:$Guajiang.winprize}";
-					$("#windowcenter").slideToggle(500);
-				}
+	// 			if(zjl==0&&goon){ //不中奖[谢谢参与]
+	// 				goon = false;
+	// 				document.getElementById('txt').innerHTML="{pigcms:$Guajiang.winprize}";
+	// 				$("#windowcenter").slideToggle(500);
+	// 			}
 				
-				if(zjl&&goon){
-					//$("#zjl").fadeIn();
-					goon = false;
-					$("#zjl").slideToggle(500);
-					//$("#outercont").slideUp(500)
-				}
-			}
+	// 			if(zjl&&goon){
+	// 				//$("#zjl").fadeIn();
+	// 				goon = false;
+	// 				$("#zjl").slideToggle(500);
+	// 				//$("#outercont").slideUp(500)
+	// 			}
+	// 		}
 			
-		}
+	// 	}
+	// });
+	$('#scratchpad').wScratchPad({
+	  size        : 5,          // The size of the brush/scratch.
+	  bg          : '#cacaca',  // Background (image path or hex color).
+	  fg          : '#6699ff',  // Foreground (image path or hex color).
+	  realtime    : true,       // Calculates percentage in realitime.
+	  scratchDown : null,       // Set scratchDown callback.
+	  scratchUp   : null,       // Set scratchUp callback.
+	  scratchMove : null,       // Set scratcMove callback.
+	  cursor      : 'crosshair' // Set cursor.
 	});
 
 });
