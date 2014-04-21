@@ -53,32 +53,18 @@ class GuajiangAction extends UserAction{
 			$this->error('您的免费活动创建数已经全部使用完,请充值后再使用',U('User/Index/index'));
 		}
 		
-		if(IS_POST){		
-			$data=D('Lottery');
-			$_POST['statdate']=strtotime($_POST['statdate']);
-			$_POST['enddate']=strtotime($_POST['enddate']);
-			$_POST['token']=session('token');	
-			$_POST['type']=2;	
-			if($data->create()!=false){				
-				if($id=$data->add()){
-					$data1['pid']=$id;
-					$data1['module']='Lottery';
-					$data1['token']=session('token');
-					$data1['keyword']=$_POST['keyword'];
-					M('Keyword')->add($data1);
-					$user=M('Users')->where(array('id'=>session('uid')))->setInc('activitynum');
-					$this->success('活动创建成功',U('Guajiang/index'));
-				}else{
-					$this->error('服务器繁忙,请稍候再试');
-				}
-			}else{
-				$this->error($data->getError());
-			}
-			
-			
+		if(IS_POST){
+			$user=M('Users')->where(array('id'=>session('uid')))->setInc('activitynum');
+			//add the use times . 
+			$_POST['statdate']=strtotime($this->_post('statdate'));
+			$_POST['enddate']=strtotime($this->_post('enddate'));
+			$_POST['token']=session('token');
+			$_POST['type'] = 2;
+			$_POST['interval'] = ($this->_post('interval') == '1')?86400:0;//抽奖时间限制，以秒计，但前台给用户选择以1天计
+			$this->all_insert('Lottery');
 		}else{
-			$lottery["starpicurl"]="/tpl/User/default/common/images/img/activity-scratch-card-start.jpg";
-			$lottery["endpicurl"]="/tpl/Wap/default/common/css/guajiang/images/activity-coupon-end.jpg";
+			$lottery["starpicurl"]="/tpl/Wap/default/common/css/guajiang/images/activity-lottery-start.jpg";
+			$lottery["endpicurl"]="/tpl/Wap/default/common/css/guajiang/images/activity-lottery-end.jpg";
 			$this->assign('vo',$lottery);
 			$this->display();
 		}
