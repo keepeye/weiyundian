@@ -68,7 +68,6 @@ class GuajiangAction extends BaseAction{
 		//4.显示奖项,说明,时间
 		if ($Lottery['enddate'] < time()) {
 			 $data['end'] = 1;
-			 $data['usenums'] = 3;
 			 $data['endinfo'] = $Lottery['endinfo'];
 			 $this->assign('Guajiang',$data);
 			 $this->display();
@@ -102,11 +101,10 @@ class GuajiangAction extends BaseAction{
 		
 		
 		if ($record['islottery'] == 1) {
-
-			$data['usenums'] = 2;
-			$data['sncode']	 = $record['sn'];
-			$data['uname']	 = $record['wecha_name'];
-			$data['winprize']	= $record['prize'];
+			$data['islottery'] = '1';
+			$data['sncode']	 = $record['sn'];//sn号
+			$data['uname']	 = $record['myname'];//姓名
+			$data['winprize']	= $record['prize'];//奖项名
 		}else{
 
 			if ($record['usenums'] < 1 ) {
@@ -155,18 +153,19 @@ class GuajiangAction extends BaseAction{
 				switch($rid){
 					case 1:
 
-						if ($Lottery['fistlucknums'] > $Lottery['fistnums']) {
+						if ($Lottery['fistlucknums'] >= $Lottery['fistnums']) {
 							 $zjl = false;
 							 $winprize = '谢谢参与';
 						}else{
-
+							$winprize = $Lottery['fist'];
 							$zjl	= true;
+							M('Lottery')->where(array('id'=>$id))->data(array("islottery"=>1,"prize"=>$winprize))->save();
 						    M('Lottery')->where(array('id'=>$id))->setInc('fistlucknums');
 						}
 					break;
 
 					case 2:
-						if ($Lottery['secondlucknums'] > $Lottery['secondnums']) {
+						if ($Lottery['secondlucknums'] >= $Lottery['secondnums']) {
 								$zjl = false;
 								$winprize = '谢谢参与';
 						}else{
@@ -175,7 +174,9 @@ class GuajiangAction extends BaseAction{
 								$zjl = false;
 								$winprize = '谢谢参与';
 							}else{ //输出中了二等奖
+								$winprize = $Lottery['second'];
 								$zjl	= true;
+								M('Lottery')->where(array('id'=>$id))->data(array("islottery"=>1,"prize"=>$winprize))->save();
 								M('Lottery')->where(array('id'=>$id))->setInc('secondlucknums');
 							}
 
@@ -183,7 +184,7 @@ class GuajiangAction extends BaseAction{
 					break;
 
 					case 3:
-						if ($Lottery['thirdlucknums'] > $Lottery['thirdnums']) {
+						if ($Lottery['thirdlucknums'] >= $Lottery['thirdnums']) {
 							 $zjl = false;
 							 $winprize = '谢谢参与';
 						}else{
@@ -191,7 +192,9 @@ class GuajiangAction extends BaseAction{
 								$zjl = false;
 								$winprize = '谢谢参与';
 							}else{
+								$winprize = $Lottery['third'];
 								$zjl	= true;
+								M('Lottery')->where(array('id'=>$id))->data(array("islottery"=>1,"prize"=>$winprize))->save();
 								M('Lottery')->where(array('id'=>$id))->setInc('thirdlucknums');
 							}
 
@@ -275,28 +278,30 @@ class GuajiangAction extends BaseAction{
 			$lid 				= $this->_post('lid');
 			$wechaid 			= $this->_post('wechaid');
 			$data['phone'] 		= $this->_post('tel');
-			$data['wecha_name'] = $this->_post('wxname');
-			$data['prize']		= $this->_post('prize');
-			$data['islottery'] 	= 1;
+			$data['myname'] = $this->_post('wxname');
+			$data['idnumber'] = I("post.idnumber");
+			//检测奖项是否真实存在
+			$where = array('lid'=>$lid,'wecha_id'=>$wechaid);
+			$record = M('Lottery_record')->where($where)->find();
+			if(!$record || $record['islottery'] != 1){
+				$this->ajaxReturn(array('success'=>'1','msg'=>'未检测到中奖记录'));
+			}
+			//检测身份证是否重复
+			if(M('Lottery_record')->where(array('lid'=>$lid,'idnumber'=>$data['idnumber']))->count() > 0){
+				$this->ajaxReturn(array('success'=>'1','msg'=>'该身份证已经中过奖'));
+			}
+			//奖品已经派发
+			if($record['sendstutas'] != 0){
+				$this->ajaxReturn(array('success'=>'1','msg'=>'奖品已派发，请不要重复提交'));
+			}
 			$data['time']		= time();
 			$data['sn']			= uniqid();
 			$rollback = M('Lottery_record')->where(array('lid'=> $lid,
 				'wecha_id'=>$wechaid))->save($data);
-			echo'{"success":1,"msg":"恭喜！尊敬的'.$data['wecha_name'].'请您保持手机通畅！请您牢记的领奖号:'.$data['sn'].'"}';
+			echo'{"success":1,"msg":"恭喜！尊敬的'.$data['myname'].'请您保持手机通畅！请您牢记的领奖号:'.$data['sn'].'"}';
 			exit;
 		}
-/*
-		$record = M('Lottery_record');
-		$data['phone'] 		= $this->_post('tel');
-		$data['wecha_name'] = $this->_post('wxname');
-		$data['islottery'] 	= 1;
-		$data['time']		= time();
-		$data['sn']			= uniqid();
-		$rollback = $record->where(array('lid'=>$this->_post('lid') ,
-				'wecha_id'=>$this->_post('wechaid') ))->save($data);
 
-				*/
 	}
 
 }
-?>
