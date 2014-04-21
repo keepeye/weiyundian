@@ -254,7 +254,22 @@ class LotteryAction extends UserAction{
 		exit;
 
 	}
+
+	function addtimes(){
+		$id = I('id','0','intval');//活动id
+		if(!$id){
+		exit('非法id');
+		}
+		
+		if(!IS_POST){
+			//查询活动基本信息
+			$this->display();
+		}else{
+			$lottery = M('Lottery')->where(array("id"=>$id,"token"=>$this->token))->find();
+			if(!$lottery){
+				exit('活动不存在');
+			}
+		}
+	}
 }
 
-
-?>
