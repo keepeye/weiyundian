@@ -258,10 +258,11 @@ class LotteryAction extends UserAction{
 	function addtimes(){
 		$id = I('id','0','intval');//活动id
 		if(!$id){
-		exit('非法id');
+			exit('非法id');
 		}
 		
 		if(!IS_POST){
+			$this->assign("id",$id);
 			//查询活动基本信息
 			$this->display();
 		}else{
