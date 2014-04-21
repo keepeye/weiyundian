@@ -92,6 +92,7 @@ class GuajiangAction extends BaseAction{
 		// 	$redata->data(array('usenums'=>'0'))->where($where)->save();//距离上次抽奖时间已超过时间限制，次数归零
 		// 	$record['usenums'] = 0;//次数归零，下面用于判断
 		// }
+		echo $record['usenums'];
 		// 按自然天计算
 		if($Lottery['interval'] > 0 && time()>$record['time'] && date("d",time())!=date("d",$record['time'])){
 			$redata->data(array('usenums'=>$Lottery['canrqnums']))->where($where)->save();//距离上次抽奖时间已超过时间限制，抽奖计数自动补满或重置，每日抽奖次数不积累
@@ -99,7 +100,7 @@ class GuajiangAction extends BaseAction{
 		}
 		
 		
-		echo $record['usenums'];
+		
 		if ($record['islottery'] == 1) {
 			$data['islottery'] = '1';
 			$data['sncode']	 = $record['sn'];//sn号
