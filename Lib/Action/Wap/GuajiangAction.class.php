@@ -43,6 +43,7 @@ class GuajiangAction extends BaseAction{
 		//检测活动状态
 		$data['token'] = $token;
 		$data = array_merge($data,$Lottery);//模板数据
+		dump($Lottery);
 		//1.活动已关闭
 		if (empty($Lottery)) {
 			 $data['end'] = 1;
