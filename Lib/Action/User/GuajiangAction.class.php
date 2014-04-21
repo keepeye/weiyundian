@@ -103,13 +103,18 @@ class GuajiangAction extends UserAction{
 			$data=D('Lottery');
 			$_POST['id']=$this->_get('id');
 			$_POST['token']=session('token');
-			$where=array('id'=>$_POST['id'],'token'=>$_POST['token'],'type'=>2);
 			$_POST['statdate']=strtotime($_POST['statdate']);
-			$_POST['enddate']=strtotime($_POST['enddate']);			
+			$_POST['enddate']=strtotime($_POST['enddate']);
+			$_POST['interval'] = ($this->_post('interval') == '1')?86400:0;//抽奖时间限制，以秒计，但前台给用户选择以1天计
+			if(empty($_POST['fist']) || empty($_POST['fistnums'])){
+				$this->error('必须设置一等奖奖品和数量');
+				exit;
+			}
+			$where=array('id'=>$_POST['id'],'token'=>$_POST['token'],'type'=>2);		
 			$check=$data->where($where)->find();
 			if($check==false)$this->error('非法操作');
 			if($data->create()){				
-				if($id=$data->where($where)->save($_POST)){
+				if(false !== $id=$data->where($where)->save($_POST)){
 					$data1['pid']=$_POST['id'];
 					$data1['module']='Lottery';
 					$data1['token']=session('token');
