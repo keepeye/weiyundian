@@ -57,10 +57,11 @@ class GuajiangAction extends BaseAction{
 		}
 		//活动尚未开始
 		if($Lottery['statdate'] > time()){
-			$data['end'] = 1;
-			$data['endinfo'] = "活动将在 ".date("Y-m-d H:i:s",$Lottery['statdate'])." 开始";
-			$this->assign('Guajiang',$data);
-			$this->display();
+			// $data['end'] = 1;
+			// $data['endinfo'] = "活动将在 ".date("Y-m-d H:i:s",$Lottery['statdate'])." 开始";
+			// $this->assign('Guajiang',$data);
+			// $this->display();
+			$this->error("活动将在 ".date("Y-m-d H:i:s",$Lottery['statdate'])." 开始");
 			exit();
 		}
 		//活动过期
