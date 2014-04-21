@@ -64,8 +64,8 @@ class GuajiangAction extends UserAction{
 			$_POST['interval'] = ($this->_post('interval') == '1')?86400:0;//抽奖时间限制，以秒计，但前台给用户选择以1天计
 			$this->all_insert('Lottery');
 		}else{
-			$lottery["starpicurl"]="/tpl/Wap/default/common/css/guajiang/images/activity-lottery-start.jpg";
-			$lottery["endpicurl"]="/tpl/Wap/default/common/css/guajiang/images/activity-lottery-end.jpg";
+			$lottery["starpicurl"]="/tpl/User/default/common/images/img/activity-scratch-card-start.jpg";
+			$lottery["endpicurl"]="/tpl/Wap/default/common/css/guajiang/images/activity-coupon-end.jpg";
 			$this->assign('vo',$lottery);
 			$this->display();
 		}
