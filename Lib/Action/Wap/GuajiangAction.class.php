@@ -115,6 +115,7 @@ class GuajiangAction extends BaseAction{
 
 				M('Lottery_record')->where(array('id'=>$record['id']))->setDec('usenums',1);//抽奖机会-1
 				M('Lottery_record')->where(array('id'=>$record['id']))->setInc('counts',1);//抽奖次数+1
+				dump(M('Lottery_record')->getLastSql());
 				//$record = M('Lottery_record')->where(array('id'=>$record['id']))->find();//
 				$firstNum=intval($Lottery['fistnums']);
 				$secondNum=intval($Lottery['secondnums']);
