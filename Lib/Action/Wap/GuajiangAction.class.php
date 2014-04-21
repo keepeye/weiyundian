@@ -286,7 +286,7 @@ class GuajiangAction extends BaseAction{
 			$lid 				= $this->_post('lid');
 			$wechaid 			= $this->_post('wechaid');
 			$data['phone'] 		= $this->_post('tel');
-			$data['myname'] = $this->_post('wxname');
+			$data['myname'] = $this->_post('myname');
 			$data['idnumber'] = I("post.idnumber");
 			//检测奖项是否真实存在
 			$where = array('lid'=>$lid,'wecha_id'=>$wechaid);
