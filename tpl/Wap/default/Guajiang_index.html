@@ -401,7 +401,10 @@ $("#save-btn").bind("click",
 	        alert("请输入身份证号");
 	        return
 	    }
-
+	    if(!lid){
+	    	alert('lid missed');
+	    	return
+	    }
 		var submitData = {
 			tid: 440,
 			/*code: $("#sncode").text(),*/
