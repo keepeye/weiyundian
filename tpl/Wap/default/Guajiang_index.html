@@ -157,11 +157,13 @@ loading.prototype = {
 	</div>
 <else/>
 	<div class="main">
-<div class="cover">
-	<img src="{pigcms::RES}/css/guajiang/images/activity-scratch-card-bannerbg.png">
-	<div id="prize"> {pigcms:$Guajiang.winprize|default="谢谢惠顾"}</div>
-	<div id="scratchpad"></div>
-</div>
+	<?php if($Guajiang['islottery']!='1'): ?>
+	<div class="cover">
+		<img src="{pigcms::RES}/css/guajiang/images/activity-scratch-card-bannerbg.png">
+		<div id="prize"> {pigcms:$Guajiang.winprize|default="谢谢惠顾"}</div>
+		<div id="scratchpad"></div>
+	</div>
+	<?php endif;?>
 <div class="content">
 	   
 	<div id="zjl" style="display:none" class="boxcontent boxwhite">
