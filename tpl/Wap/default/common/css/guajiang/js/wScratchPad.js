@@ -121,7 +121,7 @@
 				.attr('width', this.settings.width + 'px')
 				.attr('height', this.settings.height + 'px')
 			)
-			alert($(this.canvas))
+			console.log($(this.canvas))
 			$(this.canvas)
 			.mousedown(function(e)
 			{
