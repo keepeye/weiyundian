@@ -256,10 +256,11 @@
 		{
 			e.pageX = Math.floor(e.pageX - $this.canvas_offset.left);
 			e.pageY = Math.floor(e.pageY - $this.canvas_offset.top);
-			console.log($this.settings['scratch' + event])
+			
 			$this['scratch' + event](e, $this);
 			
 			if(this.settings.realtimePercent || event == "Up") {
+				console.log($this.settings['scratch' + event])
 				if($this.settings['scratch' + event]) $this.settings['scratch' + event].apply($this, [e, $this.scratchPercentage($this)]);
 			}
 		},
