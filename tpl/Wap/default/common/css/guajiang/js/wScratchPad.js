@@ -138,9 +138,9 @@
 			})
 			.mousemove(function(e)
 			{
-				console.log('move')
 				e.preventDefault();
 				e.stopPropagation();
+				console.log($this.scratch)
 				if($this.scratch) $this.scratchFunc(e, $this, 'Move');
 			})
 			.mouseup(function(e)
