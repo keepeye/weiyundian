@@ -140,7 +140,7 @@
 			{
 				e.preventDefault();
 				e.stopPropagation();
-				
+				alert('moving');
 				if($this.scratch) $this.scratchFunc(e, $this, 'Move');
 			})
 			.mouseup(function(e)
