@@ -124,7 +124,7 @@
 			$(this.canvas)
 			.mousedown(function(e)
 			{
-				console.log('down')
+
 				if(!$this.enabled) return true;
 
 				e.preventDefault();
@@ -138,6 +138,7 @@
 			})
 			.mousemove(function(e)
 			{
+				console.log('move')
 				e.preventDefault();
 				e.stopPropagation();
 				if($this.scratch) $this.scratchFunc(e, $this, 'Move');
