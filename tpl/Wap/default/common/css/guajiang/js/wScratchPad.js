@@ -121,10 +121,10 @@
 				.attr('width', this.settings.width + 'px')
 				.attr('height', this.settings.height + 'px')
 			)
-			console.log($(this.canvas))
 			$(this.canvas)
 			.mousedown(function(e)
 			{
+				console.log('down')
 				if(!$this.enabled) return true;
 
 				e.preventDefault();
