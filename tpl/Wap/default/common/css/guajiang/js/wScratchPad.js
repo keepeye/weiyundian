@@ -140,7 +140,7 @@
 			{
 				e.preventDefault();
 				e.stopPropagation();
-				console.log($this.scratch)
+
 				if($this.scratch) $this.scratchFunc(e, $this, 'Move');
 			})
 			.mouseup(function(e)
@@ -254,6 +254,7 @@
 
 		scratchFunc: function(e, $this, event)
 		{
+			console.log(event)
 			e.pageX = Math.floor(e.pageX - $this.canvas_offset.left);
 			e.pageY = Math.floor(e.pageY - $this.canvas_offset.top);
 			
