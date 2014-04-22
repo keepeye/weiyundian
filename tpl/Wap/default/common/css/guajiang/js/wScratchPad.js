@@ -121,7 +121,7 @@
 				.attr('width', this.settings.width + 'px')
 				.attr('height', this.settings.height + 'px')
 			)
-			
+			alert($(this.canvas))
 			$(this.canvas)
 			.mousedown(function(e)
 			{
@@ -140,7 +140,6 @@
 			{
 				e.preventDefault();
 				e.stopPropagation();
-				alert('moving');
 				if($this.scratch) $this.scratchFunc(e, $this, 'Move');
 			})
 			.mouseup(function(e)
