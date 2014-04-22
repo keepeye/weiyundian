@@ -258,9 +258,8 @@
 			e.pageY = Math.floor(e.pageY - $this.canvas_offset.top);
 			
 			$this['scratch' + event](e, $this);
-			console.log(this.settings.realtimePercent)
 			if(this.settings.realtimePercent || event == "Up") {
-				
+
 				if($this.settings['scratch' + event]) $this.settings['scratch' + event].apply($this, [e, $this.scratchPercentage($this)]);
 			}
 		},
@@ -280,7 +279,7 @@
 
 		scratchDown: function(e, $this)
 		{
-			//$(this.canvas).css('margin-right', $(this.canvas).css('margin-right') == "0px" ? "1px" : "0px");
+			$(this.canvas).css('margin-right', $(this.canvas).css('margin-right') == "0px" ? "1px" : "0px");
 			$this.ctx.globalCompositeOperation = 'destination-out';
 			$this.ctx.lineJoin = "round";
 			$this.ctx.lineCap = "round";
@@ -300,14 +299,14 @@
 		
 		scratchMove: function(e, $this)
 		{
-			//$(this.canvas).css('margin-right', $(this.canvas).css('margin-right') == "0px" ? "1px" : "0px");
+			$(this.canvas).css('margin-right', $(this.canvas).css('margin-right') == "0px" ? "1px" : "0px");
 			$this.ctx.lineTo(e.pageX, e.pageY);
 			$this.ctx.stroke();
 		},
 		
 		scratchUp: function(e, $this)
 		{
-			//$(this.canvas).css('margin-right', $(this.canvas).css('margin-right') == "0px" ? "1px" : "0px");
+			$(this.canvas).css('margin-right', $(this.canvas).css('margin-right') == "0px" ? "1px" : "0px");
 			$this.ctx.closePath();
 		},
 	}
