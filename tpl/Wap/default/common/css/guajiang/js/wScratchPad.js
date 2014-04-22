@@ -258,9 +258,9 @@
 			e.pageY = Math.floor(e.pageY - $this.canvas_offset.top);
 			
 			$this['scratch' + event](e, $this);
-			
+			console.log(this.settings.realtimePercent)
 			if(this.settings.realtimePercent || event == "Up") {
-				console.log($this.settings['scratch' + event])
+				
 				if($this.settings['scratch' + event]) $this.settings['scratch' + event].apply($this, [e, $this.scratchPercentage($this)]);
 			}
 		},
