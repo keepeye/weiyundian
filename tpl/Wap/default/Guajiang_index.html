@@ -190,7 +190,9 @@ loading.prototype = {
 			</div>
 		</div>
 	</div>
-
+	<div class="boxcontent boxwhite" id="tryagain" style="display:none">
+		<input type="button" value="再来一次" onclick="javascript:window.location.href=window.location.href" />
+	</div>
 	<div class="boxcontent boxwhite">
 		<div class="box">
 			<div class="title-brown"><span>奖项说明：</span></div>
@@ -199,9 +201,7 @@ loading.prototype = {
 			<p>你还有{pigcms:$Guajiang.usenums}次机会</p>
 			<p>这是您第 <span class="red" id="usenums">{pigcms:$Guajiang.counts}</span> 次刮奖</p>
 			 {pigcms::$prizeStr}
-			 <div>
-				<input type="button" value="再来一次" onclick="javascript:window.location.href=window.location.href" />
-			</div>
+
 			</div>
 
 		</div>
@@ -254,6 +254,7 @@ $(function(){
                 this.clear();
                 
 				if(zjl==0&&goon){ //不中奖[谢谢参与]
+					$("#tryagain").show()
 					goon = false;
 					document.getElementById('txt').innerHTML="{pigcms:$Guajiang.winprize}";
 					$("#windowcenter").slideToggle(500);
