@@ -347,7 +347,7 @@ $("#save-btn").bind("click",
     }
 
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
-
+    	WeixinJSBridge.call('showToolbar');
         WeixinJSBridge.on('menu:share:appmessage', function(argv){
         	tongjishare();
             WeixinJSBridge.invoke('sendAppMessage', WxOptions);
