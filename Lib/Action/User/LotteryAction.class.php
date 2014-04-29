@@ -67,6 +67,8 @@ class LotteryAction extends UserAction{
 			$_POST['enddate']=strtotime($this->_post('enddate'));
 			$_POST['token']=session('token');
 			$_POST['interval'] = ($this->_post('interval') == '1')?86400:0;//抽奖时间限制，以秒计，但前台给用户选择以1天计
+			//处理formset
+			$_POST['formset'] = $this->parseformset();
 			$this->all_insert('Lottery');
 		}else{
 			$lottery["starpicurl"]="/tpl/Wap/default/common/css/guajiang/images/activity-lottery-start.jpg";
@@ -256,7 +258,7 @@ class LotteryAction extends UserAction{
 		exit;
 
 	}
-
+	//增加指定用户10次抽奖机会
 	function addtimes(){
 		$id = I('id','0','intval');//活动id
 		if(!$id){
@@ -284,6 +286,21 @@ class LotteryAction extends UserAction{
 				$this->error($re->getDbError());
 			}
 		}
+	}
+
+	//处理formset字段
+	function parseformset(){
+		$origin = $_POST['formset'];//原始POST数据
+		$data = array();
+		foreach($origin['id'] as $k=>$v){
+			$data[] = array(
+				"id"=>$v,
+				"name"=>$origin['name'][$k],
+				"type"=>$origin['type'][$k],
+				"value"=>$origin['value'][$k]
+			);
+		}
+		return json_encode($data);
 	}
 }
 
