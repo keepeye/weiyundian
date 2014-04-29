@@ -282,7 +282,7 @@ uploadJson  : "/index.php?m=Image&a=upload",
               </tr>
               <tr>
                 <td colspan=4>
-                  <input type="button" class="btnGray" value="增加一行" onclick="javascript:$('._formset_:eq(0)').clone().insertAfter($('._formset_:last'))"/>
+                  <input type="button" class="btnGray" value="增加一行" onclick="javascript:$('._formset_:eq(0)').clone().insertAfter($('._formset_:last')).find('input').attr('value','')"/>
                 </td>
               </tr>
             </TABLE>
