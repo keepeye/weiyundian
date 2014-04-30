@@ -118,6 +118,8 @@ class LotteryAction extends UserAction{
 				$this->error('必须设置一等奖奖品和数量');
 				exit;
 			}
+			//处理formset
+			$_POST['formset'] = $this->parseformset();
 			$where=array('id'=>$_POST['id'],'token'=>$_POST['token']);
 			$check=$data->where($where)->find();
 			if($check==false)$this->error('非法操作');
