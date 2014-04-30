@@ -139,9 +139,13 @@ class LotteryAction extends UserAction{
 			$id=$this->_get('id');
 			$where=array('id'=>$id,'token'=>session('token'));
 			$data=M('Lottery');
-			$check=$data->where($where)->find();
-			if($check==false)$this->error('非法操作');
 			$lottery=$data->where($where)->find();
+			if($lottery==false){
+				$this->error('非法操作');
+			}
+			if(!empty($lottery['formset'])){
+				$lottery['formset'] = json_decode($lottery['formset']);
+			}
 			$this->assign('vo',$lottery);
 			//dump($_POST);
 			$this->display('add');
