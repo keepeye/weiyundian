@@ -299,6 +299,7 @@ class LotteryAction extends UserAction{
 		$origin = $_POST['formset'];//原始POST数据
 		$data = array();
 		foreach($origin['id'] as $k=>$v){
+			if(trim($v)=="" || trim($origin['name'][$k])=="") continue;
 			$data[] = array(
 				"id"=>$v,
 				"name"=>$origin['name'][$k],
