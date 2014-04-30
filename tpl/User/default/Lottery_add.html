@@ -260,7 +260,27 @@ uploadJson  : "/index.php?m=Image&a=upload",
                 <td>默认值(选项)(<a href="javascript:" title="对于文本字段，表示默认值，对于下拉类型的，表示下拉选项，用英文逗号,分隔每个选项">?</a>)</td>
               </tr>
               <?php foreach($vo['formset'] as $field): ?>
-              
+              <tr class="_formset_">
+                
+                <td>
+                  <input type="input" class="px" name="formset[id][]" value="{pigcms:$field.id}" style="width:100px"/>
+                </td>
+                
+                <td>
+                  <input type="input" class="px" name="formset[name][]" value="{pigcms:$field.name}" style="width:100px"/>
+                </td>
+                
+                <td>
+                  <select name="formset[type][]">
+                      <option value="textfield" <eq name="field['type']" value="textfield">selected</eq>>文本字段</option>
+                      <option value="selectfield" <eq name="field['type']" value="selectfield">selected</eq>>下拉字段</option>
+                  </select>
+                </td>
+                
+                <td>
+                  <input type="input" class="px" name="formset[value][]" value="{pigcms:$field.value}" style="width:400px"/> 
+                </td>
+              </tr>
               <?php endforeach;?>
               <tr class="_formset_">
                 
