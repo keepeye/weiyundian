@@ -144,7 +144,7 @@ class LotteryAction extends UserAction{
 				$this->error('非法操作');
 			}
 			if(!empty($lottery['formset'])){
-				$lottery['formset'] = json_decode($lottery['formset']);
+				$lottery['formset'] = json_decode($lottery['formset'],true);
 			}
 			$this->assign('vo',$lottery);
 			//dump($_POST);
