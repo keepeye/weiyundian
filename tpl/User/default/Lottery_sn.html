@@ -53,7 +53,15 @@
             </td>
             <td><if condition="$record['sendtime'] eq 0"> <else/>{pigcms:$record.sendtime|date='Y-m-d H:i:s',###}</if>
             </td>
-						<td>tel:{pigcms:$record.phone}<br/>{pigcms:$record.myname}<br/>{pigcms:$record.idnumber}</td>
+						<td>
+              <?php if($record['formdata'] != ''): ?>
+                <?php foreach($record['formdata'] as $k=>$v): ?>
+                {pigcms:$data['formset'][$k]['name']}:{pigcms:$v}<br/>
+                <?php endforeach;?>
+              <?php else: ?>
+              {pigcms:$record.phone}<br/>{pigcms:$record.myname}<br/>{pigcms:$record.idnumber}
+              <?php endif; ?>
+            </td>
 						<td>{pigcms:$record.time|date='Y-m-d H:i:s',###}</td>
 						<td>
                <if condition="$record['sendstutas'] eq 0"> 

@@ -26,8 +26,16 @@ class LotteryAction extends UserAction{
 		}
 		$id=$this->_get('id');
 		$data=M('Lottery')->where(array('token'=>session('token'),'id'=>$id))->find();
+
 		if(!$data){
 			$this->error("活动不存在");
+		}
+		//formset
+		if(!empty($data['formset'])){
+			$formset = json_decode($data['formset'],true);
+			foreach($formset as $fieldset){
+				$data['formset'][$fieldset['id']] = $fieldset;
+			}
 		}
 		$this->assign("lottery",$data);
 		$map = array('token'=>session('token'),'lid'=>$id,'islottery'=>1);
