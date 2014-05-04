@@ -229,7 +229,7 @@ class LotteryAction extends UserAction{
 		import("@.ORG.phpexcel.Classes.PHPExcel",'',".php");
 		$objPHPExcel = new PHPExcel();
 		// 设置列名
-		$objPHPExcel->setActiveSheetIndex(0)
+		$excelobj = $objPHPExcel->setActiveSheetIndex(0)
 		            ->setCellValue('A1', '中奖sn号')
 		            ->setCellValue('B1', '奖项');
 
@@ -241,13 +241,13 @@ class LotteryAction extends UserAction{
 			foreach($formset as $field){
 				$column_name = chr($column_start);
 				$extra_columns[$column_name] = $field;
-				$objPHPExcel->setCellValue($column_name.'1', $field['name']);//设定一个列来存储表单字段
+				$excelobj->setCellValue($column_name.'1', $field['name']);//设定一个列来存储表单字段
 				$column_start += 1;//ASCII码加+1表示下一个列字母
 				
 			}
-			
+
 		}else{
-			$objPHPExcel->setCellValue('C1', '手机号')->setCellValue('D1', '姓名')->setCellValue('E1', '身份证');
+			$excelobj->setCellValue('C1', '手机号')->setCellValue('D1', '姓名')->setCellValue('E1', '身份证');
 		}
 		//读取数据
 		$map = array(
@@ -262,12 +262,12 @@ class LotteryAction extends UserAction{
 			foreach($list as $item){
 				$item['time'] = $item['time']>0?date("Y-m-d H:i:s",$item['time']):"0";
 				$item['sendtime'] = $item['sendtime']>0?date("Y-m-d H:i:s",$item['sendtime']):"0";
-				$objPHPExcel->setActiveSheetIndex(0)
+				$excelobj = $objPHPExcel->setActiveSheetIndex(0)
 			            ->setCellValueExplicit('A'.$i, $item['sn'],PHPExcel_Cell_DataType::TYPE_STRING)
 			            ->setCellValueExplicit('B'.$i, $item['prize'],PHPExcel_Cell_DataType::TYPE_STRING);
 			    $formdata = json_decode($item['formdata'],true);//用户提交的表单数据
 			    foreach($extra_columns as $k1=>$v1){
-			    	$objPHPExcel->setCellValueExplicit($k1.$i, $formdata[$v1['id']],PHPExcel_Cell_DataType::TYPE_STRING);
+			    	$excelobj->setCellValueExplicit($k1.$i, $formdata[$v1['id']],PHPExcel_Cell_DataType::TYPE_STRING);
 			    }
 			    unset($k1,$v1);
 			    $i++;
