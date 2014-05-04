@@ -107,13 +107,18 @@
                 <?php foreach($Dazpan['formset'] as $field): ?>
                     <?php if($field['type']=='selectfield'): ?>
                         <?php $options = explode(",",$field['value']);?>
-                        <select name="formdata[{pigcms:$field.id}]" required>
-                            <?php foreach($options as $option):?>
-                            <option value="{pigcms:$option}">{pigcms:$option}</option>
-                            <?php endforeach;?>
-                        </select>
+                        <div>
+                            {pigcms:$field.name}
+                            <select name="formdata[{pigcms:$field.id}]" required>
+                                <?php foreach($options as $option):?>
+                                <option value="{pigcms:$option}">{pigcms:$option}</option>
+                                <?php endforeach;?>
+                            </select>
+                        <div>
                     <?php else: ?>
-                        <input type="text" name="formdata[{pigcms:$field.id}]" placeholder="{pigcms:$field.name}" value="{pigcms:$field.value}" required />
+                        <div>
+                        {pigcms:$field.name}:<input type="text" name="formdata[{pigcms:$field.id}]" placeholder="{pigcms:$field.name}" value="{pigcms:$field.value}" required />
+                        </div>
                     <?php endif;?>
                 <?php endforeach;?>
             <?php else: ?>
