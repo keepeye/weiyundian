@@ -81,7 +81,8 @@
     </div>
     </div>
     </div>
-<else/>
+</if>
+<?php if(!isset($Dazpan['end'])): ?>
     <div id="outercont"  >
         <div id="outer-cont">
             <div id="outer"><img src="<empty name="Dazpan.animpic">{pigcms::RES}/css/guajiang/images/activity-lottery-5.png<else/>{pigcms:$Dazpan.animpic}</empty>"></div>
@@ -90,7 +91,7 @@
             <div id="inner"><img src="{pigcms::RES}/css/guajiang/images/activity-lottery-2.png"></div>
         </div>
     </div>
-</if>
+<?php endif; ?>
 <div class="content">
     <div class="boxcontent boxyellow"  id="result"  style="display:none"  >
     <div class="box">
@@ -137,7 +138,7 @@
     </div>
 </div>
 <if condition="$Dazpan['end'] eq 5">
- <div  class="main" >
+<div  class="main" >
     <div class="content" style=" margin-top:10px">
         <div class="boxcontent boxyellow">
             <div class="box">
@@ -148,7 +149,7 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
 </if>
 <if condition="$Dazpan['On'] eq 1">
 <div class="boxcontent boxyellow">
