@@ -140,6 +140,9 @@ class GuajiangAction extends UserAction{
 			$check=$data->where($where)->find();
 			if($check==false)$this->error('非法操作');
 			$lottery=$data->where($where)->find();		
+			if(!empty($lottery['formset'])){
+				$lottery['formset'] = json_decode($lottery['formset'],true);
+			}
 			$this->assign('vo',$lottery);
 			//dump($lottery);
 			$this->display('add');
