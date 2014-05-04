@@ -287,7 +287,7 @@ class GuajiangAction extends BaseAction{
 
 
 	public function add(){
-		if($_POST['action'] ==  'add'  ){
+		if(IS_POST){
 			$lid 				= $this->_post('lid');
 			$wechaid 			= $this->_post('wechaid');
 			//自定义表单处理
