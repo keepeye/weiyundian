@@ -55,7 +55,7 @@
             </td>
 						<td>
               <?php if($record['formdata'] != ''): ?>
-                <?php foreach($record['formdata'] as $k=>$v): ?>
+                <?php foreach(json_decode($record['formdata'],true) as $k=>$v): ?>
                 {pigcms:$data['formset'][$k]['name']}:{pigcms:$v}<br/>
                 <?php endforeach;?>
               <?php else: ?>
