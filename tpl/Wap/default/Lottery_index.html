@@ -131,7 +131,7 @@
             <?php endif; ?>
 
             <p>
-                <input class="pxbtn" name="提 交"  id="save-btn" type="button" value="用户提交">
+                <input class="pxbtn" name="提 交"  type="submit" value="用户提交">
             </p>
             </form>
         </div>
@@ -424,6 +424,12 @@ $("#save-btn").bind("click",function() {
     },
     "json")
 });
+$(function(){
+    $("#formdata").submit(function(){
+        alert('sub')
+        return false;
+    })
+})
 </script>
 <div id="tongji_iframe" style="width:1px;height:1px;position:fixed;left:-1000px;"></div>
 <script>
