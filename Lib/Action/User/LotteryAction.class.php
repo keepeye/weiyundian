@@ -33,6 +33,7 @@ class LotteryAction extends UserAction{
 		//formset
 		if(!empty($data['formset'])){
 			$formset = json_decode($data['formset'],true);
+			$data['formset'] = array();
 			//dump($formset);
 			foreach($formset as $fieldset){
 				$data['formset'][$fieldset['id']] = $fieldset;
