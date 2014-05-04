@@ -266,7 +266,6 @@ class LotteryAction extends UserAction{
 			            ->setCellValueExplicit('A'.$i, $item['sn'],PHPExcel_Cell_DataType::TYPE_STRING)
 			            ->setCellValueExplicit('B'.$i, $item['prize'],PHPExcel_Cell_DataType::TYPE_STRING);
 			    $formdata = json_decode($item['formdata'],true);//用户提交的表单数据
-			    dump($formdata);exit;
 			    foreach($extra_columns as $k1=>$v1){
 			    	$excelobj->setCellValueExplicit($k1.$i, $formdata[$v1['id']],PHPExcel_Cell_DataType::TYPE_STRING);
 			    }
