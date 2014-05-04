@@ -245,7 +245,7 @@ class LotteryAction extends UserAction{
 				$column_start += 1;//ASCII码加+1表示下一个列字母
 				
 			}
-
+			dump($extra_columns);exit;
 		}else{
 			$excelobj->setCellValue('C1', '手机号')->setCellValue('D1', '姓名')->setCellValue('E1', '身份证');
 		}
