@@ -240,7 +240,10 @@ class GuajiangAction extends BaseAction{
 		$data['title']		= $Lottery['title'];
 		$data['statdate']	= $Lottery['statdate'];
 		$data['enddate']	= $Lottery['enddate'];
-
+		//formset
+		if(!empty($data['formset'])){
+			$data['formset'] = json_decode($data['formset'],true);
+		}
 		$this->assign('Guajiang',$data);
 
 		$prizeStr='<p>'.$Lottery['fist'];
