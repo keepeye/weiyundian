@@ -245,7 +245,7 @@ class LotteryAction extends UserAction{
 				$column_start += 1;//ASCII码加+1表示下一个列字母
 				
 			}
-			dump($extra_columns);exit;
+
 		}else{
 			$excelobj->setCellValue('C1', '手机号')->setCellValue('D1', '姓名')->setCellValue('E1', '身份证');
 		}
@@ -266,6 +266,7 @@ class LotteryAction extends UserAction{
 			            ->setCellValueExplicit('A'.$i, $item['sn'],PHPExcel_Cell_DataType::TYPE_STRING)
 			            ->setCellValueExplicit('B'.$i, $item['prize'],PHPExcel_Cell_DataType::TYPE_STRING);
 			    $formdata = json_decode($item['formdata'],true);//用户提交的表单数据
+			    dump($formdata);exit;
 			    foreach($extra_columns as $k1=>$v1){
 			    	$excelobj->setCellValueExplicit($k1.$i, $formdata[$v1['id']],PHPExcel_Cell_DataType::TYPE_STRING);
 			    }
