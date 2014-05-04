@@ -412,21 +412,31 @@ $("#save-btn").bind("click",function() {
     // };
 
     //formdata
-    var submitData = $("#formdata").serialize();
+    // var submitData = $("#formdata").serialize();
 
-    $.post('index.php?g=Wap&m=Lottery&a=add', submitData,
-    function(data) {
-        if (data.success == true) {
-            alert(data.msg);
-            $("#result").hide("slow");
-            return
-        } else {}
-    },
-    "json")
+    // $.post('index.php?g=Wap&m=Lottery&a=add', submitData,
+    // function(data) {
+    //     if (data.success == true) {
+    //         alert(data.msg);
+    //         $("#result").hide("slow");
+    //         return
+    //     } else {}
+    // },
+    // "json")
 });
 $(function(){
     $("#formdata").submit(function(){
-        alert('sub')
+        //formdata
+        var submitData = $("#formdata").serialize();
+
+        $.post('index.php?g=Wap&m=Lottery&a=add', submitData,function(data) {
+            if (data.success == true) {
+                alert(data.msg);
+                $("#result").hide("slow");
+                return
+            } else {}
+        },
+        "json")
         return false;
     })
 })
