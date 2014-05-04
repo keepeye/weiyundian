@@ -287,9 +287,14 @@ class GuajiangAction extends BaseAction{
 		if($_POST['action'] ==  'add'  ){
 			$lid 				= $this->_post('lid');
 			$wechaid 			= $this->_post('wechaid');
-			$data['phone'] 		= $this->_post('tel');
-			$data['myname'] = $this->_post('myname');
-			$data['idnumber'] = I("post.idnumber");
+			//自定义表单处理
+			if(isset($_POST['formdata']) && !empty($_POST['formdata'])){
+				$data['formdata'] = json_encode($_POST['formdata']);
+			}else{
+				$data['phone'] 		= $this->_post('phone');
+				$data['myname'] = $this->_post('myname');
+				$data['idnumber'] = I("post.idnumber");
+			}
 			//检测奖项是否真实存在
 			$where = array('lid'=>$lid,'wecha_id'=>$wechaid);
 			$record = M('Lottery_record')->where($where)->find();
