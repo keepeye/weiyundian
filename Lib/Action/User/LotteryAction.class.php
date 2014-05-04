@@ -33,11 +33,12 @@ class LotteryAction extends UserAction{
 		//formset
 		if(!empty($data['formset'])){
 			$formset = json_decode($data['formset'],true);
+			dump($formset);
 			foreach($formset as $fieldset){
 				$data['formset'][$fieldset['id']] = $fieldset;
 			}
 		}
-		dump($data['formset']);
+
 		$this->assign("lottery",$data);
 		$map = array('token'=>session('token'),'lid'=>$id,'islottery'=>1);
 		if(isset($_REQUEST['filter']) && !empty($_REQUEST['filter'])){
