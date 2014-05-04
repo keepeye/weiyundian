@@ -15,38 +15,38 @@
 <style>
 .footFix{width:100%;text-align:center;position:fixed;left:0;bottom:0;z-index:99;}
 #footReturn a, #footReturn2 a {
-display: block;
-line-height: 41px;
-color: #fff;
-text-shadow: 1px 1px #282828;
-font-size: 14px;
-font-weight: bold;
+    display: block;
+    line-height: 41px;
+    color: #fff;
+    text-shadow: 1px 1px #282828;
+    font-size: 14px;
+    font-weight: bold;
 }
 #footReturn, #footReturn2 {
-z-index: 89;
-display: inline-block;
-text-align: center;
-text-decoration: none;
-vertical-align: middle;
-cursor: pointer;
-width: 100%;
-outline: 0 none;
-overflow: visible;
-Unknown property name.-moz-box-sizing: border-box;
-box-sizing: border-box;
-padding: 0;
-height: 41px;
-opacity: .95;
-border-top: 1px solid #181818;
-box-shadow: inset 0 1px 2px #b6b6b6;
-background-color: #515151;
-Invalid property value.background-image: -ms-linear-gradient(top,#838383,#202020);
-background-image: -webkit-linear-gradient(top,#838383,#202020);
-Invalid property value.background-image: -moz-linear-gradient(top,#838383,#202020);
-Invalid property value.background-image: -o-linear-gradient(top,#838383,#202020);
-background-image: -webkit-gradient(linear,0% 0,0% 100%,from(#838383),to(#202020));
-Invalid property value.filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#838383',endColorstr='#202020');
-Unknown property name.-ms-filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#838383',endColorstr='#202020');
+    z-index: 89;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    width: 100%;
+    outline: 0 none;
+    overflow: visible;
+    Unknown property name.-moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    height: 41px;
+    opacity: .95;
+    border-top: 1px solid #181818;
+    box-shadow: inset 0 1px 2px #b6b6b6;
+    background-color: #515151;
+    Invalid property value.background-image: -ms-linear-gradient(top,#838383,#202020);
+    background-image: -webkit-linear-gradient(top,#838383,#202020);
+    Invalid property value.background-image: -moz-linear-gradient(top,#838383,#202020);
+    Invalid property value.background-image: -o-linear-gradient(top,#838383,#202020);
+    background-image: -webkit-gradient(linear,0% 0,0% 100%,from(#838383),to(#202020));
+    Invalid property value.filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#838383',endColorstr='#202020');
+    Unknown property name.-ms-filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#838383',endColorstr='#202020');
 }
 
 </style>
@@ -99,17 +99,35 @@ Unknown property name.-ms-filter: progid:DXImageTransform.Microsoft.gradient(Gra
             <p>你中了：<span class="red" id="prizetype" >   </span></p>
             <!--<p>兑奖SN码：<span class="red" id="sncode" ></span></p>-->
             <p class="red" id="red">{pigcms:$Dazpan.sttxt}</p>
+            <form method="post" id="formdata" action="{pigcms::U('add')}">
+            <input name="wechaid"  id="wechaid" value="{pigcms:$Dazpan.wecha_id}" type="hidden">
+            <input name="lid"  id="lid" value="{pigcms:$Dazpan.lid}" type="hidden">
+            <input name="winprize"  id="winprize" value="" type="hidden">
+            <?php if(!empty($Dazpan['formset'])): ?>
+                <?php foreach($Dazpan['formset'] as $field): ?>
+                    <?php if($field['type']=='selectfield'): ?>
+                        <?php $options = explode(",",$field['value']);?>
+                        <select name="formdata[{pigcms:$field.id}]" required>
+                            <?php foreach($options as $option):?>
+                            <option value="{pigcms:$option}">{pigcms:$option}</option>
+                            <?php endforeach;?>
+                        </select>
+                    <?php else: ?>
+                        <input type="text" name="formdata[{pigcms:$field.id}]" placeholder="{pigcms:$field.name}" value="{pigcms:$field.value}" required />
+                    <?php endif;?>
+                <?php endforeach;?>
+            <?php else: ?>
             <p>
-            <input name=""  class="px" id="myname" value="" type="text" placeholder="请输入您的姓名">
-            <input name=""  class="px" id="tel" value="" type="text" placeholder="请输入您的手机号">
-            <input name=""  class="px" id="idnumber" value="" type="text" placeholder="请输入您的身份证号">
-            <input name=""  id="wechaid" value="{pigcms:$Dazpan.wecha_id}" type="hidden">
-            <input name=""  id="lid" value="{pigcms:$Dazpan.lid}" type="hidden">
-            <input name=""  id="winprize" value="" type="hidden">
+                <input name="myname"  class="px" id="myname" value="" type="text" placeholder="请输入您的姓名" required>
+                <input name="phone"  class="px" id="phone" value="" type="text" placeholder="请输入您的手机号" required>
+                <input name="idnumber"  class="px" id="idnumber" value="" type="text" placeholder="请输入您的身份证号" required>
             </p>
+            <?php endif; ?>
+
             <p>
-            <input class="pxbtn" name="提 交"  id="save-btn" type="button" value="用户提交">
+                <input class="pxbtn" name="提 交"  id="save-btn" type="button" value="用户提交">
             </p>
+            </form>
         </div>
     </div>
 </div>
@@ -353,40 +371,43 @@ $(function() {
 });
 
 //中奖提交
-$("#save-btn").bind("click",
-function() {
-    var btn = $(this);
-    var tel = $("#tel").val();
-    // var wxname  = $("#wechaname").val();
-    var myname  = $("#myname").val();
-    var wechaid = $("#wechaid").val();
-    var lid     = $("#lid").val();
-    var prizetype = $("#winprize").val();
-    var idnumber = $("#idnumber").val();
-    if (tel == '') {
-        alert("请输入手机号");
-        return
-    }
+$("#save-btn").bind("click",function() {
+    // var btn = $(this);
+    // var phone = $("#phone").val();
+    // // var wxname  = $("#wechaname").val();
+    // var myname  = $("#myname").val();
+    // var wechaid = $("#wechaid").val();
+    // var lid     = $("#lid").val();
+    // var prizetype = $("#winprize").val();
+    // var idnumber = $("#idnumber").val();
+    // if (phone == '') {
+    //     alert("请输入手机号");
+    //     return
+    // }
     
-    if (myname == '') {
-        alert("请输入姓名");
-        return
-    }
+    // if (myname == '') {
+    //     alert("请输入姓名");
+    //     return
+    // }
     
-    if(idnumber == ""){
-        alert("请输入身份证号");
-        return
-    }
-    var submitData = {
-        lid: lid,
-        sncode: $("#sncode").text(),
-        tel: tel,
-        myname: myname,
-        wechaid:wechaid,
-        prizetype:prizetype,
-        idnumber:idnumber,
-        action: "add"
-    };
+    // if(idnumber == ""){
+    //     alert("请输入身份证号");
+    //     return
+    // }
+    // var submitData = {
+    //     lid: lid,
+    //     sncode: $("#sncode").text(),
+    //     phone: phone,
+    //     myname: myname,
+    //     wechaid:wechaid,
+    //     prizetype:prizetype,
+    //     idnumber:idnumber,
+    //     action: "add"
+    // };
+
+    //formdata
+    var submitData = $("#formdata").serialize();
+
     $.post('index.php?g=Wap&m=Lottery&a=add', submitData,
     function(data) {
         if (data.success == true) {

@@ -113,6 +113,10 @@ class LotteryAction extends BaseAction{
 		}
 		
 		$data['On'] 		= 1;
+		//formset
+		if(!empty($data['formset'])){
+			$data['formset'] = json_decode($data['formset'],true);
+		}
 		$this->assign('Dazpan',$data);
 		//var_dump($data);exit();
 		
@@ -392,9 +396,15 @@ class LotteryAction extends BaseAction{
 			$wechaid 			= $this->_post('wechaid');
 			//$sn		= $this->_post('sncode');
 			$data['sn'] = $sn = uniqid();//生成sn码
-			$data['phone'] 		= $this->_post('tel');
-			$data['myname'] = $this->_post('myname');
-			$data['idnumber'] = I("post.idnumber");
+			
+			//自定义表单处理
+			if(isset($_POST['formdata']) && !empty($_POST['formdata'])){
+				$data['formdata'] = json_encode($_POST['formdata']);
+			}else{
+				$data['phone'] 		= $this->_post('phone');
+				$data['myname'] = $this->_post('myname');
+				$data['idnumber'] = I("post.idnumber");
+			}
 			$where = array('lid'=>$lid,'wecha_id'=>$wechaid);
 			//检测奖项是否真实存在
 			$record = M('Lottery_record')->where($where)->find();
