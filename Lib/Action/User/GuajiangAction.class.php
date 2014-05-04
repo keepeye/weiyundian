@@ -137,9 +137,9 @@ class GuajiangAction extends UserAction{
 			$id=$this->_get('id');
 			$where=array('id'=>$id,'token'=>session('token'),'type'=>2);
 			$data=M('Lottery');
-			$check=$data->where($where)->find();
-			if($check==false)$this->error('非法操作');
-			$lottery=$data->where($where)->find();		
+			$lottery=$data->where($where)->find();
+			if($lottery==false)$this->error('非法操作');
+			
 			if(!empty($lottery['formset'])){
 				$lottery['formset'] = json_decode($lottery['formset'],true);
 			}
