@@ -62,6 +62,8 @@ class GuajiangAction extends UserAction{
 			$_POST['token']=session('token');
 			$_POST['type'] = 2;
 			$_POST['interval'] = ($this->_post('interval') == '1')?86400:0;//抽奖时间限制，以秒计，但前台给用户选择以1天计
+			//处理formset
+			$_POST['formset'] = $this->parseformset();
 			$this->all_insert('Lottery');
 		}else{
 			$lottery["starpicurl"]="/tpl/User/default/common/images/img/activity-scratch-card-start.jpg";
@@ -111,6 +113,8 @@ class GuajiangAction extends UserAction{
 				$this->error('必须设置一等奖奖品和数量');
 				exit;
 			}
+			//处理formset
+			$_POST['formset'] = $this->parseformset();
 			$where=array('id'=>$_POST['id'],'token'=>$_POST['token'],'type'=>2);		
 			$check=$data->where($where)->find();
 			if($check==false)$this->error('非法操作');
@@ -185,6 +189,22 @@ class GuajiangAction extends UserAction{
 		}else{
 			$this->error('操作失败');
 		}
+	}
+
+	//处理formset字段
+	function parseformset(){
+		$origin = $_POST['formset'];//原始POST数据
+		$data = array();
+		foreach($origin['id'] as $k=>$v){
+			if(trim($v)=="" || trim($origin['name'][$k])=="") continue;
+			$data[] = array(
+				"id"=>$v,
+				"name"=>$origin['name'][$k],
+				"type"=>$origin['type'][$k],
+				"value"=>$origin['value'][$k]
+			);
+		}
+		return json_encode($data);
 	}
 }
 
