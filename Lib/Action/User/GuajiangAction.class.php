@@ -16,31 +16,31 @@ class GuajiangAction extends UserAction{
 	}
 	public function sn(){
 		$this->redirect("Lottery/sn",array('id'=>I('id')));
-		if(session('gid')==1){
-			$this->error('vip0无法使用抽奖活动,请充值后再使用',U('User/Index/index'));
-		}
-		$id=$this->_get('id');
-		$data=M('Lottery')->where(array('token'=>session('token'),'id'=>$id,'type'=>2))->find();
-		if(!$data){
-			$this->error("刮刮卡活动不存在");
-		}
-		$map = array('token'=>session('token'),'lid'=>$id,'sn'=>array('neq',''));
-		if(isset($_REQUEST['filter']) && !empty($_REQUEST['filter'])){
-			$map = array_merge($map,array_filter($_REQUEST['filter']));
-		}
-		$recordcount=M('Lottery_record')->where($map)->count();
-		//分页
-		$count      = $recordcount;
-		$Page       = new Page($count,20);
-		$pagestr       = $Page->show();
-		$record=M('Lottery_record')->where($map)->order('`time` desc')->limit($Page->firstRow.','.$Page->listRows)->select();//中奖列表
-		$this->assign('pagestr',$pagestr);
-		//分页结束
-		$datacount=$data['fistnums']+$data['secondnums']+$data['thirdnums'];
-		$this->assign('datacount',$datacount);//奖品数量
-		$this->assign('recordcount',$recordcount);//中讲数量
-		$this->assign('record',$record);
-		$this->display();
+		// if(session('gid')==1){
+		// 	$this->error('vip0无法使用抽奖活动,请充值后再使用',U('User/Index/index'));
+		// }
+		// $id=$this->_get('id');
+		// $data=M('Lottery')->where(array('token'=>session('token'),'id'=>$id,'type'=>2))->find();
+		// if(!$data){
+		// 	$this->error("刮刮卡活动不存在");
+		// }
+		// $map = array('token'=>session('token'),'lid'=>$id,'sn'=>array('neq',''));
+		// if(isset($_REQUEST['filter']) && !empty($_REQUEST['filter'])){
+		// 	$map = array_merge($map,array_filter($_REQUEST['filter']));
+		// }
+		// $recordcount=M('Lottery_record')->where($map)->count();
+		// //分页
+		// $count      = $recordcount;
+		// $Page       = new Page($count,20);
+		// $pagestr       = $Page->show();
+		// $record=M('Lottery_record')->where($map)->order('`time` desc')->limit($Page->firstRow.','.$Page->listRows)->select();//中奖列表
+		// $this->assign('pagestr',$pagestr);
+		// //分页结束
+		// $datacount=$data['fistnums']+$data['secondnums']+$data['thirdnums'];
+		// $this->assign('datacount',$datacount);//奖品数量
+		// $this->assign('recordcount',$recordcount);//中讲数量
+		// $this->assign('record',$record);
+		// $this->display();
 	
 	
 	}
