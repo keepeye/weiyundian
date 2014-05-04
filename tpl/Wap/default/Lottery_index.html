@@ -109,7 +109,7 @@
                     <?php if($field['type']=='selectfield'): ?>
                         <?php $options = explode(",",$field['value']);?>
                         <div>
-                            {pigcms:$field.name}
+                            {pigcms:$field.name}:
                             <select name="formdata[{pigcms:$field.id}]" required>
                                 <?php foreach($options as $option):?>
                                 <option value="{pigcms:$option}">{pigcms:$option}</option>
