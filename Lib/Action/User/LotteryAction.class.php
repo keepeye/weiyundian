@@ -255,7 +255,7 @@ class LotteryAction extends UserAction{
 			"islottery"=>1,
 			"lid"=>$id
 		);
-		$list = M("LotteryRecord")->field("wecha_id,sn,prize,time,sendtime,phone,myname,idnumber")->where($map)->select();
+		$list = M("LotteryRecord")->field("wecha_id,sn,prize,time,sendtime,phone,myname,idnumber,formdata")->where($map)->select();
 		$i=2;
 		//自定义表单的情况下
 		if(isset($extra_columns) && !empty($extra_columns)){
