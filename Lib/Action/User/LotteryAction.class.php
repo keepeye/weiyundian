@@ -38,7 +38,7 @@ class LotteryAction extends UserAction{
 			foreach($formset as $fieldset){
 				$data['formset'][$fieldset['id']] = $fieldset;
 			}
-			dump($data['formset']);
+
 		}
 
 		$this->assign("lottery",$data);
