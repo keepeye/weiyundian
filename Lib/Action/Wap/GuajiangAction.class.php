@@ -79,6 +79,8 @@ class GuajiangAction extends BaseAction{
 		$record   = $redata->where($where)->find();
 		//初始化记录
 		if(empty($record)){
+
+			M('Lottery')->where(array('id'=>$id))->setInc('joinnum',1);//参与人数+1
 			$data1 = $where;
 			$data1['usenums'] = $Lottery['canrqnums'];//从用户端计数，先将抽奖次数一次性赋予用户。
 			$data1['time'] = time();
@@ -108,10 +110,7 @@ class GuajiangAction extends BaseAction{
 			$data['uname']	 = $record['myname'];//姓名
 			$data['winprize']	= $record['prize'];//奖项名
 		}else{
-			//统计参与人数,只有初次抽奖才算
-			if($record['time'] == 0){
-				M('Lottery')->where(array('id'=>$id))->setInc('joinnum',1);//参与人数+1
-			}
+			
 			if ($record['usenums'] < 1 ) {
 				//次数已经达到限定
 				$data['usenums'] = 0;
