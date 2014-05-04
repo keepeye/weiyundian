@@ -144,7 +144,7 @@
             <div class="box">
                 <div class="title-red">恭喜:</div>
                 <div class="Detail">
-                <p> 尊敬的:<font color='red'>{pigcms:$Dazpan.uname} </font>,您已经中了<font color='red'> {pigcms:$Dazpan.prize} </font> ,<notempty name="Dazpan.sn">您的领奖序列号:<font color='red'> {pigcms:$Dazpan.sn} </font>请您牢记及尽快与我们联系<else/><input type="button" value="点击提交联系信息" onclick="tijiaoxinxi()"/></notempty></p>
+                <p> 您已经中了<font color='red'> {pigcms:$Dazpan.prize} </font> ,<notempty name="Dazpan.sn">您的领奖序列号:<font color='red'> {pigcms:$Dazpan.sn} </font>请您牢记及尽快与我们联系<else/><input type="button" value="点击提交联系信息" onclick="tijiaoxinxi()"/></notempty></p>
                 </div>
             </div>
         </div>
@@ -431,8 +431,9 @@ $(function(){
 
         $.post('index.php?g=Wap&m=Lottery&a=add', submitData,function(data) {
             if (data.success == true) {
-                alert(data.msg);
-                $("#result").hide("slow");
+                window.location.href = window.location.href
+                //alert(data.msg);
+                //$("#result").hide("slow");
                 return
             } else {}
         },
