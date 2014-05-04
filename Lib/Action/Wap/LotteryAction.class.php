@@ -391,7 +391,7 @@ class LotteryAction extends BaseAction{
 	
 	//中奖后填写信息
 	public function add(){
-		 if($_POST['action'] ==  'add' ){
+		 if(IS_POST){
 			$lid 				= $this->_post('lid');
 			$wechaid 			= $this->_post('wechaid');
 			//$sn		= $this->_post('sncode');
