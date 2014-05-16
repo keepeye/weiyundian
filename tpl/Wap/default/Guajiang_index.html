@@ -357,7 +357,7 @@ $(function(){
     	var checkempty = true;
     	var checkitem;
     	//验证字段是否为空
-    	$(this).find("input").each(function(){
+    	$(this).find("input:text").each(function(){
     		if($(this).val() == ""){
     			checkitem = $(this);
     			checkempty = false;
@@ -369,6 +369,7 @@ $(function(){
     		
     		try{
     			checkitem.after('该字段必填');
+    			checkitem.focus();
     		}catch(e){
 
     		}
