@@ -355,19 +355,18 @@ $(function(){
 $(function(){
     $("#formdata").submit(function(){
     	var checkempty = true;
+    	var checkitem;
     	//验证字段是否为空
     	$(this).find("input").each(function(){
-    		if(checkempty == false){
-    			return false;
-    		}
     		if($(this).val() == ""){
-    			$(this).focus();
+    			checkitem = $(this);
     			checkempty = false;
-    			alert("必须填写！");
+    			return false;
     		}
     	})
 
     	if(checkempty == false){
+    		checkitem.focus();
     		return false;
     	}
     	return false;
