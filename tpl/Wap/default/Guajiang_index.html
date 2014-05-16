@@ -189,7 +189,7 @@ loading.prototype = {
 	                    <?php if($field['type']=='selectfield'): ?>
 	                        <?php $options = explode(",",$field['value']);?>
 	                        <div>
-	                            {pigcms:$field.name}:
+	                            {pigcms:$field.name} <br/>
 	                            <select name="formdata[{pigcms:$field.id}]">
 	                                <?php foreach($options as $option):?>
 	                                <option value="{pigcms:$option}">{pigcms:$option}</option>
@@ -198,7 +198,7 @@ loading.prototype = {
 	                        </div>
 	                    <?php else: ?>
 	                        <div>
-	                        {pigcms:$field.name}:<input type="text" name="formdata[{pigcms:$field.id}]" placeholder="{pigcms:$field.name}" value="{pigcms:$field.value}"  /> <br/><br/>
+	                        {pigcms:$field.name}<br/><input type="text" name="formdata[{pigcms:$field.id}]" placeholder="{pigcms:$field.name}" value="{pigcms:$field.value}"  /> <br/><br/>
 	                        </div>
 	                    <?php endif;?>
 	                <?php endforeach;?>
