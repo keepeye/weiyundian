@@ -353,7 +353,7 @@ $(function(){
 // 			},"json")
 // });
 $(function(){
-    $("#formdata").submit(function(){
+    $("#formdata").submit(function(e){
     	var checkempty = true;
     	var checkitem;
     	//验证字段是否为空
@@ -367,9 +367,10 @@ $(function(){
 
     	if(checkempty == false){
     		
-    		checkempty.after("请填写该表单");
+    		//checkempty.after("请填写该表单");
     		return false;
     	}
+
     	return false;
         //formdata
         var submitData = $("#formdata").serialize();
