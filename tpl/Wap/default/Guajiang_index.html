@@ -190,7 +190,7 @@ loading.prototype = {
 	                        <?php $options = explode(",",$field['value']);?>
 	                        <div>
 	                            {pigcms:$field.name}:
-	                            <select name="formdata[{pigcms:$field.id}]" required>
+	                            <select name="formdata[{pigcms:$field.id}]" required="required">
 	                                <?php foreach($options as $option):?>
 	                                <option value="{pigcms:$option}">{pigcms:$option}</option>
 	                                <?php endforeach;?>
@@ -380,7 +380,7 @@ $(function(){
         "img_height": "120",
         "link": window.location.href.replace(/wecha_id=[^&]*&?/,'fromuser={pigcms:$fromuser}&'),//分享链接
         "title": "{pigcms:$Guajiang.title|addslashes}",//定义分享标题
-        "desc": "简介：{pigcms:$Guajiang.desc|addslashes}"//描述
+        "desc": "{pigcms:$Guajiang.desc|addslashes}"//描述
     };
     
     //click统计立即执行
