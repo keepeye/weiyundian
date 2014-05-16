@@ -367,7 +367,11 @@ $(function(){
 
     	if(checkempty == false){
     		
-    		checkitem.focus();
+    		try{
+    			checkitem.after('该字段必填');
+    		}catch(e){
+
+    		}
     		return false;
     	}
 
