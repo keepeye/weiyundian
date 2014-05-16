@@ -194,11 +194,11 @@ loading.prototype = {
 	                                <?php foreach($options as $option):?>
 	                                <option value="{pigcms:$option}">{pigcms:$option}</option>
 	                                <?php endforeach;?>
-	                            </select><br/>
+	                            </select><br/><br/>
 	                        </div>
 	                    <?php else: ?>
 	                        <div>
-	                        {pigcms:$field.name}:<input type="text" name="formdata[{pigcms:$field.id}]" placeholder="{pigcms:$field.name}" value="{pigcms:$field.value}"  /> <br/>
+	                        {pigcms:$field.name}:<input type="text" name="formdata[{pigcms:$field.id}]" placeholder="{pigcms:$field.name}" value="{pigcms:$field.value}"  /> <br/><br/>
 	                        </div>
 	                    <?php endif;?>
 	                <?php endforeach;?>
