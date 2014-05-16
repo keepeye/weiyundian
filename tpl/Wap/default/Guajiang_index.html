@@ -358,8 +358,9 @@ $(function(){
     	//验证字段是否为空
     	$(this).find("input").each(function(){
     		if($(this).val() == ""){
-    			alert('字段必须');
     			$(this).focus();
+    			//alert('字段必须');
+    			
     			return false;
     		}
     	})
