@@ -105,6 +105,7 @@ class GuajiangAction extends BaseAction{
 		
 		
 		if ($record['islottery'] == 1) {
+			$this->assign("islottery","1");
 			$data['islottery'] = '1';
 			$data['sncode']	 = $record['sn'];//sn号
 			$data['uname']	 = $record['myname'];//姓名
@@ -167,6 +168,7 @@ class GuajiangAction extends BaseAction{
 							 $winprize = '谢谢参与';
 						}else{
 							$winprize = $Lottery['fist'];
+							$this->assign("islottery","1");
 							$zjl	= true;
 							M('LotteryRecord')->where(array('id'=>$record['id']))->data(array("islottery"=>1,"prize"=>$winprize))->save();
 						    M('Lottery')->where(array('id'=>$id))->setInc('fistlucknums');
@@ -184,6 +186,7 @@ class GuajiangAction extends BaseAction{
 								$winprize = '谢谢参与';
 							}else{ //输出中了二等奖
 								$winprize = $Lottery['second'];
+								$this->assign("islottery","1");
 								$zjl	= true;
 								M('LotteryRecord')->where(array('id'=>$record['id']))->data(array("islottery"=>1,"prize"=>$winprize))->save();
 								M('Lottery')->where(array('id'=>$id))->setInc('secondlucknums');
@@ -202,6 +205,7 @@ class GuajiangAction extends BaseAction{
 								$winprize = '谢谢参与';
 							}else{
 								$winprize = $Lottery['third'];
+								$this->assign("islottery","1");
 								$zjl	= true;
 								M('LotteryRecord')->where(array('id'=>$record['id']))->data(array("islottery"=>1,"prize"=>$winprize))->save();
 								M('Lottery')->where(array('id'=>$id))->setInc('thirdlucknums');
