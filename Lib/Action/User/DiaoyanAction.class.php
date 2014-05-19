@@ -135,14 +135,16 @@ class DiaoyanAction extends UserAction {
 					"diaoyan_id"=>$diaoyan_id,
 					"token"=>$this->_token,
 					"title"=>$title,
-					"type"=>$type
+					"type"=>$type,
+					"order"=>I("post.order","0","intval")
 					);
 				$re = M('DiaoyanTiku')->data($data)->add();
 				$tiku_id = $re;//将题库id设置为新插入的值
 			}else{
 				$data = array(
 					"title"=>$title,
-					"type"=>$type
+					"type"=>$type,
+					"order"=>I("post.order","0","intval")
 					);
 				$re = M('DiaoyanTiku')->where(array("id"=>$id,"token"=>$this->_token))->data($data)->save();
 				
