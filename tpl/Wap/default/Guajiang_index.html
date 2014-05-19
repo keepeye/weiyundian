@@ -167,7 +167,7 @@ loading.prototype = {
 	<?php if($Guajiang['islottery']!='1'): ?>
 	<div class="cover">
 		<img src="{pigcms::RES}/css/guajiang/images/activity-scratch-card-bannerbg.png">
-		<div id="prize" > <?php if($Guajiang['winprize']): ?>中奖啦！<?php else: ?>谢谢惠顾<?php endif;?></div>
+		<div id="prize" ><?php echo $Guajiang['winprize'];?></div>
 		<div id="scratchpad" style="text-align:left;"></div>
 		
 	</div>
