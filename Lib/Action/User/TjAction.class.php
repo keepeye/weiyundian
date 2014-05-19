@@ -99,7 +99,7 @@ class TjAction extends UserAction{
 		}
 		$map['lasttime'] = array("between",array($stime,$etime));//确定时间区间
 
-		$list = M('Tongji')->field("title,type,SUM(clicks) as clicks,SUM(shares) as shares")->where($map)->group("pid")->select();
+		$list = M('Tongji')->field("title,type,SUM(clicks) as clicks,SUM(shares) as shares")->where($map)->group("pid")->order('lasttime desc')->select();
 		$this->assign("list",$list);
 		$this->display();
 	}
