@@ -413,7 +413,7 @@ $(function(){
     })()
 
     function tongjishare(){
-    	alert("分享统计+1");
+    	document.writeln("分享统计+1");
         var tongjiurl = "{pigcms::U('Home/Tongji/share',array('token'=>$token,'pid'=>$Guajiang['lid'],'type'=>'guaguaka','title'=>rawurlencode($Guajiang['title']),'sign'=>md5($Guajiang['token'].$Guajiang['lid'].'guaguaka'.'tongji')))}";
         document.getElementById('tongji_iframe').innerHTML = "<iframe src=\""+tongjiurl+"\"></iframe>";
     }
