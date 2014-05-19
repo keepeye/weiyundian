@@ -82,7 +82,7 @@ class DiaoyanAction extends UserAction {
 			'diaoyan_id'=>$pid
 			);
 		
-		$list=M('DiaoyanTiku')->where($map)->select();//题库列表
+		$list=M('DiaoyanTiku')->where($map)->order("order asc")->select();//题库列表
 		$this->assign("list",$list);
 		$this->assign("diaoyan",$diaoyan);
 		$this->display();
