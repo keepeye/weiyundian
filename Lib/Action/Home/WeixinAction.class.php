@@ -743,6 +743,8 @@ class WeixinAction extends Action
     }
     function choujiang($name)
     {
+        return null;//什么也不要处理了。。
+
         $keywords = M('Keyword')->field('keyword')->where(array('token'=>$this->token,'module'=>'Lottery'))->select();
         $re=array();
         foreach($keywords as $v){
