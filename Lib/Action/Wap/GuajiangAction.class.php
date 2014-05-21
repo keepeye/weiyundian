@@ -16,7 +16,7 @@ class GuajiangAction extends BaseAction{
 		}
 		//推广处理
 		$fromuser = I('fromuser','');//获取推广用户
-		@file_put_contents("./fromuser.txt", $Lottery['id']."\t".$_SERVER['HTTP_USER_AGENT']."\t".encrypt($fromuser,"D",C('safe_key'))."\n",FILE_APPEND);
+		@file_put_contents("./fromuser.txt", $Lottery['spread']."\t".$Lottery['id']."\t".$_SERVER['HTTP_USER_AGENT']."\t".encrypt($fromuser,"D",C('safe_key'))."\n",FILE_APPEND);
 		if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==false && !empty($fromuser) && !cookie("guajiang_fromuid_".$Lottery['id']) && $Lottery['spread'] == "1"){
 			$fromuid = encrypt($fromuser,"D",C('safe_key'));//解密字符串
 			if($fromuid){
