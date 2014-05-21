@@ -16,11 +16,9 @@ class GuajiangAction extends BaseAction{
 		}
 		//推广处理
 		$fromuser = I('fromuser','');//获取推广用户
-		@file_put_contents("./fromuser.txt", $Lottery['spread']."\t".$Lottery['id']."\t".$_SERVER['HTTP_USER_AGENT']."\t".encrypt($fromuser,"D",C('safe_key'))."\n",FILE_APPEND);
+		//@file_put_contents("./fromuser.txt", $Lottery['spread']."\t".$Lottery['id']."\t".$_SERVER['HTTP_USER_AGENT']."\t".encrypt($fromuser,"D",C('safe_key'))."\n",FILE_APPEND);
 		if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==false && !empty($fromuser) && $Lottery['spread'] == "1"){
-
 			$fromuid = encrypt($fromuser,"D",C('safe_key'));//解密字符串
-
 			if($fromuid && !cookie("guajiang_fromuid_".$fromuid."_".$Lottery['id']) ){
 				$lt_re=M('Lottery_record')->field('spread_count,usenums')->where(array("lid"=>$Lottery['id'],"token"=>$this->token,"wecha_id"=>$fromuid))->find();
 				if($lt_re && ($Lottery['spread_limit']==0 || $lt_re['spread_count'] < $Lottery['spread_limit'])){

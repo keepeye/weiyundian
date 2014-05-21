@@ -15,14 +15,14 @@ class LotteryAction extends BaseAction{
 		$Lottery = M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->find();//为了处理推广信息，提前查询
 		//推广处理
 		$fromuser = I('fromuser','');//获取推广用户
-		if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==false && !empty($fromuser) && !cookie("lottery_fromuid_".$Lottery['id']) && $Lottery['spread'] == "1"){
+		if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==false && !empty($fromuser) && $Lottery['spread'] == "1"){
 			$fromuid = encrypt($fromuser,"D",C('safe_key'));//解密字符串
-			if($fromuid){
+			if($fromuid && !cookie("guajiang_fromuid_".$fromuid."_".$Lottery['id'])){
 				$lt_re=M('Lottery_record')->field('spread_count,usenums')->where(array("lid"=>$Lottery['id'],"token"=>$this->token,"wecha_id"=>$fromuid))->find();
 				if($lt_re && ($Lottery['spread_limit']==0 || $lt_re['spread_count'] < $Lottery['spread_limit'])){
 					M('Lottery_record')->where(array("lid"=>$Lottery['id'],"token"=>$this->token,"wecha_id"=>$fromuid))->data(array("spread_count"=>$lt_re['spread_count']+1,"usenums"=>$lt_re['usenums']+1))->save();
 				}
-				cookie("lottery_fromuid_".$Lottery['id'],'1');
+				cookie("guajiang_fromuid_".$fromuid."_".$Lottery['id'],'1');
 			}
 			//给fromuid的用户增加一次抽奖机会
 		}
