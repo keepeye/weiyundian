@@ -28,12 +28,14 @@ class ImgAction extends UserAction{
 		$db=M('Classify');
 		$where['token']=session('token');
 		$where['url']='';
-		$info=$db->where($where)->select();
-		$where['id']=$this->_get('id','intval');
-		$where['uid']=session('uid');
-		$res=D('Img')->where($where)->find();
-		$this->assign('info',$res);
-		$this->assign('res',$info);
+		$res=$db->where($where)->select();
+
+		$map['token']=session('token');
+		$map['id']=$this->_get('id','intval');
+		
+		$info=D('Img')->where($map)->find();
+		$this->assign('info',$info);
+		$this->assign('res',$res);
 		$this->display();
 	}
 	public function del(){
