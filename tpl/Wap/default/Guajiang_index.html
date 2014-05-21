@@ -138,8 +138,8 @@ loading.prototype = {
 					<div class="title-brown">恭喜：</div>
 					<div class="Detail">
 					
-					<p>您已经中过 <strong><font color='red'>{pigcms:$Guajiang.winprize}</font></strong> 奖了,<br />
-					<notempty name="Guajiang.sncode">您的领奖序列号:<font color='red'> {pigcms:$Guajiang.sncode} </font>请您牢记及尽快与我们联系<else/><input type="button" value="点击提交联系信息" onclick="$('#zjl').slideToggle(500);"/></notempty>
+					<p>恭喜您中了 <strong><font color='red'>{pigcms:$Guajiang.winprize}</font></strong> <br />
+					<notempty name="Guajiang.sncode">您的领奖序列号:<font color='red'> {pigcms:$Guajiang.sncode} </font><br/><p>{pigcms:$Guajiang.lingjiang|htmlspecialchars_decode}</p><else/><input type="button" value="点击提交联系信息" onclick="$('#zjl').slideToggle(500);"/></notempty>
 					</p>	
 			
 					</div>
