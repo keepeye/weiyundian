@@ -68,7 +68,7 @@ class LotteryAction extends UserAction{
 		$Page       = new Page($count,20);
 		$pagestr       = $Page->show();
 		$record=M('Lottery_record')->where($map)->order('`time` desc')->limit($Page->firstRow.','.$Page->listRows)->select();//中奖列表
-		echo M()->getLastSql();
+
 		$this->assign('pagestr',$pagestr);
 		//分页结束
 		$datacount=$data['fistnums']+$data['secondnums']+$data['thirdnums']+$data['fournums']+$data['fivenums']+$data['sixnums'];//奖品总数
