@@ -49,7 +49,7 @@ class LotteryAction extends UserAction{
 			        "/[\x{4e00}-\x{9fa5}]+/u",
 			        create_function(
 			            '$matches',
-			            'return trim(json_encode($matches[0]),chr(34));'
+			            'return addslashes(trim(json_encode($matches[0]),chr(34)));'
 			        ),
 			        $filters['formdata']
 			    );
