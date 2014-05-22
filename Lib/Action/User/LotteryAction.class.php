@@ -48,7 +48,7 @@ class LotteryAction extends UserAction{
 				$filters['formset'] = array("like","%{$filters['phone']}%");
 				unset($filters['phone']);
 			}
-			$map = array_merge($map,array_filter($_REQUEST['filter']));
+			$map = array_merge($map,array_filter($filters));
 		}
 		
 		$recordcount=M('Lottery_record')->where($map)->count();//中奖总数
