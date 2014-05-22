@@ -44,16 +44,14 @@ class LotteryAction extends UserAction{
 		//搜索条件
 		if(isset($_REQUEST['filter']) && !empty($_REQUEST['filter'])){
 			$filters = $_REQUEST['filter'];
-			if(!empty($filters['phone'])){
-				$filters['formdata'] = array("like","%{$filters['phone']}%");
-				unset($filters['phone']);
+			if(!empty($filters['formdata'])){
+				$filters['formdata'] = array("like","%{$filters['formdata']}%");
 			}
 			$map = array_merge($map,array_filter($filters));
 
 		}
 		
 		$recordcount=M('Lottery_record')->where($map)->count();//中奖总数
-		echo M()->getLastSql();
 		//分页
 		$count      = $recordcount;
 		$Page       = new Page($count,20);
