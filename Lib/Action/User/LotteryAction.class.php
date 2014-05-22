@@ -53,6 +53,7 @@ class LotteryAction extends UserAction{
 			        ),
 			        $filters['formdata']
 			    );
+			    echo $filters['formdata'];
 				$filters['formdata'] = array("like","%{$filters['formdata']}%");
 			}
 			$map = array_merge($map,array_filter($filters));
