@@ -43,19 +43,21 @@ class LotteryAction extends UserAction{
 		$map = array('token'=>session('token'),'lid'=>$id,'islottery'=>1);
 		//搜索条件
 		if(isset($_REQUEST['filter']) && !empty($_REQUEST['filter'])){
-			$filters = $_REQUEST['filter'];
-			if(!empty($filters['formdata'])){
-				$filters['formdata'] = preg_replace_callback(
-			        "/[\x{4e00}-\x{9fa5}]+/u",
-			        create_function(
-			            '$matches',
-			            'return addslashes(trim(json_encode($matches[0]),chr(34)));'
-			        ),
-			        $filters['formdata']
-			    );
-
-				$filters['formdata'] = array("like","%{$filters['formdata']}%");
+			$filters = array();
+			foreach($_REQUEST['filter'] as $k=>$v){
+				if($k == "formdata"){
+					$v = preg_replace_callback(
+				        "/[\x{4e00}-\x{9fa5}]+/u",
+				        create_function(
+				            '$matches',
+				            'return addslashes(trim(json_encode($matches[0]),chr(34)));'
+				        ),
+				        $v
+				    );
+				}
+				$filters[$k] = array("like","%{$v}%");
 			}
+			
 			$map = array_merge($map,array_filter($filters));
 		}
 		
