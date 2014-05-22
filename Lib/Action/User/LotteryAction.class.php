@@ -49,10 +49,11 @@ class LotteryAction extends UserAction{
 				unset($filters['phone']);
 			}
 			$map = array_merge($map,array_filter($filters));
-			dump($map);
+
 		}
 		
 		$recordcount=M('Lottery_record')->where($map)->count();//中奖总数
+		echo M()->getLastSql();
 		//分页
 		$count      = $recordcount;
 		$Page       = new Page($count,20);
