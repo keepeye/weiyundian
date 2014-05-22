@@ -142,10 +142,11 @@ uploadJson  : "/index.php?m=Image&a=upload",
   <span class="red">如果是100%中奖,请把一等奖的奖品数量[ 1000就代表前1000人都中奖 ]填写多点</span></td>
 </TR>
 <TR>
-<th valign="top"><span class="red">*</span>一等奖已中数量：</th>
+<th valign="top">一等奖已中数量：</th>
 <td><input type="input" class="px"  name="fistlucknums"      value="{pigcms:$vo.fistlucknums|default=0}" style="width:60px" />
   <span class="red">每有一个人中此奖项，该数字+1，初始为0</span></td>
 </TR>
+
 <TR>
 <th valign="top">二等奖奖品设置：</th>
 <td><input type="input" class="px" id="second" name="second"     value="{pigcms:$vo.second}"  style="width:250px"/>
@@ -155,6 +156,13 @@ uploadJson  : "/index.php?m=Image&a=upload",
 <TR>
 <th valign="top">二等奖奖品数量：</th>
 <td><input type="input" class="px" id="secondnums" name="secondnums"   value="{pigcms:$vo.secondnums}" style="width:60px" />
+</td>
+</TR>
+
+<TR>
+<th valign="top">二等奖已中数量：</th>
+<td>
+<input type="input" class="px"  name="secondlucknums"  value="{pigcms:$vo.secondlucknums|default=0}" style="width:60px" />
 </td>
 </TR>
 
@@ -169,6 +177,13 @@ uploadJson  : "/index.php?m=Image&a=upload",
 <td><input type="input" class="px" id="thirdnums" name="thirdnums"     value="{pigcms:$vo.thirdnums}" style="width:60px" />
 </td>
                                        
+</TR>
+
+<TR>
+  <th valign="top">三等奖已中数量：</th>
+  <td>
+  <input type="input" class="px"  name="thirdlucknums"  value="{pigcms:$vo.thirdlucknums|default=0}" style="width:60px" />
+  </td>
 </TR>
 
   </tbody>
