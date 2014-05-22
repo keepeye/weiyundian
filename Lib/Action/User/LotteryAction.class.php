@@ -45,7 +45,7 @@ class LotteryAction extends UserAction{
 		if(isset($_REQUEST['filter']) && !empty($_REQUEST['filter'])){
 			$filters = $_REQUEST['filter'];
 			if(!empty($filters['phone'])){
-				$filters['formset'] = array("like","%{$filters['phone']}%");
+				$filters['formdata'] = array("like","%{$filters['phone']}%");
 				unset($filters['phone']);
 			}
 			$map = array_merge($map,array_filter($filters));
