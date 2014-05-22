@@ -45,6 +45,14 @@ class LotteryAction extends UserAction{
 		if(isset($_REQUEST['filter']) && !empty($_REQUEST['filter'])){
 			$filters = $_REQUEST['filter'];
 			if(!empty($filters['formdata'])){
+				$filters['formdata'] = preg_replace_callback(
+			        "/[\x{4e00}-\x{9fa5}]+/u",
+			        create_function(
+			            '$matches',
+			            'return trim(json_encode($matches[0]),chr(34));'
+			        ),
+			        $filters['formdata']
+			    );
 				$filters['formdata'] = array("like","%{$filters['formdata']}%");
 			}
 			$map = array_merge($map,array_filter($filters));
@@ -59,7 +67,7 @@ class LotteryAction extends UserAction{
 		$Page       = new Page($count,20);
 		$pagestr       = $Page->show();
 		$record=M('Lottery_record')->where($map)->order('`time` desc')->limit($Page->firstRow.','.$Page->listRows)->select();//中奖列表
-	
+
 		$this->assign('pagestr',$pagestr);
 		//分页结束
 		$datacount=$data['fistnums']+$data['secondnums']+$data['thirdnums']+$data['fournums']+$data['fivenums']+$data['sixnums'];//奖品总数
