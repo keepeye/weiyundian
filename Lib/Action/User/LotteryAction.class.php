@@ -21,9 +21,7 @@ class LotteryAction extends UserAction{
 		$this->display();
 	}
 	public function sn(){
-		if(session('gid')==1){
-			$this->error('vip0无法使用抽奖活动,请充值后再使用',U('User/Index/index'));
-		}
+		
 		$id=$this->_get('id');
 		$data=M('Lottery')->where(array('token'=>session('token'),'id'=>$id))->find();
 
@@ -43,7 +41,13 @@ class LotteryAction extends UserAction{
 
 		$this->assign("lottery",$data);
 		$map = array('token'=>session('token'),'lid'=>$id,'islottery'=>1);
+		//搜索条件
 		if(isset($_REQUEST['filter']) && !empty($_REQUEST['filter'])){
+			$filters = $_REQUEST['filter'];
+			if(!empty($filters['phone'])){
+				$filters['formset'] = array("like","%{$filters['phone']}%");
+				unset($filters['phone']);
+			}
 			$map = array_merge($map,array_filter($_REQUEST['filter']));
 		}
 		
