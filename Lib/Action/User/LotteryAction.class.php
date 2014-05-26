@@ -156,8 +156,13 @@ class LotteryAction extends UserAction{
 					$data1['pid']=$_POST['id'];
 					$data1['module']='Lottery';
 					$data1['token']=session('token');
-					$da['keyword']=$_POST['keyword'];
-					M('Keyword')->where($data1)->save($da);
+					M('Keyword')->where($data1)->delete();//删除旧关键词
+					$keywords = explode(" ",$_POST['keyword']);//关键词按空格分隔
+                    foreach($keywords as $keyword){
+                        $data1['keyword'] = $keyword;
+                        M('Keyword')->add($data);
+                    }
+
 					$this->success('修改成功',U('Lottery/index',array('token'=>session('token'))));
 				}else{
 					$this->error('操作失败');
