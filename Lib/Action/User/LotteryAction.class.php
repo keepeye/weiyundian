@@ -160,7 +160,7 @@ class LotteryAction extends UserAction{
 					$keywords = explode(" ",$_POST['keyword']);//关键词按空格分隔
                     foreach($keywords as $keyword){
                         $data1['keyword'] = $keyword;
-                        M('Keyword')->add($data);
+                        M('Keyword')->add($data1);
                     }
 
 					$this->success('修改成功',U('Lottery/index',array('token'=>session('token'))));
