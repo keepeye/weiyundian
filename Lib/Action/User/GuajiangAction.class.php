@@ -50,9 +50,9 @@ class GuajiangAction extends UserAction{
 		}
 		$user=M('Users')->field('gid,activitynum')->where(array('id'=>session('uid')))->find();
 		$group=M('User_group')->where(array('id'=>$user['gid']))->find();
-		if($user['activitynum']>=$group['activitynum']){
-			$this->error('您的免费活动创建数已经全部使用完,请充值后再使用',U('User/Index/index'));
-		}
+		// if($user['activitynum']>=$group['activitynum']){
+		// 	$this->error('您的免费活动创建数已经全部使用完,请充值后再使用',U('User/Index/index'));
+		// }
 		
 		if(IS_POST){
 			$user=M('Users')->where(array('id'=>session('uid')))->setInc('activitynum');
