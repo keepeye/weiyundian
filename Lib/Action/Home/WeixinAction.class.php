@@ -26,6 +26,12 @@ class WeixinAction extends Action
         	// $type = "text";
              exit;//直接退出，不再提示系统帮助
         }
+        
+        //关键词回复事件
+	    if($this->data['MsgType'] == "text"){
+	    	D('TongjiEvent')->tongji($this->token,"keyword",$this->data['Content']);//统计有效关键词事件
+	    }
+
         //file_put_contents("./response.txt","content:".var_export($content,true)."\n".$type."\n",FILE_APPEND);
         //file_put_contents("./response.txt","end----\n",FILE_APPEND);
         $weixin->response($content, $type);
@@ -39,6 +45,7 @@ class WeixinAction extends Action
 		    $data['Content'] = $data['EventKey'];
             D('TongjiEvent')->tongji($this->token,"CLICK",$data['EventKey']);//统计自定义菜单行为
 	    }
+
 		//用户关注时事件推送
 	    if ('subscribe' == $data['Event']) 
 	    {

@@ -5,6 +5,7 @@ class TongjiEventModel extends Model{
 			"VIEW"=>"菜单外链",
 			"subscribe"=>"关注",
 			"unsubscribe"=>"取消关注",
+			"keyword" => "关键词回复"
 		);
 
 	function tongji($token,$event,$event_key=""){
