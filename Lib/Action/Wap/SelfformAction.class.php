@@ -77,7 +77,7 @@ class SelfformAction extends BaseAction{
 			// 	);
 			// 	cookie($cookie_key,$cookie_data);				
 			// }
-			$this->wecha_id = $cookie_data['wecha_id'];//伪造的wecha_id
+			//$this->wecha_id = $cookie_data['wecha_id'];//伪造的wecha_id
 			$submitted=0;
 			
 			//判断是否提交过信息了
