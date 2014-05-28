@@ -174,8 +174,8 @@ loading.prototype = {
 	</div>
 	<?php endif;?>
 <div class="content">
-	   
-	<div id="zjl" style="display:none" class="boxcontent boxwhite">
+	<div id="zjl" style="display:none" >
+	<div class="boxcontent boxwhite">
 		<div class="box">
 			<div class="title-red"><span>恭喜你中奖了</span></div>
 			<div class="Detail">
@@ -217,18 +217,21 @@ loading.prototype = {
 				</form>
 			</div>
 		</div>
+
 	</div>
 	<div class="boxcontent boxwhite">
-				<div class="box">
-					<div class="title-brown"><span>领奖说明：</span></div>
-					<div class="Detail">
-					
-					 {pigcms:$Guajiang.accept|htmlspecialchars_decode}
+		<div class="box">
+			<div class="title-brown"><span>领奖说明：</span></div>
+			<div class="Detail">
+			
+			 {pigcms:$Guajiang.accept|htmlspecialchars_decode}
 
-					</div>
-
-				</div>
 			</div>
+
+		</div>
+	</div>
+	</div>
+	<!--结束-->
 	<div id="tryagain" style="display:none">
 		<input type="button" class="pxbtn" style="margin:auto;width:90%;height:50px;" value="再来一次" onclick="window.location.href=window.location.href" />
 	</div>
