@@ -81,21 +81,21 @@ class SelfformAction extends BaseAction{
 			$submitted=0;
 			
 			//判断是否提交过信息了
-			$submitInfo=$this->selfform_value_model->where(array('wecha_id'=>$this->wecha_id,'formid'=>$thisForm['id']))->find();
-			if ($submitInfo){
-				$info=unserialize($submitInfo['values']);
-				if ($info){
-					foreach ($info as $k=>$v){
-						$info[$k]=array('displayname'=>$listByKey[$k]['displayname'],'value'=>$v);
-					}
-				}
-				$this->assign('submitInfo',$info);
-				//$submitted=1;
-				//二维码图片
-				//$imgSrc=generateQRfromGoogle(C('site_url').'/index.php?g=Wap&m=Selfform&a=submitInfo&token='.$this->token.'&wecha_id='.$this->wecha_id.'&id='.$thisForm['id']);
+			// $submitInfo=$this->selfform_value_model->where(array('wecha_id'=>$this->wecha_id,'formid'=>$thisForm['id']))->find();
+			// if ($submitInfo){
+			// 	$info=unserialize($submitInfo['values']);
+			// 	if ($info){
+			// 		foreach ($info as $k=>$v){
+			// 			$info[$k]=array('displayname'=>$listByKey[$k]['displayname'],'value'=>$v);
+			// 		}
+			// 	}
+			// 	$this->assign('submitInfo',$info);
+			// 	//$submitted=1;
+			// 	//二维码图片
+			// 	//$imgSrc=generateQRfromGoogle(C('site_url').'/index.php?g=Wap&m=Selfform&a=submitInfo&token='.$this->token.'&wecha_id='.$this->wecha_id.'&id='.$thisForm['id']);
 				
-				//$this->assign('imgSrc',$imgSrc);
-			}
+			// 	//$this->assign('imgSrc',$imgSrc);
+			// }
 			
 			$this->assign('company',$company);
 			$this->assign('submitted',$submitted);
