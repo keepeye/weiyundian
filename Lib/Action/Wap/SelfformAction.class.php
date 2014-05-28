@@ -86,22 +86,29 @@ class SelfformAction extends BaseAction{
 			
 			$submitted=0;
 			//echo $this->wecha_id;
+			$history = array();
 			//判断是否提交过信息了
-			$submitInfo=$this->selfform_value_model->where(array('wecha_id'=>$this->wecha_id,'formid'=>$thisForm['id']))->find();
-			
-			if ($submitInfo){
-				$info=unserialize($submitInfo['values']);
-				if ($info){
-					foreach ($info as $k=>$v){
-						$info[$k]=array('displayname'=>$listByKey[$k]['displayname'],'value'=>$v);
+			$submitInfos=$this->selfform_value_model->field("values")->where(array('wecha_id'=>$this->wecha_id,'formid'=>$thisForm['id']))->select();
+
+			if ($submitInfos){
+				foreach($submitInfos as $k1=>$submitInfo){
+					$info=unserialize($submitInfo['values']);
+					if ($info){
+						$tmp = array();
+						foreach ($info as $k=>$v){
+							$tmp[]=array('displayname'=>$listByKey[$k]['displayname'],'value'=>$v);
+						}
+						$history[] = $tmp;
+						unset($tmp);
 					}
+					$info = null;
 				}
-				$this->assign('submitInfo',$info);
 				//$submitted=1;
 				//二维码图片
 				//$imgSrc=generateQRfromGoogle(C('site_url').'/index.php?g=Wap&m=Selfform&a=submitInfo&token='.$this->token.'&wecha_id='.$this->wecha_id.'&id='.$thisForm['id']);
 				
 				//$this->assign('imgSrc',$imgSrc);
+				$this->assign('submitInfos',$history);
 			}
 			
 			$this->assign('company',$company);

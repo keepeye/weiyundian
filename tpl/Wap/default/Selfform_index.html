@@ -80,13 +80,15 @@ $(function() {
 </ul>
 <ul class="round">
 <li class="title mb"><span class="none">报名信息</span></li>
-<volist name="submitInfo" id="item">
+<volist name="submitInfos" id="v">
 <li class="nob" style="height:35px;line-height:35px;">
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="kuang">
+<?php foreach($v as $item): ?>
 <tr>
 <th>{pigcms:$item.displayname}</th>
 <td>{pigcms:$item.value}</td>
 </tr>
+<?php endforeach; ?>
 </table>
 </li>
 </volist>                                                        
