@@ -69,15 +69,15 @@ class SelfformAction extends BaseAction{
 			$id = $this->selfform_value_model->add($row);
 			$this->redirect(U('Selfform/index',array('token'=>$this->token,'wecha_id'=>$this->wecha_id,'id'=>$thisForm['id'],'success'=>1)));
 		}else {
-			 $cookie_key = "selfform_{$formid}_{$this->token}";
-			 $cookie_data = cookie($cookie_key);
-			// if(!$cookie_data || !$cookie_data['wecha_id']){
-			// 	$cookie_data = array(
-			// 		"wecha_id" => uniqid(),//伪造一个wecha_id
-			// 	);
-			// 	cookie($cookie_key,$cookie_data);				
-			// }
-			//$this->wecha_id = $cookie_data['wecha_id'];//伪造的wecha_id
+			$cookie_key = "selfform_{$formid}_{$this->token}";
+			$cookie_data = cookie($cookie_key);
+			if(!$cookie_data || !$cookie_data['wecha_id']){
+				$cookie_data = array(
+					"wecha_id" => uniqid(),//伪造一个wecha_id
+				);
+				cookie($cookie_key,$cookie_data);				
+			}
+			$this->wecha_id = $cookie_data['wecha_id'];//伪造的wecha_id
 			$submitted=0;
 			
 			//判断是否提交过信息了
