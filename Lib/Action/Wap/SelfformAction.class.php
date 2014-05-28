@@ -8,7 +8,7 @@ class SelfformAction extends BaseAction{
 	public function __construct(){
 		parent::__construct();
 		$this->token		= $this->_get('token');//获取商户token
-		$this->wecha_id	= I('wecha_id',I('get.wecha_id'));//获取wecha_id
+		//$this->wecha_id	= I('wecha_id',I('get.wecha_id'));//获取wecha_id
 		//判断wecha_id 没有的话跳转到宣传页
 		// if (!$this->wecha_id){
 		// 	$this->redirect("Home/Adma/index?token=".$this->token);
