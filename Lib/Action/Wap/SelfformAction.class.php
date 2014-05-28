@@ -79,7 +79,7 @@ class SelfformAction extends BaseAction{
 			}
 			$this->wecha_id = $cookie_data['wecha_id'];//伪造的wecha_id
 			$submitted=0;
-			echo $this->wecha_id;
+			//echo $this->wecha_id;
 			//判断是否提交过信息了
 			$submitInfo=$this->selfform_value_model->where(array('wecha_id'=>$this->wecha_id,'formid'=>$thisForm['id']))->find();
 			if ($submitInfo){
@@ -96,7 +96,7 @@ class SelfformAction extends BaseAction{
 				
 				//$this->assign('imgSrc',$imgSrc);
 			}
-			
+			dump($submitInfo);
 			$this->assign('company',$company);
 			$this->assign('submitted',$submitted);
 			$this->assign('list',$list);
