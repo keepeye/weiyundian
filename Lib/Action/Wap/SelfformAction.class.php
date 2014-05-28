@@ -88,7 +88,7 @@ class SelfformAction extends BaseAction{
 			//echo $this->wecha_id;
 			//判断是否提交过信息了
 			$submitInfo=$this->selfform_value_model->where(array('wecha_id'=>$this->wecha_id,'formid'=>$thisForm['id']))->find();
-			dump($submitInfo);
+			
 			if ($submitInfo){
 				$info=unserialize($submitInfo['values']);
 				if ($info){
