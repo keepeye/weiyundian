@@ -258,7 +258,7 @@ class WeixinAction extends Action
         
         //Log::write($key,Log::INFO);
         $where['token'] = $this->token;
-        $where['keyword'] = $key;
+        $where['keyword'] = array("like","%{$key}%");
         $list = M('keyword')->field("pid,module")->where($where)->limit(9)->select();//读取关键词列表,读取9个
         //file_put_contents("./sql.txt",M()->getLastSql());
         //Log::write($this->token,Log::INFO);
