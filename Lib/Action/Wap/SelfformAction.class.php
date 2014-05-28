@@ -69,7 +69,7 @@ class SelfformAction extends BaseAction{
 			$id = $this->selfform_value_model->add($row);
 			$this->redirect(U('Selfform/index',array('token'=>$this->token,'wecha_id'=>$this->wecha_id,'id'=>$thisForm['id'],'success'=>1)));
 		}else {
-			// $cookie_key = "selfform_{$formid}_{$this->token}";
+			 $cookie_key = "selfform_{$formid}_{$this->token}";
 			// $cookie_data = cookie($cookie_key);
 			// if(!$cookie_data || !$cookie_data['wecha_id']){
 			// 	$cookie_data = array(
