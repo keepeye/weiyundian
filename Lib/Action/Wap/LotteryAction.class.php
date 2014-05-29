@@ -268,7 +268,7 @@ class LotteryAction extends BaseAction{
 			break;
 			
 			case 6:
-				if ($Lottery['sixlucknums'] >= $Lottery['sixenums']) {
+				if ($Lottery['sixlucknums'] >= $Lottery['sixnums']) {
 					 $prizetype =  ''; 
 					// $winprize = '谢谢参与';
 				}else{
