@@ -373,7 +373,7 @@ $(function(){
     	var checkempty = true;
     	var checkitem;
     	//验证字段是否为空
-    	$(this).find("input:text").each(function(){
+    	$(this).find("input:text,select").each(function(){
     		if($(this).val() == ""){
     			checkitem = $(this);
     			checkempty = false;
