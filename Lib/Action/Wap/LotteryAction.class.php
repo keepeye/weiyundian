@@ -399,6 +399,11 @@ class LotteryAction extends BaseAction{
 			
 			//自定义表单处理
 			if(isset($_POST['formdata']) && !empty($_POST['formdata'])){
+				foreach($formdata as $value){
+					if(empty($value)){
+						$this->ajaxReturn(array('success'=>'1','msg'=>'表单填写不完整，请重新填写'));
+					}
+				}
 				$data['formdata'] = json_encode($_POST['formdata']);
 			}else{
 				$data['phone'] 		= $this->_post('phone');
