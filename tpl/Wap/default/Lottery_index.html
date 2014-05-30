@@ -110,7 +110,7 @@
                         <?php $options = explode(",",$field['value']);?>
                         <div>
                             {pigcms:$field.name}:
-                            <select name="formdata[{pigcms:$field.id}]" required>
+                            <select name="formdata[{pigcms:$field.id}]">
                                 <?php foreach($options as $option):?>
                                 <option value="{pigcms:$option}">{pigcms:$option}</option>
                                 <?php endforeach;?>
@@ -118,7 +118,7 @@
                         </div>
                     <?php else: ?>
                         <div>
-                        {pigcms:$field.name}:<input type="text" name="formdata[{pigcms:$field.id}]" placeholder="{pigcms:$field.name}" value="{pigcms:$field.value}" required />
+                        {pigcms:$field.name}:<input type="text" name="formdata[{pigcms:$field.id}]" placeholder="{pigcms:$field.name}" value="{pigcms:$field.value}"  />
                         </div>
                     <?php endif;?>
                 <?php endforeach;?>
@@ -426,6 +426,27 @@ $("#save-btn").bind("click",function() {
 });
 $(function(){
     $("#formdata").submit(function(){
+        var checkempty = true;
+        var checkitem;
+        //验证字段是否为空
+        $(this).find("input:text,select").each(function(){
+            if($(this).val() == ""){
+                checkitem = $(this);
+                checkempty = false;
+                return false;
+            }
+        })
+
+        if(checkempty == false){
+            
+            try{
+                checkitem.after('该字段必填');
+                checkitem.focus();
+            }catch(e){
+
+            }
+            return false;
+        }
         //formdata
         var submitData = $("#formdata").serialize();
 
