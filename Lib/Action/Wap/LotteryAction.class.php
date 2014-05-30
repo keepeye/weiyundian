@@ -307,7 +307,7 @@ class LotteryAction extends BaseAction{
 		$id 		=	I('id');//lid
 		$rid 		= 	I('rid');//id	
 		$redata 	=	M('Lottery_record');
-		$where 		= 	array('token'=>$token,'wecha_id'=>$wecha_id,'lid'=>$id);
+		$where 		= 	array('id'=>$id,'token'=>$token,'wecha_id'=>$wecha_id,'lid'=>$id);
 		$record 	=	$redata->where($where)->find();	//用户抽奖记录
 		//判断用户是否存在记录表里
 		if(!$record){
