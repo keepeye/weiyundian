@@ -28,9 +28,9 @@
 			<volist name='list' id='vo'>
 			<tr>
 				<td>{pigcms:$vo.wecha_user_id}</td>
-				<td>{pigcms:$vo.lasttime}</td>
-				<td>{pigcms:$vo.total}</td>
-				<td>{pigcms:$vo.keep}</td>
+				<td>{pigcms:$vo.lasttime|date='Y-m-d H:i:s',###}</td>
+				<td>{pigcms:$vo.total|default=0}</td>
+				<td>{pigcms:$vo.keep|default=0}</td>
 			</tr>
 			</volist>
 

@@ -10,7 +10,15 @@ class SignAction extends UserAction {
 	}
 	//活动列表
 	function index(){
-		$list = M('SignRecord')->where(array('token'=>$this->_token))->select();
+		$M = M('SignRecord');
+		$where = array('token'=>$this->_token);
+		
+		$count      = $M->where($where)->count();//总数
+		$Page       = new Page($count,20);
+		$show       = $Page->show();
+		$list = $M->field('*')->where($where)->order('lasttime desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+		$this->assign('pagestr',$show);
+		$this->assign("list",$list);
 		$this->display();
 	}
 	
