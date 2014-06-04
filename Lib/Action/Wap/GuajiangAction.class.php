@@ -116,8 +116,9 @@ class GuajiangAction extends BaseAction{
 			if ($record['usenums'] < 1 ) {
 				//次数已经达到限定
 				$data['usenums'] = 0;
+				$this->assign("usenums",$data['usenums']);
 				$data['winprize']	= '抽奖次数已用完';
-				
+
 			}else{
 				//先更新抽奖记录
 				M('Lottery_record')->where(array('id'=>$record['id']))->data(array(
