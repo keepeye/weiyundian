@@ -1426,7 +1426,7 @@ class WeixinAction extends Action
         //判断今天是否已签到过
         if($timeout < 86400){
             $tip .= "您今天已签过";
-            $data = $record;
+            $data = &$record;
         }else{
             //是否连续签到
             if($timeout > 86400*2){
