@@ -10,7 +10,7 @@ class SignAction extends UserAction {
 	}
 	//活动列表
 	function index(){
-		
+		$list = M('SignRecord')->where(array('token'=>$this->_token))->select();
 		$this->display();
 	}
 	

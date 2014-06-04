@@ -1411,8 +1411,9 @@ class WeixinAction extends Action
         $record = M('SignRecord')->where(array("wecha_user_id"=>$this->_wecha_user['id']))->find();
         //检测是否第一次签到
         if(!$record){
-            M('SignRecord')->data(array("wecha_user_id"=>$this->_wecha_user['id']))->add();
+            M('SignRecord')->data(array("wecha_user_id"=>$this->_wecha_user['id'],"token"=>$this->token))->add();
             $record = array(
+                "token"=>$this->token,
                 "total"=>0,
                 "keep"=>0,
                 "lasttime"=>0
