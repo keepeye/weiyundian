@@ -10,8 +10,7 @@ class SignAction extends UserAction {
 	}
 	//活动列表
 	function index(){
-		$list = M('Diaoyan')->where(array("token"=>$this->_token))->select();//读取活动列表
-		$this->assign("list",$list);
+		
 		$this->display();
 	}
 	//获取活动列表
