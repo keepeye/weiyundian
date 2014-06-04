@@ -247,7 +247,7 @@ class WeixinAction extends Action
                         );
                 break;
             case '签到':
-                $text = "签到";
+                $text = $this->sign();
                 return array(
                     $text,
                     "text"
@@ -1389,6 +1389,12 @@ class WeixinAction extends Action
             return $title;//如果分词结果为空，则原样返回
         }
         return implode(',', $tags);
+    }
+
+
+    //签到响应
+    public function sign(){
+        return "签到事件";
     }
 
     
