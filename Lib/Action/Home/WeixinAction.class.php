@@ -1422,7 +1422,7 @@ class WeixinAction extends Action
         $nowtime = time();
         //距离上次签到间隔,按0点计算
         $timeout = strtotime(date("Y-m-d",$nowtime)) - strtotime(date("Y-m-d",$record['lasttime']));
-        $tip = "[{$this->_wecha_user['id']}]";
+        $tip = "";
         //判断今天是否已签到过
         if($timeout < 86400){
             $tip .= "您今天已签过.";
@@ -1451,7 +1451,7 @@ class WeixinAction extends Action
         $text .= "累计 ".$data['total']." 次，连续 ".$data['keep']." 次.\r\n";
         $text .="本次签到奖励:".$sign_config['reward']."分.\r\n";
         $text .= $sign_config['desc'];
-        
+        $text .= "您的编号:[".$this->_wecha_user['id']."]";
         return $text;
     }
 
