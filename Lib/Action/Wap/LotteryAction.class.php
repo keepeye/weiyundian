@@ -35,7 +35,11 @@ class LotteryAction extends BaseAction{
 			if($wxuser && $wxuser['has_oauth']=="1"){
 				redirect(U("Wap/Oauth/getCode",array("token"=>$this->token,"referer"=>rawurlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']))));
 			}else{
-				$this->redirect("Home/Adma/index?token=".$token);
+				if(!empty($Lottery['redirect'])){
+					redirect($Lottery['redirect']);
+				}else{
+					$this->redirect("Home/Adma/index?token=".$token);
+				}
 			}
 			//$this->redirect("Home/Adma/index?token=".$token);
 		}
