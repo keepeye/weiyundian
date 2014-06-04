@@ -5,6 +5,7 @@ class WeixinAction extends Action
     private $fun;
     private $data = array();
     private $my = '微信机器人';
+    private $_wecha_user;
     public function index()
     {
     	//file_put_contents("./response.txt","----".date("Y-m-d H:i:s",time())."\n",FILE_APPEND);
@@ -39,6 +40,13 @@ class WeixinAction extends Action
     
     private function reply($data)
     {
+        //初始化用户信息
+        if(!($this->_wecha_user = M('WechaUser')->where(array("token"=>$this->token,"wecha_id"=>$data['FromUserName']))->find())){
+            $wecha_user_id = M('WechaUser')->add(array("token"=>$this->token,"wecha_id"=>$data['FromUserName']));
+            $this->_wecha_user = M('WechaUser')->where(array("id"=>$wecha_user_id))->find();
+
+        }
+
 		//Log::write($data['Event'],Log::INFO);
 	    if ('CLICK' == $data['Event'])
 	    {
@@ -48,12 +56,8 @@ class WeixinAction extends Action
 
 		//用户关注时事件推送
 	    if ('subscribe' == $data['Event']) 
-	    {
-            //用户入库
-            if(!M('WechaUser')->where(array("token"=>$this->token,"wecha_id"=>$data['FromUserName']))->find()){
-                M('WechaUser')->add(array("token"=>$this->token,"wecha_id"=>$data['FromUserName']));
-            }
-            
+	    {    
+
 		    $this->requestdata('follownum');
 		    $data = M('Areply')->field('home,keyword,content,status')->where(array(
 					    'token' => $this->token
@@ -1394,7 +1398,13 @@ class WeixinAction extends Action
 
     //签到响应
     public function sign(){
-        return "签到事件";
+        if(empty($this->_wecha_user)){
+            return null;
+        }
+        //读取签到设置
+        $sign_config = M('Sign')->where(array("token"=>$this->token))->find();
+
+        $text = "uid:".$this->_wecha_user['id']."  score:".$sign_config['reward']."\r\n".$sign_config['desc'];
     }
 
     
