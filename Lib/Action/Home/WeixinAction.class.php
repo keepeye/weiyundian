@@ -246,7 +246,12 @@ class WeixinAction extends Action
                         'news'
                         );
                 break;
-
+            case '签到':
+                return array(
+                    $text,
+                    "text"
+                );
+                break;
             default:
                 return null;
                 //return $this->keyword($key);
