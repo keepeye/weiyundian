@@ -1447,11 +1447,15 @@ class WeixinAction extends Action
             $tip .= "恭喜签到成功！获得积分{$sign_config['reward']}点`(*∩_∩*)′\r\n";
             //奖励积分
             M('WechaUser')->where(array("id"=>$this->_wecha_user['id']))->setInc("score",$sign_config['reward']);
+            $nowscore = $this->_wecha_user['score'] + $sign_config['reward'];
+        }
+        if(!$nowscore){
+            $nowscore = $this->_wecha_user['score'];
         }
         $text = $tip;
         $text .= "您已经累计签到 ".$data['total']." 次\r\n连续签到 ".$data['keep']." 次啦！^_^\r\n\r\n";
         $text .= $sign_config['desc']."\r\n\r\n";
-        $text .= "您的用户ID:[".$this->_wecha_user['id']."] ,剩余积分:".$this->wecha_user['score'];
+        $text .= "您的用户ID:[".$this->_wecha_user['id']."] ,当前积分:".$nowscore;
         return $text;
     }
 
