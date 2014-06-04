@@ -100,8 +100,8 @@ class LotteryAction extends BaseAction{
 		// }
 		// 按自然天计算
 		if($Lottery['interval'] > 0 && time()>$record['time'] && date("d",time())!=date("d",$record['time'])){
-			$redata->data(array('usenums'=>$Lottery['canrqnums']))->where($where)->save();//距离上次抽奖时间已超过时间限制，抽奖计数自动补满或重置，每日抽奖次数不积累
-			$record['usenums'] = $Lottery['canrqnums'];//次数重置，用于接下来的流程
+			$record['usenums'] = $record['usenums']+$Lottery['canrqnums'];//次数重置，用于接下来的流程
+			$redata->where($where)->setInc("usenums",$Lottery['canrqnums']);//距离上次抽奖时间已超过时间限制，抽奖计数自动补满或重置，每日抽奖次数不积累
 		}
 		$data['wecha_id']	= $record['wecha_id'];		
 		$data['lid']		= $record['lid'];
