@@ -35,6 +35,9 @@ class SignAction extends UserAction {
 				$this->error("创建表单失败");
 			}
 		}else{
+			if($info){
+				$this->assign("info",$info);
+			}
 			$this->display();
 		}
 	}
