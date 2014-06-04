@@ -1403,8 +1403,54 @@ class WeixinAction extends Action
         }
         //读取签到设置
         $sign_config = M('Sign')->where(array("token"=>$this->token))->find();
+        if(!$sign_config){
+            return "签到功能未启用";
+        }
+        
+        //读取签到记录
+        $record = M('SignRecord')->where(array("wecha_user_id"=>$this->_wecha_user['id']))->find();
+        //检测是否第一次签到
+        if(!$record){
+            M('SignRecord')->data(array("wecha_user_id"=>$this->_wecha_user['id']))->add();
+            $record = array(
+                "total"=>0,
+                "keep"=>0,
+                "lasttime"=>0
+            );
+        }
 
-        $text = "uid:".$this->_wecha_user['id']."  score:".$sign_config['reward']."\r\n".$sign_config['desc'];
+        $nowtime = time();
+        //距离上次签到间隔,按0点计算
+        $timeout = strtotime(date("Y-m-d",$nowtime)) - strtotime(date("Y-m-d",$record['lasttime']));
+        $tip = "[{$this->_wecha_user['id']}]";
+        //判断今天是否已签到过
+        if($timeout < 86400){
+            $tip .= "您已于".date("Y-m-d H:i:s",$record['lasttime'])."签到过";
+        }else{
+            //是否连续签到
+            if($timeout > 86400*2){
+                $keep = 1;
+            }else{
+                $keep = $record['keep'] + 1;
+            }
+
+            $data = array(
+                "total" => $record['total']+1,
+                "keep" => $keep,
+                "lasttime" => $nowtime
+            );
+            //更新签到记录
+            M('SignRecord')->where(array("wecha_user_id"=>$this->_wecha_user['id']))->data($data)->save();
+
+            $tip .= "签到成功:".date("Y-m-d H:i:s",$nowtime);
+            //奖励积分
+            M('WechaUser')->where(array("id"=>$this->_wecha_user['id']))->setInc("score",$sign_config['reward']);
+        }
+        $text = $tip."\r\n";
+        $text .= "累计 ".$data['total']." 次，连续 ".$data['keep']." 次\r\n";
+        $text .="本次签到奖励积分：".$sign_config['reward']."\r\n";
+        $text .= $sign_config['desc'];
+        
         return $text;
     }
 
