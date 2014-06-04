@@ -1,37 +1,46 @@
 <include file="Public:head"/> 
-  <div class="content"> 
-   <div class="cLineB"> 
-    <h4>签到设置</h4> 
-    <a href="javascript:history.go(-1)" class="right  btnGreen" style="margin-top:-27px">返回</a> 
-   </div> 
-   <form class="form" method="post" action=""> 	
-    <div class="msgWrap bgfc"> 
-     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
-      <tbody> 
-	   
-	   <tr> 
-        <th><span class="red">*</span>关键词：</th> 
-        <td><font color=red>签到</font> 自定义菜单设置或者用户发送该关键词都回触发签到事件</td> 
-       </tr>
-	   <tr> 
-        <th><span class="red">*</span>签到奖励积分：</th> 
-        <td><input type="text" name="score" value="{pigcms:$info.score|default=0}" class="px" style="width:100px;" /></td> 
-       </tr>
-	   <tr> 
-        <th><span class="red">*</span>签到说明：</th> 
-        <td><textarea  class="px" type="text" name="desc" style="width:400px;height:100px;">{pigcms:$info.desc}</textarea>附加在自动回复文本后面</td> 
-       </tr>
-	   
-	   
-       <tr>         
-       <th>&nbsp;</th>
-       <td><button type="submit" name="button" class="btnGreen">保存</button></td> 
-       </tr> 
-      </tbody> 
-     </table> 
-     </div>
-    
-   </form> 
-  </div> 
- 
-  <include file="Public:footer" />
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left">微签到</h4>
+		<div class="clr"></div>
+	</div>
+	<!--tab start-->
+	<div class="tab">
+		<ul>
+			<li class="tabli <eq name='ACTION_NAME' value='index'>current</eq>"><a href="{pigcms::U('index')}">签到记录</a></li>
+			<li class="tabli <eq name='ACTION_NAME' value='settings'>current</eq>"><a href="{pigcms::U('settings')}">设置</a></li>
+		</ul>
+	</div>
+	<!--tab end-->
+	<div class="msgWrap">
+
+		<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<thead>
+				<tr>
+					<th width="60">uid</th>
+					<th width="125">签到时间</th>
+					<th width="90" class="norightborder">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+			<volist name='list' id='vo'>
+			<tr>
+				<td>{pigcms:$vo.pretype}</td>
+				<td>{pigcms:$vo.version_name}</td>
+				<td>{pigcms:$vo.predate}</td>
+			</tr>
+			</volist>
+
+			</tbody>
+		</table>
+	</div>
+	<div class="cLine">
+		<div class="pageNavigator right">
+			<div class="pages">{pigcms:$pagestr}</div>
+		</div>
+		<div class="clr"></div>
+	</div>
+</div>
+
+<include file="Public:footer"/>

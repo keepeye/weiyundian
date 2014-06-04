@@ -13,22 +13,11 @@ class SignAction extends UserAction {
 		
 		$this->display();
 	}
-	//获取活动列表
-	function getActivity(){
-		$module_name = I('module_name','');//模块名
-		$data = array();//初始化活动主表id
-		switch($module_name){
-			case "dazhuanpan":
-				$data=M('Lottery')->field("id,title")->where(array("type"=>1,"token"=>$this->_token))->select();
-				break;
-			default:
-		}
-		if(!empty($data)){
-			$this->ajaxReturn(array("status"=>1,"data"=>$data,"info"=>"ok"));
-		}else{
-			$this->ajaxReturn(array("status"=>0,"data"=>"","info"=>"nothing"));
-		}
+	
+	function settings(){
+		$this->display();
 	}
+
 	//设置调研
 	function setDiaoyan(){
 		$id = I('id','0','intval');

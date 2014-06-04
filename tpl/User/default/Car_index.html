@@ -1,0 +1,73 @@
+<include file="Public:head"/> 
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left">预约服务-申请列表</h4>
+		<div class="clr"></div>
+	</div>
+	<!--tab start-->
+	<div class="tab">
+		<ul>
+			<li class="tabli <eq name='Think.get.pretype' value=''>current</eq>"><a href="{pigcms::U('reserveList')}">所有</a></li>
+			<li class="tabli <eq name='Think.get.pretype' value='维修'>current</eq>"><a href="{pigcms::U('reserveList',array('pretype'=>'维修'))}">维修</a></li>
+			<li class="tabli <eq name='Think.get.pretype' value='保养'>current</eq>"><a href="{pigcms::U('reserveList',array('pretype'=>'保养'))}">保养</a></li>
+			<li class="tabli <eq name='Think.get.pretype' value='试驾'>current</eq>"><a href="{pigcms::U('reserveList',array('pretype'=>'试驾'))}">试驾</a></li>
+		</ul>
+	</div>
+	<!--tab end-->
+	<div class="msgWrap">
+
+		<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
+			<thead>
+				<tr>
+					<th width="60">类型</th>
+					<th width="115">预约车型</th>
+					<th width="125">预约时间</th>
+					<th width="100">预约人</th>
+					<th width="100">联系电话</th>
+					<th width="90">状态</th>
+					<th width="90" class="norightborder">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+			<volist name='list' id='vo'>
+			<tr>
+				<td>{pigcms:$vo.pretype}</td>
+				<td>{pigcms:$vo.version_name}</td>
+				<td>{pigcms:$vo.predate}</td>
+				<td>{pigcms:$vo.contact_name}</td>
+				<td>{pigcms:$vo.contact_phone}</td>
+				<td><eq name="vo['status']" value="0"><font color=red>待处理</font><else/>已处理</eq></td>
+				<td><eq name="vo['status']" value="0"><a href="javascript:" onclick="markdone('{pigcms:$vo.id}')">标记已处理</a></eq></td>
+			</tr>
+			</volist>
+
+			</tbody>
+		</table>
+	</div>
+	<div class="cLine">
+		<div class="pageNavigator right">
+			<div class="pages">{pigcms:$pagestr}</div>
+		</div>
+		<div class="clr"></div>
+	</div>
+</div>
+<script>
+function markdone(id){
+	$.ajax({
+		url:"{pigcms::U('reserveMark')}",
+		type:"post",
+		data:"id="+id,
+		dataType:"json",
+		error:function(){alert('请求失败，网络错误')},
+		success:function(data){
+			if(data && data.status){
+				window.location.reload();//标记成功刷新页面
+			}else{
+				alert('非法请求');
+			}
+		}
+	})
+}
+</script>
+<include file="Public:footer"/>
