@@ -1405,6 +1405,7 @@ class WeixinAction extends Action
         $sign_config = M('Sign')->where(array("token"=>$this->token))->find();
 
         $text = "uid:".$this->_wecha_user['id']."  score:".$sign_config['reward']."\r\n".$sign_config['desc'];
+        return $text;
     }
 
     
