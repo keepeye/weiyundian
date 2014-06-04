@@ -1449,7 +1449,7 @@ class WeixinAction extends Action
         }
         $text = $tip.".\r\n";
         $text .= "累计 ".$data['total']." 次，连续 ".$data['keep']." 次.\r\n";
-        $text .="本次签到奖励积分：".$sign_config['reward'].".\r\n";
+        $text .="本次签到奖励:".$sign_config['reward']."分.\r\n";
         $text .= $sign_config['desc'];
         
         return $text;
