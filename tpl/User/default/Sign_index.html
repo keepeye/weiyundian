@@ -18,17 +18,19 @@
 		<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
 			<thead>
 				<tr>
-					<th width="60">uid</th>
-					<th width="125">签到时间</th>
-					<th width="90" class="norightborder">操作</th>
+					<th>uid</th>
+					<th>签到时间</th>
+					<th>累计次数</th>
+					<th>连续次数</th>
 				</tr>
 			</thead>
 			<tbody>
 			<volist name='list' id='vo'>
 			<tr>
-				<td>{pigcms:$vo.pretype}</td>
-				<td>{pigcms:$vo.version_name}</td>
-				<td>{pigcms:$vo.predate}</td>
+				<td>{pigcms:$vo.wecha_user_id}</td>
+				<td>{pigcms:$vo.lasttime}</td>
+				<td>{pigcms:$vo.total}</td>
+				<td>{pigcms:$vo.keep}</td>
 			</tr>
 			</volist>
 
