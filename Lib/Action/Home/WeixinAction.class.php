@@ -1425,7 +1425,7 @@ class WeixinAction extends Action
         $tip = "";
         //判断今天是否已签到过
         if($timeout < 86400){
-            $tip .= "您今天已签过,请明天再来吧~";
+            $tip .= "您今天已签过,请明天再来吧~\r\n";
             $data = &$record;
         }else{
             //是否连续签到
@@ -1447,9 +1447,9 @@ class WeixinAction extends Action
             //奖励积分
             M('WechaUser')->where(array("id"=>$this->_wecha_user['id']))->setInc("score",$sign_config['reward']);
         }
-        $text = $tip."\r\n";
-        $text .= "您已经累计签到 ".$data['total']." 次\r\n连续签到 ".$data['keep']." 次啦！^_^\r\n";
-        $text .= $sign_config['desc']."\r\n";
+        $text = $tip;
+        $text .= "您已经累计签到 ".$data['total']." 次\r\n连续签到 ".$data['keep']." 次啦！^_^\r\n\r\n";
+        $text .= $sign_config['desc']."\r\n\r\n";
         $text .= "您的用户ID:[".$this->_wecha_user['id']."]";
         return $text;
     }
