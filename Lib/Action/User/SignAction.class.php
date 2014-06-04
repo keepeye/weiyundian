@@ -19,8 +19,9 @@ class SignAction extends UserAction {
 		$model = M('Sign');
 		$info = $model->where(array('token'=>$this->_token))->find();
 		if(IS_POST){
-			
-			if($model->create()){
+			$data = $_POST;
+			$data['token'] = $this->_token;
+			if($model->create($data)){
 				if($info){
 					$re = $model->save();
 				}else{
