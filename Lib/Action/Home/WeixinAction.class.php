@@ -247,6 +247,7 @@ class WeixinAction extends Action
                         );
                 break;
             case '签到':
+                $text = "签到";
                 return array(
                     $text,
                     "text"
