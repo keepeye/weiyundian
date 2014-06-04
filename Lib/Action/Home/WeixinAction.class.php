@@ -1447,7 +1447,7 @@ class WeixinAction extends Action
             //奖励积分
             M('WechaUser')->where(array("id"=>$this->_wecha_user['id']))->setInc("score",$sign_config['reward']);
         }
-        $text = $tip.".\r\n";
+        $text = $tip."\r\n";
         $text .= "累计 ".$data['total']." 次，连续 ".$data['keep']." 次.\r\n";
         $text .="本次签到奖励:".$sign_config['reward']."分.\r\n";
         $text .= $sign_config['desc'];
