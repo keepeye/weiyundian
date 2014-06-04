@@ -1451,7 +1451,7 @@ class WeixinAction extends Action
         $text .= "累计 ".$data['total']." 次，连续 ".$data['keep']." 次.\r\n";
         $text .="本次签到奖励:".$sign_config['reward']."分.\r\n";
         $text .= $sign_config['desc']."\r\n";
-        $text .= "幸运数字:[".$this->_wecha_user['id']."]";
+        $text .= "您的幸运数字:[".$this->_wecha_user['id']."]";
         return $text;
     }
 
