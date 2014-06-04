@@ -1451,7 +1451,7 @@ class WeixinAction extends Action
         $text = $tip;
         $text .= "您已经累计签到 ".$data['total']." 次\r\n连续签到 ".$data['keep']." 次啦！^_^\r\n\r\n";
         $text .= $sign_config['desc']."\r\n\r\n";
-        $text .= "您的用户ID:[".$this->_wecha_user['id']."]";
+        $text .= "您的用户ID:[".$this->_wecha_user['id']."] ,剩余积分:".$this->wecha_user['score'];
         return $text;
     }
 
