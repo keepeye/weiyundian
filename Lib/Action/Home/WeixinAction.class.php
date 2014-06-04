@@ -1406,7 +1406,7 @@ class WeixinAction extends Action
         if(!$sign_config){
             return "签到功能未启用";
         }
-        
+
         //读取签到记录
         $record = M('SignRecord')->where(array("wecha_user_id"=>$this->_wecha_user['id']))->find();
         //检测是否第一次签到
@@ -1425,7 +1425,8 @@ class WeixinAction extends Action
         $tip = "[{$this->_wecha_user['id']}]";
         //判断今天是否已签到过
         if($timeout < 86400){
-            $tip .= "您已于".date("Y-m-d H:i:s",$record['lasttime'])."签到过";
+            $tip .= "您今天已签过";
+            $data = $record;
         }else{
             //是否连续签到
             if($timeout > 86400*2){
@@ -1442,7 +1443,7 @@ class WeixinAction extends Action
             //更新签到记录
             M('SignRecord')->where(array("wecha_user_id"=>$this->_wecha_user['id']))->data($data)->save();
 
-            $tip .= "签到成功:".date("Y-m-d H:i:s",$nowtime);
+            $tip .= "签到成功\r\n".date("Y-m-d H:i:s",$nowtime);
             //奖励积分
             M('WechaUser')->where(array("id"=>$this->_wecha_user['id']))->setInc("score",$sign_config['reward']);
         }
