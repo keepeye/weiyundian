@@ -1443,13 +1443,12 @@ class WeixinAction extends Action
             //更新签到记录
             M('SignRecord')->where(array("wecha_user_id"=>$this->_wecha_user['id']))->data($data)->save();
 
-            $tip .= "恭喜签到成功！\r\n";
+            $tip .= "恭喜签到成功！获得积分{$sign_config['reward']}点`(*∩_∩*)′\r\n";
             //奖励积分
             M('WechaUser')->where(array("id"=>$this->_wecha_user['id']))->setInc("score",$sign_config['reward']);
         }
         $text = $tip."\r\n";
         $text .= "您已经累计签到 ".$data['total']." 次\r\n连续签到 ".$data['keep']." 次啦！^_^\r\n";
-        $text .="本次签到奖励:".$sign_config['reward']."分.\r\n";
         $text .= $sign_config['desc']."\r\n";
         $text .= "您的用户ID:[".$this->_wecha_user['id']."]";
         return $text;
