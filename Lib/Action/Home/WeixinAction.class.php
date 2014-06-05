@@ -29,7 +29,7 @@ class WeixinAction extends Action
         }
         
         //关键词回复事件
-	    if($this->data['MsgType'] == "text"){
+	    if($this->data['MsgType'] == "text" && $content!=""){
 	    	D('TongjiEvent')->tongji($this->token,"keyword",$this->data['Content']);//统计有效关键词事件
 	    }
 

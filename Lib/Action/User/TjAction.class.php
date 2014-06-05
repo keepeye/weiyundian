@@ -67,6 +67,7 @@ class TjAction extends UserAction{
 		$event_key = I('event_key','','trim');//指定关键词
 		$start_date = I('start_date','','trim');//开始日期
 		$end_date = I('end_date','','trim');//结束日期
+		
 		$tj_list = D('TongjiEvent')->getTongji($this->_token,$event,$event_key,$start_date,$end_date);//获取统计结果列表
 		$this->assign("list",$tj_list);
 		$event_types = D('TongjiEvent')->getEventTypes();
