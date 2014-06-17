@@ -48,9 +48,9 @@ class WapAction extends BaseAction
 	}
 
 	//分享时的事件
-	public function onFromuser()
-	{
-		//增加积分等
-	}
+	// public function onFromuser()
+	// {
+	// 	//增加积分等
+	// }
 
 }
