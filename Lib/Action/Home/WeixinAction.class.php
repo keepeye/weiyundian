@@ -611,7 +611,7 @@ class WeixinAction extends Action
     //其他类型匹配，包括用户配置的无匹配回复以及是否调用聊天机器人
     function otherReply($key){
         $other = M('Other')->where(array('token' => $this->token))->find();
-        if(!empty($other['info'])){
+        if(!empty($other['info']) && $other['status'] == 1){
             return array(
                         $other['info'],
                         'text'
