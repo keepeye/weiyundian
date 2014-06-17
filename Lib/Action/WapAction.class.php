@@ -34,23 +34,23 @@ class WapAction extends BaseAction
 	public function checkFromuser()
 	{
 		$fromuser = I('fromuser','');
-		$id = I('id','')
-		// if( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==false && !empty($fromuser) )
-		// {
-		// 	$fromuser = encrypt($fromuser,"D",C('safe_key'));//解密字符串
-		// 	if($fromuser && !cookie(MODULE_NAME."_FROM_".$fromuser."_".$id) ){
-		// 		$this->fromuser = $fromuser;
-		// 		$this->onFromuser();
-		// 		cookie(MODULE_NAME."_FROM_".$fromuser."_".$id,'1');
-		// 	}
-		// }
-		//$this->assign("fromuser",rawurlencode(encrypt($this->wecha_id,"E",C('safe_key'))));
+		$id = I('id','');
+		if( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==false && !empty($fromuser) )
+		{
+			$fromuser = encrypt($fromuser,"D",C('safe_key'));//解密字符串
+			if($fromuser && !cookie(MODULE_NAME."_FROM_".$fromuser."_".$id) ){
+				$this->fromuser = $fromuser;
+				$this->onFromuser();
+				cookie(MODULE_NAME."_FROM_".$fromuser."_".$id,'1');
+			}
+		}
+		$this->assign("fromuser",rawurlencode(encrypt($this->wecha_id,"E",C('safe_key'))));
 	}
 
-	//分享时的事件
-	// public function onFromuser()
-	// {
-	// 	//增加积分等
-	// }
+	分享时的事件
+	public function onFromuser()
+	{
+		//增加积分等
+	}
 
 }
