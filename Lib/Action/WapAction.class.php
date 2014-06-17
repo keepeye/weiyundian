@@ -41,7 +41,7 @@ class WapAction extends BaseAction
 			$fromuser = encrypt($fromuser,"D",C('safe_key'));//解密字符串
 
 			//if($fromuser && !cookie(MODULE_NAME."_FROM_".$fromuser."_".$id) ){
-			if($fromuser && !cookie(MODULE_NAME."_FROM_".$fromuser."_".$id) ){
+			if($fromuser ){
 				$this->fromuser = $fromuser;
 				$this->onFromuser();
 				cookie(MODULE_NAME."_FROM_".$fromuser."_".$id,'1');
