@@ -17,7 +17,6 @@ class WapAction extends BaseAction
 		$this->wxsign = I('request.wxsign','');//获取加密字符串
 		//检测推广点击
 		$this->checkFromuser();
-		echo $this->fromuser;
 	}
 
 
