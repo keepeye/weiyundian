@@ -161,6 +161,16 @@
 								</div>
 							</ul>
 							<ul>
+								<div class="nav-header">粉丝圈子</div>
+								<div class="toggle">
+									<li id="guide_pub_2" <if condition="MODULE_NAME eq 'WechaUser'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Areply/index',array('token'=>$token))}">粉丝列表</a>
+									</li>
+									<li <if condition="MODULE_NAME eq 'WechaScore'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Text/index',array('token'=>$token))}">积分商城</a>
+									</li>
+									
+								</div>
+							</ul>
+							<ul>
 								<div class="nav-header">官网设置</div>
 								<div class="toggle">
 									<li id="guide_pub_4" <if condition="MODULE_NAME eq 'Home'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Home/set',array('token'=>$token))}" >首页配置</a>
