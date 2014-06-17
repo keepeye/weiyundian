@@ -44,6 +44,7 @@ class WechaUserAction extends UserAction
 		{
 			$this->error("用户不存在或未指定uid");
 		}
-		dump($user);
+		$this->assign("user",$user);
+		$this->display();
 	}
 }
