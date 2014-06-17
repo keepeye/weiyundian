@@ -18,7 +18,3 @@ class OtherAction extends UserAction{
 	}
 	
 }
-
-
-
-?>
