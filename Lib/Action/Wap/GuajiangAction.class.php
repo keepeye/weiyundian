@@ -28,7 +28,7 @@ class GuajiangAction extends WapAction{
 
 		//检测当前访问的合法性
 		if(!$this->checkWxsign()){
-			//exit($this->fromuser);
+			exit($this->fromuser);
 			//dump(encrypt(I('fromuser',''),"D",C('safe_key')));exit;
 			// $wxuser = M('Wxuser')->field('has_oauth')->where(array('token'=>$token))->find();
 			// if($wxuser && $wxuser['has_oauth']=="1"){
