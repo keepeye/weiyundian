@@ -37,8 +37,9 @@ class WapAction extends BaseAction
 		$id = I('id','');
 		if( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==false && !empty($fromuser) )
 		{
-			echo cookie(MODULE_NAME."_FROM_".$fromuser."_".$id);
+
 			$fromuser = encrypt($fromuser,"D",C('safe_key'));//解密字符串
+			echo cookie(MODULE_NAME."_FROM_".$fromuser."_".$id);
 			if($fromuser && !cookie(MODULE_NAME."_FROM_".$fromuser."_".$id) ){
 				$this->fromuser = $fromuser;
 				$this->onFromuser();
