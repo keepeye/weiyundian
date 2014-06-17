@@ -44,7 +44,7 @@ class WapAction extends BaseAction
 		// 		cookie(MODULE_NAME."_FROM_".$fromuser."_".$id,'1');
 		// 	}
 		// }
-		$this->assign("fromuser",rawurlencode(encrypt($this->wecha_id,"E",C('safe_key'))));
+		//$this->assign("fromuser",rawurlencode(encrypt($this->wecha_id,"E",C('safe_key'))));
 	}
 
 	//分享时的事件
