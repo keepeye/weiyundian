@@ -13,6 +13,17 @@ class WechaUserAction extends UserAction
 	{
 		$M = M('WechaUser');
 		$where = array('token'=>$this->token);
+
+		//有附加条件
+		$filter = I('filter');
+		if($filter)
+		{
+			//uid
+			if( isset($filter['uid']) && $filter['uid']>0 )
+			{
+				$where['id'] = $filter['uid'];
+			}
+		}
 		$total = $M->where($where)->count();//列表总数
 
 		import('@.ORG.Page');//引入Page类
