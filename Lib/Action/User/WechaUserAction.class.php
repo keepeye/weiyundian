@@ -35,4 +35,15 @@ class WechaUserAction extends UserAction
 		$this->assign('list',$list);
 		$this->display();
 	}
+
+	//编辑资料
+	function edit()
+	{
+		$uid = I('uid',0);
+		if( ! $uid || ! $user = M('WechaUser')->find($uid))
+		{
+			$this->error("用户不存在或未指定uid");
+		}
+		dump($user);
+	}
 }
