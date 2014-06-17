@@ -17,8 +17,8 @@
 				<tr>
 				  	<th valign="top"><span class="red">*</span>开关：</th>
 				  	<td>
-				  		<label><input type="radio" name="status" value="1">开</label>
-				  		<label><input type="radio" name="status" value="0">关</label>
+				  		<label><input type="radio" name="status" value="1" <?php if($other['status'] == 1): ?>checked<?php endif;?>>开</label>
+				  		<label><input type="radio" name="status" value="0" <?php if($other['status'] == 0): ?>checked<?php endif;?>>关</label>
 					</td>
 				</tr>
 				<tr>
