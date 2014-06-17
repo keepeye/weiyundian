@@ -1,13 +1,24 @@
 <include file="Public:head"/>  
         <div class="content">
           <div class="cLineB">
-              <h4 class="left">调研活动列表</h4>
+              <h4 class="left">粉丝列表</h4>
               <div class="clr"></div>
           </div>
           <div class="cLine">
-            <div class="pageNavigator left">
-  <a href='{pigcms::U('Diaoyan/setDiaoyan')}'  class='btnGrayS vm bigbtn'><img src="{pigcms::RES}/images/img/activity-scratch-card.png" class="vm" />新增调研</a>
-            </div>
+            <div class="searchbar">  
+                  <form method="get">
+                    <input type="hidden" name="g" value="<?php echo GROUP_NAME;?>"/>
+                    <input type="hidden" name="m" value="<?php echo MODULE_NAME;?>"/>
+                    <input type="hidden" name="a" value="<?php echo ACTION_NAME;?>"/>
+                    <input type="hidden" name="id" value="<?php echo $_GET['id'];?>"/>
+                   sn码：<input type="text"  class="txt" placeholder="输入sn码"  name="filter[sn]" value="">&nbsp;
+                   奖品名：<input type="text"  class="txt" placeholder=""  name="filter[prize]" value="">&nbsp;
+                   手机号：<input type="text"  class="txt"   name="filter[phone]" value="">&nbsp;
+                   自定义表单：<input type="text"  class="txt"   name="filter[formdata]" value="">
+                    <input type="submit" value="查找" id="msgSearchBtn" href="" class="btnGrayS" title="查找">
+                    
+                  </form>
+              </div>
           
             <div class="clr"></div>
           </div>
@@ -17,8 +28,8 @@
 	  <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
 		  <THEAD>
 			  <TR>
-				  <TH>活动名称</TH>
-				  <TH>结束时间</TH>
+				  <TH>uid</TH>
+				  <TH>积分</TH>
 				  <TH class="norightborder">操作</TH>
 			  </TR>
 		  </THEAD>
@@ -26,13 +37,10 @@
 		  <TR></TR>
 		  <volist id="list" name="list">
 		  <TR>
-				<TD>{pigcms:$list.title}</TD>                 
-				<TD>{pigcms:$list.end_time|date='Y-m-d',###}</TD>
+				<TD>{pigcms:$list.id}</TD>                 
+				<TD>{pigcms:$list.score}</TD>
 				<TD class="norightborder">
-					<a href="{pigcms::U('setDiaoyan',array('id'=>$list['id']))}">修改</a> 
-					<a href="{pigcms::U('delDiaoyan',array('id'=>$list['id']))}">删除</a>
-					<a href="{pigcms::U('questionList',array('id'=>$list['id']))}">题库设置</a>
-				  	<a href="{pigcms::U('recordList',array('id'=>$list['id']))}">数据统计</a>
+					<a href="{pigcms::U('setDiaoyan',array('id'=>$list['id']))}">编辑</a> 
 				 </TD>
 		  </TR>
 		  </volist>
