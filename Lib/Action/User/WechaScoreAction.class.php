@@ -11,7 +11,7 @@ class WechaScoreAction extends UserAction
 
 	function index()
 	{
-		echo "推广设置，积分兑换";
+		$this->display();
 	}
 
 	

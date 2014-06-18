@@ -1,0 +1,58 @@
+<include file="Public:head"/>  
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left">积分系统</h4>
+		<div class="clr"></div>
+	</div>
+	
+	<div class="tab">
+		<ul>
+		<li class="tabli current"><a href="/index.php?g=User&amp;m=Sign&amp;a=index">礼品兑换</a></li>
+			<li class="tabli "><a href="/index.php?g=User&amp;m=Sign&amp;a=settings">推广设置</a></li>
+		</ul>
+	</div>
+	<div class="msgWrap">
+
+
+		<TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+			<THEAD>
+				<TR>
+					<TH>uid</TH>
+					<TH>积分</TH>
+					<TH class="norightborder">操作</TH>
+				</TR>
+			</THEAD>
+			<TBODY>
+				<TR></TR>
+				<volist id="list" name="list">
+					<TR>
+						<TD>{pigcms:$list.id}</TD>                 
+						<TD>{pigcms:$list.score}</TD>
+						<TD class="norightborder">
+							<a href="{pigcms::U('edit',array('id'=>$list['id']))}">编辑</a> 
+						</TD>
+					</TR>
+				</volist>
+			</TBODY>
+		</TABLE>
+
+
+	</div>
+
+	<div class="cLine">
+		<div class="pageNavigator right">
+			<div class="pages">{pigcms:$pagestr}</div>
+		</div>
+		<div class="clr"></div>
+	</div>
+
+</div>
+
+<div class="clr"></div>
+</div>
+</div>
+</div>
+
+<!--底部-->
+</div>
+<include file="Public:footer"/>
