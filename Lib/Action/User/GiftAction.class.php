@@ -1,5 +1,5 @@
 <?php
-class WechaScoreAction extends UserAction
+class GiftAction extends UserAction
 {
 	function __construct(){
 		parent::__construct();
