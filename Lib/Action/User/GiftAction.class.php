@@ -12,6 +12,10 @@ class GiftAction extends UserAction
 	//默认首页
 	function index()
 	{
+		$m = M('Gift');
+		$list = $m->select();
+
+		$this->assign("list",$list);
 		$this->display();
 	}
 
