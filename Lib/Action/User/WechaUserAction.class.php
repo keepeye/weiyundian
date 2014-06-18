@@ -36,15 +36,36 @@ class WechaUserAction extends UserAction
 		$this->display();
 	}
 
-	//编辑资料
+	//编辑用户视图
 	function edit()
 	{
-		$uid = I('uid',0);
+		$uid = I('id',0);
 		if( ! $uid || ! $user = M('WechaUser')->find($uid))
 		{
 			$this->error("用户不存在或未指定uid");
 		}
-		$this->assign("user",$user);
-		$this->display();
+		if( ! IS_POST)
+		{
+			$this->assign("user",$user);
+			$this->display();
+		}
+		else
+		{
+			$M = M('WechaUser');
+			if($M->create())
+			{
+				if($M->save() === false)
+				{
+					$this->error("sql错误");
+				}
+			}
+			else
+			{
+				$this->error("创建数据失败");
+			}
+			$this->success("保存成功");
+		}
+		
 	}
+	
 }
