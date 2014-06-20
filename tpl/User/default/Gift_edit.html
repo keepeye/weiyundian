@@ -47,7 +47,7 @@
           <tr>
             <th valign="top"><span class="red">*</span>描述：</th>
             <td>
-              <textarea class="px" name="description" style="width:400px;height:150px;">{pigcms:$gift.description}</textarea>
+              <textarea class="px" id="description" name="description" style="width:400px;height:150px;">{pigcms:$gift.description}</textarea>
             </td>
           </tr>
           <tr>
@@ -59,5 +59,17 @@
     </div> 
   </div>
 </form>
+<script>
 
+  var editor;
+  KindEditor.ready(function(K) {
+    editor = K.create('#description', {
+pasteType: 1,//粘贴时删除所有样式
+resizeType : 1,
+allowPreviewEmoticons : false,
+uploadJson  : "/index.php?m=Image&a=upload",
+});
+
+  });
+</script>
 <include file="Public:footer"/> 
