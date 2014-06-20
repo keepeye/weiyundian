@@ -13,37 +13,41 @@
           <tr>
             <th valign="top"><span class="red">*</span>礼品名称：</th>
             <td>
-              <input type="input" class="px" value="{pigcms:$gift.title}"  name="title" />
+              <input type="input" class="px" value="{pigcms:$gift.title}"  name="title" style="width:300px;"/>
             </td>
           </tr>
           <tr>
             <th valign="top"><span class="red">*</span>LOGO：</th>
             <td>
-              <input type="input" class="px" value="{pigcms:$gift.title}"  name="title" />
+            <img class="upload_image" src="{pigcms:$gift.logo}" style="display: none;max-width:300px;" /><br /><br />
+            <input type="hidden" class="upload_image_filed" value="{pigcms:$gift.logo}" name="logo" data-thumb="150,150"/>
+            <input type="button" class="btnGrayS upload_image_button" value="添加图片" data-ishas="false" />
+              
             </td>
           </tr>
           <tr>
             <th valign="top"><span class="red">*</span>所需积分：</th>
             <td>
-              <input type="input" class="px" value="{pigcms:$gift.title}"  name="title" />
+              <input type="input" class="px" value="{pigcms:$gift.score}"  name="score" />
             </td>
           </tr>
           <tr>
             <th valign="top"><span class="red">*</span>库存：</th>
             <td>
-              <input type="input" class="px" value="{pigcms:$gift.title}"  name="title" />
+              <input type="input" class="px" value="{pigcms:$gift.stock}"  name="stock" />
             </td>
           </tr>
           <tr>
             <th valign="top"><span class="red">*</span>状态：</th>
             <td>
-              <input type="input" class="px" value="{pigcms:$gift.title}"  name="title" />
+              <label><input type="radio" value="1"  name="status" <if condition="($gift['status'] eq 1) OR ($gift['status'] eq null)">checked</if>/>上架</label>
+              <label><input type="radio" name="status" value="0" <eq name="status" value="0">checked</eq>/>下架</label>
             </td>
           </tr>
           <tr>
             <th valign="top"><span class="red">*</span>描述：</th>
             <td>
-              <input type="input" class="px" value="{pigcms:$gift.title}"  name="title" />
+              <textarea class="px" name="description">{pigcms:$gift.description}</textarea>
             </td>
           </tr>
           <tr>
