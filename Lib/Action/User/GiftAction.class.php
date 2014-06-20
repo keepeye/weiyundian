@@ -42,7 +42,7 @@ class GiftAction extends UserAction
 	//更新数据
 	function update()
 	{
-
+		dump($_POST);
 	}
 
 	//删除礼品
