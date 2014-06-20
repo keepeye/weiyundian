@@ -42,7 +42,37 @@ class GiftAction extends UserAction
 	//更新数据
 	function update()
 	{
-		dump($_POST);
+		if( ! IS_POST)
+		{
+			$this->error("非法提交");
+		}
+		$id = I('id',0);
+		$m = M('Gift');
+		$_POST['token'] = $this->token;
+		if($m->create())
+		{
+			if($id)
+			{
+				$re = $m->save();
+			}
+			else
+			{
+
+				$re = $m->add();
+			}
+			if($re === false)
+			{
+				$this->error("error:".$m->getDbError());
+			}
+			else
+			{
+				$this->success("保存成功");
+			}
+		}
+		else
+		{
+			$this->error("创建数据失败");
+		}
 	}
 
 	//删除礼品
