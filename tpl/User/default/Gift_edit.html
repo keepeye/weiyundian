@@ -41,7 +41,7 @@
             <th valign="top"><span class="red">*</span>状态：</th>
             <td>
               <label><input type="radio" value="1"  name="status" <if condition="($gift['status'] eq 1) OR ($gift['status'] eq null)">checked</if>/>上架</label>
-              <label><input type="radio" name="status" value="0" <eq name="status" value="0">checked</eq>/>下架</label>
+              <label><input type="radio" name="status" value="0" <eq name="gift.status" value="0">checked</eq>/>下架</label>
             </td>
           </tr>
           <tr>
