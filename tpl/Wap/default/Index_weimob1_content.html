@@ -85,7 +85,7 @@
 
     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
         WeixinJSBridge.call('showToolbar');
-        WeixinJSBridge.call('hideOptionMenu');
+        //WeixinJSBridge.call('hideOptionMenu');
         WeixinJSBridge.on('menu:share:appmessage', function(argv){
             tongjishare();
             WeixinJSBridge.invoke('sendAppMessage', WxOptions);
