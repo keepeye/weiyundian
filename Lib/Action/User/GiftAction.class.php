@@ -107,6 +107,7 @@ class GiftAction extends UserAction
 	//设置
 	function config()
 	{
+		$m = M('GiftConfig');
 		$config = $m->where(array("token"=>$this->token))->find();
 
 		if( ! IS_POST)
@@ -119,7 +120,7 @@ class GiftAction extends UserAction
 		}
 		else
 		{
-			$m = M('GiftConfig');
+			
 			$_POST['token'] = $this->token;
 			if($m->create())
 			{
