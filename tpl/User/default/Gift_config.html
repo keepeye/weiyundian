@@ -1,37 +1,49 @@
 <include file="Public:head"/> 
-  <div class="content"> 
-   <div class="cLineB"> 
-    <h4>签到设置</h4> 
-    <a href="javascript:history.go(-1)" class="right  btnGreen" style="margin-top:-27px">返回</a> 
-   </div> 
-   <form class="form" method="post" action=""> 	
-    <div class="msgWrap bgfc"> 
-     <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
-      <tbody> 
-	   
-	   <tr> 
+<div class="content"> 
+ <div class="cLineB"> 
+  <h4>签到设置</h4> 
+  <a href="javascript:history.go(-1)" class="right  btnGreen" style="margin-top:-27px">返回</a> 
+</div> 
+<form class="form" method="post" action=""> 	
+  <div class="msgWrap bgfc"> 
+   <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
+    <tbody> 
+
+      <tr> 
         <th><span class="red">*</span>关键词：</th> 
-        <td><font color=red>签到</font> 自定义菜单设置或者用户发送该关键词都回触发签到事件</td> 
-       </tr>
-	   <tr> 
-        <th><span class="red">*</span>签到奖励积分：</th> 
-        <td><input type="text" name="reward" value="{pigcms:$info.reward|default=0}" class="px" style="width:100px;" /></td> 
-       </tr>
-	   <tr> 
-        <th><span class="red">*</span>签到说明：</th> 
-        <td><textarea  class="px" type="text" name="desc" style="width:400px;height:100px;">{pigcms:$info.desc}</textarea>附加在自动回复文本后面</td> 
-       </tr>
-	   
-	   
-       <tr>         
+        <td><font color=red>积分兑换</font> 自定义菜单设置或者用户发送该关键词都回触发签到事件</td> 
+      </tr>
+      <tr> 
+        <th><span class="red">*</span>自动回复标题：</th> 
+        <td><input type="text" name="title" value="{pigcms:$config.title}" class="px" style="width:400px;" /></td>
+      </tr>
+      <tr>
+        <th valign="top"><span class="red">*</span>自动回复图片：</th>
+        <td>
+          <img class="upload_image" src="{pigcms:$config.pic}" style="display: none;max-width:300px;" />
+          <input type="hidden" class="upload_image_filed" value="{pigcms:$config.pic}" name="pic" data-thumb="360,200"/>
+          <input type="button" class="btnGrayS upload_image_button" value="添加图片" data-ishas="false" />
+
+        </td>
+      </tr>
+      <tr> 
+        <th><span class="red">*</span>自动回复描述：</th> 
+        <td>
+          <textarea  class="px" type="text" name="desc" style="width:400px;height:100px;">{pigcms:$config.desc}</textarea>
+        </td>
+      </tr>
+
+
+
+      <tr>         
        <th>&nbsp;</th>
        <td><button type="submit" name="button" class="btnGreen">保存</button></td> 
-       </tr> 
-      </tbody> 
-     </table> 
-     </div>
-    
-   </form> 
-  </div> 
- 
-  <include file="Public:footer" />
+     </tr> 
+   </tbody> 
+ </table> 
+</div>
+
+</form> 
+</div> 
+
+<include file="Public:footer" />
