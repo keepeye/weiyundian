@@ -61,7 +61,6 @@ class GiftAction extends UserAction
 			}
 			else
 			{
-
 				$re = $m->add();
 			}
 			if($re === false)
