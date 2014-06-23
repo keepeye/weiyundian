@@ -83,4 +83,20 @@ class GiftAction extends UserAction
 		$m->where(array("id"=>$id,"token"=>$this->token))->delete();
 		$this->success("删除成功");
 	}
+
+	//处理formset字段
+	function parseformset(){
+		$origin = $_POST['formset'];//原始POST数据
+		$data = array();
+		foreach($origin['id'] as $k=>$v){
+			if(trim($v)=="" || trim($origin['name'][$k])=="") continue;
+			$data[] = array(
+				"id"=>$v,
+				"name"=>$origin['name'][$k],
+				"type"=>$origin['type'][$k],
+				"value"=>$origin['value'][$k]
+			);
+		}
+		return json_encode($data);
+	}
 }
