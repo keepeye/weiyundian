@@ -257,6 +257,19 @@ class WeixinAction extends Action
                     "text"
                 );
                 break;
+            case '礼品':
+                return array(
+                    array(
+                        array(
+                            "礼品中心",
+                            "用你的积分兑换精彩礼品吧！本条消息不要转发给别人哟！",
+                            $pro['picurl'],
+                            C('site_url') . '/index.php?g=Wap&m=Gift&a=index&token=' . $this->token . '&wecha_id=' . $this->data['FromUserName'].'&wxref=mp.weixin.qq.com&wxsign='.md5($this->token.$this->data['FromUserName'].C('safe_key'))
+                        )
+                    ),
+                    "news"
+                );
+                break;
             default:
                 return null;
                 //return $this->keyword($key);
