@@ -107,6 +107,44 @@ class GiftAction extends UserAction
 	//设置
 	function config()
 	{
-		$this->display();
+		$config = $m->where(array("token"=>$this->token))->find();
+
+		if( ! IS_POST)
+		{
+			if($config)
+			{
+				$this->assign("config",$config);
+			}
+			$this->display();
+		}
+		else
+		{
+			$m = M('GiftConfig');
+			$_POST['token'] = $this->token;
+			if($m->create())
+			{
+				if($config)
+				{
+					$re = $this->save();
+				}
+				else
+				{
+					$re = $this->add();
+				}
+				if($re === false)
+				{
+					$this->error("error:".$m->getDbError());
+				}
+				else
+				{
+					$this->success("保存成功");
+				}
+			}
+			else
+			{
+				$this->error("创建数据失败");
+			}
+		}
+		
 	}
 }
