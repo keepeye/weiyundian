@@ -120,18 +120,16 @@ class GiftAction extends UserAction
 		}
 		else
 		{
-			exit;
-			
 			$_POST['token'] = $this->token;
 			if($m->create())
 			{
 				if($config)
 				{
-					$re = $this->save();
+					$re = $m->save();
 				}
 				else
 				{
-					$re = $this->add();
+					$re = $m->add();
 				}
 				if($re === false)
 				{
