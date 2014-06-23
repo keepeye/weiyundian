@@ -7,7 +7,7 @@
     <div class="cLineB">
       <h4><eq name="gift.id" value="">添加礼品<else/>修改礼品</eq></h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a></div>  
       <div class="msgWrap bgfc">
-       
+
         <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
           <tbody>
             <tr>
@@ -22,7 +22,7 @@
                 <img class="upload_image" src="{pigcms:$gift.logo}" style="display: none;max-width:300px;" />
                 <input type="hidden" class="upload_image_filed" value="{pigcms:$gift.logo}" name="logo" data-thumb="150,150"/>
                 <input type="button" class="btnGrayS upload_image_button" value="添加图片" data-ishas="false" />
-                
+
               </td>
             </tr>
             <tr>
@@ -50,7 +50,7 @@
                 <textarea class="px" id="description" name="description" style="width:400px;height:150px;">{pigcms:$gift.description}</textarea>
               </td>
             </tr>
-            
+
           </tbody>
         </table>
       </div> 
@@ -67,46 +67,46 @@
           <td>字段类型(<a href="javascript:" title="文本字段或选择型字段">?</a>)</td>
           <td>默认值(选项)(<a href="javascript:" title="对于文本字段，表示默认值，对于下拉类型的，表示下拉选项，用英文逗号,分隔每个选项">?</a>)</td>
         </tr>
-        <?php foreach($vo['formset'] as $field): ?>
+        <?php foreach($gift['formset'] as $field): ?>
           <tr class="_formset_">
-            
+
             <td>
               <input type="input" class="px" name="formset[id][]" value="{pigcms:$field.id}" style="width:100px"/>
             </td>
-            
+
             <td>
               <input type="input" class="px" name="formset[name][]" value="{pigcms:$field.name}" style="width:100px"/>
             </td>
-            
+
             <td>
               <select name="formset[type][]">
                 <option value="textfield" <eq name="field['type']" value="textfield">selected</eq>>文本字段</option>
                 <option value="selectfield" <eq name="field['type']" value="selectfield">selected</eq>>下拉字段</option>
               </select>
             </td>
-            
+
             <td>
               <input type="input" class="px" name="formset[value][]" value="{pigcms:$field.value}" style="width:400px"/> 
             </td>
           </tr>
         <?php endforeach;?>
         <tr class="_formset_">
-          
+
           <td>
             <input type="input" class="px" name="formset[id][]" value="" style="width:100px"/>
           </td>
-          
+
           <td>
             <input type="input" class="px" name="formset[name][]" value="" style="width:100px"/>
           </td>
-          
+
           <td>
             <select name="formset[type][]">
               <option value="textfield" >文本字段</option>
               <option value="selectfield">下拉字段</option>
             </select>
           </td>
-          
+
           <td>
             <input type="input" class="px" name="formset[value][]" value="" style="width:400px"/> 
           </td>
