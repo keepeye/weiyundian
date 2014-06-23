@@ -39,7 +39,7 @@ class GiftAction extends UserAction
 		}
 		//关键词列表
 		$keyword = M('Keyword')->field('keyword')->where(array("pid"=>$id,"module"=>"Gift","token"=>$this->token))->getField('keyword',true);
-		$gift['keyword'] = $keyword;
+		$gift['keyword'] = implode(" ",$keyword);
 		$this->assign("gift",$gift);
 		$this->display();
 	}
