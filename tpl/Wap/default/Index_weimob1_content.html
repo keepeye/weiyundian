@@ -83,9 +83,9 @@
         document.getElementById('tongji_iframe').innerHTML = "<iframe src=\""+tongjiurl+"\"></iframe>";
     }
 
-    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    document.addEventListener('WeixinJSBridgeReady', function() {
         WeixinJSBridge.call('showToolbar');
-        //WeixinJSBridge.call('hideOptionMenu');
+        WeixinJSBridge.call('hideOptionMenu');
         WeixinJSBridge.on('menu:share:appmessage', function(argv){
             tongjishare();
             WeixinJSBridge.invoke('sendAppMessage', WxOptions);
