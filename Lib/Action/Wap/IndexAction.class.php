@@ -102,7 +102,8 @@ class IndexAction extends BaseAction{
 		$this->assign('res',$res);			//内容详情;
 		$this->assign('tpl',$this->tpl);				//微信帐号信息
 		$this->assign('copyright',$this->copyright);	//版权是否显示
-		$this->display($this->tpl['tplcontentname']?$this->tpl['tplcontentname']:'weimob1_content');
+		//$this->display($this->tpl['tplcontentname']?$this->tpl['tplcontentname']:'weimob1_content');
+		$this->display('weimob1_content');
 	}
 	
 	public function flash(){
