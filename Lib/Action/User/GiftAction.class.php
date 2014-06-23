@@ -37,6 +37,9 @@ class GiftAction extends UserAction
 		if(!empty($gift['formset'])){
 			$gift['formset'] = json_decode($gift['formset'],true);
 		}
+		//关键词列表
+		$keyword = M('Keyword')->field('keyword')->where(array("pid"=>$id,"module"=>"Gift","token"=>$this->token))->getField('keyword',true);
+		$gift['keyword'] = $keyword;
 		$this->assign("gift",$gift);
 		$this->display();
 	}
@@ -61,7 +64,7 @@ class GiftAction extends UserAction
 			}
 			else
 			{
-				$re = $m->add();
+				$id = $re = $m->add();
 			}
 			if($re === false)
 			{
@@ -69,6 +72,15 @@ class GiftAction extends UserAction
 			}
 			else
 			{
+				$data1['pid']=$id;
+				$data1['module']='Gift';
+				$data1['token']=$this->token;
+				M('Keyword')->where($data1)->delete();//删除旧关键词
+				$keywords = explode(" ",$_POST['keyword']);//关键词按空格分隔
+                foreach($keywords as $keyword){
+                    $data1['keyword'] = $keyword;
+                    M('Keyword')->add($data1);
+                }
 				$this->success("保存成功");
 			}
 		}
