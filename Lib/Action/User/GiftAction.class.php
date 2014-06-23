@@ -34,7 +34,9 @@ class GiftAction extends UserAction
 		{
 			$this->error("礼品不存在");
 		}
-
+		if(!empty($gift['formset'])){
+			$gift['formset'] = json_decode($gift['formset'],true);
+		}
 		$this->assign("gift",$gift);
 		$this->display();
 	}
@@ -49,6 +51,8 @@ class GiftAction extends UserAction
 		$id = I('id',0);
 		$m = M('Gift');
 		$_POST['token'] = $this->token;
+		//处理formset
+		$_POST['formset'] = $this->parseformset();
 		if($m->create())
 		{
 			if($id)
