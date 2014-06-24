@@ -1,0 +1,54 @@
+<html lang="en">
+	<head>
+		<meta http-equiv="cache-control" content="no-cache" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title><?=$gift['title'];?>-礼品中心</title>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/pure-nr-min.css" />
+		<script src="__PUBLIC__/zepto.min.js"></script>
+		<style>
+			body{background-color:#fff;}
+			.content{width: 100%;overflow: hidden;}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<div class="pure-g">
+				<div class="pure-u-1-4">
+					礼品名
+				</div>
+				<div class="pure-u-3-4">
+					<?=$gift['title'];?>
+				</div>
+			</div>
+			
+		</div>
+		<script>
+			Zepto(function($){
+				$(".item").on("mousedown",function(){
+					$(this).css("background-color","#e5e5e5");
+					var url = $(this).attr("data-url");
+					window.location.href = url;
+				}).on("mouseup",function(){
+					$(this).css("background-color","#fcfcfc");
+				});
+			});
+
+			//微信api
+			function onBridgeReady(){
+			 	WeixinJSBridge.call('hideOptionMenu');//隐藏分享按钮
+			}
+
+			if(typeof WeixinJSBridge == "undefined"){
+			    if( document.addEventListener ){
+			        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+			    }else if (document.attachEvent){
+			        document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+			        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+			    }
+			}else{
+			    onBridgeReady();
+			}
+		</script>
+	</body>
+</html>

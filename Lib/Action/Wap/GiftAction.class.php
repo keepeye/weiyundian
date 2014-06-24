@@ -53,6 +53,8 @@ class GiftAction extends WapAction {
 		{
 			$this->error("礼品不存在或已下架");
 		}
-		dump($gift);
+
+		$this->assign("gift",$gift);
+		$this->display();
 	}
 }
