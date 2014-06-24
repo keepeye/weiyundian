@@ -39,5 +39,20 @@ class GiftAction extends WapAction {
 		$this->display();
 	}
 
-	
+	//礼品详情
+	function detail()
+	{
+		$id = I('id',0);
+		$m = M('Gift');
+		$where = array(
+			"token"=>$this->token,
+			"status"=>1,
+			"id"=>$id
+		);
+		if( ! $id || ! ($gift = $m->where($where)->find()))
+		{
+			$this->error("礼品不存在或已下架");
+		}
+		dump($gift);
+	}
 }
