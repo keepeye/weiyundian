@@ -49,6 +49,7 @@
 					<script>document.write("<?=$field['name'];?>")</script>:<?=$sn['formdata'][$field['id']];?>
 					</p>
 				<?php endforeach;?>
+				<a href="<?=U('index',array('token'=>$token));?>" class="fullbtn" style="display:block;position:fixed;bottom:0;width:100%;">返回礼品中心</a>
 			<?php endif;?>
 		</div>
 		<script>
