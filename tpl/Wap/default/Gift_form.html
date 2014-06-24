@@ -16,7 +16,7 @@
 	<body>
 		<div class="content">
 			<?php if(empty($sn['formdata'])): ?>
-			<form class="pure-form pure-form-stacked" method="post">
+			<form class="pure-form pure-form-stacked" method="post" id='form1'>
 				<input type="hidden" name="sn" value="<?=$sn['sn'];?>"/>
 				<input type="hidden" name="token" value="<?=$sn['token'];?>"/>
 				<input type="hidden" name="wecha_id" value="<?=$sn['wecha_id'];?>"/>
@@ -39,7 +39,7 @@
 	                    <?php endif;?>
 	                <?php endforeach;?>
 			    </fieldset>
-			    <a class="fullbtn" style="display:block;position:fixed;bottom:0;width:100%;" onclick="submit()">提交</a>
+			    <a href="javascript:" class="fullbtn" style="display:block;position:fixed;bottom:0;width:100%;" onclick="form1.submit()">提交</a>
 			</form>
 			<?php else: ?>
 				<h3>你的领奖信息</h3>
