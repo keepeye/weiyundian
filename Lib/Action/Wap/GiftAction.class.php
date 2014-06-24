@@ -81,17 +81,17 @@ class GiftAction extends WapAction {
 					//礼品不存在
 					if( ! $id || ! ($gift = $m->where($where)->find()))
 					{
-						throw Exception("礼品不存在或已下架");
+						throw new Exception("礼品不存在或已下架");
 					}
 					//检查库存
 					if($gift['stock'] <= 0)
 					{
-						throw Exception("对不起，礼品被抢光了~");
+						throw new Exception("对不起，礼品被抢光了~");
 					}
 					//检查用户积分
 					if($this->wecha_user['score'] < $gift['score'])
 					{
-						throw Exception("对不起，您的积分不足~");
+						throw new Exception("对不起，您的积分不足~");
 					}
 					//库存-1
 					$m->where($where)->setDec("stock",1);
@@ -108,7 +108,7 @@ class GiftAction extends WapAction {
 					$re = M("GiftSn")->add($data);
 					if($re === false)
 					{
-						throw Exception("兑换失败");
+						throw new Exception("兑换失败");
 					}
 					//用户积分减去
 					M('WechaUser')->where(array("token"=>$this->token,"wecha_id"=>$this->wecha_id))->setDec("score",$gift['score']);
