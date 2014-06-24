@@ -13,6 +13,7 @@
 			.detail .hd{height:2em;line-height: 2em;padding-left: 5px;font-size:1.2em;font-weight: bolder;background-image:-webkit-gradient(linear, 0 0,100% 0, from(#5B882E), to(#fff));color:#fff;}
 			.detail .bd{padding:5px;min-height:2em;margin-bottom: 5px;}
 			.detail .bd .tips{font-size:0.8em;color:#999;}
+			.fullbtn{height:3em;line-height:3em;background-color:#0078e7;color:white;}
 		</style>
 	</head>
 	<body>
@@ -44,7 +45,7 @@
 					<?=htmlspecialchars_decode($gift['description']);?>
 				</div>
 				<?php if($gift['stock'] > 0): ?>
-				<a href="<?=U('buy',array('token'=>$token,'id'=>$gift['id']));?>" class="pure-button pure-button-primary" style="display:block;border-radius:0; position:fixed;bottom:0;width:100%;">兑换礼品</a>
+				<a href="<?=U('buy',array('token'=>$token,'id'=>$gift['id']));?>" class="fullbtn" style="display:block;position:fixed;bottom:0;width:100%;">兑换礼品</a>
 				<?php else: ?>
 				<a class="pure-button pure-button-disabled" style="display:block;margin:5px auto;width:40%">已经没有了哦~</a>
 				<?php endif;?>
