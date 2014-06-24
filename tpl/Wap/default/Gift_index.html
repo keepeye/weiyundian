@@ -51,7 +51,23 @@
 				}).on("mouseup",function(){
 					$(this).css("background-color","#fcfcfc");
 				});
-			})
+			});
+
+			//微信api
+			function onBridgeReady(){
+			 	WeixinJSBridge.call('hideOptionMenu');//隐藏分享按钮
+			}
+
+			if(typeof WeixinJSBridge == "undefined"){
+			    if( document.addEventListener ){
+			        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+			    }else if (document.attachEvent){
+			        document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+			        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+			    }
+			}else{
+			    onBridgeReady();
+			}
 		</script>
 	</body>
 </html>
