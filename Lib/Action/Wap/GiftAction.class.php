@@ -149,6 +149,13 @@ class GiftAction extends WapAction {
 			{
 				$this->error("兑换记录不存在");
 			}
+			//formdata格式化
+			if(!empty($sn['formdata']))
+			{
+				$sn['formdata'] = json_decode($gift['formdata'],true);
+			}
+			
+			//礼品信息
 			$gift = M('Gift')->where(array("id"=>$sn['pid'],"token"=>$this->token))->find();
 			if(!empty($gift['formset']))
 			{
