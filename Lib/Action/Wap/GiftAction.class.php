@@ -1,5 +1,5 @@
 <?php
-class DiaoyanAction extends WapAction {
+class GiftAction extends WapAction {
 	public $token;
 	public $wecha_id;
 	function _initialize(){
@@ -18,9 +18,8 @@ class DiaoyanAction extends WapAction {
 
 	//活动入口
 	function index(){
-		echo '1111111111111111';
-		//$list = M('Gift')->select();
-		//dump($list);
+		$list = M('Gift')->select();
+		dump($list);
 		//$this->display();
 	}
 
