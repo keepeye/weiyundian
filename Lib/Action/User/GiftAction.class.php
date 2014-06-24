@@ -35,7 +35,7 @@ class GiftAction extends UserAction
 			$this->error("礼品不存在");
 		}
 		if(!empty($gift['formset'])){
-			$gift['formset'] = unserialize($gift['formset'],true);
+			$gift['formset'] = unserialize($gift['formset']);
 		}
 		
 		$this->assign("gift",$gift);
