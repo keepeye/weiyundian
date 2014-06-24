@@ -39,6 +39,12 @@
               </td>
             </tr>
             <tr>
+              <th valign="top"><span class="red">*</span>最多兑换：</th>
+              <td>
+                <input type="input" class="px" value="{pigcms:$gift.pernum|default=0}"  name="pernum" />个  0为不限制
+              </td>
+            </tr>
+            <tr>
               <th valign="top"><span class="red">*</span>状态：</th>
               <td>
                 <label><input type="radio" value="1"  name="status" <if condition="($gift['status'] eq 1) OR ($gift['status'] eq null)">checked</if>/>上架</label>
