@@ -57,4 +57,10 @@ class GiftAction extends WapAction {
 		$this->assign("gift",$gift);
 		$this->display();
 	}
+
+	//购买礼品
+	function buy()
+	{
+		echo "buy";
+	}
 }
