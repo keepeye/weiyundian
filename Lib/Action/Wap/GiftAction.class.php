@@ -18,8 +18,9 @@ class DiaoyanAction extends WapAction {
 
 	//活动入口
 	function index(){
-		$list = M('Gift')->select();
-		dump($list);
+		echo '1111111111111111';
+		//$list = M('Gift')->select();
+		//dump($list);
 		//$this->display();
 	}
 
