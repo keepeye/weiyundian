@@ -93,6 +93,14 @@ class GiftAction extends WapAction {
 					{
 						throw new Exception("对不起，您的积分不足~");
 					}
+					//检查限领
+					if($gift['pernum'] > 0)
+					{
+						if(M('GiftSn')->where(array('token'=>$this->token,'pid'=>$id,'wecha_id'=>$this->wecha_id))->count() >= $gift['pernum'])
+						{
+							throw new Exception("抱歉，该礼品每人限制兑换".$gift['pernum']."个。");
+						}
+					}
 					//库存-1
 					$m->where($where)->setDec("stock",1);
 					
