@@ -168,8 +168,8 @@ class GiftAction extends WapAction {
 			"token"=>$this->token,
 			"wecha_id"=>$this->wecha_id,
 		);
-		$list = $m->where($where)
-					->join("LEFT JOIN __GIFT__ AS gift ON gift.id = pid AND gift.token = token")
+		$list = $m->alias("sn")->where($where)
+					->join("LEFT JOIN __GIFT__ AS gift ON gift.id = sn.pid AND gift.token = sn.token")
 					->select();
 		//$this->assign("list",$list);
 		//$this->display();
