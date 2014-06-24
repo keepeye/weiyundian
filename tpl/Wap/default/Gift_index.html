@@ -14,7 +14,7 @@
 			.item{background-color:#fcfcfc;height: 60px;border-bottom: 1px solid #eee;}
 			.item .pure-g img{width:100%;height:100%;}
 			.item .pure-g .btn{line-height: 60px;margin:0;}
-			.pure-button-duihuan{display:inline;line-height: inherit;background-color:#0078e7;color:white;}
+			.pure-button-duihuan{display:inline;line-height: inherit;}
 			.item .title{line-height:60px;text-indent: 5px;}
 		</style>
 	</head>
@@ -29,7 +29,15 @@
 					<div class="pure-u-3-4 title">
 						<?=$item['title'];?><br/>
 					</div>
-					<div class="pure-u-1-4"><div class="btn"><a class="pure-button pure-button-duihuan">兑换</a></div></div>
+					<div class="pure-u-1-4">
+						<div class="btn">
+							<?php if($item['stock'] > 0): ?>
+							<a class="pure-button pure-button-primary pure-button-duihuan">兑换</a>
+							<?php else: ?>
+							<a class="pure-button pure-button-disabled pure-button-duihuan">售罄</a>
+							<?php endif;?>
+						</div>
+					</div>
 				</div>
 			</div>
 			<?php endforeach;?>

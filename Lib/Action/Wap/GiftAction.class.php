@@ -30,6 +30,10 @@ class GiftAction extends WapAction {
 
 	//活动入口
 	function index(){
+		$where = array(
+			"token"=>$this->token,
+			"status"=>1
+		);
 		$list = M('Gift')->select();
 		$this->assign("list",$list);
 		$this->display();
