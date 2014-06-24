@@ -165,8 +165,8 @@ class GiftAction extends WapAction {
 	{
 		$m = M('GiftSn');
 		$where = array(
-			"token"=>$this->token,
-			"wecha_id"=>$this->wecha_id,
+			"sn.token"=>$this->token,
+			"sn.wecha_id"=>$this->wecha_id,
 		);
 		$list = $m->alias("sn")->where($where)
 					->join("LEFT JOIN __GIFT__ AS gift ON gift.id = sn.pid AND gift.token = sn.token")
