@@ -140,20 +140,39 @@ class GiftAction extends WapAction {
 	//用户个人表单
 	function form()
 	{
-		$code = I('sn','');
+		if( ! IS_POST)
+		{
+			$code = I('sn','');
+			$m = M('GiftSn');
+			$sn = $m->where(array("sn"=>$code,"wecha_id"=>$this->wecha_id,"token"=>$this->token))->find();
+			if(! $sn)
+			{
+				$this->error("兑换记录不存在");
+			}
+			$gift = M('Gift')->where(array("id"=>$sn['pid'],"token"=>$this->token))->find();
+			if(!empty($gift['formset']))
+			{
+				$gift['formset'] = json_decode($gift['formset'],true);
+			}
+			$this->assign("gift",$gift);
+			$this->assign("sn",$sn);
+			$this->display();
+		}
+	}
+
+	//我的礼品列表
+	function mygifts()
+	{
 		$m = M('GiftSn');
-		$sn = $m->where(array("sn"=>$code,"wecha_id"=>$this->wecha_id,"token"=>$this->token))->find();
-		if(! $sn)
-		{
-			$this->error("兑换记录不存在");
-		}
-		$gift = M('Gift')->where(array("id"=>$sn['pid'],"token"=>$this->token))->find();
-		if(!empty($gift['formset']))
-		{
-			$gift['formset'] = json_decode($gift['formset'],true);
-		}
-		$this->assign("gift",$gift);
-		$this->assign("sn",$sn);
-		$this->display();
+		$where = array(
+			"token"=>$this->token,
+			"wecha_id"=>$this->wecha_id,
+		);
+		$list = $m->where($where)
+					->join("LEFT JOIN __GIFT__ AS gift ON gift.id = pid AND gift.token = token")
+					->select();
+		//$this->assign("list",$list);
+		//$this->display();
+		dump($list);
 	}
 }
