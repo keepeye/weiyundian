@@ -9,19 +9,21 @@
 		<style>
 			body{background-color:#fff;}
 			.content{width: 100%;overflow: hidden;}
+			.detail{overflow: hidden;width: 100%;}
+			.detail .hd{height:2em;line-height: 2em;padding-left: 5px;}
+			.detail .bd{padding:5px;}
 		</style>
 	</head>
 	<body>
 		<div class="content">
-			<div class="pure-g">
-				<div class="pure-u-1-4">
+			<div class="detail">
+				<div class="hd">
 					礼品名
 				</div>
-				<div class="pure-u-3-4">
+				<div class="bd">
 					<?=$gift['title'];?>
 				</div>
 			</div>
-			
 		</div>
 		<script>
 			Zepto(function($){
