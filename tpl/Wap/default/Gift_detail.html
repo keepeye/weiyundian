@@ -12,7 +12,7 @@
 			.detail{overflow: hidden;width: 100%;}
 			.detail .hd{height:2em;line-height: 2em;padding-left: 5px;background-color:#eee;font-size:1.2em;font-weight: bolder;}
 			.detail .bd{padding:5px;min-height:2em;}
-			.detail .bd .tips{font-size:0.8em;color:#333;}
+			.detail .bd .tips{font-size:0.8em;color:#999;}
 		</style>
 	</head>
 	<body>
@@ -28,8 +28,8 @@
 					剩余数量
 				</div>
 				<div class="bd">
-					<?=$gift['stock'];?>
 					<div class="tips">该数量不代表最终数量，别人可能抢先兑换哦~</div>
+					<?=$gift['stock'];?>
 				</div>
 				<div class="hd">
 					描述
