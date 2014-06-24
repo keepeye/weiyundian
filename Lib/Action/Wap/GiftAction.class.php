@@ -61,6 +61,53 @@ class GiftAction extends WapAction {
 	//购买礼品
 	function buy()
 	{
-		echo "buy";
+		if( ! IS_POST)
+		{
+			//并发锁
+			$file = TEMP_PATH."/gift.lock";
+			$fp = fopen($file,"w+");
+			if(flock($fp,LOCK_EX | LOCK_NB))
+			{
+				//查询gift
+				$id = I('id',0);
+				$m = M('Gift');
+				$where = array(
+					"token"=>$this->token,
+					"status"=>1,
+					"id"=>$id,
+				);
+				//礼品不存在
+				if( ! $id || ! ($gift = $m->where($where)->find()))
+				{
+					flock($fp,LOCK_UN);
+					fclose($fp);
+					$this->error("礼品不存在或已下架");
+				}
+				//检查库存
+				if($gift['stock'] <= 0)
+				{
+					flock($fp,LOCK_UN);
+					fclose($fp);
+					$this->error("对不起，礼品被抢光了~");
+				}
+				//库存-1
+				$m->where($where)->setDec("stock",1);
+				//解锁
+				flock($fp,LOCK_UN);
+				fclose($fp);
+				//创建购买记录
+				
+				//显示表单视图
+			}
+			else
+			{
+				$this->error("抢购人数过多，请重试!");
+			}
+		}
+		else
+		{
+			//更新formdata
+		}
+		
 	}
 }
