@@ -149,11 +149,11 @@ class GiftAction extends WapAction {
 			{
 				$this->error("兑换记录不存在");
 			}
-			echo $sn['formdata'];
+
 			//formdata格式化
 			if(!empty($sn['formdata']))
 			{
-				$sn['formdata'] = unserialize($gift['formdata']);
+				$sn['formdata'] = unserialize($sn['formdata']);
 			}
 
 			//礼品信息
