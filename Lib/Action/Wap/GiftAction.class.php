@@ -119,12 +119,9 @@ class GiftAction extends WapAction {
 					fclose($fp);
 					$this->error($e->getMessage());
 				}
-				finally
-				{
-					//解锁
-					flock($fp,LOCK_UN);
-					fclose($fp);
-				}
+				//解锁
+				flock($fp,LOCK_UN);
+				fclose($fp);
 
 				//显示表单视图
 				$this->assign("sn",$sn);
