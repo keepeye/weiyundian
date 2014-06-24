@@ -134,8 +134,8 @@ class GiftAction extends WapAction {
 				//显示表单视图
 				$this->assign("sn",$sn);
 				$this->assign("gift",$gift);
-				//$this->display();
-				dump($sn);
+				$this->display();
+				//dump($sn);
 			}
 			else
 			{
