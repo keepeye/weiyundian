@@ -172,6 +172,13 @@ class GiftAction extends WapAction {
 			{
 				$formdata = serialize($formdata);
 			}
+			$where = array(
+				"sn"=>I("sn",""),
+				"token"=>$this->token,
+				"wecha_id"=>$this->wecha_id
+			);
+			M("GiftSn")->where($where)->data($where)->save();
+			$this->success("提交成功");
 		}
 	}
 

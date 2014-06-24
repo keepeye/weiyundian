@@ -17,6 +17,9 @@
 		<div class="content">
 			<?php if(empty($sn['formdata'])): ?>
 			<form class="pure-form pure-form-stacked" method="post">
+				<input type="hidden" name="sn" value="<?=$sn['sn'];?>"/>
+				<input type="hidden" name="token" value="<?=$sn['token'];?>"/>
+				<input type="hidden" name="wecha_id" value="<?=$sn['wecha_id'];?>"/>
 				<fieldset style="padding:5px;">
 			        <legend>提交你的个人信息</legend>
 					<?php foreach($gift['formset'] as $field): ?>
