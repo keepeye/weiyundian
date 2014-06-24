@@ -13,20 +13,27 @@ class WapAction extends BaseAction
 		parent::_initialize();
 		//基本信息
 		$this->token = I('request.token','');
-		$this->wecha_id = I('request.wecha_id','');//获取wecha_id
 		$this->wxsign = I('request.wxsign','');//获取加密字符串
+		
 		//检测推广点击
 		$this->checkFromuser();
 	}
 
-
 	//检测当前访问的合法性
 	public function checkWxsign()
 	{
+		$this->wecha_id = cookie('wecha_id');//改用cookie
+		//没有session则从url参数中获取wecha_id和wxsign并验证
+		if($this->wecha_id)
+		{
+			return true;
+		}
+		$this->wecha_id = I('request.wecha_id','');//获取wecha_id
 		//检测当前访问的合法性
-		if($this->wecha_id == "" || md5($this->token.$this->wecha_id.C('safe_key'))!=$this->wxsign){
+		if($this->wecha_id == "" || $this->wxsign == "" || md5($this->token.$this->wecha_id.C('safe_key'))!=$this->wxsign){
 			return false;
 		}
+		cookie('wecha_id',$this->wecha_id,7200);
 		return true;
 	}
 
