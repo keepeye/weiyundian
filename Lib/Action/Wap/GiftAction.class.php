@@ -171,10 +171,7 @@ class GiftAction extends WapAction {
 		$list = $m->alias("sn")->where($where)
 					->join("LEFT JOIN __GIFT__ AS gift ON gift.id = sn.pid AND gift.token = sn.token")
 					->select();
-		//$this->assign("list",$list);
-		//$this->display();
-		echo $m->getDbError()."<br/>";
-		echo $m->getLastSql();
-		dump($list);
+		$this->assign("list",$list);
+		$this->display();
 	}
 }
