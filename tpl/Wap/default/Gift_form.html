@@ -21,25 +21,24 @@
 			<form class="pure-form pure-form-stacked">
 				<fieldset>
 			        <legend>提交你的个人信息</legend>
+					<?php foreach($gift['formset'] as $field): ?>
+	                    <?php if($field['type']=='selectfield'): ?>
+	                        <?php $options = explode(",",$field['value']);?>
+                            <label>{pigcms:$field.name}</label>
+                            <select name="formdata[{pigcms:$field.id}]">
+                                <?php foreach($options as $option):?>
+                                <option value="{pigcms:$option}">{pigcms:$option}</option>
+                                <?php endforeach;?>
+                            </select>
+	                        
+	                    <?php else: ?>
+	                        <label>{pigcms:$field.name}</label>
+	                        <input type="text" name="formdata[{pigcms:$field.id}]" placeholder="{pigcms:$field.name}" value="{pigcms:$field.value}"  />
+	                        
+	                    <?php endif;?>
+	                <?php endforeach;?>
 
-			        <label for="email">Email</label>
-			        <input id="email" type="email" placeholder="Email">
-
-			        <label for="password">Password</label>
-			        <input id="password" type="password" placeholder="Password">
-
-			        <label for="state">State</label>
-			        <select id="state">
-			            <option>AL</option>
-			            <option>CA</option>
-			            <option>IL</option>
-			        </select>
-
-			        <label for="remember" class="pure-checkbox">
-			            <input id="remember" type="checkbox"> Remember me
-			        </label>
-
-			        <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+			        <button type="submit" class="pure-button pure-button-primary">提交</button>
 			    </fieldset>
 			</form>
 		</div>
