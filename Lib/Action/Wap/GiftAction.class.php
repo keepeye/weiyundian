@@ -98,6 +98,7 @@ class GiftAction extends WapAction {
 				//创建购买记录
 				
 				//显示表单视图
+				$this->display();
 			}
 			else
 			{
