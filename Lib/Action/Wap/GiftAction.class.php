@@ -173,6 +173,8 @@ class GiftAction extends WapAction {
 					->select();
 		//$this->assign("list",$list);
 		//$this->display();
+		echo $m->getDbError()."<br/>";
+		echo $m->getLastSql();
 		dump($list);
 	}
 }
