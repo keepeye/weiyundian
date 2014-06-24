@@ -149,6 +149,7 @@ class GiftAction extends WapAction {
 			{
 				$this->error("兑换记录不存在");
 			}
+			echo $sn['formdata'];
 			//formdata格式化
 			if(!empty($sn['formdata']))
 			{
