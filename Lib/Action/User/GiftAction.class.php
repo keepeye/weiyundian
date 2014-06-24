@@ -35,7 +35,7 @@ class GiftAction extends UserAction
 			$this->error("礼品不存在");
 		}
 		if(!empty($gift['formset'])){
-			$gift['formset'] = json_decode($gift['formset'],true);
+			$gift['formset'] = unserialize($gift['formset'],true);
 		}
 		
 		$this->assign("gift",$gift);
@@ -101,7 +101,7 @@ class GiftAction extends UserAction
 				"value"=>$origin['value'][$k]
 			);
 		}
-		return json_encode($data);
+		return serialize($data);
 	}
 
 	//设置

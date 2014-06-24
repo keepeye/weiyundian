@@ -152,18 +152,26 @@ class GiftAction extends WapAction {
 			//formdata格式化
 			if(!empty($sn['formdata']))
 			{
-				$sn['formdata'] = json_decode($gift['formdata'],true);
+				$sn['formdata'] = unserialize($gift['formdata'],true);
 			}
-			
+
 			//礼品信息
 			$gift = M('Gift')->where(array("id"=>$sn['pid'],"token"=>$this->token))->find();
 			if(!empty($gift['formset']))
 			{
-				$gift['formset'] = json_decode($gift['formset'],true);
+				$gift['formset'] = unserialize($gift['formset']);
 			}
 			$this->assign("gift",$gift);
 			$this->assign("sn",$sn);
 			$this->display();
+		}
+		else
+		{
+			$formdata = $_POST['formdata'];
+			if(!empty($formdata))
+			{
+				$formdata = serialize($formdata);
+			}
 		}
 	}
 
