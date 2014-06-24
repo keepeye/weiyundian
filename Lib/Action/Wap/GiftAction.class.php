@@ -61,91 +61,93 @@ class GiftAction extends WapAction {
 	//购买礼品
 	function buy()
 	{
-		if( ! IS_POST)
+		//并发锁
+		$file = TEMP_PATH."/gift.lock";
+		$fp = fopen($file,"w+");
+		if(flock($fp,LOCK_EX | LOCK_NB))
 		{
-			//并发锁
-			$file = TEMP_PATH."/gift.lock";
-			$fp = fopen($file,"w+");
-			if(flock($fp,LOCK_EX | LOCK_NB))
+			//查询gift
+			$id = I('id',0);
+			$m = M('Gift');
+			$where = array(
+				"token"=>$this->token,
+				"status"=>1,
+				"id"=>$id,
+			);
+			try
 			{
-				//查询gift
-				$id = I('id',0);
-				$m = M('Gift');
-				$where = array(
-					"token"=>$this->token,
-					"status"=>1,
-					"id"=>$id,
+				//礼品不存在
+				if( ! $id || ! ($gift = $m->where($where)->find()))
+				{
+					throw new Exception("礼品不存在或已下架");
+				}
+				//检查库存
+				if($gift['stock'] <= 0)
+				{
+					throw new Exception("对不起，礼品被抢光了~");
+				}
+				//检查用户积分
+				if($this->wecha_user['score'] < $gift['score'])
+				{
+					throw new Exception("对不起，您的积分不足~");
+				}
+				//检查限领
+				if($gift['pernum'] > 0)
+				{
+					if(M('GiftSn')->where(array('token'=>$this->token,'pid'=>$id,'wecha_id'=>$this->wecha_id))->count() >= $gift['pernum'])
+					{
+						throw new Exception("抱歉，该礼品每人限制兑换".$gift['pernum']."个。");
+					}
+				}
+				//库存-1
+				$m->where($where)->setDec("stock",1);
+				
+				//创建购买记录
+				$sn = uniqid();
+				$data = array(
+					"sn" => $sn,
+					"token" => $this->token,
+					"pid" => $id,
+					"wecha_id" => $this->wecha_id,
+					"time" => $_SERVER['REQUEST_TIME']
 				);
-				try
+				$re = M("GiftSn")->add($data);
+				if($re === false)
 				{
-					//礼品不存在
-					if( ! $id || ! ($gift = $m->where($where)->find()))
-					{
-						throw new Exception("礼品不存在或已下架");
-					}
-					//检查库存
-					if($gift['stock'] <= 0)
-					{
-						throw new Exception("对不起，礼品被抢光了~");
-					}
-					//检查用户积分
-					if($this->wecha_user['score'] < $gift['score'])
-					{
-						throw new Exception("对不起，您的积分不足~");
-					}
-					//检查限领
-					if($gift['pernum'] > 0)
-					{
-						if(M('GiftSn')->where(array('token'=>$this->token,'pid'=>$id,'wecha_id'=>$this->wecha_id))->count() >= $gift['pernum'])
-						{
-							throw new Exception("抱歉，该礼品每人限制兑换".$gift['pernum']."个。");
-						}
-					}
-					//库存-1
-					$m->where($where)->setDec("stock",1);
-					
-					//创建购买记录
-					$sn = uniqid();
-					$data = array(
-						"sn" => $sn,
-						"token" => $this->token,
-						"pid" => $id,
-						"wecha_id" => $this->wecha_id,
-						"time" => $_SERVER['REQUEST_TIME']
-					);
-					$re = M("GiftSn")->add($data);
-					if($re === false)
-					{
-						throw new Exception("兑换失败");
-					}
-					//用户积分减去
-					M('WechaUser')->where(array("token"=>$this->token,"wecha_id"=>$this->wecha_id))->setDec("score",$gift['score']);
+					throw new Exception("兑换失败");
 				}
-				catch(Exception $e)
-				{
-					flock($fp,LOCK_UN);
-					fclose($fp);
-					$this->error($e->getMessage());
-				}
-				//解锁
+				//用户积分减去
+				M('WechaUser')->where(array("token"=>$this->token,"wecha_id"=>$this->wecha_id))->setDec("score",$gift['score']);
+			}
+			catch(Exception $e)
+			{
 				flock($fp,LOCK_UN);
 				fclose($fp);
-
-				//显示表单视图
-				$this->assign("sn",$sn);
-				$this->assign("gift",$gift);
-				$this->display();
-				//dump($sn);
+				$this->error($e->getMessage());
 			}
-			else
-			{
-				$this->error("抢购人数过多，请重试!");
-			}
+			//解锁
+			flock($fp,LOCK_UN);
+			fclose($fp);
+			//前往提交表单
+			$this->redirect("form",array("token"=>$this->token,"sn"=>$sn));
 		}
 		else
 		{
-			//更新formdata
+			$this->error("抢购人数过多，请重试!");
 		}
-		
+	}
+
+	//用户个人表单
+	function form()
+	{
+		$code = I('sn','');
+		$m = M('GiftSn');
+		$sn = $m->where(array("sn"=>$code,"wecha_id"=>$this->wecha_id,"token"=>$this->token))->find();
+		if(! $sn)
+		{
+			$this->error("兑换记录不存在");
+		}
+		$this->assign("sn",$sn);
+		$this->display();
 	}
 }
