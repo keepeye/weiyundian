@@ -2,8 +2,8 @@
 class GiftAction extends WapAction {
 	public $token;
 	public $wecha_id;
+	public $wecha_user;//用户基本信息
 
-	public $wecha_user;
 	function _initialize(){
 		parent::_initialize();
 		
@@ -76,29 +76,61 @@ class GiftAction extends WapAction {
 					"status"=>1,
 					"id"=>$id,
 				);
-				//礼品不存在
-				if( ! $id || ! ($gift = $m->where($where)->find()))
+				try
+				{
+					//礼品不存在
+					if( ! $id || ! ($gift = $m->where($where)->find()))
+					{
+						throw Exception("礼品不存在或已下架");
+					}
+					//检查库存
+					if($gift['stock'] <= 0)
+					{
+						throw Exception("对不起，礼品被抢光了~");
+					}
+					//检查用户积分
+					if($this->wecha_user['score'] < $gift['score'])
+					{
+						throw Exception("对不起，您的积分不足~");
+					}
+					//库存-1
+					$m->where($where)->setDec("stock",1);
+					
+					//创建购买记录
+					$sn = uniqid();
+					$data = array(
+						"sn" => $sn,
+						"token" => $this->token,
+						"pid" => $id,
+						"wecha_id" => $this->wecha_id,
+						"time" => $_SERVER['REQUEST_TIME']
+					);
+					$re = M("GiftSn")->add($data);
+					if($re === false)
+					{
+						throw Exception("兑换失败");
+					}
+					//用户积分减去
+					M('WechaUser')->where(array("token"=>$this->token,"wecha_id"=>$this->wecha_id))->setDec("score",$gift['score']);
+				}
+				catch(Exception $e)
 				{
 					flock($fp,LOCK_UN);
 					fclose($fp);
-					$this->error("礼品不存在或已下架");
+					$this->error($e->getMessage());
 				}
-				//检查库存
-				if($gift['stock'] <= 0)
+				finally
 				{
+					//解锁
 					flock($fp,LOCK_UN);
 					fclose($fp);
-					$this->error("对不起，礼品被抢光了~");
 				}
-				//库存-1
-				$m->where($where)->setDec("stock",1);
-				//解锁
-				flock($fp,LOCK_UN);
-				fclose($fp);
-				//创建购买记录
-				
+
 				//显示表单视图
-				$this->display();
+				$this->assign("sn",$sn);
+				$this->assign("gift",$gift);
+				//$this->display();
+				dump($sn);
 			}
 			else
 			{
