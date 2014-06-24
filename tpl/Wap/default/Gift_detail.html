@@ -32,11 +32,18 @@
 					<?=$gift['stock'];?> 个(份)
 				</div>
 				<div class="hd">
+					需要积分
+				</div>
+				<div class="bd">
+					<?=$gift['score'];?>
+				</div>
+				<div class="hd">
 					描述
 				</div>
 				<div class="bd">
 					<?=htmlspecialchars_decode($gift['description']);?>
 				</div>
+				<a class="pure-button pure-button-primary">兑换礼品</a>
 			</div>
 		</div>
 		<script>
