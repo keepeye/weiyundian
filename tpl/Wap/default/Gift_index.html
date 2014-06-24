@@ -19,18 +19,14 @@
 			礼品中心
 		</div>
 		<div class="content">
+			<?php foreach($list as $item): ?>
 			<div class="item">
 				<div class="pure-g">
-					<div class="pure-u-1-4">logo</div>
-					<div class="pure-u-3-4">描述</div>
+					<div class="pure-u-1-4"><img src="<?=$item['logo'];?>"/></div>
+					<div class="pure-u-3-4"><?=$item['description'];?></div>
 				</div>
 			</div>
-			<div class="item">
-				<div class="pure-g">
-					<div class="pure-u-1-4">logo</div>
-					<div class="pure-u-3-4">描述</div>
-				</div>
-			</div>
+			<?php endforeach;?>
 		</div>
 		<script>
 			Zepto(function($){
