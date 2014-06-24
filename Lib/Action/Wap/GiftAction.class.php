@@ -152,7 +152,7 @@ class GiftAction extends WapAction {
 			//formdata格式化
 			if(!empty($sn['formdata']))
 			{
-				$sn['formdata'] = unserialize($gift['formdata'],true);
+				$sn['formdata'] = unserialize($gift['formdata']);
 			}
 
 			//礼品信息
