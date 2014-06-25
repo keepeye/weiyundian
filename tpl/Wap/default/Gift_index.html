@@ -52,13 +52,13 @@
 		</div>
 		<script>
 			Zepto(function($){
-				// $(".item").on("mousedown",function(){
-				// 	$(this).css("background-color","#e5e5e5");
-				// 	var url = $(this).attr("data-url");
-				// 	window.location.href = url;
-				// }).on("mouseup",function(){
-				// 	$(this).css("background-color","#fcfcfc");
-				// });
+				$(".item").on("mousedown",function(){
+					$(this).css("background-color","#e5e5e5");
+					var url = $(this).attr("data-url");
+					window.location.href = url;
+				}).on("mouseup",function(){
+					$(this).css("background-color","#fcfcfc");
+				});
 			});
 
 			//微信api
