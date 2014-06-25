@@ -78,6 +78,9 @@
 		$.ajax({
 			"url":url,
 			"dataType":"json",
+			"error":function(){
+				alert("请求失败，请重试");
+			},
 			"success":function(res){
 				if(res && res.status)
 				{
