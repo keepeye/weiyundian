@@ -39,9 +39,9 @@
 				<volist id="sn" name="list">
 					<TR>
 						<TD><?=$sn['sn'];?></TD>  
-						<?php $fomdata = unserialize($sn['formdata']);?>               
+						<?php $fomdata = unserialize($sn['formdata']);?>           
 						<?php foreach($gift['formset'] as $v): ?>
-						<td><?=$fomdata[$v['name']];?></td>
+						<td><?=$v['name'];?></td>
 						<?php endforeach;?>
 						<TD class="norightborder">
 							<a href="{pigcms::U('snmark',array('sn'=>$sn['sn']))}">标记已处理</a> 
