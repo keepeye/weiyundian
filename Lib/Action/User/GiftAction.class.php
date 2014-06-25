@@ -186,7 +186,7 @@ class GiftAction extends UserAction
 		$Page       = new Page($count,20);
 		$pagestr       = $Page->show();
 		$this->assign('pagestr',$pagestr);
-		$list = M('GiftSn')->where(array("pid"=>$id,"token"=>$this->token))->limit($Page->firstRow.','.$Page->listRows)->select();
+		$list = M('GiftSn')->where($map)->limit($Page->firstRow.','.$Page->listRows)->select();
 		$this->assign("list",$list);
 		$this->display();
 	}
