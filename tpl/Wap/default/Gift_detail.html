@@ -45,7 +45,7 @@
 					<?=htmlspecialchars_decode($gift['description']);?>
 				</div>
 				<?php if($gift['stock'] > 0): ?>
-				<a href="<?=U('buy',array('token'=>$token,'id'=>$gift['id']));?>" class="fullbtn" style="display:block;position:fixed;bottom:0;width:100%;">兑换礼品</a>
+				<a href="<?=U('buy',array('token'=>$token,'id'=>$gift['id']));?>" class="fullbtn" style="display:block;position:fixed;bottom:0;width:100%;">立即兑换</a>
 				<?php else: ?>
 				<a class="pure-button pure-button-disabled" style="display:block;margin:5px auto;width:40%">已经没有了哦~</a>
 				<?php endif;?>
