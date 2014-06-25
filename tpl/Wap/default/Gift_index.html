@@ -26,7 +26,7 @@
 	<body>
 		<div class="header">
 			<div class="title"><i class="fa fa-gift"></i>礼品中心</div>
-			<div class="right"><i class="fa  fa-user"></i></div>
+			<div class="right"><a href="<?=U('mygifts',array('token'=>$token));?>"><i class="fa fa-user"></i></a></div>
 		</div>
 		<div class="content">
 			<?php foreach($list as $item): ?>
@@ -48,7 +48,6 @@
 				</div>
 			</div>
 			<?php endforeach;?>
-			<a href="<?=U('mygifts',array('token'=>$token));?>" class="fullbtn" style="display:block;position:fixed;bottom:0;width:100%;">我的礼品</a>
 		</div>
 		<script>
 			Zepto(function($){
