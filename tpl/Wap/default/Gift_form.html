@@ -14,7 +14,7 @@
 		</style>
 	</head>
 	<body>
-		<div class="content" style="padding:5px;">
+		<div class="content">
 			<?php if(empty($sn['formdata'])): ?>
 			<form class="pure-form pure-form-stacked" method="post" id='form1'>
 				<input type="hidden" name="sn" value="<?=$sn['sn'];?>"/>
@@ -42,6 +42,7 @@
 			    <a href="javascript:" class="fullbtn" style="display:block;position:fixed;bottom:0;width:100%;" onclick="form1.submit()">提交</a>
 			</form>
 			<?php else: ?>
+				<div style="margin:5px;">
 				<h3>你的领奖信息</h3>
 				<p>sn: <?=$sn['sn'];?></p>
 				<?php foreach($gift['formset'] as $field): ?>
@@ -54,6 +55,7 @@
 					<h4>领奖指南：</h4>
 					<?=$gift['guide'];?>
 				</p>
+				</div>
 				<a href="<?=U('index',array('token'=>$token));?>" class="fullbtn" style="display:block;position:fixed;bottom:0;width:100%;">返回礼品中心</a>
 			<?php endif;?>
 		</div>
