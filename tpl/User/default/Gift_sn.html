@@ -41,7 +41,7 @@
 						<TD><?=$sn['sn'];?></TD>  
 						<?php $fomdata = unserialize($sn['formdata']);?>           
 						<?php foreach($gift['formset'] as $v): ?>
-						<td><?=$v['name'];?></td>
+						<td><?=$fomdata[$v['id']];?></td>
 						<?php endforeach;?>
 						<TD class="norightborder">
 							<a href="{pigcms::U('snmark',array('sn'=>$sn['sn']))}">标记已处理</a> 
