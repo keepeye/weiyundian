@@ -36,15 +36,15 @@
 			</THEAD>
 			<TBODY>
 				<TR></TR>
-				<volist id="list" name="list">
+				<volist id="list" name="sn">
 					<TR>
-						<TD>{pigcms:$list.sn}</TD>                 
+						<TD>{pigcms:$sn.sn}</TD>                 
 						<?php foreach($gift['formset'] as $v): ?>
-						<?php $fomdata = unserialize($v['formdata']);?>
+						<?php $fomdata = unserialize($sn['formdata']);?>
 						<td><?=$fomdata[$v['name']];?></td>
 						<?php endforeach;?>
 						<TD class="norightborder">
-							<a href="{pigcms::U('snmark',array('sn'=>$list['sn']))}">标记已处理</a> 
+							<a href="{pigcms::U('snmark',array('sn'=>$sn['sn']))}">标记已处理</a> 
 						</TD>
 					</TR>
 				</volist>
