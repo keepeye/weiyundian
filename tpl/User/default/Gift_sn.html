@@ -38,9 +38,9 @@
 				<TR></TR>
 				<volist id="sn" name="list">
 					<TR>
-						<TD><?=$sn['formdata'];?></TD>                 
+						<TD><?=$sn['sn'];?></TD>  
+						<?php $fomdata = unserialize($sn['formdata']);?>               
 						<?php foreach($gift['formset'] as $v): ?>
-						<?php $fomdata = unserialize($sn['formdata']);?>
 						<td><?=$fomdata[$v['name']];?></td>
 						<?php endforeach;?>
 						<TD class="norightborder">
