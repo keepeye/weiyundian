@@ -168,7 +168,15 @@ class GiftAction extends UserAction
 		if(isset($_REQUEST['filter']) && !empty($_REQUEST['filter'])){
 			$filters = array();
 			foreach($_REQUEST['filter'] as $k=>$v){
-				$filters[$k] = array("like","%{$v}%");
+				if($k == "formdata")
+				{
+					$filters[$k] = array("like","%{$v}%");
+				}
+				else
+				{
+					$filters[$k] = $v;
+				}
+
 			}
 			
 			$map = array_merge($map,array_filter($filters));
