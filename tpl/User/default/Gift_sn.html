@@ -1,0 +1,73 @@
+<include file="Public:head"/>  
+<link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left">[<?=$gift['title'];?>]兑换记录</h4>
+		<div class="clr"></div>
+	</div>
+	
+	<div class="cLine" style=" padding: 8px 0">
+		<div class="searchbar">  
+			<form method="get">
+				<input type="hidden" name="g" value="<?php echo GROUP_NAME;?>"/>
+				<input type="hidden" name="m" value="<?php echo MODULE_NAME;?>"/>
+				<input type="hidden" name="a" value="<?php echo ACTION_NAME;?>"/>
+				<input type="hidden" name="id" value="<?php echo $_GET['id'];?>"/>
+				sn码：<input type="text"  class="txt" placeholder="输入sn码"  name="filter[sn]" value="">&nbsp;
+				模糊查找：<input type="text"  class="txt"   name="filter[formdata]" value="">
+				<input type="submit" value="查找" id="msgSearchBtn" href="" class="btnGrayS" title="查找">
+
+			</form>
+		</div>
+	</div>
+	
+	<div class="msgWrap">
+
+
+		<TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+			<THEAD>
+				<TR>
+					<th>sn</th>
+					<?php foreach($gift['formset'] as $v): ?>
+					<th><?=$v['name'];?></th>
+					<?php endforeach;?>
+					<TH class="norightborder">操作</TH>
+				</TR>
+			</THEAD>
+			<TBODY>
+				<TR></TR>
+				<volist id="list" name="list">
+					<TR>
+						<TD>{pigcms:$list.sn}</TD>                 
+						<?php foreach($gift['formset'] as $v): ?>
+						<?php $fomdata = unserialize($v['formdata']);?>
+						<td><?=$fomdata[$v['name']];?></td>
+						<?php endforeach;?>
+						<TD class="norightborder">
+							<a href="{pigcms::U('snmark',array('sn'=>$list['sn']))}">标记已处理</a> 
+						</TD>
+					</TR>
+				</volist>
+			</TBODY>
+		</TABLE>
+
+
+	</div>
+
+	<div class="cLine">
+		<div class="pageNavigator right">
+			<div class="pages">{pigcms:$pagestr}</div>
+		</div>
+		<div class="clr"></div>
+	</div>
+
+</div>
+
+<div class="clr"></div>
+</div>
+</div>
+</div>
+
+<!--底部-->
+</div>
+<include file="Public:footer"/>

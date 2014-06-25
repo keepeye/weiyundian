@@ -147,4 +147,39 @@ class GiftAction extends UserAction
 		}
 		
 	}
+
+	//领取记录
+	function sn()
+	{
+		$id = I('id',0);
+		$m = M('Gift');
+		if( ! $id || ! ($gift = $m->where(array("id"=>$id,"token"=>$this->token))->find()))
+		{
+			$this->error("礼品不存在");
+		}
+		$gift['formset'] = unserialize($gift['formset']);
+		$this->assign("gift",$gift);
+		//sn列表
+		$map = array(
+			"pid" => $id,
+			"token" => $this->token
+		);
+		//搜索条件
+		if(isset($_REQUEST['filter']) && !empty($_REQUEST['filter'])){
+			$filters = array();
+			foreach($_REQUEST['filter'] as $k=>$v){
+				$filters[$k] = array("like","%{$v}%");
+			}
+			
+			$map = array_merge($map,array_filter($filters));
+		}
+		//数量
+		$count      = M('GiftSn')->where($map)->count();
+		$Page       = new Page($count,20);
+		$pagestr       = $Page->show();
+		$this->assign('pagestr',$pagestr);
+		$list = M('GiftSn')->where(array("pid"=>$id,"token"=>$this->token))->limit($Page->firstRow.','.$Page->listRows)->select();
+		$this->assign("list",$list);
+		$this->display();
+	}
 }
