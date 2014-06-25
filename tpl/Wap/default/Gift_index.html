@@ -11,10 +11,12 @@
 			.header{height:50px;line-height: 50px;text-align: center;color:white;font-weight: bolder;font-size:20px;background-image:-webkit-gradient(linear, 0 0,0 100%, from(#0078e7), to(#0099FF));margin-bottom: 5px;}
 			.content{width: 100%;overflow: hidden;}
 			.widget{margin:0 5px;}
-			.item{height: 60px;border-bottom: 1px solid #eee;margin-bottom: 5px;}
-			.item .pure-g .btn{line-height: 60px;margin:0;}
+			.item{height: 60px;border-bottom: 1px solid #eee;margin-bottom: 5px;overflow: hidden;}
+			.item .left{float:left;height:48px;width:48px;border:1px solid #eee;overflow:hidden;margin:5px;}
+			.item .left img{width:100%;height:100%;}
+			.item .right{line-height: 60px;margin:0;float:right;}
 			.pure-button-duihuan{display:inline;line-height: inherit;}
-			.item .desc{line-height:1.5em;margin:5px;}
+			.item .center{line-height:1.5em;margin:5px;float: left;}
 			.fullbtn{height:3em;line-height:3em;background-color:#0078e7;color:white;text-align: center;text-decoration: none;text-shadow:0 1px 1px rgba(0, 0, 0, 0.2);}
 		</style>
 	</head>
@@ -25,28 +27,20 @@
 		<div class="content">
 			<?php foreach($list as $item): ?>
 			<div class="item" data-url="<?=U('detail',array('token'=>$token,'id'=>$item['id']));?>">
-				<div class="pure-g">
-					<div class="pure-u-1-4">
-						<div style="height:48px;width:48px;border:1px solid #eee;overflow:hidden;margin:5px;">
-							<img src="<?=$item['logo'];?>"  width="100%" height="100%"/>
-						</div>
-					</div>
-					<div class="pure-u-1-2">
-						<div class="desc">
-							<?=$item['title'];?><br/>
-							积分:<?=$item['score'];?><br/>
-							剩余:<?=$item['stock'];?>个
-						</div>
-					</div>
-					<div class="pure-u-1-4">
-						<div class="btn">
-							<?php if($item['stock'] > 0): ?>
-							<a class="pure-button pure-button-primary pure-button-duihuan">查看</a>
-							<?php else: ?>
-							<a class="pure-button pure-button-disabled pure-button-duihuan">售罄</a>
-							<?php endif;?>
-						</div>
-					</div>
+				<div class="left">
+					<img src="<?=$item['logo'];?>" />
+				</div>
+				<div class="center">
+					<?=$item['title'];?><br/>
+					积分:<?=$item['score'];?><br/>
+					剩余:<?=$item['stock'];?>个
+				</div>
+				<div class="right">
+					<?php if($item['stock'] > 0): ?>
+					<a class="pure-button pure-button-primary pure-button-duihuan">查看</a>
+					<?php else: ?>
+					<a class="pure-button pure-button-disabled pure-button-duihuan">售罄</a>
+					<?php endif;?>
 				</div>
 			</div>
 			<?php endforeach;?>
