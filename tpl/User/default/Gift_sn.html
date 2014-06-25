@@ -44,7 +44,9 @@
 						<td><?=$fomdata[$v['id']];?></td>
 						<?php endforeach;?>
 						<TD class="norightborder">
-							<a href="{pigcms::U('snmark',array('sn'=>$sn['sn']))}">标记已处理</a> 
+							<?php if($sn['status'] == 0): ?>
+							<a href="javascript:" onclick="snmark(this,'{pigcms::U('snmark',array('sn'=>$sn['sn'],'pid'=>$sn['pid']))}')">标记已处理</a> 
+							<?php endif;?>
 						</TD>
 					</TR>
 				</volist>
@@ -70,4 +72,10 @@
 
 <!--底部-->
 </div>
+<script>
+	function snmark(link,url)
+	{
+		$(link).hide();
+	}
+</script>
 <include file="Public:footer"/>

@@ -190,4 +190,18 @@ class GiftAction extends UserAction
 		$this->assign("list",$list);
 		$this->display();
 	}
+
+	//标记为已处理
+	function snmark()
+	{
+		$sn = I('sn');
+		$pid = I('pid');
+		$where = array(
+			"token" => $this->token,
+			"pid" => $pid,
+			'sn' => $sn
+		);
+		M('GiftSn')->where($where)->data(array("status"=>1))->save();
+		$this->ajaxReturn(array("status"=>1,"info"=>"ok"));
+	}
 }
