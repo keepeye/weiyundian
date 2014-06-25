@@ -75,7 +75,20 @@
 <script>
 	function snmark(link,url)
 	{
-		$(link).hide();
+		$.ajax({
+			"url":url,
+			"dataType":"json",
+			"success":function(res){
+				if(res && res.status)
+				{
+					$(link).hide();
+				}
+				else
+				{
+					alert(res.info);
+				}
+			}
+		})
 	}
 </script>
 <include file="Public:footer"/>
