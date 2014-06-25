@@ -38,7 +38,7 @@
 				<TR></TR>
 				<volist id="sn" name="list">
 					<TR>
-						<TD>{pigcms:$sn.sn}</TD>                 
+						<TD>{pigcms:$sn.sn} <?=$sn['fomdata'];?></TD>                 
 						<?php foreach($gift['formset'] as $v): ?>
 						<?php $fomdata = unserialize($sn['formdata']);?>
 						<td><?=$fomdata[$v['name']];?></td>
