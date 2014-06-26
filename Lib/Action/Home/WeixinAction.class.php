@@ -1448,8 +1448,8 @@ class WeixinAction extends Action
             $tip .= "您今天已签过,请明天再来吧~\r\n";
             $data = &$record;
         }else{
-            //是否连续签到
-            if($timeout > 86400*2){
+            //距离上次签到超过1天，或进入新的月份连续次数重新计算
+            if($timeout > 86400*2 || date("d")=="1"){
                 $keep = 1;
             }else{
                 $keep = $record['keep'] + 1;
@@ -1463,17 +1463,42 @@ class WeixinAction extends Action
             //更新签到记录
             M('SignRecord')->where(array("wecha_user_id"=>$this->_wecha_user['id']))->data($data)->save();
 
-            $tip .= "恭喜签到成功！获得积分{$sign_config['reward']}点`(*∩_∩*)′\r\n";
-            //奖励积分
-            M('WechaUser')->where(array("id"=>$this->_wecha_user['id']))->setInc("score",$sign_config['reward']);
-            $nowscore = $this->_wecha_user['score'] + $sign_config['reward'];
+            
+            
+            //连续签到奖励积分
+            if( ! empty($sign_config['bonus']))
+            {
+                $bonus_rule = array_filter(explode(" ",$sign_config['bonus']));//将规则按空格解析成数组
+                $bonus = array();
+                foreach($bonus_rule as $v)
+                {
+                    $v_tmp = explode("|",$v);
+                    if(isset($v_tmp[1]))
+                    {
+                        $bonus[$v_tmp[0]] = $v_tmp[1];
+                    }
+                }
+            }
+            $score = $sign_config['reward'];//固定奖励的积分
+            $tip .= "恭喜签到成功！获得积分{$sign_config['reward']}点`(*∩_∩*)′\n";
+            $scroe_bonus = 0;//初始化额外奖励积分
+            if(isset($bonus[$keep]))
+            {
+                $scroe_bonus = $bonus[$keep];
+                $score += $scroe_bonus;
+                $tip .= "连续签到{$keep},额外奖励{$scroe_bonus}\n";
+            }
+            $nowscore = $this->_wecha_user['score'] + $score;//新的积分，用于显示
+            
+            //更新用户积分
+            M('WechaUser')->where(array("id"=>$this->_wecha_user['id']))->setInc("score",$score);
         }
         if(!$nowscore){
             $nowscore = $this->_wecha_user['score'];
         }
         $text = $tip;
-        $text .= "您已经累计签到 ".$data['total']." 次\r\n连续签到 ".$data['keep']." 次啦！^_^\r\n\r\n";
-        $text .= $sign_config['desc']."\r\n\r\n";
+        $text .= "您已经累计签到 ".$data['total']." 次\n本月连续签到 ".$data['keep']." 次啦！^_^\n";
+        $text .= $sign_config['desc']."\n";
         $text .= "您的用户ID:[".$this->_wecha_user['id']."] ,当前积分:".$nowscore;
         return $text;
     }
