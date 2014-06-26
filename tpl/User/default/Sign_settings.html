@@ -9,18 +9,22 @@
      <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%"> 
       <tbody> 
 	   
-	   <tr> 
-        <th><span class="red">*</span>关键词：</th> 
-        <td><font color=red>签到</font> 自定义菜单设置或者用户发送该关键词都回触发签到事件</td> 
-       </tr>
-	   <tr> 
-        <th><span class="red">*</span>签到奖励积分：</th> 
-        <td><input type="text" name="reward" value="{pigcms:$info.reward|default=0}" class="px" style="width:100px;" /></td> 
-       </tr>
-	   <tr> 
-        <th><span class="red">*</span>签到说明：</th> 
-        <td><textarea  class="px" type="text" name="desc" style="width:400px;height:100px;">{pigcms:$info.desc}</textarea>附加在自动回复文本后面</td> 
-       </tr>
+        <tr> 
+          <th><span class="red">*</span>关键词：</th> 
+          <td><font color=red>签到</font> 自定义菜单设置或者用户发送该关键词都回触发签到事件</td> 
+        </tr>
+        <tr> 
+          <th><span class="red">*</span>签到奖励积分：</th> 
+          <td><input type="text" name="Bonus" value="{pigcms:$info.Bonus}" class="px" style="width:400px;" />连续天数|奖励积分，空格分隔，如：7|10 15|20 30|50,</td>
+        </tr>
+        <tr> 
+          <th><span class="red">*</span>连续签到奖励：</th> 
+          <td><input type="text" name="reward" value="{pigcms:$info.reward|default=0}" class="px" style="width:100px;" /></td> 
+        </tr>
+        <tr> 
+          <th><span class="red">*</span>签到说明：</th> 
+          <td><textarea  class="px" type="text" name="desc" style="width:400px;height:100px;">{pigcms:$info.desc}</textarea>附加在自动回复文本后面</td> 
+        </tr>
 	   
 	   
        <tr>         
