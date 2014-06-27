@@ -39,13 +39,7 @@
 					需要:<?=$item['score'];?> 积分<br/>
 					库存:<?=$item['stock'];?> 个
 				</div>
-				<div class="right">
-					<?php if($item['stock'] > 0): ?>
-					<a class="pure-button pure-button-primary pure-button-duihuan">查看</a>
-					<?php else: ?>
-					<a class="pure-button pure-button-disabled pure-button-duihuan">售罄</a>
-					<?php endif;?>
-				</div>
+				
 			</div>
 			<?php endforeach;?>
 			<a href="<?=U('mygifts',array('token'=>$token));?>" class="fullbtn" style="display:block;position:fixed;bottom:0;width:100%;">我的礼品</a>
