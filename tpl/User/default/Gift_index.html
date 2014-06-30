@@ -27,6 +27,7 @@
 		<TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
 			<THEAD>
 				<TR>
+					<TH>显示顺序</TH>
 					<TH>礼品名称</TH>
 					<TH>所需积分</TH>
 					<TH class="norightborder">操作</TH>
@@ -36,6 +37,7 @@
 				<TR></TR>
 				<volist id="list" name="list">
 					<TR>
+						<td>{pigcms:$list.sort}</td>
 						<TD>{pigcms:$list.title}</TD>                 
 						<TD>{pigcms:$list.score}</TD>
 						<TD class="norightborder">
