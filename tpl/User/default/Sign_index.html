@@ -22,7 +22,7 @@
 	            <input type="hidden" name="m" value="<?php echo MODULE_NAME;?>"/>
 	            <input type="hidden" name="a" value="<?php echo ACTION_NAME;?>"/>
 	            
-	           uid：<input type="text"  class="txt" placeholder="用户uid"  name="filter[uid]" value="">&nbsp;
+	           uid：<input type="text"  class="txt" placeholder="用户uid"  name="filter[uid]" value="<?=$_GET['filter']['uid'];?>">&nbsp;
 	           起始时间：<input type="text"  class="txt"  name="filter[stime]" value="<?=$_GET['filter']['stime'];?>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
 				终止时间：<input type="text"  class="txt"   name="filter[etime]"" value="<?=$_GET['filter']['etime'];?>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>&nbsp;
 	            <input type="submit" value="查找" id="msgSearchBtn" href="" class="btnGrayS" title="查找">
