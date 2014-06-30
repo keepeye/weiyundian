@@ -1449,7 +1449,7 @@ class WeixinAction extends Action
             $data = &$record;
         }else{
             //距离上次签到超过1天，或进入新的月份连续次数重新计算
-            if($timeout > 86400*2 || date("d")=="1"){
+            if($timeout > 86401 || date("d")=="1"){
                 $keep = 1;
             }else{
                 $keep = $record['keep'] + 1;
