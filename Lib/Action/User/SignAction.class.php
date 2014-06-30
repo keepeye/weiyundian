@@ -12,7 +12,27 @@ class SignAction extends UserAction {
 	function index(){
 		$M = M('SignRecord');
 		$where = array('token'=>$this->_token);
-		
+		//附加条件处理
+		if($filter = I('filter'))
+		{
+			//uid
+			if( isset($filter['uid']) && $filter['uid']>0 )
+			{
+				$where['wecha_user_id'] = $filter['uid'];
+			}
+			//
+			if($filter['stime'] != ""){
+				$stime = strtotime($filter['stime']);//开始时间
+			}else{
+				$stime = 0;
+			}
+			if($filter['etime'] != ""){
+				$etime = strtotime($filter['etime'])+86400;//结束时间
+			}else{
+				$etime = strtotime(date("Y-m-d",time()))+86400;//获取明天0点的时间戳
+			}
+			$where['lasttime'] = array("between",array($stime,$etime));//确定时间区间
+		}
 		$count      = $M->where($where)->count();//总数
 		$Page       = new Page($count,20);
 		$show       = $Page->show();
