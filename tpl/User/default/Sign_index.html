@@ -1,4 +1,5 @@
 <include file="Public:head"/> 
+<script src="{pigcms::RES}/js/date/WdatePicker.js"></script>
 <link rel="stylesheet" type="text/css" href="{pigcms::RES}/css/cymain.css" />
 <div class="content">
 	<div class="cLineB">
@@ -13,7 +14,8 @@
 	            <input type="hidden" name="a" value="<?php echo ACTION_NAME;?>"/>
 	            
 	           uid：<input type="text"  class="txt" placeholder="用户uid"  name="filter[uid]" value="">&nbsp;
-	           
+	           起始时间：<input type="text"  class="txt"  name="start_date" value="{pigcms:$Think.get.start_date}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+				终止时间：<input type="text"  class="txt"   name="end_date" value="{pigcms:$Think.get.end_date}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>&nbsp;
 	            <input type="submit" value="查找" id="msgSearchBtn" href="" class="btnGrayS" title="查找">
 	            
 	          </form>
