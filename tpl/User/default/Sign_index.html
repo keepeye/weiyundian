@@ -6,23 +6,7 @@
 		<h4 class="left">微签到</h4>
 		<div class="clr"></div>
 	</div>
-	<div class="cLine">
-	    <div class="searchbar">  
-	          <form method="get">
-	            <input type="hidden" name="g" value="<?php echo GROUP_NAME;?>"/>
-	            <input type="hidden" name="m" value="<?php echo MODULE_NAME;?>"/>
-	            <input type="hidden" name="a" value="<?php echo ACTION_NAME;?>"/>
-	            
-	           uid：<input type="text"  class="txt" placeholder="用户uid"  name="filter[uid]" value="">&nbsp;
-	           起始时间：<input type="text"  class="txt"  name="start_date" value="{pigcms:$Think.get.start_date}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
-				终止时间：<input type="text"  class="txt"   name="end_date" value="{pigcms:$Think.get.end_date}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>&nbsp;
-	            <input type="submit" value="查找" id="msgSearchBtn" href="" class="btnGrayS" title="查找">
-	            
-	          </form>
-	      </div>
-	  
-	    <div class="clr"></div>
-	  </div>
+	
 	<!--tab start-->
 	<div class="tab">
 		<ul>
@@ -31,6 +15,23 @@
 		</ul>
 	</div>
 	<!--tab end-->
+	<div class="cLine">
+	    <div class="searchbar">  
+	          <form method="get">
+	            <input type="hidden" name="g" value="<?php echo GROUP_NAME;?>"/>
+	            <input type="hidden" name="m" value="<?php echo MODULE_NAME;?>"/>
+	            <input type="hidden" name="a" value="<?php echo ACTION_NAME;?>"/>
+	            
+	           uid：<input type="text"  class="txt" placeholder="用户uid"  name="filter[uid]" value="">&nbsp;
+	           起始时间：<input type="text"  class="txt"  name="filter[stime]" value="{pigcms:$Think.get.filter.stime}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+				终止时间：<input type="text"  class="txt"   name="filter[etime]"" value="{pigcms:$Think.get.filter.etime}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>&nbsp;
+	            <input type="submit" value="查找" id="msgSearchBtn" href="" class="btnGrayS" title="查找">
+	            
+	          </form>
+	      </div>
+	  
+	    <div class="clr"></div>
+	</div>
 	<div class="msgWrap">
 
 		<table class="ListProduct" border="0" cellspacing="0" cellpadding="0" width="100%">
