@@ -201,7 +201,36 @@ class GiftAction extends UserAction
 			"pid" => $pid,
 			'sn' => $sn
 		);
-		M('GiftSn')->where($where)->data(array("status"=>1))->save();
-		$this->ajaxReturn(array("status"=>1,"info"=>"ok"));
+		$re = M('GiftSn')->where($where)->data(array("status"=>1))->save();
+		if($re === false)
+		{
+			$this->ajaxReturn(array("status"=>0,"info"=>"保存失败"));
+		}
+		else
+		{
+			$this->ajaxReturn(array("status"=>1,"info"=>"ok"));
+		}
+	}
+
+	//删除sn记录
+	function delsn()
+	{
+		$sn = I('sn');
+		$pid = I('pid');
+		$where = array(
+			"token" => $this->token,
+			"pid" => $pid,
+			'sn' => $sn
+		);
+		$re = M('GiftSn')->where($where)->delete();
+		if($re === false)
+		{
+			$this->ajaxReturn(array("status"=>0,"info"=>"删除失败"));
+		}
+		else
+		{
+			$this->ajaxReturn(array("status"=>1,"info"=>"ok"));
+		}
+		
 	}
 }

@@ -47,6 +47,7 @@
 							<?php if($sn['status'] == 0): ?>
 							<a href="javascript:" onclick="snmark(this,'{pigcms::U('snmark',array('sn'=>$sn['sn'],'pid'=>$sn['pid']))}')">标记已处理</a> 
 							<?php endif;?>
+							<a href="javascript:" onclick="sndel(this,'{pigcms::U('delsn',array('sn'=>$sn['sn'],'pid'=>$sn['pid']))}')">删除</a>
 						</TD>
 					</TR>
 				</volist>
@@ -85,6 +86,27 @@
 				if(res && res.status)
 				{
 					$(link).hide();
+				}
+				else
+				{
+					alert(res.info);
+				}
+			}
+		})
+	}
+
+	function sndel(link,url)
+	{
+		$.ajax({
+			"url":url,
+			"dataType":"json",
+			"error":function(){
+				alert("请求失败，请重试");
+			},
+			"success":function(res){
+				if(res && res.status)
+				{
+					$(link).parent().parent().hide();
 				}
 				else
 				{
