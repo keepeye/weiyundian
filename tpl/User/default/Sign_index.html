@@ -5,6 +5,22 @@
 		<h4 class="left">微签到</h4>
 		<div class="clr"></div>
 	</div>
+	<div class="cLine">
+	    <div class="searchbar">  
+	          <form method="get">
+	            <input type="hidden" name="g" value="<?php echo GROUP_NAME;?>"/>
+	            <input type="hidden" name="m" value="<?php echo MODULE_NAME;?>"/>
+	            <input type="hidden" name="a" value="<?php echo ACTION_NAME;?>"/>
+	            
+	           uid：<input type="text"  class="txt" placeholder="用户uid"  name="filter[uid]" value="">&nbsp;
+	           
+	            <input type="submit" value="查找" id="msgSearchBtn" href="" class="btnGrayS" title="查找">
+	            
+	          </form>
+	      </div>
+	  
+	    <div class="clr"></div>
+	  </div>
 	<!--tab start-->
 	<div class="tab">
 		<ul>
