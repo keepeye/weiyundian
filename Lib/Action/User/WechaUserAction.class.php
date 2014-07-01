@@ -38,7 +38,7 @@ class WechaUserAction extends UserAction
 				}
 			}
 			//表达式
-			if(isset($filter['expr']) && !empty($filter['expr']['field']))
+			if(isset($filter['expr']) && !empty($filter['expr']['field']) && !empty($filter['expr']['value']))
 			{
 				if(in_array($filter['expr']['operator'],array("EQ","LT","ELT","GT","EGT")))
 				{
