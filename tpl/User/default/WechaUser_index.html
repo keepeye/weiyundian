@@ -13,6 +13,21 @@
                     
                    uid：<input type="text"  class="txt" placeholder="用户uid"  name="filter[uid]" value="">&nbsp;
                    排序：<select name="filter[order]"><option value='uid_asc'>uid↑</option><option value='uid_desc'>uid↓</option><option value='score_desc'>积分↓</option></select>
+                   &nbsp;
+
+                   表达式查询:
+                   <select name="filter[expr][field]">
+                   		<option value="id">uid</option>
+                   		<option value="score">积分</option>
+                   </select> 
+                   <select name="filter[expr][operator]">
+                   		<option value="EQ">等于</option>
+                   		<option value="LT">小于</option>
+                   		<option value="ELT">小于等于</option>
+                   		<option value="GT">大于</option>
+                   		<option value="EGT">大于等于</option>
+                   </select> 
+                   <input type="text"  class="txt" name="filter[expr][value]" value="">
                     <input type="submit" value="查找" id="msgSearchBtn" href="" class="btnGrayS" title="查找">
                     
                   </form>

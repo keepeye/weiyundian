@@ -19,10 +19,10 @@ class WechaUserAction extends UserAction
 		if($filter)
 		{
 			//uid
-			if( isset($filter['uid']) && $filter['uid']>0 )
-			{
-				$where['id'] = $filter['uid'];
-			}
+			// if( isset($filter['uid']) && $filter['uid']>0 )
+			// {
+			// 	$where['id'] = $filter['uid'];
+			// }
 			//order
 			if( isset($filter['order']))
 			{
@@ -35,6 +35,14 @@ class WechaUserAction extends UserAction
 						$order = "`score` desc";
 						break;
 					default:
+				}
+			}
+			//表达式
+			if(isset($filter['expr']) && !empty($filter['expr']['field']))
+			{
+				if(in_array($filter['expr']['operator'],array("EQ","LT","ELT","GT","EGT")))
+				{
+					$where[$filter['expr']['field']] = array($filter['expr']['operator'],$filter['expr']['value']);
 				}
 			}
 		}
