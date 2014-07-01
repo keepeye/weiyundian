@@ -13,7 +13,7 @@ class WechaUserAction extends UserAction
 	{
 		$M = M('WechaUser');
 		$where = array('token'=>$this->token);
-
+		$order = "id asc";
 		//有附加条件
 		$filter = I('filter');
 		if($filter)
@@ -23,6 +23,20 @@ class WechaUserAction extends UserAction
 			{
 				$where['id'] = $filter['uid'];
 			}
+			//order
+			if( isset($filter['order']))
+			{
+				switch($filter['order'])
+				{
+					case "uid_desc":
+						$order = "`id` desc";
+						break;
+					case "score_desc":
+						$order = "`score` desc";
+						break;
+					default:
+				}
+			}
 		}
 		$total = $M->where($where)->count();//列表总数
 
@@ -30,7 +44,7 @@ class WechaUserAction extends UserAction
 		$Page = new Page($total,20);
 		$pagestr = $Page->show();
 
-		$list = $M->where($where)->limit($Page->firstRow.','.$Page->listRows)->select();
+		$list = $M->where($where)->limit($Page->firstRow.','.$Page->listRows)->order($order)->select();
 		$this->assign('pagestr',$pagestr);
 		$this->assign('list',$list);
 		$this->display();
