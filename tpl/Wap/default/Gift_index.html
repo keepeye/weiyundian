@@ -52,6 +52,17 @@
 				</div>
 				
 			</div>
+			<div class="item" data-url="<?=U('detail',array('token'=>$token,'id'=>$item['id']));?>">
+				<div class="left">
+					<img src="<?=$item['logo'];?>" />
+				</div>
+				<div class="center">
+					<b><?=$item['title'];?></b><br/>
+					需要:<?=$item['score'];?> 积分<br/>
+					库存:<?=$item['stock'];?> 个
+				</div>
+				
+			</div>
 			<?php endforeach;?>
 			<a href="<?=U('mygifts',array('token'=>$token));?>" class="fullbtn" style="display:block;position:fixed;bottom:0;width:100%;">我的礼品</a>
 		</div>
