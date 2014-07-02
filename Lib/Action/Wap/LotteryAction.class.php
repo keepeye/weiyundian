@@ -1,10 +1,9 @@
 <?php
 class LotteryAction extends BaseAction{
-	public $token;
-	public $wecha_id;
-	public $wxsign;
-	
 	public function index(){
+		$token = $this->token;
+		$wxsign = $this->wxsign;
+		$wecha_id = $this->wecha_id;
 		$id = I('request.id');//活动id
 		
 		$Lottery = M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->find();//为了处理推广信息，提前查询
@@ -29,19 +28,18 @@ class LotteryAction extends BaseAction{
 		}
 
 		//推广处理
-		if($this->fromuser){
-			$lt_re=M('Lottery_record')->field('spread_count,usenums')->where(array("lid"=>$Lottery['id'],"token"=>$this->token,"wecha_id"=>$fromuid))->find();
+		if($this->fromuser && $Lottery['spread'] == "1"){
+			//推广者的抽奖记录
+			$lt_re=M('Lottery_record')->field('spread_count,usenums')->where(array("lid"=>$id,"token"=>$this->token,"wecha_id"=>$this->fromuser))->find();
+			//推广奖励
 			if($lt_re && ($Lottery['spread_limit']==0 || $lt_re['spread_count'] < $Lottery['spread_limit'])){
-				M('Lottery_record')->where(array("lid"=>$Lottery['id'],"token"=>$this->token,"wecha_id"=>$fromuid))->data(array("spread_count"=>$lt_re['spread_count']+1,"usenums"=>$lt_re['usenums']+1))->save();
+				M('Lottery_record')->where(array("lid"=>$id,"token"=>$this->token,"wecha_id"=>$this->fromuser))->data(array("spread_count"=>$lt_re['spread_count']+1,"usenums"=>$lt_re['usenums']+1))->save();
 			}
 		}
 		
-
-		
-
-		$this->assign("token",$token);
-		$this->assign("wecha_id",$wecha_id);
-		$this->assign("wxsign",$wxsign);
+		$this->assign("token",$this->token);
+		$this->assign("wecha_id",$this->wecha_id);
+		$this->assign("wxsign",$this->wxsign);
 
 		//检测活动状态
 		$data['token'] = $token;
