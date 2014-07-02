@@ -13,7 +13,7 @@ class GiftAction extends UserAction
 	function index()
 	{
 		$m = M('Gift');
-		$list = $m->order("sort asc")->select();
+		$list = $m->where(array("token"=>$this->token))->order("sort asc")->select();
 
 		$this->assign("list",$list);
 		$this->display();
