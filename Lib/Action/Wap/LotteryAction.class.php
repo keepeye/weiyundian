@@ -5,44 +5,40 @@ class LotteryAction extends BaseAction{
 	public $wxsign;
 	
 	public function index(){
-		
-		$agent = $_SERVER['HTTP_USER_AGENT']; 
 		$id = I('request.id');//活动id
-		//初始化用户信息
-		$this->token = $token		= I('request.token');
-		$this->wecha_id = $wecha_id	= I('request.wecha_id');//获取wecha_id
-		$this->wxsign = $wxsign = I('request.wxsign');//获取加密字符串
+		
 		$Lottery = M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->find();//为了处理推广信息，提前查询
-		//推广处理
-		$fromuser = I('fromuser','');//获取推广用户
-		if(strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==false && !empty($fromuser) && $Lottery['spread'] == "1"){
-			$fromuid = encrypt($fromuser,"D",C('safe_key'));//解密字符串
-			if($fromuid && !cookie("guajiang_fromuid_".$fromuid."_".$Lottery['id'])){
-				$lt_re=M('Lottery_record')->field('spread_count,usenums')->where(array("lid"=>$Lottery['id'],"token"=>$this->token,"wecha_id"=>$fromuid))->find();
-				if($lt_re && ($Lottery['spread_limit']==0 || $lt_re['spread_count'] < $Lottery['spread_limit'])){
-					M('Lottery_record')->where(array("lid"=>$Lottery['id'],"token"=>$this->token,"wecha_id"=>$fromuid))->data(array("spread_count"=>$lt_re['spread_count']+1,"usenums"=>$lt_re['usenums']+1))->save();
-				}
-				cookie("guajiang_fromuid_".$fromuid."_".$Lottery['id'],'1');
-			}
-			//给fromuid的用户增加一次抽奖机会
-		}
-		//生成当前用户的fromuser
-		$this->assign("fromuser",rawurlencode(encrypt($this->wecha_id,"E",C('safe_key'))));
-
 		//检测当前访问的合法性
-		if($wecha_id == "" || md5($token.$wecha_id.C('safe_key'))!=$wxsign){
-			$wxuser = M('Wxuser')->field('has_oauth')->where(array('token'=>$token))->find();
-			if($wxuser && $wxuser['has_oauth']=="1"){
-				redirect(U("Wap/Oauth/getCode",array("token"=>$this->token,"referer"=>rawurlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']))));
-			}else{
-				if(!empty($Lottery['redirect'])){
-					redirect($Lottery['redirect']);
-				}else{
-					$this->redirect("Home/Adma/index?token=".$token);
-				}
-			}
+		if( ! $this->checkWxsign()){
+			// $wxuser = M('Wxuser')->field('has_oauth')->where(array('token'=>$token))->find();
+			// if($wxuser && $wxuser['has_oauth']=="1"){
+			// 	redirect(U("Wap/Oauth/getCode",array("token"=>$this->token,"referer"=>rawurlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']))));
+			// }else{
+				// if(!empty($Lottery['redirect'])){
+				// 	redirect($Lottery['redirect']);
+				// }else{
+				// 	$this->redirect("Home/Adma/index?token=".$token);
+				// }
+			//}
 			//$this->redirect("Home/Adma/index?token=".$token);
+			if(!empty($Lottery['redirect'])){
+				redirect($Lottery['redirect']);
+			}else{
+				$this->redirect("Home/Adma/index?token=".$token);
+			}
 		}
+
+		//推广处理
+		if($this->fromuser){
+			$lt_re=M('Lottery_record')->field('spread_count,usenums')->where(array("lid"=>$Lottery['id'],"token"=>$this->token,"wecha_id"=>$fromuid))->find();
+			if($lt_re && ($Lottery['spread_limit']==0 || $lt_re['spread_count'] < $Lottery['spread_limit'])){
+				M('Lottery_record')->where(array("lid"=>$Lottery['id'],"token"=>$this->token,"wecha_id"=>$fromuid))->data(array("spread_count"=>$lt_re['spread_count']+1,"usenums"=>$lt_re['usenums']+1))->save();
+			}
+		}
+		
+
+		
+
 		$this->assign("token",$token);
 		$this->assign("wecha_id",$wecha_id);
 		$this->assign("wxsign",$wxsign);

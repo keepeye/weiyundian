@@ -34,7 +34,7 @@ class GiftAction extends WapAction {
 			"token"=>$this->token,
 			"status"=>1
 		);
-		$list = M('Gift')->order("sort asc")->select();
+		$list = M('Gift')->where($where)->order("sort asc")->select();
 		$this->assign("list",$list);
 		$this->display();
 	}

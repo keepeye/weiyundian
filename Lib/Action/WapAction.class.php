@@ -57,7 +57,7 @@ class WapAction extends BaseAction
 		$this->assign("fromuser",rawurlencode(encrypt($this->wecha_id,"E",C('safe_key'))));
 	}
 
-	//分享时的事件
+	//全局推广事件
 	public function onFromuser()
 	{
 		//增加积分等
