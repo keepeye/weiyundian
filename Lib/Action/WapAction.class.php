@@ -22,7 +22,7 @@ class WapAction extends BaseAction
 	//检测当前访问的合法性
 	public function checkWxsign()
 	{
-		$this->wecha_id = cookie('wecha_id');//改用cookie
+		$this->wecha_id = cookie($this->token.'_wecha_id');//改用cookie
 		//没有session则从url参数中获取wecha_id和wxsign并验证
 		if($this->wecha_id)
 		{
@@ -33,7 +33,7 @@ class WapAction extends BaseAction
 		if($this->wecha_id == "" || $this->wxsign == "" || md5($this->token.$this->wecha_id.C('safe_key'))!=$this->wxsign){
 			return false;
 		}
-		cookie('wecha_id',$this->wecha_id,7200);
+		cookie($this->token.'_wecha_id',$this->wecha_id,7200);
 		return true;
 	}
 
