@@ -1493,7 +1493,7 @@ class WeixinAction extends Action
             //更新用户积分
             //M('WechaUser')->where(array("id"=>$this->_wecha_user['id']))->setInc("score",$score);
             if(D('WechaUser')->changeScore($this->token,$this->_wecha_user['wecha_id'],$score)){
-                M('WechaLog')->data(array("token"=>$this->token,"wecha_id"=>$this->_wecha_user['wecha_id'],"type"=>"积分","content"=>"签到增加积分{$score}"))->add();
+                D('WechaLog')->addLog($this->token,$this->_wecha_user['wecha_id'],"积分","签到增加积分{$score}");
             }
         }
         if(!$nowscore){
