@@ -1491,7 +1491,10 @@ class WeixinAction extends Action
             $nowscore = $this->_wecha_user['score'] + $score;//新的积分，用于显示
             
             //更新用户积分
-            M('WechaUser')->where(array("id"=>$this->_wecha_user['id']))->setInc("score",$score);
+            //M('WechaUser')->where(array("id"=>$this->_wecha_user['id']))->setInc("score",$score);
+            if(D('WechaUser')->changeScore($this->token,$this->_wecha_user['wecha_id'],$score)){
+                M('WechaLog')->data(array("token"=>$this->token,"wecha_id"=>$this->_wecha_user['wecha_id'],"type"=>"积分","content"=>"{$this->_wecha_user['wecha_id']} 积分变化 {$score}"))->add();
+            }
         }
         if(!$nowscore){
             $nowscore = $this->_wecha_user['score'];
