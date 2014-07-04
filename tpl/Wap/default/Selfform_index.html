@@ -77,6 +77,7 @@ $(function() {
 <li><a href="{pigcms::U('Selfform/detail',array('token'=>$token,'id'=>$thisForm['id'],'wecha_id'=>$wecha_id))}"><span style="color:#666">详细介绍</span></a></li>
 
 </ul>
+<?php if(!empty($submitInfos)): ?>
 <ul class="round">
 <li class="title mb"><span class="none">报名信息</span></li>
 <volist name="submitInfos" id="v">
@@ -92,6 +93,7 @@ $(function() {
 </li>
 </volist>                                                        
 </ul>
+<?php endif;?>
 <a name="theform" id="theform"></a>
 <if condition="$submitted neq 1">
 <form method="post" action="" id="form" onSubmit="return tgSubmit()">   
