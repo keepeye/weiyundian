@@ -39,7 +39,7 @@
 	                    <?php endif;?>
 	                <?php endforeach;?>
 			    </fieldset>
-			    <a href="javascript:" class="fullbtn" style="display:block;position:fixed;bottom:0;width:100%;" onclick="form1.submit()">提交</a>
+			    <a href="javascript:" class="fullbtn" style="display:block;position:fixed;bottom:0;width:100%;" id="subbtn">提交</a>
 			</form>
 			<?php else: ?>
 				<div style="margin:5px;">
@@ -61,12 +61,12 @@
 		</div>
 		<script>
 			Zepto(function($){
-				console.log("请输入表单");
-				$("#form1").submit(function(e){
-			    	var checkempty = true;
+				$("#subbtn").on("click",function(e){
+					var form=$("#form1");
+					var checkempty = true;
 			    	var checkitem;
 			    	//验证字段是否为空
-			    	$(this).find("input:text,select").each(function(){
+			    	form.find("input:text,select").each(function(){
 			    		if($(this).val() == ""){
 			    			checkitem = $(this);
 			    			checkempty = false;
@@ -84,8 +84,8 @@
 			    		e.preventDefault();
 			    		return false;
 			    	}
-
-			    })
+			    	form.submit();
+				});
 			});
 
 			//微信api
