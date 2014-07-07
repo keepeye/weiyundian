@@ -14,9 +14,10 @@ class WapAction extends BaseAction
 		//基本信息
 		$this->token = I('request.token','');
 		$this->wxsign = I('request.wxsign','');//获取加密字符串
-		
+		$this->checkWxsign();
 		//检测推广点击
 		$this->checkFromuser();
+		
 	}
 
 	//检测当前访问的合法性
