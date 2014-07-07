@@ -1,5 +1,5 @@
 <?php
-class LotteryAction extends BaseAction{
+class LotteryAction extends WapAction{
 	public function index(){
 		$token = $this->token;
 		$wxsign = $this->wxsign;
