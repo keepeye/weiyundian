@@ -167,155 +167,164 @@ class LotteryAction extends WapAction{
 	}  
 	
 	protected function get_prize($id){
+		//并发锁
+		$file = TEMP_PATH."/lottery{$id}.lock";
+		$fp = fopen($file,"w+");
 
-		$Lottery 	= M('Lottery')->where(array('id'=>$id))->find();
-		//
-		$firstNum=intval($Lottery['fistnums']);
-		$secondNum=intval($Lottery['secondnums']);
-		$thirdNum=intval($Lottery['thirdnums']);
-		$fourthNum=intval($Lottery['fournums']);
-		$fifthNum=intval($Lottery['fivenums']);
-		$sixthNum=intval($Lottery['sixnums']);
-		$multi=intval($Lottery['canrqnums']);//最多抽奖次数
-		$total = intval($Lottery['allpeople'])*$multi;
-		$prize_arr = array(
-			'0' => array('id'=>1,'prize'=>'一等奖','v'=>$firstNum,'start'=>0,'end'=>$firstNum), 
-			'1' => array('id'=>2,'prize'=>'二等奖','v'=>$secondNum,'start'=>$firstNum,'end'=>$firstNum+$secondNum), 
-			'2' => array('id'=>3,'prize'=>'三等奖','v'=>$thirdNum,'start'=>$firstNum+$secondNum,'end'=>$firstNum+$secondNum+$thirdNum),
-			'3' => array('id'=>4,'prize'=>'四等奖','v'=>$fourthNum,'start'=>$firstNum+$secondNum+$thirdNum,'end'=>$firstNum+$secondNum+$thirdNum+$fourthNum),
-			'4' => array('id'=>5,'prize'=>'五等奖','v'=>$fifthNum,'start'=>$firstNum+$secondNum+$thirdNum+$fourthNum,'end'=>$firstNum+$secondNum+$thirdNum+$fourthNum+$fifthNum),
-			'5' => array('id'=>6,'prize'=>'六等奖','v'=>$sixthNum,'start'=>$firstNum+$secondNum+$thirdNum+$fourthNum+$fifthNum,'end'=>$firstNum+$secondNum+$thirdNum+$fourthNum+$fifthNum+$sixthNum),
-			'6' => array('id'=>7,'prize'=>'谢谢参与','v'=>(intval($Lottery['allpeople']))*$multi-($firstNum+$secondNum+$thirdNum+$fourthNum+$fifthNum+$sixthNum),'start'=>$firstNum+$secondNum+$thirdNum+$fourthNum+$fifthNum+$sixthNum,'end'=>$total)
-		);
-		//
-		
-		//-------------------------------	 
-		//随机抽奖[如果预计活动的人数为1为各个奖项100%中奖]
-		//-------------------------------	 
-		if ($Lottery['allpeople'] == 1) {
-	 
-			if ($Lottery['fistlucknums'] <= $Lottery['fistnums']) {
-				$prizetype = 1;	
-			}else{
-				$prizetype = 7;	
-			}			
+		if(flock($fp,LOCK_EX | LOCK_NB)){
+			$Lottery 	= M('Lottery')->where(array('id'=>$id))->find();
+			//
+			$firstNum=intval($Lottery['fistnums']);
+			$secondNum=intval($Lottery['secondnums']);
+			$thirdNum=intval($Lottery['thirdnums']);
+			$fourthNum=intval($Lottery['fournums']);
+			$fifthNum=intval($Lottery['fivenums']);
+			$sixthNum=intval($Lottery['sixnums']);
+			$multi=intval($Lottery['canrqnums']);//最多抽奖次数
+			$total = intval($Lottery['allpeople'])*$multi;
+			$prize_arr = array(
+				'0' => array('id'=>1,'prize'=>'一等奖','v'=>$firstNum,'start'=>0,'end'=>$firstNum), 
+				'1' => array('id'=>2,'prize'=>'二等奖','v'=>$secondNum,'start'=>$firstNum,'end'=>$firstNum+$secondNum), 
+				'2' => array('id'=>3,'prize'=>'三等奖','v'=>$thirdNum,'start'=>$firstNum+$secondNum,'end'=>$firstNum+$secondNum+$thirdNum),
+				'3' => array('id'=>4,'prize'=>'四等奖','v'=>$fourthNum,'start'=>$firstNum+$secondNum+$thirdNum,'end'=>$firstNum+$secondNum+$thirdNum+$fourthNum),
+				'4' => array('id'=>5,'prize'=>'五等奖','v'=>$fifthNum,'start'=>$firstNum+$secondNum+$thirdNum+$fourthNum,'end'=>$firstNum+$secondNum+$thirdNum+$fourthNum+$fifthNum),
+				'5' => array('id'=>6,'prize'=>'六等奖','v'=>$sixthNum,'start'=>$firstNum+$secondNum+$thirdNum+$fourthNum+$fifthNum,'end'=>$firstNum+$secondNum+$thirdNum+$fourthNum+$fifthNum+$sixthNum),
+				'6' => array('id'=>7,'prize'=>'谢谢参与','v'=>(intval($Lottery['allpeople']))*$multi-($firstNum+$secondNum+$thirdNum+$fourthNum+$fifthNum+$sixthNum),'start'=>$firstNum+$secondNum+$thirdNum+$fourthNum+$fifthNum+$sixthNum,'end'=>$total)
+			);
+			//
 			
-		}else{
-
-			$prizetype = $this->get_rand($prize_arr,$total); 
-
-		}
+			//-------------------------------	 
+			//随机抽奖[如果预计活动的人数为1为各个奖项100%中奖]
+			//-------------------------------	 
+			if ($Lottery['allpeople'] == 1) {
 		 
-		//$winprize = $prize_arr[$rid-1]['prize'];
-
-		switch($prizetype){
-			case 1:
-					 
-				if ($Lottery['fistlucknums'] >= $Lottery['fistnums']) {
-					 $prizetype = ''; 
-					 //$winprize = '谢谢参与'; 
+				if ($Lottery['fistlucknums'] <= $Lottery['fistnums']) {
+					$prizetype = 1;	
 				}else{
-					if(empty($Lottery['fist']) || empty($Lottery['fistnums'])){
-						$prizetype = '';
-					}else{
-						$prizetype = 1; 					
-				    	M('Lottery')->where(array('id'=>$id))->setInc('fistlucknums');
-					}
-					
-				}
-				break;
+					$prizetype = 7;	
+				}			
 				
-			case 2:
-				if ($Lottery['secondlucknums'] >= $Lottery['secondnums']) {
-						$prizetype = ''; 
-						//$winprize = '谢谢参与';
-				}else{
-					//判断是否设置了2等奖&&数量
-					if(empty($Lottery['second']) || empty($Lottery['secondnums'])){
-						$prizetype = ''; 
-						//$winprize = '谢谢参与';
-					}else{ //输出中了二等奖
-						$prizetype = 2; 					
-						M('Lottery')->where(array('id'=>$id))->setInc('secondlucknums');
-					}	 
+			}else{
+
+				$prizetype = $this->get_rand($prize_arr,$total); 
+
+			}
+			 
+			//$winprize = $prize_arr[$rid-1]['prize'];
+
+			switch($prizetype){
+				case 1:
+						 
+					if ($Lottery['fistlucknums'] >= $Lottery['fistnums']) {
+						 $prizetype = ''; 
+						 //$winprize = '谢谢参与'; 
+					}else{
+						if(empty($Lottery['fist']) || empty($Lottery['fistnums'])){
+							$prizetype = '';
+						}else{
+							$prizetype = 1; 					
+					    	M('Lottery')->where(array('id'=>$id))->setInc('fistlucknums');
+						}
+						
+					}
+					break;
 					
-				}
-				break;
-							
-			case 3:
-				if ($Lottery['thirdlucknums'] >= $Lottery['thirdnums']) {
-					 $prizetype = ''; 
-					// $winprize = '谢谢参与';
-				}else{
-					if(empty($Lottery['third']) || empty($Lottery['thirdnums'])){
+				case 2:
+					if ($Lottery['secondlucknums'] >= $Lottery['secondnums']) {
+							$prizetype = ''; 
+							//$winprize = '谢谢参与';
+					}else{
+						//判断是否设置了2等奖&&数量
+						if(empty($Lottery['second']) || empty($Lottery['secondnums'])){
+							$prizetype = ''; 
+							//$winprize = '谢谢参与';
+						}else{ //输出中了二等奖
+							$prizetype = 2; 					
+							M('Lottery')->where(array('id'=>$id))->setInc('secondlucknums');
+						}	 
+						
+					}
+					break;
+								
+				case 3:
+					if ($Lottery['thirdlucknums'] >= $Lottery['thirdnums']) {
 						 $prizetype = ''; 
 						// $winprize = '谢谢参与';
 					}else{
-						$prizetype = 3; 					
-						M('Lottery')->where(array('id'=>$id))->setInc('thirdlucknums');
-					} 
-					
-				}
-				break;
+						if(empty($Lottery['third']) || empty($Lottery['thirdnums'])){
+							 $prizetype = ''; 
+							// $winprize = '谢谢参与';
+						}else{
+							$prizetype = 3; 					
+							M('Lottery')->where(array('id'=>$id))->setInc('thirdlucknums');
+						} 
 						
-			case 4:
-				if ($Lottery['fourlucknums'] >= $Lottery['fournums']) {
-					  $prizetype =  ''; 
-					// $winprize = '谢谢参与';
-				}else{
-					 if(empty($Lottery['four']) || empty($Lottery['fournums'])){
-					   	$prizetype =  ''; 
-					 	//$winprize = '谢谢参与';
-					 }else{
-					 	$prizetype = 4; 					
-						M('Lottery')->where(array('id'=>$id))->setInc('fourlucknums');
-					 }					
-				}
-			break;
-			
-			case 5:
-				if ($Lottery['fivelucknums'] >= $Lottery['fivenums']) {
-					 $prizetype =  ''; 
-					 //$winprize = '谢谢参与';
-				}else{
-					if(empty($Lottery['five']) || empty($Lottery['fivenums'])){
-						$prizetype =  ''; 
-					 	//$winprize = '谢谢参与';
-					}else{
-						$prizetype = 5; 					
-						M('Lottery')->where(array('id'=>$id))->setInc('fivelucknums');
-					} 
-				}
-			break;
-			
-			case 6:
-				if ($Lottery['sixlucknums'] >= $Lottery['sixnums']) {
-					 $prizetype =  ''; 
-					// $winprize = '谢谢参与';
-				}else{
-					 if(empty($Lottery['six']) || empty($Lottery['sixnums'])){
-					 	$prizetype =  ''; 
-					 	//$winprize = '谢谢参与';
-					 }else{
-					 	$prizetype = 6; 					
-						M('Lottery')->where(array('id'=>$id))->setInc('sixlucknums');
-					 }
-					
-				}
-			break;
-							
-			default:
-					$prizetype =  ''; 
-					//$winprize = '谢谢参与';
-					
+					}
 					break;
+							
+				case 4:
+					if ($Lottery['fourlucknums'] >= $Lottery['fournums']) {
+						  $prizetype =  ''; 
+						// $winprize = '谢谢参与';
+					}else{
+						 if(empty($Lottery['four']) || empty($Lottery['fournums'])){
+						   	$prizetype =  ''; 
+						 	//$winprize = '谢谢参与';
+						 }else{
+						 	$prizetype = 4; 					
+							M('Lottery')->where(array('id'=>$id))->setInc('fourlucknums');
+						 }					
+					}
+				break;
+				
+				case 5:
+					if ($Lottery['fivelucknums'] >= $Lottery['fivenums']) {
+						 $prizetype =  ''; 
+						 //$winprize = '谢谢参与';
+					}else{
+						if(empty($Lottery['five']) || empty($Lottery['fivenums'])){
+							$prizetype =  ''; 
+						 	//$winprize = '谢谢参与';
+						}else{
+							$prizetype = 5; 					
+							M('Lottery')->where(array('id'=>$id))->setInc('fivelucknums');
+						} 
+					}
+				break;
+				
+				case 6:
+					if ($Lottery['sixlucknums'] >= $Lottery['sixnums']) {
+						 $prizetype =  ''; 
+						// $winprize = '谢谢参与';
+					}else{
+						 if(empty($Lottery['six']) || empty($Lottery['sixnums'])){
+						 	$prizetype =  ''; 
+						 	//$winprize = '谢谢参与';
+						 }else{
+						 	$prizetype = 6; 					
+							M('Lottery')->where(array('id'=>$id))->setInc('sixlucknums');
+						 }
+						
+					}
+				break;
+								
+				default:
+						$prizetype =  ''; 
+						//$winprize = '谢谢参与';
+						
+						break;
+			}
+			//解锁
+			flock($fp,LOCK_UN);
+			fclose($fp);
+			return $prizetype;
+		}else{
+			//没抢到锁则视为未中奖
+			return '';
 		}
-		
-		return $prizetype;
 	}
 	
 	public function getajax(){	
-		
 		$token 		=	I('token');
 		$wecha_id	=	I('oneid');
 		$wxsign = I('wxsign');
