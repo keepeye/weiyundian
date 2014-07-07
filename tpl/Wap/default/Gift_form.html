@@ -66,8 +66,9 @@
 					var checkempty = true;
 			    	var checkitem;
 			    	//验证字段是否为空
-			    	form.find("input:text,select").each(function(){
-			    		if($(this).val() == ""){
+			    	form.find("input,select").each(function(){
+
+			    		if(($(this).attr("type")=="text" || $(this).attr("tagName")=="select") && $(this).val() == ""){
 			    			checkitem = $(this);
 			    			checkempty = false;
 			    			return false;
