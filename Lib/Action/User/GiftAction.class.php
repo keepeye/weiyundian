@@ -233,4 +233,81 @@ class GiftAction extends UserAction
 		}
 		
 	}
+	//导出中奖记录到excel下载
+	function exportExcel(){
+		$id = I('id','0','intval');//礼品id
+		if(!$id){
+			exit('非法id');
+		}
+		//查询活动基本信息
+		$gift = M('Gift')->where(array("id"=>$id,"token"=>$this->token))->find();
+		if(!$gift){
+			exit('礼品不存在');
+		}
+		import("@.ORG.phpexcel.Classes.PHPExcel",'',".php");
+		$objPHPExcel = new PHPExcel();
+		// 设置列名
+		$excelobj = $objPHPExcel->setActiveSheetIndex(0)
+		            ->setCellValue('A1', 'sn号')
+		            ->setCellValue('B1', '用户uid');
+
+		//自定义表单列
+		if(!empty($gift['formset'])){
+			$formset = unserialize($gift['formset']);
+			$column_start = ord('C');//从C列开始，取得字母的ASCII码
+			$extra_columns = array();
+			foreach($formset as $field){
+				$column_name = chr($column_start);
+				$extra_columns[$column_name] = $field;
+				$excelobj->setCellValue($column_name.'1', $field['name']);//设定一个列来存储表单字段
+				$column_start += 1;//ASCII码加+1表示下一个列字母
+				
+			}
+
+		}
+		//读取数据
+		$map = array(
+			"a.token"=>$this->token,
+			"a.pid"=>$id
+		);
+		$list = M("GiftSn")->field("a.*,b.id as uid")->alias("a")->join("right join __WECHA_USER__ as b on a.wecha_id=b.wecha_id")->where($map)->select();
+		$i=2;
+		//自定义表单的情况下
+		if(isset($extra_columns) && !empty($extra_columns)){
+			foreach($list as $item){
+				
+				$excelobj = $objPHPExcel->setActiveSheetIndex(0)
+			            ->setCellValueExplicit('A'.$i, $item['sn'],PHPExcel_Cell_DataType::TYPE_STRING)
+			            ->setCellValueExplicit('B'.$i, $item['uid'],PHPExcel_Cell_DataType::TYPE_STRING);
+			    $formdata = unserialize($item['formdata']);//用户提交的表单数据
+			    foreach($extra_columns as $k1=>$v1){
+			    	$excelobj->setCellValueExplicit($k1.$i, $formdata[$v1['id']],PHPExcel_Cell_DataType::TYPE_STRING);
+			    }
+			    unset($k1,$v1);
+			    $i++;
+			}
+		}
+		
+		//设置sheet标题
+		$objPHPExcel->getActiveSheet()->setTitle('领奖记录');
+		$objPHPExcel->setActiveSheetIndex(0);
+
+		// Redirect output to a client’s web browser (Excel5)
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="'.$gift['title'].'领取统计"');
+		header('Cache-Control: max-age=0');
+		// If you're serving to IE 9, then the following may be needed
+		header('Cache-Control: max-age=1');
+
+		// If you're serving to IE over SSL, then the following may be needed
+		header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+		header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+		header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+		header ('Pragma: public'); // HTTP/1.0
+
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+		$objWriter->save('php://output');
+		exit;
+
+	}
 }
