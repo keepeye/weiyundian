@@ -74,14 +74,13 @@
 			    	})
 
 			    	if(checkempty == false){
-			    		
+			    		alert('表单不能为空');
 			    		try{
 			    			checkitem.after('该字段必填');
 			    			checkitem.focus();
 			    		}catch(e){
 
 			    		}
-			    		alert('字段不能为空');
 			    		e.preventDefault();
 			    		return false;
 			    	}
