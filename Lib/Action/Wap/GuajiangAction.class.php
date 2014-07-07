@@ -17,19 +17,9 @@ class GuajiangAction extends WapAction{
 		}
 		
 		//@file_put_contents("./fromuser.txt", $Lottery['spread']."\t".$Lottery['id']."\t".$_SERVER['HTTP_USER_AGENT']."\t".encrypt($fromuser,"D",C('safe_key'))."\n",FILE_APPEND);
-		//推广处理
-		if($this->fromuser && $Lottery['spread'] == "1"){
-			//推广者的抽奖记录
-			$lt_re=M('Lottery_record')->field('spread_times_count,usenums')->where(array("lid"=>$id,"token"=>$this->token,"wecha_id"=>$this->fromuser))->find();
-			//推广奖励
-			if($lt_re && ($Lottery['spread_times_limit']==0 || $lt_re['spread_times'] < $Lottery['spread_times_limit'])){
-				M('Lottery_record')->where(array("lid"=>$id,"token"=>$this->token,"wecha_id"=>$this->fromuser))->data(array("spread_times"=>$lt_re['spread_times']+1,"usenums"=>$lt_re['usenums']+1))->save();
-			}
-		}
-		
-
+	
 		//检测当前访问的合法性
-		if(!$this->checkWxsign()){
+		if(!$this->wecha_id){
 			//exit($this->fromuser);
 			//dump(encrypt(I('fromuser',''),"D",C('safe_key')));exit;
 			// $wxuser = M('Wxuser')->field('has_oauth')->where(array('token'=>$token))->find();
@@ -45,6 +35,40 @@ class GuajiangAction extends WapAction{
 			//}
 			//$this->redirect("Home/Adma/index?token=".$token);
 		}
+
+		//推广处理
+		if($this->fromuser && $Lottery['spread'] == "1"){
+
+			//推广者的抽奖记录
+			$lt_re=M('Lottery_record')->where(array("lid"=>$id,"token"=>$this->token,"wecha_id"=>$this->fromuser))->find();
+			//推广奖励
+			if($lt_re){
+				//抽奖次数奖励
+				if($Lottery['spread_times_limit']==0 || $lt_re['spread_times'] < $Lottery['spread_times_limit']){
+					$spread_data = array(
+						"spread_times"=>$lt_re['spread_times']+1,
+						"usenums"=>$lt_re['usenums']+1
+					);
+				}
+				//积分奖励
+				if($Lottery['spread_score']>0 && ($Lottery['spread_score_limit']==0 || $lt_re['spread_score'] < $Lottery['spread_score_limit'])){
+					$spread_data['spread_score'] = $lt_re['spread_score'] + $Lottery['spread_score'];
+					//增加用户积分
+					if(D('WechaUser')->changeScore($this->token,$this->fromuser,$Lottery['spread_score'])){
+		                D('WechaLog')->addLog($this->token,$this->fromuser,"积分","推广{$Lottery['title']}增加积分{$Lottery['spread_score']}");
+		            }
+				}
+
+				//更新抽奖记录
+				if(!empty($spread_data)){
+					M('Lottery_record')
+						->where(array("lid"=>$id,"token"=>$this->token,"wecha_id"=>$this->fromuser))
+						->data($spread_data)
+						->save();
+				}				
+			}
+		}
+		
 		$this->assign("token",$token);
 		$this->assign("wecha_id",$wecha_id);
 		$this->assign("wxsign",$wxsign);
