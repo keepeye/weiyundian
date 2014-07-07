@@ -1425,7 +1425,7 @@ class WeixinAction extends Action
         if(!$sign_config){
             return "签到功能未启用";
         }
-
+        $nowtime = time();
         //读取签到记录
         $record = M('SignRecord')->where(array("wecha_user_id"=>$this->_wecha_user['id']))->find();
         //检测是否第一次签到
@@ -1439,7 +1439,7 @@ class WeixinAction extends Action
             );
         }
 
-        $nowtime = time();
+        
         //距离上次签到间隔,按0点计算
         $timeout = strtotime(date("Y-m-d",$nowtime)) - strtotime(date("Y-m-d",$record['lasttime']));
         $tip = "";
