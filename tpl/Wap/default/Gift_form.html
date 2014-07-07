@@ -61,7 +61,31 @@
 		</div>
 		<script>
 			Zepto(function($){
-				
+				$("#form1").submit(function(e){
+			    	var checkempty = true;
+			    	var checkitem;
+			    	//验证字段是否为空
+			    	$(this).find("input:text,select").each(function(){
+			    		if($(this).val() == ""){
+			    			checkitem = $(this);
+			    			checkempty = false;
+			    			return false;
+			    		}
+			    	})
+
+			    	if(checkempty == false){
+			    		
+			    		try{
+			    			checkitem.after('该字段必填');
+			    			checkitem.focus();
+			    		}catch(e){
+
+			    		}
+			    		e.preventDefault();
+			    		return false;
+			    	}
+
+			    })
 			});
 
 			//微信api
