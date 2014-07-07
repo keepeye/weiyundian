@@ -17,11 +17,13 @@ class GuajiangAction extends WapAction{
 		}
 		
 		//@file_put_contents("./fromuser.txt", $Lottery['spread']."\t".$Lottery['id']."\t".$_SERVER['HTTP_USER_AGENT']."\t".encrypt($fromuser,"D",C('safe_key'))."\n",FILE_APPEND);
-		//给推广用户增加一次抽奖机会
+		//推广处理
 		if($this->fromuser && $Lottery['spread'] == "1"){
-			$lt_re=M('Lottery_record')->field('spread_count,usenums')->where(array("lid"=>$Lottery['id'],"token"=>$this->token,"wecha_id"=>$this->fromuser))->find();
-			if($lt_re && ($Lottery['spread_limit']==0 || $lt_re['spread_count'] < $Lottery['spread_limit'])){
-				M('Lottery_record')->where(array("lid"=>$Lottery['id'],"token"=>$this->token,"wecha_id"=>$this->fromuser))->data(array("spread_count"=>$lt_re['spread_count']+1,"usenums"=>$lt_re['usenums']+1))->save();
+			//推广者的抽奖记录
+			$lt_re=M('Lottery_record')->field('spread_times_count,usenums')->where(array("lid"=>$id,"token"=>$this->token,"wecha_id"=>$this->fromuser))->find();
+			//推广奖励
+			if($lt_re && ($Lottery['spread_times_limit']==0 || $lt_re['spread_times'] < $Lottery['spread_times_limit'])){
+				M('Lottery_record')->where(array("lid"=>$id,"token"=>$this->token,"wecha_id"=>$this->fromuser))->data(array("spread_times"=>$lt_re['spread_times']+1,"usenums"=>$lt_re['usenums']+1))->save();
 			}
 		}
 		
