@@ -17,7 +17,7 @@ class WapAction extends BaseAction
 		$this->checkWxsign();
 		//检测推广点击
 		$this->checkFromuser();
-		
+
 	}
 
 	//检测当前访问的合法性
@@ -43,7 +43,8 @@ class WapAction extends BaseAction
 	{
 		$fromuser = I('fromuser','');
 		$id = I('id','');
-		if( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==false && !empty($fromuser) )
+		//if( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger')!==false && !empty($fromuser) )
+		if(!empty($fromuser))
 		{
 
 			$fromuser = encrypt($fromuser,"D",C('safe_key'));//解密字符串
@@ -55,6 +56,7 @@ class WapAction extends BaseAction
 				cookie(MODULE_NAME."_FROM_".$fromuser."_".$id,'1');
 			}
 		}
+		dump($fromuser);
 		$this->assign("fromuser",rawurlencode(encrypt($this->wecha_id,"E",C('safe_key'))));
 	}
 
