@@ -68,7 +68,7 @@ class GuajiangAction extends WapAction{
 				}				
 			}
 		}
-		
+
 		$this->assign("token",$token);
 		$this->assign("wecha_id",$wecha_id);
 		$this->assign("wxsign",$wxsign);
@@ -132,7 +132,7 @@ class GuajiangAction extends WapAction{
 		}
 		
 		
-		
+		//判断是否已经中奖
 		if ($record['islottery'] == 1) {
 			$this->assign("islottery","1");
 			$data['islottery'] = '1';
@@ -140,9 +140,8 @@ class GuajiangAction extends WapAction{
 			$data['uname']	 = $record['myname'];//姓名
 			$data['winprize']	= $record['prize'];//奖项名
 		}else{
-			
+			//次数已经达到限定
 			if ($record['usenums'] < 1 ) {
-				//次数已经达到限定
 				$data['usenums'] = 0;
 				$data['winprize']	= '抽奖次数已用完';
 
@@ -154,102 +153,112 @@ class GuajiangAction extends WapAction{
 					"time"=>time()
 				))->save();
 				
+				//随机抽奖
+				//并发锁
+				$file = TEMP_PATH."/lottery{$id}.lock";
+				$fp = fopen($file,"w+");
+				if(flock($fp,LOCK_EX | LOCK_NB)){
+					//$record = M('Lottery_record')->where(array('id'=>$record['id']))->find();//
+					$firstNum=intval($Lottery['fistnums']);
+					$secondNum=intval($Lottery['secondnums']);
+					$thirdNum=intval($Lottery['thirdnums']);
+					$fourthNum=intval($Lottery['fournums']);
+					$fifthNum=intval($Lottery['fivenums']);
+					$sixthNum=intval($Lottery['sixnums']);
+					$multi=intval($Lottery['canrqnums']);//最多抽奖次数
+					$prize_arr = array(
+					'0' => array('id'=>1,'prize'=>'一等奖','v'=>$firstNum,'start'=>0,'end'=>$firstNum),
+					'1' => array('id'=>2,'prize'=>'二等奖','v'=>$secondNum,'start'=>$firstNum,'end'=>$firstNum+$secondNum),
+					'2' => array('id'=>3,'prize'=>'三等奖','v'=>$thirdNum,'start'=>$firstNum+$secondNum,'end'=>$firstNum+$secondNum+$thirdNum),
+					'3' => array('id'=>4,'prize'=>'谢谢参与','v'=>(intval($Lottery['allpeople']))*$multi-($firstNum+$secondNum+$thirdNum),'start'=>$firstNum+$secondNum+$thirdNum,'end'=>intval($Lottery['allpeople'])*$multi)
+					);
 
-				//$record = M('Lottery_record')->where(array('id'=>$record['id']))->find();//
-				$firstNum=intval($Lottery['fistnums']);
-				$secondNum=intval($Lottery['secondnums']);
-				$thirdNum=intval($Lottery['thirdnums']);
-				$fourthNum=intval($Lottery['fournums']);
-				$fifthNum=intval($Lottery['fivenums']);
-				$sixthNum=intval($Lottery['sixnums']);
-				$multi=intval($Lottery['canrqnums']);//最多抽奖次数
-				$prize_arr = array(
-				'0' => array('id'=>1,'prize'=>'一等奖','v'=>$firstNum,'start'=>0,'end'=>$firstNum),
-				'1' => array('id'=>2,'prize'=>'二等奖','v'=>$secondNum,'start'=>$firstNum,'end'=>$firstNum+$secondNum),
-				'2' => array('id'=>3,'prize'=>'三等奖','v'=>$thirdNum,'start'=>$firstNum+$secondNum,'end'=>$firstNum+$secondNum+$thirdNum),
-				'3' => array('id'=>4,'prize'=>'谢谢参与','v'=>(intval($Lottery['allpeople']))*$multi-($firstNum+$secondNum+$thirdNum),'start'=>$firstNum+$secondNum+$thirdNum,'end'=>intval($Lottery['allpeople'])*$multi)
-				);
 
+					foreach ($prize_arr as $key => $val) {
+					    $arr[$val['id']] = $val;
+					}
+			 		if ($Lottery['allpeople'] == 1) {
 
-				foreach ($prize_arr as $key => $val) {
-				    $arr[$val['id']] = $val;
-				}
-		 		if ($Lottery['allpeople'] == 1) {
+						if ($Lottery['fistlucknums'] <= $Lottery['fistnums']) {
+							$rid = 1;
+						}else{
+							$rid = 4;
+						}
 
-					if ($Lottery['fistlucknums'] <= $Lottery['fistnums']) {
-						$rid = 1;
 					}else{
-						$rid = 4;
+						$rid = $this->get_rand($arr,intval($Lottery['allpeople'])*$multi);
 					}
 
-				}else{
-					$rid = $this->get_rand($arr,intval($Lottery['allpeople'])*$multi);
-				}
 
+					$winprize = $prize_arr[$rid-1]['prize'];
+					$zjl = false;
 
-				$winprize = $prize_arr[$rid-1]['prize'];
-				$zjl = false;
+					switch($rid){
+						case 1:
 
-				switch($rid){
-					case 1:
-
-						if ($Lottery['fistlucknums'] >= $Lottery['fistnums']) {
-							 $zjl = false;
-							 $winprize = '谢谢参与';
-						}else{
-							$winprize = $Lottery['fist'];
-							$this->assign("islottery","1");
-							$zjl	= true;
-							M('LotteryRecord')->where(array('id'=>$record['id']))->data(array("islottery"=>1,"prize"=>$winprize))->save();
-						    M('Lottery')->where(array('id'=>$id))->setInc('fistlucknums');
-						}
-					break;
-
-					case 2:
-						if ($Lottery['secondlucknums'] >= $Lottery['secondnums']) {
-								$zjl = false;
-								$winprize = '谢谢参与';
-						}else{
-							//判断是否设置了2等奖&&数量
-							if(empty($Lottery['second']) && empty($Lottery['secondnums'])){
-								$zjl = false;
-								$winprize = '谢谢参与';
-							}else{ //输出中了二等奖
-								$winprize = $Lottery['second'];
-								$this->assign("islottery","1");
-								$zjl	= true;
-								M('LotteryRecord')->where(array('id'=>$record['id']))->data(array("islottery"=>1,"prize"=>$winprize))->save();
-								M('Lottery')->where(array('id'=>$id))->setInc('secondlucknums');
-							}
-
-						}
-					break;
-
-					case 3:
-						if ($Lottery['thirdlucknums'] >= $Lottery['thirdnums']) {
-							 $zjl = false;
-							 $winprize = '谢谢参与';
-						}else{
-							if(empty($Lottery['third']) && empty($Lottery['thirdnums'])){
-								$zjl = false;
-								$winprize = '谢谢参与';
+							if ($Lottery['fistlucknums'] >= $Lottery['fistnums']) {
+								 $zjl = false;
+								 $winprize = '谢谢参与';
 							}else{
-								$winprize = $Lottery['third'];
+								$winprize = $Lottery['fist'];
 								$this->assign("islottery","1");
 								$zjl	= true;
 								M('LotteryRecord')->where(array('id'=>$record['id']))->data(array("islottery"=>1,"prize"=>$winprize))->save();
-								M('Lottery')->where(array('id'=>$id))->setInc('thirdlucknums');
+							    M('Lottery')->where(array('id'=>$id))->setInc('fistlucknums');
 							}
+						break;
 
-						}
-					break;
+						case 2:
+							if ($Lottery['secondlucknums'] >= $Lottery['secondnums']) {
+									$zjl = false;
+									$winprize = '谢谢参与';
+							}else{
+								//判断是否设置了2等奖&&数量
+								if(empty($Lottery['second']) && empty($Lottery['secondnums'])){
+									$zjl = false;
+									$winprize = '谢谢参与';
+								}else{ //输出中了二等奖
+									$winprize = $Lottery['second'];
+									$this->assign("islottery","1");
+									$zjl	= true;
+									M('LotteryRecord')->where(array('id'=>$record['id']))->data(array("islottery"=>1,"prize"=>$winprize))->save();
+									M('Lottery')->where(array('id'=>$id))->setInc('secondlucknums');
+								}
 
-					default:
-							$zjl = false;
-							$winprize = '谢谢参与';
-							break;
+							}
+						break;
+
+						case 3:
+							if ($Lottery['thirdlucknums'] >= $Lottery['thirdnums']) {
+								 $zjl = false;
+								 $winprize = '谢谢参与';
+							}else{
+								if(empty($Lottery['third']) && empty($Lottery['thirdnums'])){
+									$zjl = false;
+									$winprize = '谢谢参与';
+								}else{
+									$winprize = $Lottery['third'];
+									$this->assign("islottery","1");
+									$zjl	= true;
+									M('LotteryRecord')->where(array('id'=>$record['id']))->data(array("islottery"=>1,"prize"=>$winprize))->save();
+									M('Lottery')->where(array('id'=>$id))->setInc('thirdlucknums');
+								}
+
+							}
+						break;
+
+						default:
+								$zjl = false;
+								$winprize = '谢谢参与';
+								break;
+					}
+					//解锁
+					flock($fp,LOCK_UN);
+					fclose($fp);
+				}else{//未获取到文件锁，则视为未中奖
+					$zjl = false;
+					$winprize = '谢谢参与';
 				}
-
 				//$data['prizeid']  	= $rid;
 				$data['zjl'] 		= $zjl;
 				$data['wecha_id']	= $record['wecha_id'];
