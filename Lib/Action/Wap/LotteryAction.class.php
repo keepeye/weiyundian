@@ -27,7 +27,6 @@ class LotteryAction extends WapAction{
 			}
 		}
 		
-		dump($this->fromuser);
 		//推广处理
 		if($this->fromuser && $Lottery['spread'] == "1"){
 			//推广者的抽奖记录
@@ -49,6 +48,7 @@ class LotteryAction extends WapAction{
 		                D('WechaLog')->addLog($this->token,$this->fromuser,"积分","推广{$Lottery['title']}增加积分{$Lottery['spread_score']}");
 		            }
 				}
+				dump($spread_data);
 				//更新抽奖记录
 				if(!empty($spread_data)){
 					M('Lottery_record')
