@@ -280,11 +280,12 @@ uploadJson  : "/index.php?m=Image&a=upload",
                   </TR>
                   <TR>
                     <th valign="top">奖励次数：</th>
-                    <td>1次<br/>上限:<input type="input" class="px" name="spread_times_limit"   value="{pigcms:$vo.spread_times_limit|default=0}" style="width:150px"/>   最多从推广获得抽奖次数的上限，0为不限制。</td> 
+                    <td>1次 上限:<input type="input" class="px" name="spread_times_limit"   value="{pigcms:$vo.spread_times_limit|default=0}" />次 最多从推广获得抽奖次数的上限，0为不限制。</td> 
                   </TR>
                   <TR>
                     <th valign="top">奖励积分：</th>
-                    <td><input type="input" class="px" name="spread_score"   value="{pigcms:$vo.spread_score|default=0}" style="width:150px"/> <br/>
+                    <td>
+                    <input type="input" class="px" name="spread_score"   value="{pigcms:$vo.spread_score|default=0}"/>
                     上限: <input type="input" class="px" name="spread_score_limit"   value="{pigcms:$vo.spread_score_limit|default=0}" style="width:150px"/>
                     </td> 
                   </TR>  
