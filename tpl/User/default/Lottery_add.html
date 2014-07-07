@@ -279,8 +279,14 @@ uploadJson  : "/index.php?m=Image&a=upload",
                     <td><input class="radio" type="radio" name="spread" value="1"  <if condition="$vo['spread'] eq 1" >checked</if> >开启  <input class="radio" type="radio" name="spread" value="0"  <if condition="$vo['spread'] eq 0" >checked</if>>关闭  用户转发后，别人点进来会给该用户增加一次额外的抽奖机会。</td> 
                   </TR>
                   <TR>
-                    <th valign="top">推广限制：</th>
-                    <td><input type="input" class="px" name="spread_limit"   value="{pigcms:$vo.spread_limit|default=0}" style="width:150px"/>   最多从推广获得抽奖次数的上限，0为不限制。</td> 
+                    <th valign="top">奖励次数：</th>
+                    <td>1次<br/>上限:<input type="input" class="px" name="spread_times_limit"   value="{pigcms:$vo.spread_times_limit|default=0}" style="width:150px"/>   最多从推广获得抽奖次数的上限，0为不限制。</td> 
+                  </TR>
+                  <TR>
+                    <th valign="top">奖励积分：</th>
+                    <td><input type="input" class="px" name="spread_score"   value="{pigcms:$vo.spread_score|default=0}" style="width:150px"/> <br/>
+                    上限: <input type="input" class="px" name="spread_score_limit"   value="{pigcms:$vo.spread_score_limit|default=0}" style="width:150px"/>
+                    </td> 
                   </TR>  
                   <TR>
                     <th valign="top">游客跳转：</th>
