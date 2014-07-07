@@ -1444,7 +1444,7 @@ class WeixinAction extends Action
         $timeout = strtotime(date("Y-m-d",$nowtime)) - strtotime(date("Y-m-d",$record['lasttime']));
         $tip = "";
         //判断今天是否已签到过
-        if($timeout < 86400){
+        if($timeout < 86401){
             $tip .= "您今天已签过,请明天再来吧~\r\n";
             $data = &$record;
         }else{
