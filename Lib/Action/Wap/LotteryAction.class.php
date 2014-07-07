@@ -29,9 +29,9 @@ class LotteryAction extends WapAction{
 		
 		//推广处理
 		if($this->fromuser && $Lottery['spread'] == "1"){
-			dump($this->fromuser);
+
 			//推广者的抽奖记录
-			$lt_re=M('Lottery_record')->field('spread_times_count,usenums')->where(array("lid"=>$id,"token"=>$this->token,"wecha_id"=>$this->fromuser))->find();
+			$lt_re=M('Lottery_record')->where(array("lid"=>$id,"token"=>$this->token,"wecha_id"=>$this->fromuser))->find();
 			//推广奖励
 			if($lt_re){
 				//抽奖次数奖励
