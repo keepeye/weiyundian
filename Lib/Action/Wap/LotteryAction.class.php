@@ -26,7 +26,9 @@ class LotteryAction extends WapAction{
 				$this->redirect("Home/Adma/index?token=".$token);
 			}
 		}
+		//wechaid在checkwxsign后才能得到
 		$wecha_id = $this->wecha_id;
+		dump($this->fromuser);
 		//推广处理
 		if($this->fromuser && $Lottery['spread'] == "1"){
 			//推广者的抽奖记录
