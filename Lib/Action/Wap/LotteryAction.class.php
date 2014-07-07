@@ -5,7 +5,7 @@ class LotteryAction extends WapAction{
 		$wxsign = $this->wxsign;
 		$wecha_id = $this->wecha_id;
 		$id = I('request.id');//活动id
-		
+		echo $wecha_id;
 		$Lottery = M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->find();//为了处理推广信息，提前查询
 		//检测当前访问的合法性
 		if( ! $this->checkWxsign()){
