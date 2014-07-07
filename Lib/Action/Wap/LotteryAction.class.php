@@ -8,7 +8,7 @@ class LotteryAction extends WapAction{
 		
 		$Lottery = M('Lottery')->where(array('id'=>$id,'token'=>$token,'type'=>1,'status'=>1))->find();//为了处理推广信息，提前查询
 		//检测当前访问的合法性
-		if( ! $this->checkWxsign()){
+		if( ! $this->wecha_id){
 			// $wxuser = M('Wxuser')->field('has_oauth')->where(array('token'=>$token))->find();
 			// if($wxuser && $wxuser['has_oauth']=="1"){
 			// 	redirect(U("Wap/Oauth/getCode",array("token"=>$this->token,"referer"=>rawurlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']))));
@@ -28,7 +28,7 @@ class LotteryAction extends WapAction{
 		}
 		
 		
-
+		dump($this->fromuser);
 		//推广处理
 		if($this->fromuser && $Lottery['spread'] == "1"){
 			//推广者的抽奖记录
