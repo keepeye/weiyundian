@@ -37,7 +37,7 @@
 				<div class="center">
 					<b><?=$item['title'];?></b><br/>
 					需要:<?=$item['score'];?> 积分<br/>
-					<?php if($item['stock']>0): ?>库存:<?=$item['stock'];?> 个<?php else: ?><font color="red">已被抢完啦~</font><?php endif;?>
+					库存:<?php if($item['stock']>0): ?><font color="red"><?=$item['stock'];?></font> 个<?php else: ?>已被抢光啦~<?php endif;?>
 				</div>
 				
 			</div>
