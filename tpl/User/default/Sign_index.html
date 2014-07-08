@@ -21,11 +21,12 @@
 	            <input type="hidden" name="g" value="<?php echo GROUP_NAME;?>"/>
 	            <input type="hidden" name="m" value="<?php echo MODULE_NAME;?>"/>
 	            <input type="hidden" name="a" value="<?php echo ACTION_NAME;?>"/>
-	            
+	           排序：<select name="filter[order]"><option value='uid_asc'>uid↑</option><option value='uid_desc'>uid↓</option><option value='total_desc'>累计↓</option><option value='keep_desc'>连续签到↓</option><option value='lasttime_desc'>签到时间↓</option></select>
+                   &nbsp; 
 	           uid：<input type="text"  class="txt" placeholder="用户uid"  name="filter[uid]" value="<?=$_GET['filter']['uid'];?>">&nbsp;
 	           起始时间：<input type="text"  class="txt"  name="filter[stime]" value="<?=$_GET['filter']['stime'];?>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
-				终止时间：<input type="text"  class="txt"   name="filter[etime]"" value="<?=$_GET['filter']['etime'];?>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>&nbsp;
-	            <input type="submit" value="查找" id="msgSearchBtn" href="" class="btnGrayS" title="查找">
+				终止时间：<input type="text"  class="txt"   name="filter[etime]" value="<?=$_GET['filter']['etime'];?>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>&nbsp;
+	            <input type="submit" value="查找" id="msgSearchBtn" href="" class="btnGrayS" title="查找" />
 	            
 	          </form>
 	      </div>

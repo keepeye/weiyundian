@@ -12,9 +12,33 @@ class SignAction extends UserAction {
 	function index(){
 		$M = M('SignRecord');
 		$where = array('token'=>$this->_token);
+		$order = "`lasttime` desc";
 		//附加条件处理
 		if($filter = I('filter'))
 		{
+			//排序
+			if( isset($filter['order']))
+			{
+				switch($filter['order'])
+				{
+					case "uid_desc":
+						$order = "`wecha_user_id` desc";
+						break;
+					case "uid_asc":
+						$order = "`wecha_user_id` asc";
+						break;
+					case "total_desc":
+						$order = "`total` desc";
+						break;
+					case "keep_desc":
+						$order = "`keep` desc";
+						break;	
+					case "lasttime_desc":
+						$order = "`lasttime` desc";
+						break;
+					default:
+				}
+			}
 			//uid
 			if( isset($filter['uid']) && $filter['uid']>0 )
 			{
@@ -36,7 +60,7 @@ class SignAction extends UserAction {
 		$count      = $M->where($where)->count();//总数
 		$Page       = new Page($count,20);
 		$show       = $Page->show();
-		$list = $M->field('*')->where($where)->order('lasttime desc')->limit($Page->firstRow.','.$Page->listRows)->select();
+		$list = $M->field('*')->where($where)->order($order)->limit($Page->firstRow.','.$Page->listRows)->select();
 		$this->assign('pagestr',$show);
 		$this->assign("list",$list);
 		$this->display();
