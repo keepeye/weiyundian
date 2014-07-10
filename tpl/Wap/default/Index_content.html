@@ -10,6 +10,7 @@
 	<meta name="apple-mobile-web-app-capable" content="yes"> 
 	<!-- apple devices fullscreen -->
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 	<style>
 		body{
 			background: #f8f7f5;
@@ -46,5 +47,45 @@
 	<div class="content">
 		{pigcms:$res.info|htmlspecialchars_decode}
 	</div>
-	
+	<div id="tongji_iframe" style="width:1px;height:1px;position:fixed;left:-1000px;"></div>
+	<script>
+	    //分享控制
+	    var WxOptions = {
+	        //"appid": 'wx78f81724e6590b1d', //服务号appid
+	        "img_url": "<?=$res['pic'];?>",//图片
+	        "img_width": "120",
+	        "img_height": "120",
+	        "link": window.location.href.replace(/wecha_id=[^&]*&?/,'fromuser={pigcms:$fromuser}&'),//分享链接
+	        "title": "{pigcms:$res.title|addslashes}",//定义分享标题
+	        "desc": "{pigcms:$res.text|addslashes}"//描述
+	    };
+	    //click统计立即执行
+	    (function(){
+	        var tongjiurl = "{pigcms::U('Home/Tongji/click',array('token'=>$res['token'],'pid'=>$res['id'],'type'=>'img','title'=>rawurlencode($res['title']),'sign'=>md5($res['token'].$res['id'].'img'.'tongji')))}";
+	        document.getElementById('tongji_iframe').innerHTML = "<iframe src=\""+tongjiurl+"\"></iframe>";
+	    })();
+
+	    function tongjishare(){
+	        var tongjiurl = "{pigcms::U('Home/Tongji/share',array('token'=>$res['token'],'pid'=>$res['id'],'type'=>'img','title'=>rawurlencode($res['title']),'sign'=>md5($res['token'].$res['id'].'img'.'tongji')))}";
+	        document.getElementById('tongji_iframe').innerHTML = "<iframe src=\""+tongjiurl+"\"></iframe>";
+	    }
+	    
+	    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+	        
+	        WeixinJSBridge.on('menu:share:appmessage', function(argv){
+	            tongjishare();
+	            WeixinJSBridge.invoke('sendAppMessage', WxOptions);
+	            //share_callback_hy();
+	            // setTimeout(function () {location.href = "http://mp.weixin.qq.com/s?__biz=MjM5MzgxNTAxMQ==&mid=200063159&idx=8&sn=73d791f479fefb304f3ddf6818c0437a#rd";}, 1500); 
+	        });
+	        WeixinJSBridge.on('menu:share:timeline', function(argv){
+	            tongjishare();
+	            WeixinJSBridge.invoke('shareTimeline',WxOptions);
+	            //share_callback_pyq();
+	            // setTimeout(function () {location.href = "http://mp.weixin.qq.com/s?__biz=MjM5MzgxNTAxMQ==&mid=200063159&idx=8&sn=73d791f479fefb304f3ddf6818c0437a#rd";}, 1500); 
+	        });
+
+	    });
+	</script>
+</body>
 </html>

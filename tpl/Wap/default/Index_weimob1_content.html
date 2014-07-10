@@ -77,7 +77,7 @@
     (function(){
         var tongjiurl = "{pigcms::U('Home/Tongji/click',array('token'=>$res['token'],'pid'=>$res['id'],'type'=>'img','title'=>rawurlencode($res['title']),'sign'=>md5($res['token'].$res['id'].'img'.'tongji')))}";
         document.getElementById('tongji_iframe').innerHTML = "<iframe src=\""+tongjiurl+"\"></iframe>";
-    })()
+    })();
     function tongjishare(){
         var tongjiurl = "{pigcms::U('Home/Tongji/share',array('token'=>$res['token'],'pid'=>$res['id'],'type'=>'img','title'=>rawurlencode($res['title']),'sign'=>md5($res['token'].$res['id'].'img'.'tongji')))}";
         document.getElementById('tongji_iframe').innerHTML = "<iframe src=\""+tongjiurl+"\"></iframe>";
