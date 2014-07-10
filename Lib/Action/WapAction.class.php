@@ -56,8 +56,8 @@ class WapAction extends BaseAction
 				cookie(MODULE_NAME."_FROM_".$fromuser."_".$id,'1');
 			}
 		}
-		
-		if(!empty($this->wxsign)){
+
+		if(!empty($this->wecha_id)){
 			$this->assign("fromuser",rawurlencode(encrypt($this->wecha_id,"E",C('safe_key'))));
 		}
 		
