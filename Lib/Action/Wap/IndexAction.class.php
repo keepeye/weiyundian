@@ -134,7 +134,7 @@ class IndexAction extends WapAction{
 	
 	//查询推广收益
 	public function income(){
-		$this->ajaxReturn(array("info",$this->wecha_id));
+		$this->ajaxReturn(array("info"=>$this->wecha_id));
 	}
 
 
