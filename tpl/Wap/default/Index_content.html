@@ -35,6 +35,7 @@
 	<div class="title">
 		<h2>{pigcms:$res.title}</h2>
 	</div>
+	<div class="content">
 	<?php if($res['spread']==1 && $res['spread_score']>0): ?>
 		<?php if($_GET['wecha_id'] && $wecha_id): ?>
 		<div class="spread">
@@ -48,7 +49,7 @@
 			{pigcms:$res.spread_info|htmlspecialchars_decode}
 		<?php endif;?>
 	<?php endif;?>
-	<div class="content">
+	
 		{pigcms:$res.info|htmlspecialchars_decode}
 	</div>
 	<div id="tongji_iframe" style="width:1px;height:1px;position:fixed;left:-1000px;"></div>
