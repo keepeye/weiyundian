@@ -103,6 +103,7 @@ class IndexAction extends WapAction{
 	}
 	
 	public function content(){
+		echo $this->fromuser;
 		$db=M('Img');
 		//读取图文内容
 		$where['token']=$this->token;
