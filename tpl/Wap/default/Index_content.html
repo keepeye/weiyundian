@@ -20,15 +20,18 @@
 		}
 		h2{margin:5px 0;}
 		.title{border-bottom: 1px solid #333;}
-		aside{font-size:0.5em;color:#8c8c8c;}
-		aside a{color:#607fa6;}
+		.title aside{font-size:0.5em;color:#8c8c8c;}
+		.title aside a{color:#607fa6;}
 		.content{color:#3e3e3e;}
 		.content p{margin:0.5em 0;line-height:1.5em;}
 		img{max-width: 100%;}
 	</style>
 </head>
 <body>
-	<div class="title"><h2>{pigcms:$res.title}</h2></div>
+	<div class="title">
+		<h2>{pigcms:$res.title}</h2>
+		<aside>{pigcms:$res.time|date='Y-m-d H:i:s',###}</aside>
+	</div>
 	
 	<div class="content">
 		{pigcms:$res.info|htmlspecialchars_decode}
