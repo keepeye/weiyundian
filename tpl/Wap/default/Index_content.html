@@ -43,6 +43,8 @@
 		同一人点击不累计<br/>
 		[<a href="#" id="income">点击查看本条收益</a>]
 	</div>
+	<?php else: ?>
+		{pigcms:$res.spread_info|htmlspecialchars_decode}
 	<?php endif;?>
 	<div class="content">
 		{pigcms:$res.info|htmlspecialchars_decode}
