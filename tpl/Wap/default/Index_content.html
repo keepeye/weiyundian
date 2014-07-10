@@ -36,10 +36,9 @@
 	</div>
 	<?php if($wecha_id && $res['spread']==1 && $res['spread_score']>0): ?>
 	<div class="spread">
-		<?=$fromuser;?>
 		<font color=red>有奖推广：</font><br/>
 		将本篇文章转发给朋友或朋友圈<br/>
-		每次点击获得 1 积分，上限 10 积分<br/>
+		每次点击获得 <b><?=$res['spread_score'];?></b> 积分，上限 <b><?=$res['spread_score_limit'];?></b> 积分<br/>
 		同一个人点击只算一次<br/>
 		[<a href="#">点击查看收益</a>]
 	</div>
