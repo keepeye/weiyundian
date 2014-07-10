@@ -8,7 +8,7 @@
 
   var editor;
   KindEditor.ready(function(K) {
-    editor = K.create('#info', {
+    editor = K.create('#info,#spread_info', {
 pasteType: 1,//粘贴时删除所有样式
 resizeType : 1,
 allowPreviewEmoticons : false,
@@ -84,6 +84,14 @@ uploadJson  : "/index.php?m=Image&a=upload",
         <TH><span class="red">*</span><label for="title">奖励积分：</label></TH>
         <TD><input type="input" class="px" id="title"  name="spread_score" style="width:50px;" /> 积分/每次点击   上限:<input type="input" class="px" id="title"  name="spread_score_limit" style="width:50px;" /> 需要开启推广</TD>
       </TR>
+      <TR>
+        <TH valign="top"><label for="info">推广宣传：</label></TH>
+        <TD>
+        <textarea name="spread_info" id="spread_info"  rows="5" style="width:590px;height:360px"></textarea>
+        <br/>
+        本内容只在朋友访问时显示
+        </TD>
+      </TR> 
       <TR>
         <TH valign="top"><label for="info">图文详细页内容：</label></TH>
         <TD><textarea name="info" id="info"  rows="5" style="width:590px;height:360px"   >   </textarea></TD>
