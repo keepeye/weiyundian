@@ -35,7 +35,7 @@
 	<div class="title">
 		<h2>{pigcms:$res.title}</h2>
 	</div>
-	<?php if($wecha_id && $res['spread']==1 && $res['spread_score']>0): ?>
+	<?php if($_GET['wecha_id'] && $wecha_id && $res['spread']==1 && $res['spread_score']>0): ?>
 	<div class="spread">
 		<font color=red>有奖推广：</font><br/>
 		将本文分享给朋友或朋友圈<br/>
