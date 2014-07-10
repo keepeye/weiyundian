@@ -104,17 +104,12 @@ class IndexAction extends WapAction{
 	
 	public function content(){
 		$db=M('Img');
+		//读取图文内容
 		$where['token']=$this->token;
-		//$where['id']=array('neq',(int)$_GET['id']);
-		//$lists=$db->where($where)->limit(5)->order('uptatetime')->select();
 		$where['id']=$this->_get('id','intval');
 		$res=$db->where($where)->find();
-		//$this->assign('info',$this->info);	//分类信息
-		//$this->assign('lists',$lists);		//列表信息
-		$this->assign('res',$res);			//内容详情;
-		//$this->assign('tpl',$this->tpl);				//微信帐号信息
-		//$this->assign('copyright',$this->copyright);	//版权是否显示
-		//$this->display($this->tpl['tplcontentname']?$this->tpl['tplcontentname']:'weimob1_content');
+		$this->assign("wecha_id",$this->wecha_id);
+		$this->assign('res',$res);
 		$this->display();
 	}
 	

@@ -32,7 +32,9 @@
 		<h2>{pigcms:$res.title}</h2>
 		<aside>{pigcms:$res.uptatetime|date='Y-m-d H:i:s',###}</aside>
 	</div>
-	
+	<?php if($wecha_id): ?>
+	<div class="spread"><?=$wecha_id;?></div>
+	<?php endif;?>
 	<div class="content">
 		{pigcms:$res.info|htmlspecialchars_decode}
 	</div>
