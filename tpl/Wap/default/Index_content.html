@@ -21,7 +21,7 @@
 			word-wrap: break-word;
 		}
 		.title{margin-bottom: 10px;}
-		.title h2{margin:5px 0;border-bottom: 1px solid #333;}
+		.title h2{margin-bottom:15px 0;border-bottom: 1px solid #333;}
 		.title aside{font-size:0.8em;color:#8c8c8c;text-align: center;}
 		.title aside a{color:#607fa6;}
 		.content{color:#3e3e3e;}
@@ -33,7 +33,6 @@
 <body>
 	<div class="title">
 		<h2>{pigcms:$res.title}</h2>
-		<aside>{pigcms:$res.uptatetime|date='Y-m-d H:i:s',###}</aside>
 	</div>
 	<?php if($wecha_id && $res['spread']==1 && $res['spread_score']>0): ?>
 	<div class="spread">
