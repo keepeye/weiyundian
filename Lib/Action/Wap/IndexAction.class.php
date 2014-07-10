@@ -113,8 +113,7 @@ class IndexAction extends WapAction{
 			$spread = M('ImgSpread')->where(array("pid"=>$res['id'],"wecha_id"=>$this->fromuser))->find();
 			//初始化推广记录
 			if(!$spread){
-				M('ImgSpread')->data(array("pid"=>$res['id'],"wecha_id"=>$this->fromuser,"spread_socre"=>$res['spread_score']))->add();
-				echo M('ImgSpread')->getLastSql();
+				M('ImgSpread')->data(array("pid"=>$res['id'],"wecha_id"=>$this->fromuser,"spread_score"=>$res['spread_score']))->add();
 			}else{
 				//检测累计收益小于设置的上限
 				if($spread['spread_score'] < $res['spread_score_limit']){
