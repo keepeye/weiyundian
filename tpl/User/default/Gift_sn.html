@@ -32,6 +32,7 @@
 					<?php foreach($gift['formset'] as $v): ?>
 					<th><?=$v['name'];?></th>
 					<?php endforeach;?>
+					<th>时间</th>
 					<TH class="norightborder">操作</TH>
 				</TR>
 			</THEAD>
@@ -44,6 +45,7 @@
 						<?php foreach($gift['formset'] as $v): ?>
 						<td><?=$fomdata[$v['id']];?></td>
 						<?php endforeach;?>
+						<td><?=date("Y-m-d H:i:s",$sn['time']);?></td>
 						<TD class="norightborder">
 							<?php if($sn['status'] == 0): ?>
 							<a href="javascript:" onclick="snmark(this,'{pigcms::U('snmark',array('sn'=>$sn['sn'],'pid'=>$sn['pid']))}')">标记已处理</a> 
