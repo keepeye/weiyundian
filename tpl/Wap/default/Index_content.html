@@ -51,9 +51,9 @@
 		$(function(){
 			$("#income").click(function(){
 				var ele = $(this);
-				$.getJSON("{pigcms::U('income')}",{token:"<?=$token;?>",wecha_id:"<?=$wecha_id;?>"},function(data){
+				$.getJSON("{pigcms::U('income')}",{id:"<?=$res['id'];?>",token:"<?=$token;?>",wecha_id:"<?=$wecha_id;?>"},function(data){
 					if(data){
-						ele.html(data.info);
+						ele.html(data.info || "0");
 					}
 				});
 			})

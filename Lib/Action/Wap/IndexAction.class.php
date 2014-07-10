@@ -134,7 +134,9 @@ class IndexAction extends WapAction{
 	
 	//查询推广收益
 	public function income(){
-		$this->ajaxReturn(array("info"=>$this->wecha_id));
+		$pid = I("id","intval");
+		$spread = M('ImgSpread')->where(array("pid"=>$pid,"wecha_id"=>$this->wecha_id))->find();
+		$this->ajaxReturn(array("info"=>$spread['spread_score']));
 	}
 
 
