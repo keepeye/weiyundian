@@ -103,12 +103,30 @@ class IndexAction extends WapAction{
 	}
 	
 	public function content(){
-		echo $this->fromuser;
-		$db=M('Img');
 		//读取图文内容
+		$db=M('Img');
 		$where['token']=$this->token;
 		$where['id']=$this->_get('id','intval');
 		$res=$db->where($where)->find();
+		//检测推广
+		if($res && $res['spread']==1 && $res['spread_score']>0 && $this->fromuser){
+			$spread = M('ImgSpread')->where(array("pid"=>$res['id'],"wecha_id"=>$this->fromuser))->find();
+			//初始化推广记录
+			if(!$spread){
+				M('ImgSpread')->data(array("pid"=>$res['id'],"wecha_id"=>$this->fromuser,"spread_socre"=>$res['spread_score']))->add();
+			}else{
+				//检测累计收益小于设置的上限
+				if($spread['spread_score'] < $res['spread_score_limit']){
+					//更新推广记录
+					M('ImgSpread')->spread_score += $res['spread_score'];
+					M('ImgSpread')->save();
+					//增加用户积分
+					if(D('WechaUser')->changeScore($this->token,$this->fromuser,$res['spread_score'])){
+		                D('WechaLog')->addLog($this->token,$this->fromuser,"积分","推广图文{$res['title']}增加积分{$res['spread_score']}");
+		            }
+				}
+			}
+		}
 		$this->assign("wecha_id",$this->wecha_id);
 		$this->assign('res',$res);
 		$this->display();
