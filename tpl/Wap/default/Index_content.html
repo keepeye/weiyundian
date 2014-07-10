@@ -19,6 +19,7 @@
 			position: relative;
 		}
 		h2{margin:5px 0;}
+		.title{border-bottom: 1px solid #333;}
 		aside{font-size:0.5em;color:#8c8c8c;}
 		aside a{color:#607fa6;}
 		.content{color:#3e3e3e;}
@@ -27,7 +28,8 @@
 	</style>
 </head>
 <body>
-	<h2>{pigcms:$res.title}</h2>
+	<div class="title"><h2>{pigcms:$res.title}</h2></div>
+	
 	<div class="content">
 		{pigcms:$res.info|htmlspecialchars_decode}
 	</div>
