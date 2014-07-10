@@ -21,7 +21,7 @@
 			word-wrap: break-word;
 		}
 		.title{margin-bottom: 10px;border-bottom: 1px solid #333;}
-		.title h2{margin:10px 0;}
+		.title h2{margin:10px 0;font-size:1.2em;}
 		.title aside{font-size:0.8em;color:#8c8c8c;text-align: center;}
 		.title aside a{color:#607fa6;}
 		.content{color:#3e3e3e;}
@@ -38,10 +38,10 @@
 	<?php if($wecha_id && $res['spread']==1 && $res['spread_score']>0): ?>
 	<div class="spread">
 		<font color=red>有奖推广：</font><br/>
-		将本篇文章转发给朋友或朋友圈<br/>
-		每次点击获得 <b><?=$res['spread_score'];?></b> 积分，上限 <b><?=$res['spread_score_limit'];?></b> 积分<br/>
-		同一个人点击只算一次<br/>
-		[<a href="#" id="income">点击查看收益</a>]
+		将本文分享给朋友或朋友圈<br/>
+		每次点击获 <b><?=$res['spread_score'];?></b> 积分，上限 <b><?=$res['spread_score_limit'];?></b> 积分<br/>
+		同一人点击不累计<br/>
+		[<a href="#" id="income">点击查看本条收益</a>]
 	</div>
 	<?php endif;?>
 	<div class="content">
@@ -54,7 +54,7 @@
 				var ele = $(this);
 				$.getJSON("{pigcms::U('income')}",{id:"<?=$res['id'];?>",token:"<?=$token;?>",wecha_id:"<?=$wecha_id;?>"},function(data){
 					if(data){
-						ele.after('累计收益：<b>'+(data.info || "0") +'</b> 积分').remove();
+						ele.after('本条累计收益：<b>'+(data.info || "0") +'</b> 积分').remove();
 					}
 				});
 			})
