@@ -53,7 +53,7 @@
 				var ele = $(this);
 				$.getJSON("{pigcms::U('income')}",{id:"<?=$res['id'];?>",token:"<?=$token;?>",wecha_id:"<?=$wecha_id;?>"},function(data){
 					if(data){
-						ele.after(data.info || "0").remove();
+						ele.after('累计收益：'+(data.info || "0")).remove();
 					}
 				});
 			})
