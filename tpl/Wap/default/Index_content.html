@@ -40,7 +40,7 @@
 		将本篇文章转发给朋友或朋友圈<br/>
 		每次点击获得 <b><?=$res['spread_score'];?></b> 积分，上限 <b><?=$res['spread_score_limit'];?></b> 积分<br/>
 		同一个人点击只算一次<br/>
-		[<a href="#">点击查看收益</a>]
+		[<a href="#" id="income">点击查看收益</a>]
 	</div>
 	<?php endif;?>
 	<div class="content">
@@ -48,6 +48,16 @@
 	</div>
 	<div id="tongji_iframe" style="width:1px;height:1px;position:fixed;left:-1000px;"></div>
 	<script>
+		$(function(){
+			$("#income").click(function(){
+				var ele = $(this);
+				$.getJSON("{pigcms::U('income')}",function(data){
+					if(data){
+						ele.html(data.info);
+					}
+				});
+			})
+		})
 	    //分享控制
 	    var WxOptions = {
 	        //"appid": 'wx78f81724e6590b1d', //服务号appid

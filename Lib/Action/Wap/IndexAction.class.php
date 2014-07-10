@@ -15,7 +15,7 @@ class IndexAction extends WapAction{
 		$this->assign('token',$this->token);
 	}
 	
-	public function getIsCopyright(){
+	protected function getIsCopyright(){
 		
 		$gid=D('Users')->field('gid')->find($tpl['uid']);
 		$copy=D('user_group')->field('iscopyright')->find($gid['gid']);	//查询用户所属组
@@ -23,19 +23,19 @@ class IndexAction extends WapAction{
 		
 	}
 	//获取公司信息
-	public function getCompany(){
+	protected function getCompany(){
 		$company_db=M('company');
 		return $company_db->where(array('token'=>$this->token,'isbranch'=>0))->find();
 	}
 	//获取分类列表
-	public function getClasses(){
+	protected function getClasses(){
 		$info=M('Classify')->where(array('token'=>$this->token,'status'=>1))->order('sorts desc')->select();
 		$info=$this->convertLinks($info);//加外链等信息
 		return $info;
 	}
 
 	//获取wxuser
-	public function getTpl(){
+	protected function getTpl(){
 		$where['token']=$this->token;
 		return D('Wxuser')->where($where)->find();
 	}
@@ -132,6 +132,12 @@ class IndexAction extends WapAction{
 		$this->display();
 	}
 	
+	//查询推广收益
+	public function income(){
+		$this->ajaxReturn(array("info",$this->wecha_id));
+	}
+
+
 	public function flash(){
 		$where['token']=$this->_get('token','trim');
 		$flash=M('Flash')->where($where)->select();
