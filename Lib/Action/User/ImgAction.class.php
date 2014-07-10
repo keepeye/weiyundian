@@ -16,7 +16,7 @@ class ImgAction extends UserAction{
 	}
 	public function add(){
 		$class=M('Classify')->where(array('token'=>session('token')))->select();
-		if($class==false){$this->error('请先添加3G网站分类',U('Classify/index',array('token'=>session('token'))));}
+		if($class==false){$this->error('请先添加文章分类',U('Classify/index',array('token'=>session('token'))));}
 		$db=M('Classify');
 		$where['token']=session('token');
 		$where['url']='';
