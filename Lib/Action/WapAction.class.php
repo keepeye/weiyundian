@@ -57,7 +57,10 @@ class WapAction extends BaseAction
 			}
 		}
 		
-		$this->assign("fromuser",rawurlencode(encrypt($this->wecha_id,"E",C('safe_key'))));
+		if(!empty($this->wxsign)){
+			$this->assign("fromuser",rawurlencode(encrypt($this->wecha_id,"E",C('safe_key'))));
+		}
+		
 	}
 
 	//全局推广事件
