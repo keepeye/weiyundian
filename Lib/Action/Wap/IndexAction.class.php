@@ -3,13 +3,7 @@ function strExists($haystack, $needle)
 {
 	return !(strpos($haystack, $needle) === FALSE);
 }
-class IndexAction extends BaseAction{
-	private $tpl;	//微信公共帐号信息
-	private $info;	//分类信息
-	private $wecha_id;
-	private $copyright;
-	public $company;
-	public $token;
+class IndexAction extends WapAction{
 	
 	public function _initialize(){
 		parent::_initialize();
@@ -17,45 +11,62 @@ class IndexAction extends BaseAction{
 	//	if(!strpos($agent,"MicroMessenger")) {
 	//		echo '此功能只能在微信浏览器中使用';exit;
 	//	}
-		$this->token=$this->_get('token','trim');
-		$where['token']=$this->token;
-		
-		$tpl=D('Wxuser')->where($where)->find();
-		//dump($where);
-		$info=M('Classify')->where(array('token'=>$this->_get('token'),'status'=>1))->order('sorts desc')->select();
-		$info=$this->convertLinks($info);//加外链等信息
-		$gid=D('Users')->field('gid')->find($tpl['uid']);
-		$copy=D('user_group')->field('iscopyright')->find($gid['gid']);	//查询用户所属组
-		$this->copyright=$copy['iscopyright'];
-		$this->wecha_id=$this->_get('wecha_id');
 		$this->assign('wecha_id',$this->wecha_id);
-		$this->info=$info;
-		$this->tpl=$tpl;
-		$company_db=M('company');
-		$this->company=$company_db->where(array('token'=>$this->token,'isbranch'=>0))->find();
-		$this->assign('company',$this->company);
-		//
 		$this->assign('token',$this->token);
 	}
 	
-	
+	public function getIsCopyright(){
+		
+		$gid=D('Users')->field('gid')->find($tpl['uid']);
+		$copy=D('user_group')->field('iscopyright')->find($gid['gid']);	//查询用户所属组
+		return $copy['iscopyright'];
+		
+	}
+	//获取公司信息
+	public function getCompany(){
+		$company_db=M('company');
+		return $company_db->where(array('token'=>$this->token,'isbranch'=>0))->find();
+	}
+	//获取分类列表
+	public function getClasses(){
+		$info=M('Classify')->where(array('token'=>$this->token,'status'=>1))->order('sorts desc')->select();
+		$info=$this->convertLinks($info);//加外链等信息
+		return $info;
+	}
+
+	//获取wxuser
+	public function getTpl(){
+		$where['token']=$this->token;
+		return D('Wxuser')->where($where)->find();
+	}
+
 	public function classify(){
 		$this->assign('info',$this->info);
 		
-		$this->display($this->tpl['tpltypename']?$this->tpl['tpltypename']:'muban1_index');
+		//$this->display($this->tpl['tpltypename']?$this->tpl['tpltypename']:'muban1_index');
+		$this->display('muban1_index');
 	}
 	
 	public function index(){		
 		$where['token']=$this->token;
-	    $flash=M('Flash')->where($where)->select();
+		//首页配置
         $home=M('Home')->where(array('token'=>$this->token))->find();
+        $this->assign('home',$home);
+        //幻灯片
+        $flash=M('Flash')->where($where)->select();
 		$count=count($flash);
 		$this->assign('flash',$flash);
-		$this->assign('info',$this->info);
+
+		//分类列表
+		$this->assign('info',$this->getClasses());
+
+		$tpl = $this->getTpl();
+		$this->assign('tpl',$tpl);
+
 		$this->assign('num',$count);
-		$this->assign('tpl',$this->tpl);
+		
 		$this->assign('copyright',$this->copyright);
-		$this->assign('home',$home);
+		$this->assign("company",$this->getCompany());
 		$this->display($this->tpl['tpltypename']?$this->tpl['tpltypename']:'muban1_index');
 	}
 	
@@ -82,28 +93,29 @@ class IndexAction extends BaseAction{
 		//$this->assign('page',$pagecount);
 		$this->assign('classify',$classify);
 		//$this->assign('p',$p);
-		$this->assign('info',$this->info);
+		$this->assign('info',$this->getClasses());
 		$this->assign('tpl',$this->tpl);
 		$this->assign('res',$res);
 		$this->assign('copyright',$this->copyright);
 		$this->assign('pagestr',$pagestr);//分页链接
+		$this->assign("company",$this->getCompany());
 		$this->display($this->tpl['tpllistname']?$this->tpl['tpllistname']:'weimob1_list');
 	}
 	
 	public function content(){
 		$db=M('Img');
-		$where['token']=$this->_get('token','trim');
-		$where['id']=array('neq',(int)$_GET['id']);
-		$lists=$db->where($where)->limit(5)->order('uptatetime')->select();
+		$where['token']=$this->token;
+		//$where['id']=array('neq',(int)$_GET['id']);
+		//$lists=$db->where($where)->limit(5)->order('uptatetime')->select();
 		$where['id']=$this->_get('id','intval');
 		$res=$db->where($where)->find();
-		$this->assign('info',$this->info);	//分类信息
-		$this->assign('lists',$lists);		//列表信息
+		//$this->assign('info',$this->info);	//分类信息
+		//$this->assign('lists',$lists);		//列表信息
 		$this->assign('res',$res);			//内容详情;
-		$this->assign('tpl',$this->tpl);				//微信帐号信息
-		$this->assign('copyright',$this->copyright);	//版权是否显示
+		//$this->assign('tpl',$this->tpl);				//微信帐号信息
+		//$this->assign('copyright',$this->copyright);	//版权是否显示
 		//$this->display($this->tpl['tplcontentname']?$this->tpl['tplcontentname']:'weimob1_content');
-		$this->display('weimob1_content');
+		$this->display();
 	}
 	
 	public function flash(){
