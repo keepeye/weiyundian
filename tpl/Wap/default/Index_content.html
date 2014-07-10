@@ -35,16 +35,18 @@
 	<div class="title">
 		<h2>{pigcms:$res.title}</h2>
 	</div>
-	<?php if($_GET['wecha_id'] && $wecha_id && $res['spread']==1 && $res['spread_score']>0): ?>
-	<div class="spread">
-		<font color=red>有奖推广：</font><br/>
-		将本文分享给朋友或朋友圈<br/>
-		每次点击获 <b><?=$res['spread_score'];?></b> 积分，上限 <b><?=$res['spread_score_limit'];?></b> 积分<br/>
-		同一人点击不累计<br/>
-		[<a href="#" id="income">点击查看本条收益</a>]
-	</div>
-	<?php else: ?>
-		{pigcms:$res.spread_info|htmlspecialchars_decode}
+	<?php if($res['spread']==1 && $res['spread_score']>0): ?>
+		<?php if($_GET['wecha_id'] && $wecha_id): ?>
+		<div class="spread">
+			<font color=red>有奖推广：</font><br/>
+			将本文分享给朋友或朋友圈<br/>
+			每次点击获 <b><?=$res['spread_score'];?></b> 积分，上限 <b><?=$res['spread_score_limit'];?></b> 积分<br/>
+			同一人点击不累计<br/>
+			[<a href="#" id="income">点击查看本条收益</a>]
+		</div>
+		<?php else: ?>
+			{pigcms:$res.spread_info|htmlspecialchars_decode}
+		<?php endif;?>
 	<?php endif;?>
 	<div class="content">
 		{pigcms:$res.info|htmlspecialchars_decode}
