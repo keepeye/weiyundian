@@ -34,7 +34,7 @@
 		<h2>{pigcms:$res.title}</h2>
 		<aside>{pigcms:$res.uptatetime|date='Y-m-d H:i:s',###}</aside>
 	</div>
-	<?php if($wecha_id): ?>
+	<?php if($wecha_id && $res['spread']==1 && $res['spread_score']>0): ?>
 	<div class="spread">
 		<?=$fromuser;?>
 		<font color=red>有奖推广：</font><br/>
