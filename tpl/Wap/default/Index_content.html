@@ -67,12 +67,12 @@
 	    //分享控制
 	    var WxOptions = {
 	        //"appid": 'wx78f81724e6590b1d', //服务号appid
-	        "img_url": "{pigcms::C('site_url')}/<?=$res['pic'];?>",//图片 
+	        "img_url": "{pigcms::C('site_url')}/<?=$res['pic'];?>",
 	        "img_width": "120",
 	        "img_height": "120",
-	        "link": window.location.href.replace(/wecha_id=[^&]*&?/,'fromuser={pigcms:$fromuser}&'),//分享链接
-	        "title": "{pigcms:$res.title|addslashes}",//定义分享标题
-	        "desc": "{pigcms:$res.text|addslashes}"//描述
+	        "link": window.location.href.replace(/wecha_id=[^&]*&?/,'fromuser={pigcms:$fromuser}&'),
+	        "title":"{pigcms:$res.title|addslashes}",
+	        "desc":"{pigcms:$res.text|addslashes}"
 	    };
 	    //click统计立即执行
 	    (function(){
