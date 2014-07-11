@@ -72,8 +72,8 @@
 	        "img_height": "120",
 	        "link": window.location.href.replace(/wecha_id=[^&]*&?/,'fromuser={pigcms:$fromuser}&'),
 	        "title":"{pigcms:$res.title|addslashes}",
-	        "desc":"<?=addslashes(str_replace("\n","",$res['text']));?>",
-	    };
+	        
+		};
 	    //click统计立即执行
 	    (function(){
 	        var tongjiurl = "{pigcms::U('Home/Tongji/click',array('token'=>$res['token'],'pid'=>$res['id'],'type'=>'img','title'=>rawurlencode($res['title']),'sign'=>md5($res['token'].$res['id'].'img'.'tongji')))}";
