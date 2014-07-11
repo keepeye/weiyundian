@@ -434,7 +434,7 @@ $(function(){
         "img_height": "120",
         "link": window.location.href.replace(/wecha_id=[^&]*&?/,'fromuser={pigcms:$fromuser}&'),//分享链接
         "title": "{pigcms:$Guajiang.title|addslashes}",//定义分享标题
-        "desc": "{pigcms:$Guajiang.desc|addslashes}"//描述
+        'desc':'<?=addslashes(str_replace(array("\r","\n"),"",$Guajiang['desc']));?>',
     };
     
     //click统计立即执行
