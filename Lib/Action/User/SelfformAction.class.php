@@ -309,7 +309,78 @@ class SelfformAction extends UserAction{
 			$this->error('服务器繁忙,请稍后再试',U('Selfform/infos',array('token'=>$this->token,'id'=>$thisFrom['id'])));
 		}
 	}
+
+
+	//导出excel
+	function exportExcel(){
+		$id = I('id','0','intval');//活动id
+		if(!$id){
+			exit('非法id');
+		}
+		//查询活动基本信息
+		$thisForm = $this->selfform_model->where(array("id"=>$id,"token"=>$this->token))->find();
+
+		if(!$thisForm){
+			exit('活动不存在');
+		}
+		//读取自定义字段信息
+		$fields = array();
+		$fields = $this->selfform_input_model->where(array('formid'=>$thisForm['id']))->order('taxis ASC')->select();
+		//导入excel类文件
+		import("@.ORG.phpexcel.Classes.PHPExcel",'',".php");
+		$objPHPExcel = new PHPExcel();
+		// 设置列名
+		$excelobj = $objPHPExcel->setActiveSheetIndex(0);
+
+		//判断是否有自定义表单设置
+		if(!empty($fields)){
+			$column_start = ord('A');//从C列开始，取得C字母的ASCII码
+			$extra_columns = array();
+			foreach($fields as $field){
+				$column_name = chr($column_start);
+				$extra_columns[$column_name] = $field;
+				$excelobj->setCellValue($column_name.'1', $field['displayname']);//设定一个列来存储表单字段
+				$column_start += 1;//ASCII码加+1表示下一个列字母
+			}
+
+		}
+		//读取数据
+		$list=$this->selfform_value_model->where(array('formid'=>$thisForm['id']))->select();
+		$i=2;
+		//自定义表单遍历
+		foreach($list as $item){
+			$item['time'] = $item['time']>0?date("Y-m-d H:i:s",$item['time']):"0";
+			
+			$excelobj = $objPHPExcel->setActiveSheetIndex(0);
+		    $formdata = unserialize($item['values']);//用户提交的表单数据
+		    foreach($extra_columns as $k1=>$v1){
+		    	$excelobj->setCellValueExplicit($k1.$i, $formdata[$v1['fieldname']],PHPExcel_Cell_DataType::TYPE_STRING);
+		    }
+		    unset($k1,$v1);
+		    $i++;
+		}
+		
+		//设置sheet标题
+		$objPHPExcel->getActiveSheet()->setTitle('报名记录');
+		$objPHPExcel->setActiveSheetIndex(0);
+
+		// Redirect output to a client’s web browser (Excel5)
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="'.$thisForm['name'].'报名统计"');
+		header('Cache-Control: max-age=0');
+		// If you're serving to IE 9, then the following may be needed
+		header('Cache-Control: max-age=1');
+
+		// If you're serving to IE over SSL, then the following may be needed
+		header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+		header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+		header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+		header ('Pragma: public'); // HTTP/1.0
+
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+		$objWriter->save('php://output');
+		exit;
+
+	}
 }
 
-
-?>
