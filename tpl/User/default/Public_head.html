@@ -243,14 +243,14 @@
 									<li   <if condition="MODULE_NAME eq 'Member'">class="selected" <else/>class="subCatalogList"</if>> <a href="{pigcms::U('Member/index',array('token'=>$token))}">会员资料管理</a></li>
 								</div>
 							</ul>
-
+							<if condition="$trade neq '基础'">
 							<ul>
 								<div class="nav-header">门店系统</div>
 								<div class="toggle">
 									<li   <if condition="MODULE_NAME eq 'Subshop'">class="selected" <else/>class="subCatalogList"</if> > <a href="{pigcms::U('Subshop/lists')}">门店管理</a></li>
 								</div>
 							</ul>
-
+							</if>
 
 							<if condition="$trade eq '所有' or $trade eq '电商'">
 								<ul>
