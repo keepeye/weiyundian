@@ -44,14 +44,14 @@
             <tr>
               <th valign="top"><span class="red">*</span>活动说明：</th>
               <td>
-                <textarea class="px" id="info[desc]" name="info[desc]" style="width:400px;height:150px;">{pigcms:$info.desc}</textarea>
+                <textarea class="px" id="info[desc]" name="desc" style="width:400px;height:150px;">{pigcms:$info.desc}</textarea>
               </td>
             </tr>
 
             <tr>
               <th valign="top"><span class="red">*</span>领奖指南：</th>
               <td>
-                <textarea class="px" name="info[ljsm]" id="info[ljsm]" style="width:400px;height:150px;">{pigcms:$info.ljsm}</textarea>
+                <textarea class="px" name="info[ljsm]" id="ljsm" style="width:400px;height:150px;">{pigcms:$info.ljsm}</textarea>
                 <br/>
                 250个字以内
               </td>
@@ -135,7 +135,7 @@
 
   var editor;
   KindEditor.ready(function(K) {
-    editor = K.create('#info[desc],#info[ljsm]', {
+    editor = K.create('#desc,#ljsm', {
 pasteType: 1,//粘贴时删除所有样式
 resizeType : 1,
 allowPreviewEmoticons : false,
