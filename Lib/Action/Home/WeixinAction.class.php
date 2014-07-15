@@ -29,7 +29,7 @@ class WeixinAction extends Action
         }
         //处理text回复中的url，加上wecha_id和wxsign
         if($type == 'text'){
-            $content = $this->parseTextContent($content);
+            $content = $this->parseTextContent($content)."....";
         }
         //关键词回复事件
 	    if($this->data['MsgType'] == "text" && $content!=""){
