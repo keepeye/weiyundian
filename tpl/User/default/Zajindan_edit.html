@@ -11,66 +11,52 @@
         <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
           <tbody>
             <tr>
+              <th valign="top"><span class="red">*</span>关键词：</th>
+              <td>
+                <input type="input" class="px" value="{pigcms:$keyword}"  name="keyword" style="width:300px;"/>
+              </td>
+            </tr>
+            <tr>
               <th valign="top"><span class="red">*</span>活动名称：</th>
               <td>
-                <input type="input" class="px" value="{pigcms:$info.title}"  name="title" style="width:300px;"/>
+                <input type="input" class="px" value="{pigcms:$info.title}"  name="info[title]" style="width:300px;"/>
               </td>
             </tr>
 
             <tr>
-              <th valign="top"><span class="red">*</span>LOGO：</th>
+              <th valign="top"><span class="red">*</span>回复图片：</th>
               <td>
-                <img class="upload_image" src="{pigcms:$gift.logo}" style="display: none;max-width:300px;" />
-                <input type="hidden" class="upload_image_filed" value="{pigcms:$gift.logo}" name="logo"/>
+                <img class="upload_image" src="{pigcms:$info.pic}" style="display: none;max-width:300px;" />
+                <input type="hidden" class="upload_image_filed" value="{pigcms:$info.pic}" name="info[pic]"/>
                 <input type="button" class="btnGrayS upload_image_button" value="添加图片" data-ishas="false" />
-                图片尺寸48*48
+                图片尺寸360*200
               </td>
             </tr>
-            <tr>
-              <th valign="top"><span class="red">*</span>所需积分：</th>
-              <td>
-                <input type="input" class="px" value="{pigcms:$gift.score}"  name="score" />
-              </td>
-            </tr>
-            <tr>
-              <th valign="top"><span class="red">*</span>库存：</th>
-              <td>
-                <input type="input" class="px" value="{pigcms:$gift.stock}"  name="stock" />
-              </td>
-            </tr>
-            <tr>
-              <th valign="top"><span class="red">*</span>最多兑换：</th>
-              <td>
-                <input type="input" class="px" value="{pigcms:$gift.pernum|default=0}"  name="pernum" />个  0为不限制
-              </td>
-            </tr>
+            
             <tr>
               <th valign="top"><span class="red">*</span>状态：</th>
               <td>
-                <label><input type="radio" value="1"  name="status" <if condition="($gift['status'] eq 1) OR ($gift['status'] eq null)">checked</if>/>上架</label>
-                <label><input type="radio" name="status" value="0" <eq name="gift.status" value="0">checked</eq>/>下架</label>
+                <label><input type="radio" value="1"  name="status" <if condition="($info['status'] eq 1) OR ($info['status'] eq null)">checked</if>/>开启</label>
+                <label><input type="radio" name="status" value="0" <eq name="info.status" value="0">checked</eq>/>关闭</label>
               </td>
             </tr>
+
             <tr>
-              <th valign="top"><span class="red">*</span>显示顺序：</th>
+              <th valign="top"><span class="red">*</span>活动说明：</th>
               <td>
-                <input type="input" class="px" value="{pigcms:$gift.sort|default=0}"  name="sort" />
+                <textarea class="px" id="info[desc]" name="info[desc]" style="width:400px;height:150px;">{pigcms:$info.desc}</textarea>
               </td>
             </tr>
+
             <tr>
               <th valign="top"><span class="red">*</span>领奖指南：</th>
               <td>
-                <textarea class="px" name="guide" style="width:400px;height:150px;">{pigcms:$gift.guide}</textarea>
+                <textarea class="px" name="info[ljsm]" id="info[ljsm]" style="width:400px;height:150px;">{pigcms:$info.ljsm}</textarea>
                 <br/>
                 250个字以内
               </td>
             </tr>
-            <tr>
-              <th valign="top"><span class="red">*</span>描述：</th>
-              <td>
-                <textarea class="px" id="description" name="description" style="width:400px;height:150px;">{pigcms:$gift.description}</textarea>
-              </td>
-            </tr>
+            
 
           </tbody>
         </table>
@@ -149,7 +135,7 @@
 
   var editor;
   KindEditor.ready(function(K) {
-    editor = K.create('#description', {
+    editor = K.create('#info[desc],#info[ljsm]', {
 pasteType: 1,//粘贴时删除所有样式
 resizeType : 1,
 allowPreviewEmoticons : false,
