@@ -40,7 +40,20 @@
                 <label><input type="radio" name="status" value="0" <eq name="info.status" value="0">checked</eq>/>关闭</label>
               </td>
             </tr>
-
+            <tr>
+              <th valign="top"><span class="red">*</span>中奖概率：</th>
+              <td>
+                <input type="input" class="px" value="{pigcms:$info.gailv}"  name="info[gailv]" style="width:40px;"/>%  0-100之间的整数，用户先中奖，然后根据奖品库存随机得到奖品
+              </td>
+            </tr>
+            <tr>
+              <th valign="top"><span class="red">*</span>活动时间：</th>
+              <td>
+                <input type="input" class="px" value="<if condition="$info['stime'] neq ''">{pigcms:$info.stime|date="Y-m-d H:i:s",###}</if>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="info[stime]" />                
+                到
+                <input type="input" class="px" value="<if condition="$info['etime'] neq ''">{pigcms:$info.etime|date="Y-m-d H:i:s",###}</if>" name="etime"  onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"  /> 
+              </td>
+            </tr>
             <tr>
               <th valign="top"><span class="red">*</span>活动说明：</th>
               <td>
@@ -57,7 +70,25 @@
               </td>
             </tr>
             
-
+            <TR>
+              <th valign="top">推广奖励：</th>
+              <td><input class="radio" type="radio" name="info[spread]" value="1"  <if condition="$info['spread'] eq 1" >checked</if> >开启  <input class="radio" type="radio" name="info[spread]" value="0"  <if condition="$info['spread'] eq 0" >checked</if>>关闭  用户转发本活动可获得奖励。</td> 
+            </TR>
+            <TR>
+            <th valign="top">奖励次数：</th>
+            <td><input type="input" class="px" name="info[spread_times]"   value="{pigcms:$info.spread_times|default=0}" style="width:30px"/>次/人 上限:<input type="input" class="px" name="info[spread_times_limit]"   value="{pigcms:$info.spread_times_limit|default=0}" style="width:60px"/>次 最多从推广获得抽奖次数的上限，0为不限制。</td> 
+            </TR>
+            <TR>
+            <th valign="top">奖励积分：</th>
+            <td>
+            <input type="input" class="px" name="info[spread_score]"   value="{pigcms:$info.spread_score|default=0}" style="width:30px"/>个/人 
+            上限: <input type="input" class="px" name="info[spread_score_limit]"   value="{pigcms:$info.spread_score_limit|default=0}" style="width:60px"/>0为不限制
+            </td> 
+            </TR>  
+            <TR>
+              <th valign="top">游客跳转：</th>
+              <td><input type="input" class="px" name="info[redirect]"   value="{pigcms:$info.redirect|default=''}" style="width:300px"/>   从分享链接中进入跳转到该页面，留空则跳转到宣传页。</td> 
+            </TR>
           </tbody>
         </table>
       </div> 
@@ -74,7 +105,7 @@
           <td>字段类型(<a href="javascript:" title="文本字段或选择型字段">?</a>)</td>
           <td>默认值(选项)(<a href="javascript:" title="对于文本字段，表示默认值，对于下拉类型的，表示下拉选项，用英文逗号,分隔每个选项">?</a>)</td>
         </tr>
-        <?php foreach($gift['formset'] as $field): ?>
+        <?php foreach($info['formset'] as $field): ?>
           <tr class="_formset_">
 
             <td>
