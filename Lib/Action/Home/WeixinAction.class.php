@@ -1514,7 +1514,7 @@ class WeixinAction extends Action
      * @param  [string] $content [回复文字]
      */
     public function parseTextContent($content){
-        return preg_replace_callback('/\[url=(.+?)\](.+?)\[\/url\]/i', 'parseBBURL', $content);
+        return preg_replace_callback('/\[url=(.+?)\](.+?)\[\/url\]/i', array($this,'parseBBURL'), $content);
     }
 
     //解析bb代码url
