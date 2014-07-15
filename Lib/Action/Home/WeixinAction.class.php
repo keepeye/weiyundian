@@ -27,7 +27,10 @@ class WeixinAction extends Action
         	// $type = "text";
              exit;//直接退出，不再提示系统帮助
         }
-        
+        //处理text回复中的url，加上wecha_id和wxsign
+        if($type == 'text'){
+            $content = $this->parseTextContent($content);
+        }
         //关键词回复事件
 	    if($this->data['MsgType'] == "text" && $content!=""){
 	    	D('TongjiEvent')->tongji($this->token,"keyword",$this->data['Content']);//统计有效关键词事件
@@ -1506,5 +1509,30 @@ class WeixinAction extends Action
         return $text;
     }
 
-    
+    /**
+     * 处理text回复文本
+     * @param  [string] $content [回复文字]
+     */
+    public function parseTextContent($content){
+        return preg_replace_callback('/\[url=(.+?)\](.+?)\[\/url\]/i', 'parseBBURL', $content);
+    }
+
+    //解析bb代码url
+    function parseBBURL($matches){
+        $url = $matches[1];
+        $paths = parse_url($url);
+        $query = "";
+        $path = isset($paths['path'])?$paths['path']:'';
+        if(!empty($paths['query'])){
+            parse_str($paths['query'], $queries);
+            $queries['wecha_id']=$this->data['FromUserName'];
+            $queries['token']=$this->token;
+            $queries['wxsign']=md5($this->token.$this->data['FromUserName'].C('safe_key'));
+            $queries['wxref']='mp.weixin.qq.com';
+            $query = '?'.http_build_query($queries);
+        }
+        
+        $newurl = 'http://'.$paths['host'].$path.$query;
+        return '<a href="'.$newurl.'">'.$matches[2].'</a>';
+    }
 }
