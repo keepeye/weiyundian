@@ -1,0 +1,73 @@
+<include file="Public:head"/>  
+
+<div class="content">
+	<div class="cLineB">
+		<h4 class="left">活动列表</h4>
+		<div class="clr"></div>
+	</div>
+	
+	<div class="cLine">
+		<div class="pageNavigator left">
+		<a href='{pigcms::U('add')}'  class='btnGrayS vm bigbtn'>添加礼品</a>
+		</div>
+
+		<div class="clr"></div>
+	</div>
+	
+	<div class="msgWrap">
+
+
+		<TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+			<THEAD>
+				<TR>
+					<TH>活动名称</TH>
+					<th>关键词</th>
+					<TH>活动时间</TH>
+					<TH>参与人数</TH>
+					<TH class="norightborder">操作</TH>
+				</TR>
+			</THEAD>
+			<TBODY>
+				<TR></TR>
+				<volist id="list" name="list">
+					<TR>
+						<TD>{pigcms:$list.title}</TD>                 
+						<TD>{pigcms:$list.keyword}</TD>
+						<td>{pigcms:$list.stime}<br/>{pigcms:$list.etime}</td>
+						<td>{pigcms:$list.canyu|default=0}</td>
+						<TD class="norightborder">
+							<a href="{pigcms::U('edit',array('id'=>$list['id']))}">设置</a> 
+							<a href="{pigcms::U('prize',array('id'=>$list['id']))}">奖品管理</a>
+							<a href="{pigcms::U('sn',array('id'=>$list['id']))}">中奖记录</a> 
+							<a href="
+							   <if condition="$list['status'] gt 0">				   
+							   javascript:drop_confirm('你确定要结束活动吗!', 'index.php?g=User&m=Lottery&a=setdes&id={pigcms:$list.id}');<else/>index.php?g=User&m=Lottery&a=setinc&id={pigcms:$list.id}   
+							   </if>">
+							   <if condition="$list['status'] gt 0">结束<else/>开启</if> 
+							</a>&nbsp;
+						</TD>
+					</TR>
+				</volist>
+			</TBODY>
+		</TABLE>
+
+
+	</div>
+
+	<div class="cLine">
+		<div class="pageNavigator right">
+			<div class="pages">{pigcms:$pagestr}</div>
+		</div>
+		<div class="clr"></div>
+	</div>
+
+</div>
+
+<div class="clr"></div>
+</div>
+</div>
+</div>
+
+<!--底部-->
+</div>
+<include file="Public:footer"/>
