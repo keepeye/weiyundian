@@ -56,7 +56,7 @@ class ZajindanAction extends UserAction
 		$_POST['info']['token'] = $this->token;
 		//处理formset
 		$_POST['info']['formset'] = $this->parseformset();
-		
+		dump($_POST['info']);exit;
 		if($m->create($_POST['info']))
 		{
 			if($id)
@@ -89,7 +89,7 @@ class ZajindanAction extends UserAction
 		}
 		else
 		{
-			$this->error("创建数据失败".M()->getError());
+			$this->error("创建数据失败");
 		}
 	}
 
