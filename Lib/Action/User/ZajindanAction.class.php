@@ -89,7 +89,7 @@ class ZajindanAction extends UserAction
 		}
 		else
 		{
-			$this->error("创建数据失败");
+			$this->error("创建数据失败".M()->getError());
 		}
 	}
 
