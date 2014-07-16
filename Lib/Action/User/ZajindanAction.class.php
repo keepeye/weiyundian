@@ -102,9 +102,8 @@ class ZajindanAction extends UserAction
 	{
 		$id = I('id',0,'intval');
 		//删除中奖记录
-		M()->execute("delete m,prize,r,sn from `tp_zajindan` m,`tp_zajindan_prize` prize,`tp_zajindan_record` r,`tp_zajindan_sn` sn where m.id='{$id}'' AND m.token='{$this->token}' AND prize.pid=m.id AND r.pid=m.id AND sn.pid=prize.id;");
-		echo M()->getLastSql();
-		exit;
+		M()->execute("delete m,prize,r,sn from `tp_zajindan` m,`tp_zajindan_prize` prize,`tp_zajindan_record` r,`tp_zajindan_sn` sn where m.id='{$id}' AND m.token='{$this->token}' AND prize.pid=m.id AND r.pid=m.id AND sn.pid=prize.id;");
+		
 		//删除关键词
 		M('Keyword')->where(array("token"=>$this->token,'pid'=>$id,'module'=>'Zajindan'))->delete();
 
