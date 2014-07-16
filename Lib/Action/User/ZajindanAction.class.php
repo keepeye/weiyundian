@@ -52,7 +52,7 @@ class ZajindanAction extends UserAction
 		{
 			$this->error("非法提交");
 		}
-		$id = I('info.id',0);
+		$id = (int)$_POST['info']['id'];
 		$m = M('Zajindan');
 		$_POST['info']['token'] = $this->token;
 		//处理formset
