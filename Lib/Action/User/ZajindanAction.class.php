@@ -7,6 +7,7 @@ class ZajindanAction extends UserAction
 			$this->error('非法访问');
 		}
 		$this->assign("token",$this->token);
+		C('TOKEN_ON',false);
 	}
 
 	//默认首页
@@ -89,7 +90,7 @@ class ZajindanAction extends UserAction
 		}
 		else
 		{
-			$this->error("创建数据失败".M('Zajindan')->getError());
+			$this->error("创建数据失败");
 		}
 	}
 
