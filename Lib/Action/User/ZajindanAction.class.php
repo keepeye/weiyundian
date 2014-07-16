@@ -72,7 +72,7 @@ class ZajindanAction extends UserAction
 			}
 			if($re === false)
 			{
-				$this->error("error:".$m->getDbError());
+				$this->error("error:".$m->getError());
 			}
 			else
 			{
