@@ -33,7 +33,7 @@
 					<TR>
 						<TD>{pigcms:$list.title}</TD>                 
 						<TD>{pigcms:$list.keyword}</TD>
-						<td>{pigcms:$list.stime}<br/>{pigcms:$list.etime}</td>
+						<td>{pigcms:$list.stime|date='Y-m-d H:i:s',###}<br/>{pigcms:$list.etime|date='Y-m-d H:i:s',###}</td>
 						<td>{pigcms:$list.canyu|default=0}</td>
 						<TD class="norightborder">
 							<a href="{pigcms::U('edit',array('id'=>$list['id']))}">设置</a> 
