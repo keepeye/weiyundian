@@ -60,7 +60,7 @@ class ZajindanAction extends UserAction
 		//时间格式转换
 		$_POST['info']['stime'] = strtotime($_POST['info']['stime']);
 		$_POST['info']['etime'] = strtotime($_POST['info']['etime']);
-		if($m->create($_POST['info']))
+		if($zdata = $m->create($_POST['info']))
 		{
 			if($id)
 			{
@@ -72,6 +72,7 @@ class ZajindanAction extends UserAction
 			}
 			if($re === false)
 			{
+				dump($zdata);
 				echo $m->getLastSql();exit;
 				//$this->error("error:".$m->getError());
 			}
