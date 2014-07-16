@@ -15,7 +15,7 @@ class ZajindanAction extends UserAction
 	{
 		$m = M('Zajindan');
 		//读取活动列表
-		$list = $m->field("m.*,k.keyword")->alias('m')->join("left join __KEYWORD__ k ON k.pid=m.id")->where(array("m.token"=>$this->token,'k.token'=>$this->token,'k.module'=>'Zajindan'))->select();
+		$list = $m->field("m.*,k.keyword")->alias('m')->join("left join __KEYWORD__ k ON k.pid=m.id AND k.token='{$this->token}' AND k.module='Zajindan'")->where(array("m.token"=>$this->token))->select();
 		
 		$this->assign("list",$list);
 		$this->display();
@@ -103,9 +103,9 @@ class ZajindanAction extends UserAction
 		$id = I('id',0,'intval');
 		//删除中奖记录
 		M()->execute("delete m,prize,r,sn from `tp_zajindan` m,`tp_zajindan_prize` prize,`tp_zajindan_record` r,`tp_zajindan_sn` sn where m.id='{$id}' AND m.token='{$this->token}' AND prize.pid=m.id AND r.pid=m.id AND sn.pid=prize.id;");
-		
+		exit(M()->getLastSql());
 		//删除关键词
-		M('Keyword')->where(array("token"=>$this->token,'pid'=>$id,'module'=>'Zajindan'))->delete();
+		//M('Keyword')->where(array("token"=>$this->token,'pid'=>$id,'module'=>'Zajindan'))->delete();
 
 		$this->success("删除成功");
 	}
