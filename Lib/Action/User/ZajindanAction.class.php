@@ -29,16 +29,18 @@ class ZajindanAction extends UserAction
 	function edit()
 	{
 		$id = I('id',0);
-		$m = M('Gift');
-		if( ! $id || ! ($gift = $m->where(array("id"=>$id,"token"=>$this->token))->find()))
+		$m = M('Zajindan');
+		if( ! $id || ! ($huodong = $m->where(array("id"=>$id,"token"=>$this->token))->find()))
 		{
-			$this->error("礼品不存在");
+			$this->error("活动不存在");
 		}
-		if(!empty($gift['formset'])){
-			$gift['formset'] = unserialize($gift['formset']);
+		if(!empty($huodong['formset'])){
+			$huodong['formset'] = unserialize($huodong['formset']);
 		}
-		
-		$this->assign("gift",$gift);
+		//读取关键词
+		$keyword = M('Keyword')->where(array("token"=>$this->token,'pid'=>$id,'module'=>'Zajindan'))->getField('keyword');
+		$this->assign("info",$huodong);
+		$this->assign('keyword',$keyword);
 		$this->display();
 	}
 	
@@ -49,35 +51,46 @@ class ZajindanAction extends UserAction
 		{
 			$this->error("非法提交");
 		}
-		dump($_POST);
-		// $id = I('id',0);
-		// $m = M('Gift');
-		// $_POST['token'] = $this->token;
-		// //处理formset
-		// $_POST['formset'] = $this->parseformset();
-		// if($m->create())
-		// {
-		// 	if($id)
-		// 	{
-		// 		$re = $m->save();
-		// 	}
-		// 	else
-		// 	{
-		// 		$id = $re = $m->add();
-		// 	}
-		// 	if($re === false)
-		// 	{
-		// 		$this->error("error:".$m->getDbError());
-		// 	}
-		// 	else
-		// 	{
-		// 		$this->success("保存成功");
-		// 	}
-		// }
-		// else
-		// {
-		// 	$this->error("创建数据失败");
-		// }
+		$id = I('id',0);
+		$m = M('Zajindan');
+		$_POST['info']['token'] = $this->token;
+		//处理formset
+		$_POST['info']['formset'] = $this->parseformset();
+		
+		if($m->create($_POST['info']))
+		{
+			if($id)
+			{
+				$re = $m->save();//更新记录
+			}
+			else
+			{
+				$id = $re = $m->add();//新增记录
+			}
+			if($re === false)
+			{
+				$this->error("error:".$m->getDbError());
+			}
+			else
+			{
+				//处理关键词
+				if ( ! empty($_POST['keyword'])) {
+		            $data['pid']     = $id;//主键
+		            $data['module']  = 'Zajindan';
+		            $data['token']   = $this->token;
+		            $data['keyword'] = $_POST['keyword'];
+		            //删除旧的关键词记录
+		            M('Keyword')->where(array("pid"=>$id,"module"=>'Zajindan','token'=>$this->token))->delete();
+		            //重新插入关键词
+		            M('Keyword')->add($data);
+		        }
+				$this->success("保存成功");
+			}
+		}
+		else
+		{
+			$this->error("创建数据失败");
+		}
 	}
 
 	//删除礼品
