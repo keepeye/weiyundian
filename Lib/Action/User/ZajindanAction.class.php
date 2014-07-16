@@ -49,34 +49,35 @@ class ZajindanAction extends UserAction
 		{
 			$this->error("非法提交");
 		}
-		$id = I('id',0);
-		$m = M('Gift');
-		$_POST['token'] = $this->token;
-		//处理formset
-		$_POST['formset'] = $this->parseformset();
-		if($m->create())
-		{
-			if($id)
-			{
-				$re = $m->save();
-			}
-			else
-			{
-				$id = $re = $m->add();
-			}
-			if($re === false)
-			{
-				$this->error("error:".$m->getDbError());
-			}
-			else
-			{
-				$this->success("保存成功");
-			}
-		}
-		else
-		{
-			$this->error("创建数据失败");
-		}
+		dump($_POST);
+		// $id = I('id',0);
+		// $m = M('Gift');
+		// $_POST['token'] = $this->token;
+		// //处理formset
+		// $_POST['formset'] = $this->parseformset();
+		// if($m->create())
+		// {
+		// 	if($id)
+		// 	{
+		// 		$re = $m->save();
+		// 	}
+		// 	else
+		// 	{
+		// 		$id = $re = $m->add();
+		// 	}
+		// 	if($re === false)
+		// 	{
+		// 		$this->error("error:".$m->getDbError());
+		// 	}
+		// 	else
+		// 	{
+		// 		$this->success("保存成功");
+		// 	}
+		// }
+		// else
+		// {
+		// 	$this->error("创建数据失败");
+		// }
 	}
 
 	//删除礼品
