@@ -72,9 +72,7 @@ class ZajindanAction extends UserAction
 			}
 			if($re === false)
 			{
-				dump($zdata);
-				echo $m->getLastSql();exit;
-				//$this->error("error:".$m->getError());
+				$this->error("error:数据库操作失败");
 			}
 			else
 			{
