@@ -57,7 +57,9 @@ class ZajindanAction extends UserAction
 		$_POST['info']['token'] = $this->token;
 		//处理formset
 		$_POST['info']['formset'] = $this->parseformset();
-		
+		//时间格式转换
+		$_POST['info']['stime'] = strtotime($_POST['info']['stime']);
+		$_POST['info']['etime'] = strtotime($_POST['info']['etime']);
 		if($m->create($_POST['info']))
 		{
 			if($id)
