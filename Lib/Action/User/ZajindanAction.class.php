@@ -72,7 +72,8 @@ class ZajindanAction extends UserAction
 			}
 			if($re === false)
 			{
-				$this->error("error:".$m->getError());
+				echo $m->getLastSql();exit;
+				//$this->error("error:".$m->getError());
 			}
 			else
 			{
