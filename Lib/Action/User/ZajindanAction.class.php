@@ -99,9 +99,9 @@ class ZajindanAction extends UserAction
 	//删除礼品
 	function delete()
 	{
-		$id = I('id',0);
-		$m = M('Gift');
-		$m->where(array("id"=>$id,"token"=>$this->token))->delete();
+		$id = I('id',0,'intval');
+		//删除中奖记录
+		M()->execute("delete m,prize,r,sn from `tp_zajindan` m,`tp_zajindan_prize` prize,`tp_zajindan_record` r,`tp_zajindan_sn` sn where m.id='{$id}'' AND m.token='{$this->token}' AND prize.pid=m.id AND r.pid=m.id AND sn.pid=prize.id;");
 		$this->success("删除成功");
 	}
 
@@ -121,50 +121,7 @@ class ZajindanAction extends UserAction
 		return serialize($data);
 	}
 
-	//设置
-	function config()
-	{
-		$m = M('GiftConfig');
-		$config = $m->where(array("token"=>$this->token))->find();
-
-		if( ! IS_POST)
-		{
-			if($config)
-			{
-				$this->assign("config",$config);
-			}
-			$this->display();
-		}
-		else
-		{
-			$_POST['token'] = $this->token;
-			if($m->create())
-			{
-				if($config)
-				{
-					$re = $m->save();
-				}
-				else
-				{
-					$re = $m->add();
-				}
-				if($re === false)
-				{
-					$this->error("error:".$m->getDbError());
-				}
-				else
-				{
-					$this->success("保存成功");
-				}
-			}
-			else
-			{
-				$this->error("创建数据失败");
-			}
-		}
-		
-	}
-
+	
 	//领取记录
 	function sn()
 	{
