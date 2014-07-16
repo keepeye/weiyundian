@@ -16,6 +16,7 @@ class ZajindanAction extends UserAction
 		$m = M('Zajindan');
 		//读取活动列表
 		$list = $m->field("m.*,k.keyword")->alias('m')->join('left join __KEYWORD__ k')->where(array("m.token"=>$this->token,'k.token'=>$this->token,'k.module'=>'Zajindan','k.pid'=>'m.id'))->select();
+		echo $m->getLastSql();exit;
 		$this->assign("list",$list);
 		$this->display();
 	}
