@@ -39,12 +39,7 @@
 							<a href="{pigcms::U('edit',array('id'=>$list['id']))}">设置</a> 
 							<a href="{pigcms::U('prize',array('id'=>$list['id']))}">奖品管理</a>
 							<a href="{pigcms::U('sn',array('id'=>$list['id']))}">中奖记录</a> 
-							<a href="
-							   <if condition="$list['status'] gt 0">				   
-							   javascript:drop_confirm('你确定要结束活动吗!', '{pigcms::U("setstatus",array("id"=>$list["id"],"status"=>"0"))}');<else/>
-							   </if>">
-							   <if condition="$list['status'] gt 0">结束<else/>开启</if> 
-							</a>&nbsp;
+							<a href="{pigcms::U('delete',array('id'=>$list['id']))}">删除</a> 
 						</TD>
 					</TR>
 				</volist>
