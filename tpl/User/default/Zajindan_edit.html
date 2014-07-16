@@ -36,8 +36,8 @@
             <tr>
               <th valign="top"><span class="red">*</span>状态：</th>
               <td>
-                <label><input type="radio" value="1"  name="status" <if condition="($info['status'] eq 1) OR ($info['status'] eq null)">checked</if>/>开启</label>
-                <label><input type="radio" name="status" value="0" <eq name="info.status" value="0">checked</eq>/>关闭</label>
+                <label><input type="radio" value="1"  name="info[status]" <if condition="($info['status'] eq 1) OR ($info['status'] eq null)">checked</if>/>开启</label>
+                <label><input type="radio" name="info[status]" value="0" <eq name="info.status" value="0">checked</eq>/>关闭</label>
               </td>
             </tr>
             <tr>
@@ -51,7 +51,7 @@
               <td>
                 <input type="input" class="px" value="<if condition="$info['stime'] neq ''">{pigcms:$info.stime|date="Y-m-d H:i:s",###}</if>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="info[stime]" />                
                 到
-                <input type="input" class="px" value="<if condition="$info['etime'] neq ''">{pigcms:$info.etime|date="Y-m-d H:i:s",###}</if>" name="etime"  onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"  /> 
+                <input type="input" class="px" value="<if condition="$info['etime'] neq ''">{pigcms:$info.etime|date="Y-m-d H:i:s",###}</if>" name="info[etime]"  onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"  /> 
               </td>
             </tr>
             <tr>
