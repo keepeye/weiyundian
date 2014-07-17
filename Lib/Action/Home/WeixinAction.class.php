@@ -570,7 +570,7 @@ class WeixinAction extends Action
                                         ));
                         $return[]=array(
                             $item['title'],
-                            $item['desc'],
+                            $item['replytext'],
                             $item['pic'],
                             $url
                         );
