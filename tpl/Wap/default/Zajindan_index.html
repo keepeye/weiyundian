@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/zajindan/css/web_bb/smashegg/main1.css" media="all" />
+
+        <script src="http://libs.baidu.com/zepto/0.8/zepto.min.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/wap/zajindan/src/web_bb/smashegg/main.js"></script>
+        <title>砸金蛋</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+        <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+        <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+        <meta content="no-cache" http-equiv="pragma">
+        <meta content="0" http-equiv="expires">
+        <meta content="telephone=no, address=no" name="format-detection">
+        <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var shape = document.getElementById("shape");
+                var hitObj = {
+                    handleEvent: function(evt) {
+                        if ("SPAN" == evt.target.tagName) {
+                            setTimeout(function() {
+                                evt.target.classList.toggle("on");
+                                //var rand = Math.round(Math.random()*10);
+                                evt.target.classList.toggle("luck");
+                                jg({c_type:"一等奖",c_pic:"",c_name:"呱呱呱"});
+//                                lqsb();
+                                
+                                return;
+                                $.ajax({
+                                    url: "/WebSmashEgg/isWin",
+                                    type: "POST",
+                                    dataType: "json",
+                                    async: true,
+                                    data: {id: 10235, sdid: 384873, Username: '123333', pid: 276781, tk: '4a12207616277f4cc516383a02e07870'},
+                                    success: function(res) {
+                                        if (1 == res.success) {
+                                            evt.target.classList.toggle("luck");
+                                        }
+                                        setTimeout(function() {
+                                            if (1 == res.success) {
+//                                                var urls = ["http://stc.weimob.com/img/smashegg/coin.png"];
+//                                                getCoin(urls);
+                                                jg(res.data);
+                                            } else if ('invalid' == res.error) {
+                                                alert(res.msg);
+                                            } else {
+                                                lqsb();
+                                            }
+                                        }, 2000);
+                                    }
+                                });
+
+                            }, 100);
+                            $("#hit").addClass("on").css({left: evt.pageX + "px", top: evt.pageY + "px"});
+                        }
+                        //shape.classList.toggle("pause");
+                        shape.removeEventListener("click", hitObj, false);
+                        //setTimeout(function(){$("#hit").removeClass("on");}, 1500);
+                    }
+                }
+                shape.addEventListener("click", hitObj, false);
+            }, false);
+        </script>
+
+        <div class="body pb_10">
+            
+            <section class="stage">
+                <img src="__PUBLIC__/wap/zajindan/img/smashegg/stage.jpg" />
+                <div id="shape" class="cube on">
+                    <div class="plane one"><span><figure>&nbsp;</figure></span></div>
+                    <div class="plane two"><span><figure>&nbsp;</figure></span></div>
+                    <div class="plane three"><span><figure>&nbsp;</figure></span></div>
+                </div>
+                <div id="hit" class="hit"><img src="__PUBLIC__/wap/zajindan/img/smashegg/1.png" /></div>
+            </section>
+            <section>
+                <div class="instro_wall">
+                    <article>
+                        <h6>参与次数</h6>
+                        <div>
+                            <p>
+                                您还可以抽奖次数：<label class="color_golden">11106</label>
+                            </p>
+                        </div>
+                    </article>
+                    <article>
+                        <h6>活动说明</h6>
+                        <div>
+                            <p>
+                                111					</p>
+                        </div>
+                    </article>
+                    <article class="a3">
+                        <h6>活动奖项</h6>
+                        <div>
+                            <ul>
+                                <ol>
+                                    <li>
+                                        <p>
+                                            1dj<label class="color_golden"></label>
+                                        </p>
+                                        <figure><img src="__PUBLIC__/wap/zajindan/img/baidu_jgylogo3.gif" /></figure>
+                                        <label>1111111</label>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            2dj<label class="color_golden"></label>
+                                        </p>
+                                        <figure><img src="__PUBLIC__/wap/zajindan/img/baidu_jgylogo3.gif" /></figure>
+                                        <label>22222</label>
+                                    </li>
+                                </ol>
+                                <ol>
+                                </ol>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article>
+                        <h6>中奖纪录</h6>
+                        <div>
+                            <table>
+                                <tr>
+                                    <td>2014/07/09 16:00</td>
+                                    <td>22222</td>
+                                    <td><input type="button" value="领取奖品" onclick="lq({code:'070936991362951', snid:'2243531',loca:'no'});" /></td>
+                                </tr>
+                                <tr>
+                                    <td>2014/07/09 15:58</td>
+                                    <td>1111111</td>
+                                    <td><input type="button" value="申请兑换" onclick="sqdh({code:'070986992913033', snid:'2243530'});" /></td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </article>
+                </div>
+            </section>
+            
+        </div>
+        <script>
+            //申请兑换
+            function sqdh(arg) {
+                var d1 = new iDialog();
+                d1.open({
+                    classList: "apply",
+                    title: "",
+                    close: "",
+                    content: '<div class="header"><h6 style="color:#fff;">申请兑换</h6></div>\
+                                        <table>\
+                                                <tr><td><input type="text" id="d1_1" placeholder="" maxlength="30" readonly="readonly" value="SN码：' + arg.code + '" /></td></tr>\
+                                                <tr><td><input type="text" id="d1_2" placeholder="请输入兑奖密码" maxlength="30" /></td></tr>\
+                                        </table>',
+                    btns: [
+                        {id: "", name: "确定", onclick: "fn.call();", fn: function(self) {
+                                var obj = {
+                                    d1_1: $.trim($("#d1_1").val()),
+                                    parssword: $.trim($("#d1_2").val()),
+                                    id: 10235,
+                                    sdid: 384873,
+                                    Username: '123333',
+                                    tk: '4a12207616277f4cc516383a02e07870',
+                                    snid: arg.snid
+                                }
+                                $.ajax({
+                                    url: "/WebSmashEgg/AddUserInfo",
+                                    type: "POST",
+                                    dataType: "json",
+                                    data: obj,
+                                    success: function(res) {
+                                        if (1 == res.success) {
+                                            alert('兑奖状态已经记录');
+                                            location.href = location.href + "&r=" + Math.random();
+                                            self.die();
+
+                                        } else {
+                                            alert('兑奖密码错误');
+                                        }
+                                    }
+                                });
+                            }},
+                        {id: "", name: "关闭", onclick: "fn.call();", fn: function(self) {
+                                self.die();
+                            }, }
+                    ]
+                });
+            }
+
+            //领取
+            function lq(arg) {
+                var d2 = new iDialog();
+                d2.open({
+                    classList: "get",
+                    title: "",
+                    close: "",
+                    content: '<div class="header"><h6>SN码：' + arg.code + '</h6></div>\
+                                        <table>\
+                                                <tr><td><input type="text" id="d2_1" placeholder="请输入联系人" maxlength="30" /></td></tr>\
+                                                <tr><td><input type="text" id="d2_2" placeholder="请输入手机号，以便领取奖品" maxlength="30" /></td></tr>\
+                                        </table>',
+                    btns: [
+                        {id: "", name: "领取", onclick: "fn.call();", fn: function(self) {
+                                var obj = {
+                                    username: $.trim($("#d2_1").val()),
+                                    tel: $.trim($("#d2_2").val()),
+                                    id: 10235,
+                                    sdid: 384873,
+                                    Username: '123333',
+                                    tk: '4a12207616277f4cc516383a02e07870',
+                                    snid: arg.snid
+                                }
+                                $.ajax({
+                                    url: "/WebSmashEgg/AddUserInfo",
+                                    type: "POST",
+                                    data: obj,
+                                    dataType: "json",
+                                    success: function(res) {
+                                        if (1 == res.success) {
+                                            self.die();
+                                            lqcg();
+                                        } else {
+                                            console.log( );
+                                        }
+                                    }
+                                });
+                            }},
+                        {id: "", name: "关闭", onclick: "fn.call();", fn: function(self) {
+                                if ('no' != arg.loca) {
+                                    location.href = location.href + "&r=" + Math.random();
+                                }
+                                self.die();
+                            }, }
+                    ]
+                });
+            }
+
+            //结果
+            function jg(arg) {
+                var d3 = new iDialog();
+                d3.open({
+                    classList: "result",
+                    title: "",
+                    close: "",
+                    content: '<div class="header"><h5 style="color:#2f8ae5;font-size:16px;">恭喜您中奖了！您的运气实在是太好了！</h6></div>\
+                                        <table><tr>\
+                                                <td style="width:75px;"><label>' + arg.c_type + '</label></td>\
+                                                <td><img src="' + arg.c_pic + '" /></td>\
+                                                <td style="width:75px;"><label>' + arg.c_name + '</label></td>\
+                                        </tr></table>',
+                    btns: [
+                        {id: "", name: "领取奖品", onclick: "fn.call();", fn: function(self) {
+                                self.die();
+                                lq(arg);
+                            }},
+                        {id: "", name: "关闭", onclick: "fn.call();", fn: function(self) {
+                                location.href = location.href + "&r=" + Math.random();
+                                self.die();
+                            }, }
+                    ]
+                });
+            }
+
+            //领取结果-成功
+            function lqcg() {
+                var d5 = new iDialog();
+                d5.open({
+                    classList: "success",
+                    title: "",
+                    close: "",
+                    content: '<div class="header"><h6>成功领取</h6></div>\
+                                        <table><tr>\
+                                                <td><img src="__PUBLIC__/wap/zajindan/img/smashegg/7.png" /></td>\
+                                                <td style="width:170px;"><label>线下兑换请到指定地点，出示此SN码给我们的工作人确认兑换！兑奖请联系我们，电话13899999999</label></td>\
+                                        </tr></table>',
+                    btns: [
+                        {id: "", name: "知道了", onclick: "fn.call();", fn: function(self) {
+                                location.href = location.href + "&r=" + Math.random();
+                                self.die();
+                            }},
+                    ]
+                });
+            }
+
+            //砸蛋结果-失败
+            function lqsb() {
+                var d6 = new iDialog();
+                d6.open({
+                    classList: "failed",
+                    title: "",
+                    close: "",
+                    content: '<div class="header">感谢您的参与，请再接再厉哟！</div>\
+                                        <table><tr>\
+                                                <td><img src="__PUBLIC__/wap/zajindan/img/smashegg/8.png" /></td>\
+                                        </tr></table>',
+                    btns: [
+                        {id: "", name: "再砸一次", onclick: "fn.call();", fn: function(self) {
+                                location.href = location.href + "&r=" + Math.random();
+                            }},
+                    ]
+                });
+            }
+
+            window.alert = function(str) {
+                var d7 = new iDialog();
+                d7.open({
+                    classList: "alert",
+                    title: "",
+                    close: "",
+                    content: str,
+                    btns: [
+                        {id: "", name: "确定", onclick: "fn.call();", fn: function(self) {
+                                self.die();
+                            }},
+                    ]
+                });
+            }
+            
+        </script>
+    </body>
+</html>
+
