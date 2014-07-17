@@ -558,7 +558,25 @@ class WeixinAction extends Action
                                         );
                             endforeach;
                             
-                
+                case 'Zajindan':
+                    $zlist = M('Zajindan')->where(array('id' => array("in",$pids['Zajindan'])))->select();
+                    foreach($zlist as $item){
+                        $url = C('site_url') . U('Wap/Zajindan/index', array(
+                                        'token' => $this->token,
+                                        'id' => $id,
+                                        'wxref'=>'mp.weixin.qq.com',
+                                        'wecha_id'=>$this->data['FromUserName'],
+                                        'wxsign'=>md5($this->token.$this->data['FromUserName'].C('safe_key'))
+                                        ));
+                        $return[]=array(
+                            $item['title'],
+                            $item['desc'],
+                            $item['pic'],
+                            $url
+                        );
+                        
+                    }
+                    break;
                 default:
                     break;
 
