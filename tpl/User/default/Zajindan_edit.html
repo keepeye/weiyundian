@@ -52,6 +52,18 @@
               </td>
             </tr>
             <tr>
+              <th valign="top"><span class="red">*</span>初始机会：</th>
+              <td>
+                <input type="input" class="px" value="{pigcms:$info.initnums}"  name="info[initnums]" style="width:40px;"/>次  用户第一次参加活动时给予的抽奖机会次数
+              </td>
+            </tr>
+            <tr>
+              <th valign="top"><span class="red">*</span>积分消耗：</th>
+              <td>
+                <input type="input" class="px" value="{pigcms:$info.needscore|default=0}"  name="info[needscore]" style="width:40px;"/>次  当抽奖机会用完以后，继续抽奖每次消耗积分，0为不开启该功能
+              </td>
+            </tr>
+            <tr>
               <th valign="top"><span class="red">*</span>活动时间：</th>
               <td>
                 <input type="input" class="px" value="<if condition="$info['stime'] neq ''">{pigcms:$info.stime|date="Y-m-d H:i:s",###}</if>" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="info[stime]" />                
