@@ -563,7 +563,7 @@ class WeixinAction extends Action
                     foreach($zlist as $item){
                         $url = C('site_url') . U('Wap/Zajindan/index', array(
                                         'token' => $this->token,
-                                        'id' => $id,
+                                        'id' => $item['id'],
                                         'wxref'=>'mp.weixin.qq.com',
                                         'wecha_id'=>$this->data['FromUserName'],
                                         'wxsign'=>md5($this->token.$this->data['FromUserName'].C('safe_key'))
