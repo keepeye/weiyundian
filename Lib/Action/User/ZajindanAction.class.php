@@ -144,6 +144,22 @@ class ZajindanAction extends UserAction
 		}else{
 			//新的奖品
 			$newprizes = $_POST['new'];
+			foreach($newprizes as $k=>&$v){
+				if(!empty($v['name'])){
+					$v['pid'] = $huodong['id'];
+				}else{
+					unset($newprizes[$k]);
+				}
+			}
+			M('ZajindanPrize')->addAll($newprizes);//批量插入新奖品
+			//更新旧奖品设置
+			$oldprizes = $_POST['old'];
+			foreach($oldprizes as &$oldprize){
+				M('ZajindanPrize')->where(array("pid"=>$huodong['id'],"id"=>$oldprize['id']))->data($oldprize)->save();
+			}
+			//删除的奖品
+			M('ZajindanPrize')->where(array("pid"=>$huodong['id'],"id"=>array("in",I('delids',array()))))->delete();
+			$this->success("保存成功");
 		}
 		
 	}	

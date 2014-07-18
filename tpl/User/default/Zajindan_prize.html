@@ -1,7 +1,7 @@
 <include file="Public:head"/>
 <form class="form" method="post" action="">
 <input type="hidden" name="id" value="{pigcms:$huodong.id}"/>
-<input type="hidden" name="del_options" id="del_options" />
+<input type="hidden" name="delids" id="delids" />
 <div class="content">
 <!--活动开始-->
 <div class="cLineB">
@@ -20,7 +20,7 @@
           <tr>
             
             <td>
-              
+              <input type="hidden" name="old[{pigcms:$prize['id']}][id]" class="px" value="{pigcms:$prize['id']}" style="width:200px"/>
               奖品名：
               <input type="text" name="old[{pigcms:$prize['id']}][name]" class="px" value="{pigcms:$prize['name']}" style="width:200px"/>
               
@@ -59,12 +59,12 @@
     addprizenum++;
   }
   function del(id,ob){
-    var dels = $("#del_options").val().split(",");
+    var dels = $("#delids").val().split(",");
     if(dels.length > 0 && dels[0]==""){
       dels.shift();
     }
     dels.push(id);
-    $("#del_options").val(dels.join(","));
+    $("#delids").val(dels.join(","));
     $(ob).parent().parent().remove();
   }
 </script>
