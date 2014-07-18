@@ -20,11 +20,9 @@
           <tr>
             
             <td>
-              类型：
-              <input type="text" name="old[{pigcms:$prize['id']}][shorttitle]" class="px" value="{pigcms:$prize['shorttitle']}" style="width:80px"> 
               
-              标题：
-              <input type="text" name="old[{pigcms:$prize['id']}][title]" class="px" value="{pigcms:$prize['title']}" style="width:200px"/>
+              奖品名：
+              <input type="text" name="old[{pigcms:$prize['id']}][name]" class="px" value="{pigcms:$prize['name']}" style="width:200px"/>
               
               库存:
               <input type="text" name="old[{pigcms:$prize['id']}][stock]" class="px" value="{pigcms:$prize['stock']}" style="width:50px"/>
@@ -54,7 +52,7 @@
 
 <script>
   function add_prize(){
-    var html = "<tr><td>类型:<input type=\"text\" name=\"new[shorttitle]\" class=\"px\" style='width:80px'> 标题:<input type=\"text\" name=\"new[title]\" class=\"px\" style='width:200px'> 库存:<input type=\"text\" name=\"new[stock]\" class=\"px\" style='width:50px'></td></tr>";
+    var html = "<tr><td>奖品名:<input type=\"text\" name=\"new[title]\" class=\"px\" style='width:200px'> 库存:<input type=\"text\" name=\"new[stock]\" class=\"px\" style='width:50px'></td></tr>";
     $("#new_options").after(html);
   }
   function del(id,ob){
