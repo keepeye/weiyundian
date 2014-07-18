@@ -1,0 +1,70 @@
+<include file="Public:head"/>
+<form class="form" method="post" action="">
+<input type="hidden" name="id" value="{pigcms:$huodong.id}"/>
+<input type="hidden" name="del_options" id="del_options" />
+<div class="content">
+<!--活动开始-->
+<div class="cLineB">
+  <h4>【<?=$huodong['title'];?>】 奖品设置</h4><a href="javascript:history.go(-1);" class="right btnGrayS vm" style="margin-top:-27px">返回</a></div>  
+<div class="msgWrap bgfc">
+ 
+  <table class="userinfoArea" style=" margin:0;" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tbody>
+
+      <tr>
+        <th></th>
+        <td style="color:red">奖品列表</td>
+      </tr>
+      <?php if(!empty($prizes)): ?>
+        <?php foreach($prizes as $k=>$prize): ?>
+          <tr>
+            <th>奖品<?=$k+1;?></th>
+            <td>
+              类型：
+              <input type="text" name="old[{pigcms:$prize['id']}][shorttitle]" class="px" value="{pigcms:$prize['shorttitle']}" style="width:80px"> 
+              
+              标题：
+              <input type="text" name="old[{pigcms:$prize['id']}][title]" class="px" value="{pigcms:$prize['title']}" style="width:200px"/>
+              
+              库存:
+              <input type="text" name="old[{pigcms:$prize['id']}][stock]" class="px" value="{pigcms:$prize['stock']}" style="width:50px"/>
+              &nbsp;
+              <a href="javascript:" onclick="del({pigcms:$prize['id']},this)">删除</a>
+            </td>
+          </tr>
+        <?php endforeach;?>
+      <?php endif;?>
+
+      
+      <tr id="new_options"></tr>
+      <tr>
+        <th></th>
+        <td><a href="javascript:" onclick="add_prize()">添加奖品</a></td>
+      </tr>
+
+      <tr>
+        <th>&nbsp;</th>
+        <td><input type="submit" name="button" class="btnGreen" value="保存" />　<a href="" class="btnGray vm">取消</a></td>
+      </tr>
+    </tbody>
+  </table>
+ </div> 
+</div>
+</form>
+
+<script>
+  function add_prize(){
+    var html = "<tr><th>奖品</th><td>类型:<input type=\"text\" name=\"new[shorttitle]\" class=\"px\" style='width:80px'> 标题:<input type=\"text\" name=\"new[title]\" class=\"px\" style='width:200px'> 库存:<input type=\"text\" name=\"new[stock]\" class=\"px\" style='width:50px'></td></tr>";
+    $("#new_options").after(html);
+  }
+  function del(id,ob){
+    var dels = $("#del_options").val().split(",");
+    if(dels.length > 0 && dels[0]==""){
+      dels.shift();
+    }
+    dels.push(id);
+    $("#del_options").val(dels.join(","));
+    $(ob).parent().parent().remove();
+  }
+</script>
+<include file="Public:footer"/> 

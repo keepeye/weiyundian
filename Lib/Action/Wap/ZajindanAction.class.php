@@ -44,7 +44,27 @@ class ZajindanAction extends WapAction {
 
 	//活动入口
 	function index(){
+		//读取用户积分
+		//初始化用户记录
+		//读取中奖记录
 		$this->display();
+	}
+
+	//ajax抽奖
+	function getprize(){
+		//随机判断是否中奖
+		//并发锁--开始
+			//读取奖品列表
+			//随机中奖
+				//检测库存
+				//生成记录
+				//返回结果
+		//并发锁结束
+	}
+
+	//提交表单
+	function formsubmit(){
+		
 	}
 
 }

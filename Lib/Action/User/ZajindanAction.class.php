@@ -126,7 +126,25 @@ class ZajindanAction extends UserAction
 		return serialize($data);
 	}
 
-	
+	//奖品设置
+	function prize(){
+		$id = I('id',0,'intval');
+		$m = M('Zajindan');
+		if( ! $id || ! ($huodong = $m->where(array("id"=>$id,"token"=>$this->token))->find()))
+		{
+			$this->error("活动不存在");
+		}
+		
+		if( ! IS_POST){
+			//读取奖品列表
+			$prizes = M('ZajindanPrize')->where(array("pid"=>$huodong['id']))->select();
+			$this->assign("prizes",$prizes);
+			$this->assign("huodong",$huodong);
+			$this->display();
+		}
+		
+	}	
+
 	//领取记录
 	function sn()
 	{
