@@ -44,8 +44,30 @@ class ZajindanAction extends WapAction {
 
 	//活动入口
 	function index(){
-		//读取用户积分
+		//用户记录查询条件
+		$record_map = array(
+			"pid"=>$this->huodong['id'],
+			"wecha_id"=>$this->wecha_id,
+		);
 		//初始化用户记录
+		$record = M('ZajindanRecord')->where($record_map)->find();
+		if( ! $record){
+			//构建初始记录，并插入到数据库中
+			$record = array(
+				"pid"=>$this->huodong['id'],
+				"wecha_id"=>$this->wecha_id,
+				"times"=>$this->huodong['initnums'],
+				"used"=>"0",
+				"spread_times"=>0,
+				"spread_score"=>0,
+				"lasttime"=>0,
+			);
+			$re = M('ZajindanRecord')->data($record)->add();
+			if($re === false){
+				$this->error("页面异常，请重试");
+			}
+		}
+		dump($record);
 		//读取中奖记录
 		$this->display();
 	}
