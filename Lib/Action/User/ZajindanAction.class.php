@@ -144,6 +144,7 @@ class ZajindanAction extends UserAction
 		}else{
 			//新的奖品
 			$newprizes = $_POST['new'];
+			dump($newprizes);exit;
 			foreach($newprizes as $k=>&$v){
 				if(!empty($v['name'])){
 					$v['pid'] = $huodong['id'];
