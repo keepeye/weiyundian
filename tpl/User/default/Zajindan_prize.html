@@ -51,9 +51,12 @@
 </form>
 
 <script>
+
+  var addprizenum=0;
   function add_prize(){
-    var html = "<tr><td>奖品名:<input type=\"text\" name=\"new[title]\" class=\"px\" style='width:200px'> 库存:<input type=\"text\" name=\"new[stock]\" class=\"px\" style='width:50px'></td></tr>";
+    var html = "<tr><td>奖品名:<input type=\"text\" name=\"new["+addprizenum+"][title]\" class=\"px\" style='width:200px'> 库存:<input type=\"text\" name=\"new["+addprizenum+"][stock]\" class=\"px\" style='width:50px'></td></tr>";
     $("#new_options").after(html);
+    addprizenum++;
   }
   function del(id,ob){
     var dels = $("#del_options").val().split(",");

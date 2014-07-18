@@ -141,6 +141,9 @@ class ZajindanAction extends UserAction
 			$this->assign("prizes",$prizes);
 			$this->assign("huodong",$huodong);
 			$this->display();
+		}else{
+			//新的奖品
+			$newprizes = $_POST['new'];
 		}
 		
 	}	
