@@ -67,7 +67,7 @@ class ZajindanAction extends WapAction {
 				$this->error("页面异常，请重试");
 			}
 		}
-		dump($record);
+		
 		//读取中奖记录
 		$this->display();
 	}
