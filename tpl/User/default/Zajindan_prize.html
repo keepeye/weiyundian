@@ -32,7 +32,7 @@
               送积分：<input type="text" name="old[{pigcms:$prize['id']}][extra_score]" class="px" value="{pigcms:$prize['extra_score']}" style="width:50px"/>
               &nbsp;
 
-              权重：<input type="text" name="old[{pigcms:$prize['id']}][weight]" class="px" value="{pigcms:$prize['weight']}" style="width:50px" placeholder="1-100的数字"/> 1-100,越高越容易中
+              权重：<input type="text" name="old[{pigcms:$prize['id']}][weight]" class="px" value="{pigcms:$prize['weight']}" style="width:50px" placeholder="大于0的整数"/>大于0的整数,越高越容易中
 
               <a href="javascript:" onclick="del({pigcms:$prize['id']},this)">删除</a>
             </td>
@@ -61,7 +61,7 @@
 
   var addprizenum=0;
   function add_prize(){
-    var html = "<tr><td>奖品名： <input type=\"text\" name=\"new["+addprizenum+"][name]\" class=\"px\" style='width:200px'>&nbsp;&nbsp;&nbsp;库存： <input type=\"text\" name=\"new["+addprizenum+"][stock]\" class=\"px\" style='width:50px' value='0'>&nbsp;&nbsp;&nbsp;送积分：<input type=\"text\" name=\"new["+addprizenum+"][extra_score]\" class=\"px\" style='width:50px' value='0'>&nbsp;&nbsp;&nbsp;权重：<input type=\"text\" name=\"new["+addprizenum+"][weight]\" class=\"px\" style='width:50px' value='1'> 1-100,越高越容易中</td></tr>";
+    var html = "<tr><td>奖品名： <input type=\"text\" name=\"new["+addprizenum+"][name]\" class=\"px\" style='width:200px'>&nbsp;&nbsp;&nbsp;库存： <input type=\"text\" name=\"new["+addprizenum+"][stock]\" class=\"px\" style='width:50px' value='0'>&nbsp;&nbsp;&nbsp;送积分：<input type=\"text\" name=\"new["+addprizenum+"][extra_score]\" class=\"px\" style='width:50px' value='0'>&nbsp;&nbsp;&nbsp;权重：<input type=\"text\" name=\"new["+addprizenum+"][weight]\" class=\"px\" style='width:50px' value='1'> 大于0的整数,越高越容易中</td></tr>";
     $("#new_options").before(html);
     addprizenum++;
   }
