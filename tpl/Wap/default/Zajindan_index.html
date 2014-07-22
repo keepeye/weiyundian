@@ -148,7 +148,7 @@
         </div>
         <!--用户提交的信息-->
         <div id="formdata" style="display:none;">
-
+            
         </div>
 
         <script>
@@ -177,7 +177,7 @@
             function myinfo(){
                 var formdata = $("#formdata");
                 //如果尚未提交个人信息，则转到表单提交功能
-                if(formdata.html() == ""){
+                if($.trim(formdata.html()) == ""){
                     lq();
                 }else{
                     var d2 = new iDialog();//初始化对话框
