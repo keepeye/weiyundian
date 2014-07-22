@@ -263,7 +263,7 @@
                 var hitObj = {
                     handleEvent: function(evt) {
                         var lasttimes = parseInt($("#cjcs").html());
-                        var needscore = false || "<?=$huodong['needscore'];?>";
+                        var needscore = parseInt("<?=$huodong['needscore'];?>");
                         if(lasttimes <= 0){
                             if(needscore){
                                 alert('你的抽奖机会已用完');
