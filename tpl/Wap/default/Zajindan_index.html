@@ -5,7 +5,7 @@
         
         <link rel="stylesheet" type="text/css" href="__PUBLIC__/wap/zajindan/css/web_bb/smashegg/main1.css" media="all" />
 
-        <script src="http://libs.baidu.com/zepto/0.8/zepto.min.js"></script>
+        <script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
         <script type="text/javascript" src="__PUBLIC__/wap/zajindan/src/web_bb/smashegg/main.js"></script>
         <title>砸金蛋</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
@@ -206,7 +206,7 @@
                     btns: [
                         {id: "", name: "提交", onclick: "fn.call();", fn: function(self) {
                                 var fdata = $("#formset").serialize();
-                                console.log($("#formset"));return;
+                                console.log(fdata);return;
                                 $.ajax({
                                     url: "<?=U('myinfo');?>",
                                     type: "POST",
