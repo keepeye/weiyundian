@@ -82,7 +82,7 @@ class ZajindanAction extends WapAction {
 	function getprize(){
 		$data = array(
 			"status"=>1,
-			"data"=>array("prize"=>"蛋糕券","formdata"=>""),
+			"data"=>array("prize"=>"蛋糕券","formdata"=>"","sn"=>"dffff"),
 			"info"=>"中奖啦"
 		);
 		$this->ajaxReturn($data);
