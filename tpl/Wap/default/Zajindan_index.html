@@ -139,10 +139,14 @@
             <div class="header"><h6>个人信息</h6></div>
             <table>
                     <tr>
-                        <td><input type="text" name="name"  placeholder="请输入联系人" maxlength="30" value=""/></td>
+                        <td>
+                            <input type="text" name="name"  placeholder="请输入联系人" maxlength="30" value="" id="fff"/>
+                        </td>
                     </tr>
                     <tr>
-                        <td><input type="text" name="phone"  placeholder="请输入手机号，以便领取奖品" maxlength="30" value=""/></td>
+                        <td>
+                            <input type="text" name="phone"  placeholder="请输入手机号，以便领取奖品" maxlength="30" value=""/>
+                        </td>
                     </tr>
             </table>
         </form>
@@ -206,7 +210,7 @@
                     btns: [
                         {id: "", name: "提交", onclick: "fn.call();", fn: function(self) {
                                 var fdata = $("#formset").serialize();
-                                console.log(fdata);return;
+                                console.log($("fff").val());return;
                                 $.ajax({
                                     url: "<?=U('myinfo');?>",
                                     type: "POST",
