@@ -265,7 +265,7 @@
                         var lasttimes = parseInt($("#cjcs").html());
                         var needscore = parseInt("<?=$huodong['needscore'];?>");
                         if(lasttimes <= 0){
-                            if(needscore){
+                            if( ! needscore){
                                 alert('你的抽奖机会已用完');
                                 return false;
                             }else{
