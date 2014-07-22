@@ -91,7 +91,10 @@ class ZajindanAction extends WapAction {
 
 	//提交表单
 	function formsubmit(){
-		
+		if( ! IS_POST){
+			$this->error("非法请求");
+		}
+		$this->success("成功");
 	}
 
 }

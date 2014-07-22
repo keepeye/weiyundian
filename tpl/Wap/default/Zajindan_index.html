@@ -210,18 +210,16 @@
                     btns: [
                         {id: "", name: "提交", onclick: "fn.call();", fn: function(self) {
                                 var fdata = $("#lq_form").serialize();
-                                console.log(fdata);return;
                                 $.ajax({
-                                    url: "<?=U('myinfo');?>",
+                                    url: "<?=U('formsubmit');?>",
                                     type: "POST",
                                     data: fdata,
                                     dataType: "json",
                                     success: function(res) {
-                                        if (1 == res.success) {
+                                        if (1 == res.status) {
                                             self.die();
-                                            lqcg();
                                         } else {
-                                            console.log( );
+                                            alert("提交失败:"+res.info);
                                         }
                                     }
                                 });
@@ -264,26 +262,6 @@
                 });
             }
 
-            //领取结果-成功
-            function lqcg() {
-                var d5 = new iDialog();
-                d5.open({
-                    classList: "success",
-                    title: "",
-                    close: "",
-                    content: '<div class="header"><h6>成功领取</h6></div>\
-                                        <table><tr>\
-                                                <td><img src="__PUBLIC__/wap/zajindan/img/smashegg/7.png" /></td>\
-                                                <td style="width:170px;"><label>线下兑换请到指定地点，出示此SN码给我们的工作人确认兑换！兑奖请联系我们，电话13899999999</label></td>\
-                                        </tr></table>',
-                    btns: [
-                        {id: "", name: "知道了", onclick: "fn.call();", fn: function(self) {
-                                location.href = location.href + "&r=" + Math.random();
-                                self.die();
-                            }},
-                    ]
-                });
-            }
 
             //砸蛋结果-失败
             function lqsb() {
