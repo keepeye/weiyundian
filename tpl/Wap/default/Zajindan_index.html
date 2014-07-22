@@ -140,12 +140,12 @@
             <table>
                     <tr>
                         <td>
-                            <input type="text" name="name"  placeholder="请输入联系人" maxlength="30" value="" id="fff"/>
+                            <input type="text" name="name"  placeholder="请输入联系人" maxlength="30" value=""/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" name="phone"  placeholder="请输入手机号，以便领取奖品" maxlength="30" value=""/>
+                            <input type="text" name="phone"  placeholder="请输入手机号，以便领取奖品" maxlength="30"/>
                         </td>
                     </tr>
             </table>
@@ -202,16 +202,15 @@
             //提交个人信息
             function lq() {
                 var d2 = new iDialog();
-                $("#fff");
                 d2.open({
                     classList: "get",
                     title: "",
                     close: "",
-                    content: $("#formset").html(),
+                    content: $("#formset"),
                     btns: [
                         {id: "", name: "提交", onclick: "fn.call();", fn: function(self) {
                                 var fdata = $("#formset").serialize();
-                                console.log($("#fff").val());return;
+                                console.log(fdata);return;
                                 $.ajax({
                                     url: "<?=U('myinfo');?>",
                                     type: "POST",
