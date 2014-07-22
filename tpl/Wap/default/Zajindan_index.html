@@ -29,27 +29,22 @@
                                 evt.target.classList.toggle("on");
                                 //var rand = Math.round(Math.random()*10);
                                 evt.target.classList.toggle("luck");
-                                jg({prize:"呱呱呱",sn:"asffff"});
-//                                lqsb();
-                                
-                                return;
+                                //jg({prize:"呱呱呱",sn:"asffff"});
+                                //lqsb();
+                                //return;
                                 $.ajax({
-                                    url: "/WebSmashEgg/isWin",
+                                    url: "<?=U('getprize');?>",
                                     type: "POST",
                                     dataType: "json",
                                     async: true,
-                                    data: {id: 10235, sdid: 384873, Username: '123333', pid: 276781, tk: '4a12207616277f4cc516383a02e07870'},
+                                    data: {id: '<?=$huodong['id'];?>',token:'<?=$token;?>'},
                                     success: function(res) {
-                                        if (1 == res.success) {
+                                        if (1 == res.status) {
                                             evt.target.classList.toggle("luck");
                                         }
                                         setTimeout(function() {
-                                            if (1 == res.success) {
-//                                                var urls = ["http://stc.weimob.com/img/smashegg/coin.png"];
-//                                                getCoin(urls);
+                                            if (1 == res.status) {
                                                 jg(res.data);
-                                            } else if ('invalid' == res.error) {
-                                                alert(res.msg);
                                             } else {
                                                 lqsb();
                                             }
@@ -58,11 +53,12 @@
                                 });
 
                             }, 100);
+
                             $("#hit").addClass("on").css({left: evt.pageX + "px", top: evt.pageY + "px"});
                         }
-                        //shape.classList.toggle("pause");
+                        
                         shape.removeEventListener("click", hitObj, false);
-                        //setTimeout(function(){$("#hit").removeClass("on");}, 1500);
+                        
                     }
                 }
                 shape.addEventListener("click", hitObj, false);
