@@ -29,7 +29,7 @@
                                 evt.target.classList.toggle("on");
                                 //var rand = Math.round(Math.random()*10);
                                 evt.target.classList.toggle("luck");
-                                jg({c_type:"一等奖",c_pic:"",c_name:"呱呱呱"});
+                                jg({prize:"呱呱呱",sn:"asffff"});
 //                                lqsb();
                                 
                                 return;
@@ -203,11 +203,9 @@
                     classList: "result",
                     title: "",
                     close: "",
-                    content: '<div class="header"><h5 style="color:#2f8ae5;font-size:16px;">恭喜您中奖了！您的运气实在是太好了！</h6></div>\
+                    content: '<div class="header"><h5 style="color:#2f8ae5;font-size:16px;">恭喜您中奖了！</h6></div>\
                                         <table><tr>\
-                                                <td style="width:75px;"><label>' + arg.c_type + '</label></td>\
-                                                <td><img src="' + arg.c_pic + '" /></td>\
-                                                <td style="width:75px;"><label>' + arg.c_name + '</label></td>\
+                                                <td><label>' + arg.prize + '</label></td>\
                                         </tr></table>',
                     btns: [
                         {id: "", name: "领取奖品", onclick: "fn.call();", fn: function(self) {
