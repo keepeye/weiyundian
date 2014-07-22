@@ -19,51 +19,6 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     </head>
     <body onselectstart="return true;" ondragstart="return false;">
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                var shape = document.getElementById("shape");
-                var hitObj = {
-                    handleEvent: function(evt) {
-                        if ("SPAN" == evt.target.tagName) {
-                            setTimeout(function() {
-                                evt.target.classList.toggle("on");
-                                //var rand = Math.round(Math.random()*10);
-                                //evt.target.classList.toggle("luck");
-                                //jg({prize:"呱呱呱",sn:"asffff"});
-                                //lqsb();
-                                //return;
-                                $.ajax({
-                                    url: "<?=U('getprize');?>",
-                                    type: "POST",
-                                    dataType: "json",
-                                    async: true,
-                                    data: {id: '<?=$huodong['id'];?>',token:'<?=$token;?>'},
-                                    success: function(res) {
-                                        if (1 == res.status) {
-                                            evt.target.classList.toggle("luck");
-                                        }
-                                        setTimeout(function() {
-                                            if (1 == res.status) {
-                                                jg(res.data);
-                                            } else {
-                                                lqsb(res.info);
-                                            }
-                                        }, 1000);
-                                    }
-                                });
-
-                            }, 100);
-
-                            $("#hit").addClass("on").css({left: evt.pageX + "px", top: evt.pageY + "px"});
-                        }
-                        
-                        shape.removeEventListener("click", hitObj, false);
-                        
-                    }
-                }
-                shape.addEventListener("click", hitObj, false);
-            }, false);
-        </script>
 
         <div class="body pb_10">
             
@@ -82,7 +37,7 @@
                         <h6>参与次数</h6>
                         <div>
                             <p>
-                                您还可以抽奖次数：<label class="color_golden"><?=$record['times'];?></label>
+                                您还可以抽奖次数：<label class="color_golden" id="cjcs"><?=$record['times'];?></label>
                             </p>
                         </div>
                     </article>
@@ -154,7 +109,7 @@
         <div id="formdata" style="display:none;">
             
         </div>
-
+        
         <script>
 
             //查看中奖详情
@@ -302,6 +257,55 @@
                 });
             }
             
+
+            document.addEventListener("DOMContentLoaded", function() {
+                var shape = document.getElementById("shape");
+                var hitObj = {
+                    handleEvent: function(evt) {
+                        var lasttimes = parseInt($("#cjcs").html());
+                        if(lasttimes <= 0){
+                            alert('你的抽奖机会已用完');
+                            return false;
+                        }
+                        if ("SPAN" == evt.target.tagName) {
+                            setTimeout(function() {
+                                evt.target.classList.toggle("on");
+                                //var rand = Math.round(Math.random()*10);
+                                //evt.target.classList.toggle("luck");
+                                //jg({prize:"呱呱呱",sn:"asffff"});
+                                //lqsb();
+                                //return;
+                                $.ajax({
+                                    url: "<?=U('getprize');?>",
+                                    type: "POST",
+                                    dataType: "json",
+                                    async: true,
+                                    data: {id: '<?=$huodong['id'];?>',token:'<?=$token;?>'},
+                                    success: function(res) {
+                                        if (1 == res.status) {
+                                            evt.target.classList.toggle("luck");
+                                        }
+                                        setTimeout(function() {
+                                            if (1 == res.status) {
+                                                jg(res.data);
+                                            } else {
+                                                lqsb(res.info);
+                                            }
+                                        }, 1000);
+                                    }
+                                });
+
+                            }, 100);
+
+                            $("#hit").addClass("on").css({left: evt.pageX + "px", top: evt.pageY + "px"});
+                        }
+                        
+                        shape.removeEventListener("click", hitObj, false);
+                        
+                    }
+                }
+                shape.addEventListener("click", hitObj, false);
+            }, false);
         </script>
     </body>
 </html>
