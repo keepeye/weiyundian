@@ -200,7 +200,12 @@
             //结果
             function jg(arg) {
                 var d3 = new iDialog();
-                var btns = [];
+                var btns = [];//初始化按钮
+                btns.push({id: "", name: "领取", onclick: "fn.call();", fn: function(self) {
+                            self.die();
+                            lq(arg);
+                        }
+                });
                 d3.open({
                     classList: "result",
                     title: "",
