@@ -69,7 +69,7 @@ class ZajindanAction extends WapAction {
 		}
 		
 
-		$this->assign("huodong",$huodong);
+		$this->assign("huodong",$this->huodong);
 		$this->assign("record",$record);
 		$this->display();
 	}
