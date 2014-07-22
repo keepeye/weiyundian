@@ -86,7 +86,7 @@
                         <h6>参与次数</h6>
                         <div>
                             <p>
-                                您还可以抽奖次数：<label class="color_golden">11106</label>
+                                您还可以抽奖次数：<label class="color_golden"><?=$record['times'];?></label>
                             </p>
                         </div>
                     </article>
@@ -94,7 +94,8 @@
                         <h6>活动说明</h6>
                         <div>
                             <p>
-                                111					</p>
+                            <?=htmlspecialchars_decode($huodong['desc']);?>
+                            </p>
                         </div>
                     </article>
                     <article class="a3">

@@ -68,7 +68,9 @@ class ZajindanAction extends WapAction {
 			}
 		}
 		
-		//读取中奖记录
+
+		$this->assign("huodong",$huodong);
+		$this->assign("record",$record);
 		$this->display();
 	}
 
