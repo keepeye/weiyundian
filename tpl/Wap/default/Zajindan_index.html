@@ -117,7 +117,7 @@
                         <div>
                             <table>
                                 <tr>
-                                    <td><input type="button" value="查看" onclick="mysn({sn:'sdfdf'});" /></td>
+                                    <td><input type="button" value="查看" onclick="mysn();" /></td>
                                 </tr>
                             </table>
 
@@ -129,13 +129,17 @@
         </div>
         <script>
             //查看中奖详情
-            function mysn(arg){
+            function mysn(){
                 var d1 = new iDialog();
                 d1.open({
                     classList: "sndetail",
                     title: "",
                     close: "",
-                    content: 'SN码：'+arg.sn,
+                    content: '<div class="header"><h6>我的奖品</h6></div>\
+                                        <table>\
+                                                <tr><td><input type="text" id="d2_1" placeholder="请输入联系人" maxlength="30" /></td></tr>\
+                                                <tr><td><input type="text" id="d2_2" placeholder="请输入手机号，以便领取奖品" maxlength="30" /></td></tr>\
+                                        </table>',
                     btns: [
                         {id: "", name: "关闭", onclick: "fn.call();", fn: function(self) {
                                 self.die();
