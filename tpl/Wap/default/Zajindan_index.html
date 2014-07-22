@@ -113,11 +113,18 @@
                     </article>
 
                     <article>
-                        <h6>中奖纪录</h6>
+                        <h6>我的奖品</h6>
                         <div>
                             <table>
                                 <tr>
-                                    <td><input type="button" value="查看" onclick="mysn();" /></td>
+                                    <td>
+                                        <input type="button" value="奖品列表" onclick="mysn();" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="button" value="个人信息" onclick="myinfo();" />
+                                    </td>
                                 </tr>
                             </table>
 
@@ -166,6 +173,28 @@
                 });
             }
             
+            //个人信息
+            function myinfo(){
+                var formdata = $("#formdata");
+                //如果尚未提交个人信息，则转到表单提交功能
+                if(formdata.html() == ""){
+                    lq();
+                }else{
+                    var d2 = new iDialog();//初始化对话框
+                    d2.open({
+                        classList: "",
+                        title: "",
+                        close: "",
+                        content: $("#formdata").html(),
+                        btns: [
+                            {id: "", name: "确定", onclick: "fn.call();", fn: function(self) {
+                                    self.die();
+                                }, }
+                        ]
+                    });
+                }
+            }
+
             //领取
             function lq(arg) {
                 var d2 = new iDialog();
@@ -175,7 +204,7 @@
                     close: "",
                     content: $("#formset").html(),
                     btns: [
-                        {id: "", name: "领取", onclick: "fn.call();", fn: function(self) {
+                        {id: "", name: "提交", onclick: "fn.call();", fn: function(self) {
                                 var obj = {
                                     username: $.trim($("#d2_1").val()),
                                     tel: $.trim($("#d2_2").val()),
