@@ -38,6 +38,7 @@ class ZajindanAction extends WapAction {
 		
 		$this->assign("token",$this->token);
 		$this->assign("wecha_id",$this->wecha_id);
+		$this->assign("wxsign",$this->wxsign);
 	}
 
 	
