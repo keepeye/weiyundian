@@ -135,7 +135,7 @@
             
         </div>
         <!--自定义表单-->
-        <form id="formset" style="display:none;" method="post">
+        <div id="formset" style="display:none;">
             <div class="header"><h6>个人信息</h6></div>
             <table>
                     <tr>
@@ -149,7 +149,7 @@
                         </td>
                     </tr>
             </table>
-        </form>
+        </div>
         <!--用户提交的信息-->
         <div id="formdata" style="display:none;">
             
@@ -206,10 +206,10 @@
                     classList: "get",
                     title: "",
                     close: "",
-                    content: $("#formset"),
+                    content: '<form id="lq_form">'+$("#formset").html()+'</form>',
                     btns: [
                         {id: "", name: "提交", onclick: "fn.call();", fn: function(self) {
-                                var fdata = $("#formset").serialize();
+                                var fdata = $("#lq_form").serialize();
                                 console.log(fdata);return;
                                 $.ajax({
                                     url: "<?=U('myinfo');?>",
