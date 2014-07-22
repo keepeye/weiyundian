@@ -206,7 +206,7 @@
                     btns: [
                         {id: "", name: "提交", onclick: "fn.call();", fn: function(self) {
                                 var fdata = $("#formset").serialize();
-                                console.log(fdata);return;
+                                console.log($("#formset"));return;
                                 $.ajax({
                                     url: "<?=U('myinfo');?>",
                                     type: "POST",
