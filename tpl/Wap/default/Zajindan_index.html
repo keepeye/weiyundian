@@ -201,11 +201,19 @@
             function jg(arg) {
                 var d3 = new iDialog();
                 var btns = [];//初始化按钮
-                btns.push({id: "", name: "领取", onclick: "fn.call();", fn: function(self) {
-                            self.die();
-                            lq(arg);
-                        }
-                });
+                if( ! arg.formdata){
+                    btns.push({id: "", name: "领取", onclick: "fn.call();", fn: function(self) {
+                                self.die();
+                                lq(arg);
+                            }
+                    });
+                }else{
+                    btns.push({id: "", name: "领取", onclick: "fn.call();", fn: function(self) {
+                                self.die();
+                            }
+                    });
+                }
+                
                 d3.open({
                     classList: "result",
                     title: "",
