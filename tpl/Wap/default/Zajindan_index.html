@@ -277,7 +277,7 @@
                                         </tr></table>',
                     btns: [
                         {id: "", name: "再砸一次", onclick: "fn.call();", fn: function(self) {
-                                location.href = location.href + "&r=" + Math.random();
+                                window.location.reload();
                             }},
                     ]
                 });
