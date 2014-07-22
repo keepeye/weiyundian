@@ -61,9 +61,9 @@ class ZajindanAction extends UserAction
 		//时间格式转换
 		$_POST['info']['stime'] = strtotime($_POST['info']['stime']);
 		$_POST['info']['etime'] = strtotime($_POST['info']['etime']);
-		//概率检查
-		$gailv= sprintf('%.2f',abs($_POST['info']['gailv']));
-		$_POST['info']['gailv'] = $gailv > 100 ? 0 : $gailv;
+		//概率处理
+		$gailv= sprintf('%.2f',abs($_POST['info']['gailv']));//取绝对值并格式化小数位
+		$_POST['info']['gailv'] = $gailv > 100 ? 0 : $gailv;//检测是否超过100上限了，超过则设为0
 		if($zdata = $m->create($_POST['info']))
 		{
 			if($id)
