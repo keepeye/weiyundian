@@ -68,7 +68,10 @@ class ZajindanAction extends WapAction {
 			}
 		}
 		
+		//读取奖品列表
+		$prizes = M('ZajindanPrize')->where(array("pid"=>$this->huodong['id']))->select();
 
+		$this->assign("prizes",$prizes);
 		$this->assign("huodong",$this->huodong);
 		$this->assign("record",$record);
 		$this->display();

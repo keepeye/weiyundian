@@ -102,14 +102,12 @@
                         <h6>活动奖项</h6>
                         <div>
                             <table>
+                            <?php foreach($prizes as $prize): ?>
                                 <tr>
-                                    <td>奖品名+100积分</td>
-                                    <td>剩余：1个</td>
+                                    <td><?=$prize['name'];?> <?=$prize['extra_score']>0?'+'.$prize['extra_score'].'积分':"";?></td>
+                                    <td>剩余：<?=$prize['stock'];?>个</td>
                                 </tr>
-                                <tr>
-                                    <td>奖品名</td>
-                                    <td>剩余：50个</td>
-                                </tr>
+                            <?php endforeach;?>
                             </table>
                         </div>
                     </article>
