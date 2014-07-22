@@ -127,6 +127,23 @@
             </section>
             
         </div>
+        <!--自定义表单-->
+        <div id="formset">
+            <div class="header"><h6>个人信息</h6></div>
+            <table>
+                    <tr>
+                        <td><input type="text"  placeholder="请输入联系人" maxlength="30" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text"  placeholder="请输入手机号，以便领取奖品" maxlength="30" /></td>
+                    </tr>
+            </table>
+        </div>
+        <!--用户提交的信息-->
+        <div id="formdata">
+
+        </div>
+
         <script>
 
             //查看中奖详情
@@ -156,11 +173,7 @@
                     classList: "get",
                     title: "",
                     close: "",
-                    content: '<div class="header"><h6>SN码：' + arg.code + '</h6></div>\
-                                        <table>\
-                                                <tr><td><input type="text" id="d2_1" placeholder="请输入联系人" maxlength="30" /></td></tr>\
-                                                <tr><td><input type="text" id="d2_2" placeholder="请输入手机号，以便领取奖品" maxlength="30" /></td></tr>\
-                                        </table>',
+                    content: $("#formset").html(),
                     btns: [
                         {id: "", name: "领取", onclick: "fn.call();", fn: function(self) {
                                 var obj = {
