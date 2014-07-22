@@ -195,8 +195,8 @@
                 }
             }
 
-            //领取
-            function lq(arg) {
+            //提交个人信息
+            function lq() {
                 var d2 = new iDialog();
                 d2.open({
                     classList: "get",
@@ -205,19 +205,12 @@
                     content: $("#formset").html(),
                     btns: [
                         {id: "", name: "提交", onclick: "fn.call();", fn: function(self) {
-                                var obj = {
-                                    username: $.trim($("#d2_1").val()),
-                                    tel: $.trim($("#d2_2").val()),
-                                    id: 10235,
-                                    sdid: 384873,
-                                    Username: '123333',
-                                    tk: '4a12207616277f4cc516383a02e07870',
-                                    snid: arg.snid
-                                }
+                                var fdata = $("#formset").serialize();
+                                console.log(fdata);return;
                                 $.ajax({
-                                    url: "/WebSmashEgg/AddUserInfo",
+                                    url: "<?=U('myinfo');?>",
                                     type: "POST",
-                                    data: obj,
+                                    data: fdata,
                                     dataType: "json",
                                     success: function(res) {
                                         if (1 == res.success) {
@@ -230,9 +223,6 @@
                                 });
                             }},
                         {id: "", name: "关闭", onclick: "fn.call();", fn: function(self) {
-                                if ('no' != arg.loca) {
-                                    location.href = location.href + "&r=" + Math.random();
-                                }
                                 self.die();
                             }, }
                     ]
