@@ -80,20 +80,104 @@ class ZajindanAction extends WapAction {
 
 	//ajax抽奖
 	function getprize(){
-		$data = array(
-			"status"=>1,
-			"data"=>array("prize"=>"蛋糕券","formdata"=>"","sn"=>"dffff"),
-			"info"=>"中奖啦"
+		//读取用户信息
+		$wecha_user = M('WechaUser')->where(array('token'=>$this->token,'wecha_id'=>$this->wecha_id))->find();
+		if( ! $wecha_user){
+			$this->ajaxReturn(array("status"=>0,"info"=>"用户不存在"));
+		}
+		//检测用户是否能抽奖
+		$record_map = array(
+			"pid"=>$this->huodong['id'],
+			"wecha_id"=>$this->wecha_id,
 		);
+		$record = M('ZajindanRecord')->where($record_map)->find();
+		if( ! $record){
+			$this->ajaxReturn(array("status"=>0,"info"=>"用户记录不存在"));
+		}
+		//抽奖次数检测
+		if($record['times'] <=0){
+			if($this->huodong['needscore']<=0){
+				$this->ajaxReturn(array("status"=>0,"info"=>"抽奖次数已用完"));
+			}
+			//使用积分抽奖
+			if($wecha_user['score']>$this->huodong['needscore']){
+				M('WechaUser')->where(array('token'=>$this->token,'wecha_id'=>$this->wecha_id))->setDec('score',$this->huodong['needscore']);
+			}else{
+				$this->ajaxReturn(array("status"=>0,"info"=>"积分不足"));
+			}
+		}
+
+		
+		$myprize = $this->_roll();//抽奖
+		//判断是否中到奖品
+		if( ! $myprize){
+			//ajax返回数据
+			$data = array(
+				"status"=>0,
+				"info"=>"未中奖"
+			);
+		}else{
+			//生成sn记录
+			$sn = uniqid();
+			M('ZajindanSn')->data(array("sn"=>$sn,"pid"=>$myprize['id'],"wecha_id"=>$this->wecha_id,"time"=>$_SERVER['REQUEST_TIME']))->add();
+			//更新用户积分
+			if($myprize['extra_score'] > 0){
+				if(D('WechaUser')->changeScore($this->token,$this->wecha_id,$myprize['extra_score'])){
+	                D('WechaLog')->addLog($this->token,$this->wecha_id,"积分","Zajindan:{$this->huodong['id']}:{$myprize['id']} +{$myprize['extra_score']}");
+	            }
+			}
+			//ajax返回数据
+			$data = array(
+				"status"=>1,
+				"data"=>array("prize"=>$myprize['name'],"formdata"=>unserialize($record['formdata']),"sn"=>$sn),
+				"info"=>"中奖啦"
+			);
+		}
+		
 		$this->ajaxReturn($data);
+	}
+
+	//抽奖过程
+	private function _roll(){
 		//随机判断是否中奖
-		//并发锁--开始
-			//读取奖品列表
-			//随机中奖
-				//检测库存
-				//生成记录
-				//返回结果
-		//并发锁结束
+		$gailv = $this->huodong['gailv']*100;//基数扩大一百倍
+		$randnum = mt_rand(1,10000);
+		$hit = $randnum<=$gailv?true:false;//随机数落在1~$gailv之间则中奖
+		$myprize = array();//初始化奖品
+		//中奖处理
+		if($hit){
+			//并发锁--开始
+			$file = TEMP_PATH."/zajindan_getprize.lock";
+			$fp = fopen($file,"w+");
+			if(flock($fp,LOCK_EX | LOCK_NB)){
+				//读取奖品列表
+				$prizes = M('ZajindanPrize')->where(array("pid"=>$this->huodong['id'],"stock"=>array("gt","0")))->select();
+				if($prizes){
+					$weightsum = 0;//初始化区间数组下标
+					foreach($prizes as $k=>$prize){
+						//提取权重
+						$weightsum += $prize['weight'];
+						$rd_k[$weightsum] = $k;
+					}
+					$prize_rd = mt_rand(1,$weightsum);
+					$start = 0;
+					foreach($rd_k as $k1=>$v){
+						//判断随机数落在某个区间
+						if($prize_rd>$start && $prize_rd<=$k1){
+							$myprize = $prizes[$v];
+							//更新库存
+							M('ZajindanPrize')->where("id='{$prizes[$v]['id']}'")->setDec('stock',1);
+							break;
+						}
+						$start = $k1;
+					}
+				}
+				flock($fp,LOCK_UN);//解除并发锁
+			}
+			
+			fclose($fp);
+		}
+		return $myprize;
 	}
 
 	//提交表单
