@@ -222,7 +222,7 @@
                                     success: function(res) {
                                         if (1 == res.status) {
                                             self.die();
-                                            alert('提交成功');
+                                            alert('提交成功',true);
                                         } else {
                                             alert("提交失败:"+res.info);
                                         }
@@ -287,7 +287,7 @@
                 });
             }
 
-            window.alert = function(str) {
+            window.alert = function(str,refresh) {
                 var d7 = new iDialog();
                 d7.open({
                     classList: "alert",
@@ -297,6 +297,9 @@
                     btns: [
                         {id: "", name: "确定", onclick: "fn.call();", fn: function(self) {
                                 self.die();
+                                if(refresh){
+                                    window.location.reload();
+                                }
                             }},
                     ]
                 });
