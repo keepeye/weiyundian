@@ -128,6 +128,7 @@
             
         </div>
         <script>
+
             //查看中奖详情
             function mysn(){
                 var d1 = new iDialog();
@@ -199,6 +200,7 @@
             //结果
             function jg(arg) {
                 var d3 = new iDialog();
+                var btns = [];
                 d3.open({
                     classList: "result",
                     title: "",
@@ -208,12 +210,7 @@
                                         <tr><td width=75>奖品名：</td><td>' + arg.prize + '</td></tr>\
                                         <tr><td width=75>SN：</td><td>' + arg.sn + '</td></tr>\
                                         </table>',
-                    btns: [
-                        {id: "", name: "领取", onclick: "fn.call();", fn: function(self) {
-                                self.die();
-                                lq(arg);
-                            }}
-                    ]
+                    btns: btns
                 });
             }
 
