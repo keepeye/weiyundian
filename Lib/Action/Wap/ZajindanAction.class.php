@@ -80,11 +80,7 @@ class ZajindanAction extends WapAction {
 
 	//ajax抽奖
 	function getprize(){
-		//读取用户信息
-		$wecha_user = M('WechaUser')->where(array('token'=>$this->token,'wecha_id'=>$this->wecha_id))->find();
-		if( ! $wecha_user){
-			$this->ajaxReturn(array("status"=>0,"info"=>"用户不存在"));
-		}
+		
 		//检测用户是否能抽奖
 		$record_map = array(
 			"pid"=>$this->huodong['id'],
@@ -99,6 +95,8 @@ class ZajindanAction extends WapAction {
 			if($this->huodong['needscore']<=0){
 				$this->ajaxReturn(array("status"=>0,"info"=>"抽奖次数已用完"));
 			}
+			//读取用户信息
+			$wecha_user = M('WechaUser')->field('score')->where(array('token'=>$this->token,'wecha_id'=>$this->wecha_id))->find();
 			//使用积分抽奖
 			if($wecha_user['score']>$this->huodong['needscore']){
 				M('WechaUser')->where(array('token'=>$this->token,'wecha_id'=>$this->wecha_id))->setDec('score',$this->huodong['needscore']);
@@ -106,7 +104,8 @@ class ZajindanAction extends WapAction {
 				$this->ajaxReturn(array("status"=>0,"info"=>"积分不足"));
 			}
 		}
-
+		//减少一次机会
+		M('ZajindanRecord')->where($record_map)->setDec('times',1);
 		
 		$myprize = $this->_roll();//抽奖
 		//判断是否中到奖品
@@ -114,7 +113,7 @@ class ZajindanAction extends WapAction {
 			//ajax返回数据
 			$data = array(
 				"status"=>0,
-				"info"=>"未中奖"
+				"info"=>"未中奖，请再接再厉"
 			);
 		}else{
 			//生成sn记录
