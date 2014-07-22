@@ -81,9 +81,9 @@ class ZajindanAction extends WapAction {
 	//ajax抽奖
 	function getprize(){
 		$data = array(
-			"status"=>0,
-			"data"=>"",
-			"info"=>""
+			"status"=>1,
+			"data"=>array("prize"=>"蛋糕券","formdata"=>""),
+			"info"=>"中奖啦"
 		);
 		$this->ajaxReturn($data);
 		//随机判断是否中奖
