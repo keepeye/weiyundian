@@ -53,6 +53,8 @@ class WechaUserAction extends UserAction
 		$pagestr = $Page->show();
 
 		$list = $M->where($where)->limit($Page->firstRow.','.$Page->listRows)->order($order)->select();
+		$score_sum = $M->where($where)->sum('score');//积分总和
+		$this->assign("score_sum",$score_sum);
 		$this->assign('pagestr',$pagestr);
 		$this->assign('list',$list);
 		$this->display();
