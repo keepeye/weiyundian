@@ -119,12 +119,12 @@
                                 <tr>
                                     <td>2014/07/09 16:00</td>
                                     <td>22222</td>
-                                    <td><input type="button" value="查看" onclick="sqdh({code:'070986992913033', snid:'2243530'});" /></td>
+                                    <td><input type="button" value="查看" onclick="sqdh({sn:'sdfdf'});" /></td>
                                 </tr>
                                 <tr>
                                     <td>2014/07/09 15:58</td>
                                     <td>1111111</td>
-                                    <td><input type="button" value="查看" onclick="sqdh({code:'070986992913033', snid:'2243530'});" /></td>
+                                    <td><input type="button" value="查看" onclick="sqdh({sn:'dsafd'});" /></td>
                                 </tr>
                             </table>
 
@@ -135,53 +135,25 @@
             
         </div>
         <script>
-            //申请兑换
-            function sqdh(arg) {
+            //查看中奖详情
+            function mysn(arg){
                 var d1 = new iDialog();
                 d1.open({
-                    classList: "apply",
+                    classList: "sndetail",
                     title: "",
                     close: "",
-                    content: '<div class="header"><h6 style="color:#fff;">申请兑换</h6></div>\
+                    content: '<div class="header"><h6 style="color:#fff;">奖品详情</h6></div>\
                                         <table>\
-                                                <tr><td><input type="text" id="d1_1" placeholder="" maxlength="30" readonly="readonly" value="SN码：' + arg.code + '" /></td></tr>\
-                                                <tr><td><input type="text" id="d1_2" placeholder="请输入兑奖密码" maxlength="30" /></td></tr>\
+                                                <tr><td>SN码：'+arg.sn+'</td></tr>\
                                         </table>',
                     btns: [
-                        {id: "", name: "确定", onclick: "fn.call();", fn: function(self) {
-                                var obj = {
-                                    d1_1: $.trim($("#d1_1").val()),
-                                    parssword: $.trim($("#d1_2").val()),
-                                    id: 10235,
-                                    sdid: 384873,
-                                    Username: '123333',
-                                    tk: '4a12207616277f4cc516383a02e07870',
-                                    snid: arg.snid
-                                }
-                                $.ajax({
-                                    url: "/WebSmashEgg/AddUserInfo",
-                                    type: "POST",
-                                    dataType: "json",
-                                    data: obj,
-                                    success: function(res) {
-                                        if (1 == res.success) {
-                                            alert('兑奖状态已经记录');
-                                            location.href = location.href + "&r=" + Math.random();
-                                            self.die();
-
-                                        } else {
-                                            alert('兑奖密码错误');
-                                        }
-                                    }
-                                });
-                            }},
                         {id: "", name: "关闭", onclick: "fn.call();", fn: function(self) {
                                 self.die();
                             }, }
                     ]
                 });
             }
-
+            
             //领取
             function lq(arg) {
                 var d2 = new iDialog();
