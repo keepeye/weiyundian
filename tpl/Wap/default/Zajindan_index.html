@@ -204,18 +204,15 @@
                     title: "",
                     close: "",
                     content: '<div class="header"><h5 style="color:#2f8ae5;font-size:16px;">恭喜您中奖了！</h6></div>\
-                                        <table><tr>\
-                                                <td><label>' + arg.prize + '</label></td>\
-                                        </tr></table>',
+                                        <table>\
+                                        <tr><td>奖品名' + arg.prize + '</td></tr>\
+                                        <tr><td>sn码' + arg.sn + '</td></tr>\
+                                        </table>',
                     btns: [
-                        {id: "", name: "领取奖品", onclick: "fn.call();", fn: function(self) {
+                        {id: "", name: "领取", onclick: "fn.call();", fn: function(self) {
                                 self.die();
                                 lq(arg);
-                            }},
-                        {id: "", name: "关闭", onclick: "fn.call();", fn: function(self) {
-                                location.href = location.href + "&r=" + Math.random();
-                                self.die();
-                            }, }
+                            }}
                     ]
                 });
             }
