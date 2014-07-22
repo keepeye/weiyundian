@@ -177,7 +177,7 @@
             function myinfo(){
                 var formdata = $("#formdata");
                 //如果尚未提交个人信息，则转到表单提交功能
-                if($.trim(formdata.html()) == ""){
+                if(formdata.html().replace(/^\s+(.*?)\s+$/,"$1") == ""){
                     lq();
                 }else{
                     var d2 = new iDialog();//初始化对话框
