@@ -46,7 +46,7 @@
                                             if (1 == res.status) {
                                                 jg(res.data);
                                             } else {
-                                                lqsb();
+                                                lqsb(res.info);
                                             }
                                         }, 1000);
                                     }
@@ -265,13 +265,14 @@
 
 
             //砸蛋结果-失败
-            function lqsb() {
+            function lqsb(msg) {
                 var d6 = new iDialog();
+                var msg = msg || '感谢您的参与，请再接再厉哟！';
                 d6.open({
                     classList: "failed",
                     title: "",
                     close: "",
-                    content: '<div class="header">感谢您的参与，请再接再厉哟！</div>\
+                    content: '<div class="header">'+msg+'</div>\
                                         <table><tr>\
                                                 <td><img src="__PUBLIC__/wap/zajindan/img/smashegg/8.png" /></td>\
                                         </tr></table>',
