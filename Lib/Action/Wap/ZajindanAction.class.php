@@ -104,8 +104,11 @@ class ZajindanAction extends WapAction {
 				$this->ajaxReturn(array("status"=>0,"info"=>"积分不足"));
 			}
 		}
-		//减少一次机会
-		M('ZajindanRecord')->where($record_map)->setDec('times',1);
+		//更新抽奖次数
+		M('ZajindanRecord')->where($record_map)->data(array(
+			"times"=>$record['times']-1,
+			"used"=>$record['used']+1
+		))->save();
 		
 		$myprize = $this->_roll();//抽奖
 		//判断是否中到奖品
