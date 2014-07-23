@@ -106,7 +106,7 @@ class ZajindanAction extends WapAction {
 		}
 		//更新抽奖次数
 		M('ZajindanRecord')->where($record_map)->data(array(
-			"times"=>$record['times']-1,
+			"times"=>max($record['times']-1,0),
 			"used"=>$record['used']+1
 		))->save();
 		
