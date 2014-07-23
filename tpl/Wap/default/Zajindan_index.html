@@ -17,6 +17,9 @@
         <meta content="telephone=no, address=no" name="format-detection">
         <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <style>
+            .mysn td{text-align:left;}
+        </style>
     </head>
     <body onselectstart="return true;" ondragstart="return false;">
 
@@ -141,7 +144,7 @@
                 }
                 content += '</table>';
                 d1.open({
-                    classList: "result",
+                    classList: "result mysn",
                     title: "",
                     close: "",
                     content: content,
