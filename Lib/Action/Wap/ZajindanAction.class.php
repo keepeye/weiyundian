@@ -190,4 +190,10 @@ class ZajindanAction extends WapAction {
 		$this->success("成功");
 	}
 
+	//我的奖品
+	function mysn(){
+		$myprizes = M()->query("select sn.sn,FROM_UNIXTIME(sn.time) as time,p.name from `tp_zajindan_sn` sn,`tp_zajindan_prize` p where sn.wecha_id='{$this->wecha_id}' AND p.pid='{$this->huodong['id']}' AND sn.pid=p.id");
+		$this->ajaxReturn($myprizes);
+	}
+
 }

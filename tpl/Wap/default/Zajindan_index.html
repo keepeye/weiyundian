@@ -114,16 +114,35 @@
 
             //查看中奖详情
             function mysn(){
+                var myprizes = [];
+                //从后端获取奖品列表
+                $.ajax({
+                    url:"<?=U('mysn');?>",
+                    data: {id: '<?=$huodong['id'];?>',token:'<?=$token;?>'},
+                    dataType:"json",
+                    error:function(){
+                        alert('查询失败，网络错误');
+                    },
+                    success:function(res){
+                        if(res){
+                            myprizes = res;
+                        }else{
+                            alert('你尚未中奖');
+                        }
+                    }
+                });
+                //创建对话层
                 var d1 = new iDialog();
+                var content = '<div class="header"><h6>我的奖品</h6></div><table>';
+                for(var i=0;i<myprizes.length;i++){
+                    content += '<tr><td>SN:'+myprizes[i]['sn']+'<br/>奖品:'+myprizes[i]['name']+'<br/>时间:'+myprizes[i]['time']+'</td></tr>';
+                }
+                content += '</table>';
                 d1.open({
-                    classList: "sndetail",
+                    classList: "result",
                     title: "",
                     close: "",
-                    content: '<div class="header"><h6>我的奖品</h6></div>\
-                                        <table>\
-                                                <tr><td><input type="text" id="d2_1" placeholder="请输入联系人" maxlength="30" /></td></tr>\
-                                                <tr><td><input type="text" id="d2_2" placeholder="请输入手机号，以便领取奖品" maxlength="30" /></td></tr>\
-                                        </table>',
+                    content: content,
                     btns: [
                         {id: "", name: "关闭", onclick: "fn.call();", fn: function(self) {
                                 self.die();
