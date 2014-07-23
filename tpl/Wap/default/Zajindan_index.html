@@ -204,7 +204,7 @@
                             }
                     });
                 }
-                
+                var extrainfo = arg.extra_score?'<tr><td width=75>积分：</td><td>+' + arg.extra_score + '</td></tr>':'';
                 d3.open({
                     classList: "result",
                     title: "",
@@ -213,7 +213,7 @@
                                         <table>\
                                         <tr><td width=75>奖品名：</td><td>' + arg.prize + '</td></tr>\
                                         <tr><td width=75>SN：</td><td>' + arg.sn + '</td></tr>\
-                                        </table>',
+                                        '+extrainfo+'</table>',
                     btns: btns
                 });
             }

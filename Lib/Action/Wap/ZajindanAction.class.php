@@ -131,7 +131,7 @@ class ZajindanAction extends WapAction {
 			//ajax返回数据
 			$data = array(
 				"status"=>1,
-				"data"=>array("prize"=>$myprize['name'],"formdata"=>unserialize($record['formdata']),"sn"=>$sn),
+				"data"=>array("prize"=>$myprize['name'],"formdata"=>unserialize($record['formdata']),"sn"=>$sn,"extra_score"=>$myprize['extra_score']),
 				"info"=>"中奖啦"
 			);
 		}
