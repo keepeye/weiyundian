@@ -114,19 +114,19 @@
 
             //查看中奖详情
             function mysn(){
-                var myprizes;
+                var myprizes = [];
                 //从后端获取奖品列表
                 $.ajax({
                     url:"<?=U('mysn');?>",
                     data: {id: '<?=$huodong['id'];?>',token:'<?=$token;?>'},
                     dataType:"json",
+                    async: true,//这里需要同步模式
                     error:function(){
                         alert('查询失败，网络错误');
                     },
                     success:function(res){
                         if(res){
                             myprizes = res;
-                            console.log(myprizes);
                         }else{
                             alert('你尚未中奖');
                         }
