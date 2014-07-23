@@ -120,7 +120,7 @@
                     url:"<?=U('mysn');?>",
                     data: {id: '<?=$huodong['id'];?>',token:'<?=$token;?>'},
                     dataType:"json",
-                    async: true,//这里需要同步模式
+                    async: false,//这里需要同步模式
                     error:function(){
                         alert('查询失败，网络错误');
                     },
