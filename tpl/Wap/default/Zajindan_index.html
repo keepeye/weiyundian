@@ -101,16 +101,27 @@
         <div id="formset" style="display:none;">
             <div class="header"><h6>个人信息</h6></div>
             <table>
+            <?php foreach(unserialize($huodong['formset']) as $field): ?>
+                <?php if($field['type']=='selectfield'): ?>
+                    <?php $options = explode(",",$field['value']);?>
                     <tr>
                         <td>
-                            <input type="text" name="name"  placeholder="请输入联系人" maxlength="30" value=""/>
+                            {pigcms:$field.name}:
+                            <select name="formdata[{pigcms:$field.id}]">
+                                <?php foreach($options as $option):?>
+                                <option value="{pigcms:$option}">{pigcms:$option}</option>
+                                <?php endforeach;?>
+                            </select>
                         </td>
                     </tr>
+                <?php else: ?>
                     <tr>
                         <td>
-                            <input type="text" name="phone"  placeholder="请输入手机号，以便领取奖品" maxlength="30"/>
+                            {pigcms:$field.name}:<input type="text" name="formdata[{pigcms:$field.id}]" placeholder="{pigcms:$field.name}" value="{pigcms:$field.value}"  />
                         </td>
                     </tr>
+                <?php endif;?>
+            <?php endforeach;?>
             </table>
             <input type="hidden" name="id" value="<?=$huodong['id'];?>" />
             <input type="hidden" name="wecha_id" value="<?=$wecha_id;?>"/>
