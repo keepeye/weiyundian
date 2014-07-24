@@ -107,7 +107,7 @@
                     <tr>
                         <td>
                             <select name="formdata[{pigcms:$field.id}]">
-                                <option disabled="disabled">{pigcms:$field.name}</option>
+                                <option>--请选择{pigcms:$field.name}--</option>
                                 <?php foreach($options as $option):?>
                                 <option value="{pigcms:$option}">{pigcms:$option}</option>
                                 <?php endforeach;?>
