@@ -20,6 +20,7 @@
         <style>
             div.dialogWindow.mysn table td{text-align:left;line-height:1.5em;}
             div.dialogWindow.mysn .dialogContent{overflow: auto;}
+            table.formset tr td select{padding:7px;width:100%;}
         </style>
     </head>
     <body onselectstart="return true;" ondragstart="return false;">
@@ -100,7 +101,7 @@
         <!--自定义表单-->
         <div id="formset" style="display:none;">
             <div class="header"><h6>个人信息</h6></div>
-            <table>
+            <table class="formset">
             <?php foreach(unserialize($huodong['formset']) as $field): ?>
                 <?php if($field['type']=='selectfield'): ?>
                     <?php $options = explode(",",$field['value']);?>
